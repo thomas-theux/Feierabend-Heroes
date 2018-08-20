@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour {
 
-	public static int playerCount = 4;
+	public static int playerCount = 1;
 	public GameObject characterModel;
 
 	public static float[] characterSpeed = {0f, 10f, 10f, 10f, 10f};
