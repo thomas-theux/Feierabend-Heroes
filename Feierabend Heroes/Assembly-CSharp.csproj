@@ -54,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CharacterMovement.cs" />
+     <Compile Include="Assets\Scripts\CharacterStats.cs" />
+     <Compile Include="Assets\Scripts\FPSDisplay.cs" />
+     <Compile Include="Assets\Scripts\InputScript.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Unity/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
