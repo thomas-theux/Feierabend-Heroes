@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour {
 
-	private int charID = 0;
+	public int charID = 0;
 
 	private CharacterController controller;
 	public LayerMask Ground;
@@ -14,7 +14,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	private float _gravity;
 	private Vector3 _velocity;
-	private int mag;
+	// private int mag;
 
 	private bool _isGrounded = true;
 	private Transform groundChecker;
@@ -53,8 +53,8 @@ public class CharacterMovement : MonoBehaviour {
 		}
 		
 		// Tracking the characters speed
-		var vel = controller.velocity;
-		mag = Mathf.RoundToInt(vel.magnitude);
+		// var vel = controller.velocity;
+		// mag = Mathf.RoundToInt(vel.magnitude);
 		// print(mag);
 
 		// Jumping 
