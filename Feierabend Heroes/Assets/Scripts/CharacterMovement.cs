@@ -12,6 +12,7 @@ public class CharacterMovement : MonoBehaviour {
 	private float moveSpeed;
 	private float jumpHeight;
 	private bool stopMovement;
+	private float waitToMove = 0;
 
 	private float _gravity;
 	private Vector3 _velocity;
@@ -48,7 +49,7 @@ public class CharacterMovement : MonoBehaviour {
 		move = move.normalized;
 
 		// Move the character – but only if they are not attacking
-		if (!stopMovement) {
+		if (waitToMove <= 0) {
 			controller.Move(move * Time.deltaTime * moveSpeed);
 		}
         if (move != Vector3.zero) {
@@ -67,10 +68,10 @@ public class CharacterMovement : MonoBehaviour {
 
 		// Attacking
 		if (Input.GetButtonDown(InputScript.gamepadInput[charID, 0])) {
-			stopMovement = true;
+			waitToMove = 0.2f;
 			this.gameObject.GetComponent<Attack>().shootProjectile();
-		} else {
-			stopMovement = false;
+		} else if (waitToMove > 0) {
+			waitToMove -= Time.deltaTime;
 		}
 
 		// Applying gravity to the character
