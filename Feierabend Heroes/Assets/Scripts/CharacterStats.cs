@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour {
 
-	public static int playerCount = 2;
+	public static int playerCount = 1;
 	public GameObject characterModel;
 	public GameObject cameraFollow;
 
