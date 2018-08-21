@@ -24,13 +24,13 @@ public class CharacterMovement : MonoBehaviour {
 	void Start ()
 	{
 		// Get external components
-		controller = GetComponent<CharacterController>();
+		controller = this.gameObject.GetComponent<CharacterController>();
 		groundChecker = transform.GetChild(0);
 		_gravity = Physics.gravity.y * 4f;
 
 		// Grabbing the stats from the Stats Sheet
-		moveSpeed = CharacterStats.characterSpeed[1];
-		jumpHeight = CharacterStats.characterJumpHeight[1];
+		moveSpeed = CharacterStats.characterSpeed[charID];
+		jumpHeight = CharacterStats.characterJumpHeight[charID];
 	}
 
 

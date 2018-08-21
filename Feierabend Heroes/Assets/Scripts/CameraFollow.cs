@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour {
 		transform.Rotate(50f, 0, 0);
 
 		camIdentifier = CharacterStats.playerCount + cameraID;
-		cam = GetComponent<Camera>();
+		cam = this.gameObject.GetComponent<Camera>();
 
 		switch (camIdentifier) {
 			case 11:
