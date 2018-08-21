@@ -47,7 +47,7 @@ public class CharacterMovement : MonoBehaviour {
 		Vector3 move = new Vector3(Input.GetAxis(InputScript.gamepadInput[charID, 14]), 0, Input.GetAxis(InputScript.gamepadInput[charID, 15]));
 		move = move.normalized;
 
-		// Move the character – but only if they are not shooting
+		// Move the character – but only if they are not attacking
 		if (!stopMovement) {
 			controller.Move(move * Time.deltaTime * moveSpeed);
 		}
