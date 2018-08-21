@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	private float moveSpeed;
 	private float jumpHeight;
+	private bool stopMovement;
 
 	private float _gravity;
 	private Vector3 _velocity;
@@ -46,8 +47,10 @@ public class CharacterMovement : MonoBehaviour {
 		Vector3 move = new Vector3(Input.GetAxis(InputScript.gamepadInput[charID, 14]), 0, Input.GetAxis(InputScript.gamepadInput[charID, 15]));
 		move = move.normalized;
 
-		// Move the character
-    	controller.Move(move * Time.deltaTime * moveSpeed);
+		// Move the character – but only if they are not shooting
+		if (!stopMovement) {
+			controller.Move(move * Time.deltaTime * moveSpeed);
+		}
         if (move != Vector3.zero) {
             transform.forward = move;
 		}
@@ -58,13 +61,16 @@ public class CharacterMovement : MonoBehaviour {
 		// print(mag);
 
 		// Jumping 
-		if (Input.GetButtonDown(InputScript.gamepadInput[charID, 0]) && _isGrounded) {
+		if (Input.GetButtonDown(InputScript.gamepadInput[charID, 5]) && _isGrounded) {
 			_velocity.y += Mathf.Sqrt(jumpHeight * -2f * _gravity);
 		}
 
 		// Attacking
-		if (Input.GetButton(InputScript.gamepadInput[charID, 5])) {
+		if (Input.GetButtonDown(InputScript.gamepadInput[charID, 0])) {
+			stopMovement = true;
 			this.gameObject.GetComponent<Attack>().shootProjectile();
+		} else {
+			stopMovement = false;
 		}
 
 		// Applying gravity to the character

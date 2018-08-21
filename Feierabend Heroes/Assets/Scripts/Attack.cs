@@ -7,7 +7,7 @@ public class Attack : MonoBehaviour {
 	public GameObject projectile;
 	public Transform shotSpawner;
 
-	private float fireRate = 0.3f;
+	private float fireRate = 0.1f;
 	private float nextFire = 0.0f;
 
 
