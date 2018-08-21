@@ -62,6 +62,11 @@ public class CharacterMovement : MonoBehaviour {
 			_velocity.y += Mathf.Sqrt(jumpHeight * -2f * _gravity);
 		}
 
+		// Attacking
+		if (Input.GetButton(InputScript.gamepadInput[charID, 5])) {
+			this.gameObject.GetComponent<Attack>().shootProjectile();
+		}
+
 		// Applying gravity to the character
 		_velocity.y += _gravity * Time.deltaTime;
 		controller.Move(_velocity * Time.deltaTime);

@@ -22,46 +22,46 @@ public class CameraFollow : MonoBehaviour {
 		cam = this.gameObject.GetComponent<Camera>();
 
 		switch (camIdentifier) {
-			case 11:
+			case 1:
 				// 1 Spieler – Position 1
 				cam.rect = new Rect(0, 0, 1, 1);
 				break;
-			case 12:
+			case 2:
 				// 2 Spieler – Position 1
 				cam.rect = new Rect(0, 0, 0.5f, 1);
 				break;
-			case 13:
+			case 3:
 				// 3 Spieler – Position 1
 				cam.rect = new Rect(0.25f, 0.5f, 0.5f, 0.5f);
 				break;
-			case 14:
+			case 4:
 				// 4 Spieler – Position 1
 				cam.rect = new Rect(0, 0.5f, 0.5f, 0.5f);
 				break;
 
-			case 22:
+			case 12:
 				// 2 Spieler – Position 2
 				cam.rect = new Rect(0.5f, 0, 0.5f, 1);
 				break;
-			case 23:
+			case 13:
 				// 3 Spieler – Position 2
 				cam.rect = new Rect(0, 0, 0.5f, 0.5f);
 				break;
-			case 24:
+			case 14:
 				// 4 Spieler – Position 2
 				cam.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
 				break;
 
-			case 33:
+			case 23:
 				// 3 Spieler – Position 3
 				cam.rect = new Rect(0.5f, 0, 0.5f, 0.5f);
 				break;
-			case 34:
+			case 24:
 				// 4 Spieler – Position 3
 				cam.rect = new Rect(0, 0, 0.5f, 0.5f);
 				break;
 
-			case 44:
+			case 34:
 				// 4 Spieler – Position 4
 				cam.rect = new Rect(0.5f, 0, 0.5f, 0.5f);
 				break;

@@ -6,28 +6,6 @@ public class InputScript : MonoBehaviour {
 	
 	public static string[,] gamepadInput = {
 		{
-			"Jump",
-			null,
-			null,
-			"Cancel",
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			null,
-			"Horizontal",
-			"Vertical",
-			"Mouse X",
-			"Mouse Y",
-			null,
-			null
-		},
-		{
 			"[One] X",
 			"[One] Square",
 			"[One] Triangle",
@@ -114,6 +92,28 @@ public class InputScript : MonoBehaviour {
 			"[Four] Right Vertical",
 			"[Four] DPad Horizontal",
 			"[Four] DPad Vertical"
+		},
+		{
+			"Jump",
+			null,
+			null,
+			"Cancel",
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+			"Horizontal",
+			"Vertical",
+			"Mouse X",
+			"Mouse Y",
+			null,
+			null
 		}
 	};
 

@@ -8,13 +8,13 @@ public class CharacterStats : MonoBehaviour {
 	public GameObject characterModel;
 	public GameObject cameraFollow;
 
-	public static float[] characterSpeed = {0f, 10f, 10f, 10f, 10f};
-	public static float[] characterJumpHeight = {0f, 2f, 2f, 2f, 2f};
+	public static float[] characterSpeed = {10f, 10f, 10f, 10f};
+	public static float[] characterJumpHeight = {2f, 2f, 2f, 2f};
 
 
 	void Start ()
 	{
-		for (int i = 1; i < playerCount + 1; i++) {
+		for (int i = 0; i < playerCount; i++) {
 			// Instantiate a character, rename it and give it an ID
 			characterModel.transform.name = "Character0" + i;
 			characterModel.GetComponent<CharacterMovement>().charID = i;
