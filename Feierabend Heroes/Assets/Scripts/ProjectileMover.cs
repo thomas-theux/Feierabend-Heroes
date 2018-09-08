@@ -5,7 +5,10 @@ using UnityEngine;
 public class ProjectileMover : MonoBehaviour {
 
 	private float moveSpeed = 20f;
-	private float damage = 10;
+
+	private float damage;
+	private float damageMin = 8;
+	private float damageMax = 12;
 
 
 	void Start ()
@@ -19,6 +22,7 @@ public class ProjectileMover : MonoBehaviour {
 	{
 		// If the other object is a character, they are being damaged
 		if (other.tag == "Character") {
+			damage = Random.Range(damageMin, damageMax);
 			other.GetComponent<HealthManager>().getHit(damage);
 		}
 
