@@ -7,6 +7,6 @@ public class BattleRoyale : MonoBehaviour {
 	void Start ()
 	{
 		// Respawning disabled in this game mode
-		HealthManager.respawningAllowed = false;
+		GameManager.allowRespawning = false;
 	}
 }

@@ -24,7 +24,7 @@ public class GameSelector : MonoBehaviour {
 	private int randomMode;
 	private int randomModifier;
 
-	private float sceneSwitchCounter = 5.0f;
+	private float sceneSwitchCounter = 1.0f;
 
 
 	void Start ()
@@ -73,7 +73,6 @@ public class GameSelector : MonoBehaviour {
 	void Update()
 	{
 		sceneSwitchCounter -= Time.deltaTime;
-		print(sceneSwitchCounter);
 
 		if (sceneSwitchCounter <= 0) {
 			sceneSwitchCounter = 0;

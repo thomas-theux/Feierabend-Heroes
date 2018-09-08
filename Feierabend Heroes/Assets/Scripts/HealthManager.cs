@@ -6,10 +6,8 @@ public class HealthManager : MonoBehaviour {
 
 	private GameObject levelManager;
 
-	public int maxHealth = 100;
+	public int maxHealth = 50;
 	public int currentHealth;
-
-	public static bool respawningAllowed = true;
 
 	private bool respawning = false;
 	private float waitToRespawn;
@@ -36,18 +34,18 @@ public class HealthManager : MonoBehaviour {
 			this.gameObject.GetComponent<Renderer>().enabled = false;
 			this.gameObject.transform.GetChild(1).GetComponent<Renderer>().enabled = false;
 
-			StartCoroutine(respawnDelay());
+			// If respawning is allowed then respawn character
+			if (GameManager.allowRespawning) {
+				StartCoroutine(respawnDelay());
+			}
 		}
 	}
 
 
 	IEnumerator respawnDelay () {
-		// If respawning is allowed then respawn character
-		if (respawningAllowed) {
-			yield return new WaitForSeconds(2.0f);
-			levelManager.GetComponent<SpawnCharacter>().respawnChar(this.gameObject);
-			respawning = false;
-		}
+		yield return new WaitForSeconds(2.0f);
+		levelManager.GetComponent<SpawnCharacter>().respawnChar(this.gameObject);
+		respawning = false;
 	}
 
 }

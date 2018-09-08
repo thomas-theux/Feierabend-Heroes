@@ -16,6 +16,9 @@ public class InitialLoader : MonoBehaviour {
 		// Attach them to the LevelManager
 		gameObject.AddComponent(Type.GetType(attachMode));
 		gameObject.AddComponent(Type.GetType(attachModifier));
+
+		// Attach Timer script to the LevelManager
+		gameObject.AddComponent<LevelTimer>();
 	}
 }
 

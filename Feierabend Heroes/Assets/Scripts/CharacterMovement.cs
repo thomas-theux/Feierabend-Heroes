@@ -54,30 +54,32 @@ public class CharacterMovement : MonoBehaviour {
 		Vector3 move = new Vector3(Input.GetAxis(InputScript.gamepadInput[charID, 14]), 0, Input.GetAxis(InputScript.gamepadInput[charID, 15]));
 		move = move.normalized;
 
-		// Move the character – but only if they are not attacking
-		if (waitToMove <= 0) {
-			controller.Move(move * Time.deltaTime * moveSpeed);
-		}
-        if (move != Vector3.zero) {
-            transform.forward = move;
-		}
-		
-		// Tracking the characters speed
-		// var vel = controller.velocity;
-		// mag = Mathf.RoundToInt(vel.magnitude);
-		// print(mag);
+		if (GameManager.allowMovement) {
+			// Move the character – but only if they are not attacking
+			if (waitToMove <= 0) {
+				controller.Move(move * Time.deltaTime * moveSpeed);
+			}
+			if (move != Vector3.zero) {
+				transform.forward = move;
+			}
+			
+			// Tracking the characters speed
+			// var vel = controller.velocity;
+			// mag = Mathf.RoundToInt(vel.magnitude);
+			// print(mag);
 
-		// Jumping 
-		if (Input.GetButtonDown(InputScript.gamepadInput[charID, 5]) && _isGrounded) {
-			_velocity.y += Mathf.Sqrt(jumpHeight * -2f * _gravity);
-		}
+			// Jumping 
+			if (Input.GetButtonDown(InputScript.gamepadInput[charID, 5]) && _isGrounded) {
+				_velocity.y += Mathf.Sqrt(jumpHeight * -2f * _gravity);
+			}
 
-		// Attacking
-		if (Input.GetButtonDown(InputScript.gamepadInput[charID, 0])) {
-			waitToMove = 0.3f;
-			this.gameObject.GetComponent<Attack>().shootProjectile();
-		} else if (waitToMove > 0) {
-			waitToMove -= Time.deltaTime;
+			// Attacking
+			if (Input.GetButtonDown(InputScript.gamepadInput[charID, 0])) {
+				waitToMove = 0.3f;
+				this.gameObject.GetComponent<CharacterAttack>().shootProjectile();
+			} else if (waitToMove > 0) {
+				waitToMove -= Time.deltaTime;
+			}
 		}
 
 		// Applying gravity to the character
