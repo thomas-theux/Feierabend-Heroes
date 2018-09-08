@@ -9,6 +9,8 @@ public class CharacterMovement : MonoBehaviour {
 	private CharacterController controller;
 	public LayerMask Ground;
 
+	public Transform levelAnchor;
+
 	private float moveSpeed;
 	private float jumpHeight;
 	private bool stopMovement;
@@ -33,6 +35,10 @@ public class CharacterMovement : MonoBehaviour {
 		// Grabbing the stats from the Stats Sheet
 		moveSpeed = CharacterStats.characterSpeed[charID];
 		jumpHeight = CharacterStats.characterJumpHeight[charID];
+
+		// Let all characters look to the center of the level
+		levelAnchor = GameObject.Find("LevelAnchor").transform;
+		transform.LookAt(levelAnchor);
 	}
 
 
@@ -68,7 +74,7 @@ public class CharacterMovement : MonoBehaviour {
 
 		// Attacking
 		if (Input.GetButtonDown(InputScript.gamepadInput[charID, 0])) {
-			waitToMove = 0.2f;
+			waitToMove = 0.3f;
 			this.gameObject.GetComponent<Attack>().shootProjectile();
 		} else if (waitToMove > 0) {
 			waitToMove -= Time.deltaTime;

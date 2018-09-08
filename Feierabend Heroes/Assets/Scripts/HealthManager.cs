@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour {
 
-	private GameObject gameManager;
+	private GameObject levelManager;
 
 	public int maxHealth = 100;
 	public int currentHealth;
+
+	public static bool respawningAllowed = true;
 
 	private bool respawning = false;
 	private float waitToRespawn;
@@ -15,20 +17,22 @@ public class HealthManager : MonoBehaviour {
 
 	void Start ()
 	{
-		gameManager = GameObject.Find("GameManager");
+		levelManager = GameObject.Find("LevelManager");
 		currentHealth = maxHealth;
 	}
+
 
 	public void getHit (int damage)
 	{
 		currentHealth -= damage;
 	}
 
+
 	void Update ()
 	{
+		// If health of character is below 0 then disable them
 		if (currentHealth <= 0 && !respawning) {
 			respawning = true;
-			// gameObject.SetActive(false);
 			this.gameObject.GetComponent<Renderer>().enabled = false;
 			this.gameObject.transform.GetChild(1).GetComponent<Renderer>().enabled = false;
 
@@ -36,10 +40,14 @@ public class HealthManager : MonoBehaviour {
 		}
 	}
 
+
 	IEnumerator respawnDelay () {
-		yield return new WaitForSeconds(2.0f);
-		gameManager.GetComponent<RespawnCharacter>().respawnChar(this.gameObject);
-		respawning = false;
+		// If respawning is allowed then respawn character
+		if (respawningAllowed) {
+			yield return new WaitForSeconds(2.0f);
+			levelManager.GetComponent<SpawnCharacter>().respawnChar(this.gameObject);
+			respawning = false;
+		}
 	}
 
 }
