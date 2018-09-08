@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnCharacter : MonoBehaviour {
 
-	public static int playerCount = 2;
 	public GameObject characterModel;
 	public GameObject cameraFollow;
 
@@ -20,7 +19,7 @@ public class SpawnCharacter : MonoBehaviour {
 		}
 
 		// Spawning characters and cameras
-		for (int i = 0; i < playerCount; i++) {
+		for (int i = 0; i < GameManager.playerCount; i++) {
 			// Instantiate a character, rename it and give it an ID
 			characterModel.transform.name = "Character0" + i;
 			characterModel.GetComponent<CharacterMovement>().charID = i;

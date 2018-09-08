@@ -24,7 +24,7 @@ public class GameSelector : MonoBehaviour {
 	private int randomMode;
 	private int randomModifier;
 
-	private float sceneSwitchCounter = 1.0f;
+	private float sceneSwitchTimer = 2.0f;
 
 
 	void Start ()
@@ -72,10 +72,10 @@ public class GameSelector : MonoBehaviour {
 
 	void Update()
 	{
-		sceneSwitchCounter -= Time.deltaTime;
+		sceneSwitchTimer -= Time.deltaTime;
 
-		if (sceneSwitchCounter <= 0) {
-			sceneSwitchCounter = 0;
+		if (sceneSwitchTimer <= 0) {
+			sceneSwitchTimer = 0;
 			SceneManager.LoadScene(selectedMap);
 		}
 	}

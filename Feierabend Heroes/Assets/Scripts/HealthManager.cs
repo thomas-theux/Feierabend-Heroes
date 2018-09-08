@@ -6,10 +6,10 @@ public class HealthManager : MonoBehaviour {
 
 	private GameObject levelManager;
 
-	public int maxHealth = 50;
+	public int maxHealth = 100;
 	public int currentHealth;
 
-	private bool respawning = false;
+	private bool isRespawning = false;
 	private float waitToRespawn;
 
 
@@ -29,8 +29,9 @@ public class HealthManager : MonoBehaviour {
 	void Update ()
 	{
 		// If health of character is below 0 then disable them
-		if (currentHealth <= 0 && !respawning) {
-			respawning = true;
+		if (currentHealth <= 0 && !isRespawning) {
+			GameManager.activePlayers--;
+			isRespawning = true;
 			this.gameObject.GetComponent<Renderer>().enabled = false;
 			this.gameObject.transform.GetChild(1).GetComponent<Renderer>().enabled = false;
 
@@ -45,7 +46,7 @@ public class HealthManager : MonoBehaviour {
 	IEnumerator respawnDelay () {
 		yield return new WaitForSeconds(2.0f);
 		levelManager.GetComponent<SpawnCharacter>().respawnChar(this.gameObject);
-		respawning = false;
+		isRespawning = false;
 	}
 
 }

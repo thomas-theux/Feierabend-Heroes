@@ -18,7 +18,7 @@ public class CameraFollow : MonoBehaviour {
 		offset = new Vector3(0f, 24f, -24f);
 		transform.Rotate(50f, 0, 0);
 
-		camIdentifier = SpawnCharacter.playerCount + cameraID;
+		camIdentifier = GameManager.playerCount + cameraID;
 		cam = this.gameObject.GetComponent<Camera>();
 
 		switch (camIdentifier) {
