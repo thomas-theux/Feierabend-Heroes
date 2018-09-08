@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProjectileMover : MonoBehaviour {
 
 	private float moveSpeed = 20f;
-	private int damage = 100;
+	private float damage = 10;
 
 
 	void Start ()

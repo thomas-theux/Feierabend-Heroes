@@ -40,7 +40,7 @@ public class LevelTimer : MonoBehaviour {
 
 				// Allow character movement
 				GameManager.allowMovement = true;
-				GameManager.enableModifier = true;
+				// GameManager.enableModifier = true;
 
 				countdownTimerText.enabled = false;
 				levelDurationText.enabled = true;

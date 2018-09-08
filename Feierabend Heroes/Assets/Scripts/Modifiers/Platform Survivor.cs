@@ -11,6 +11,9 @@ public class PlatformSurvivor : MonoBehaviour {
 
     private float destroyCount;
 
+    private float min = 0.5f;
+    private float max = 1.0f;
+
 
     void Start ()
     {
@@ -26,7 +29,7 @@ public class PlatformSurvivor : MonoBehaviour {
         }
 
         // Setting an initial destroyer countdown
-        destroyCount = Random.Range(0.5f, 2.0f);
+        destroyCount = Random.Range(min, max);
     }
 
 
@@ -43,7 +46,7 @@ public class PlatformSurvivor : MonoBehaviour {
                 allPlatforms.Remove(allPlatforms[randomPlatform]);
 
                 // Setting a new destroyer countdown
-                destroyCount = Random.Range(0.5f, 2.0f);
+                destroyCount = Random.Range(min, max);
             }
         }
     }

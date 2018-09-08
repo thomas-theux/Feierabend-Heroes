@@ -6,8 +6,11 @@ public class HealthManager : MonoBehaviour {
 
 	private GameObject levelManager;
 
-	public int maxHealth = 100;
-	public int currentHealth;
+	public int maxHealth;
+	public float currentHealth;
+	private float displayedHealth;
+
+	private GameObject healthBar;
 
 	private bool isRespawning = false;
 	private float waitToRespawn;
@@ -16,11 +19,14 @@ public class HealthManager : MonoBehaviour {
 	void Start ()
 	{
 		levelManager = GameObject.Find("LevelManager");
+		healthBar = this.gameObject.transform.GetChild(3).GetChild(1).gameObject;
+
+		maxHealth = 100;
 		currentHealth = maxHealth;
 	}
 
 
-	public void getHit (int damage)
+	public void getHit (float damage)
 	{
 		currentHealth -= damage;
 	}
@@ -40,6 +46,10 @@ public class HealthManager : MonoBehaviour {
 				StartCoroutine(respawnDelay());
 			}
 		}
+
+		// Display current health
+		displayedHealth = currentHealth / 100;
+		healthBar.transform.localScale = new Vector3(displayedHealth, transform.localScale.y, transform.localScale.z);
 	}
 
 

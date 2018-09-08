@@ -67,6 +67,7 @@
      <Compile Include="Assets\Scripts\FPSDisplay.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameSelector.cs" />
+     <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\HealthManager.cs" />
      <Compile Include="Assets\Scripts\InitialLoader.cs" />
      <Compile Include="Assets\Scripts\InputScript.cs" />
