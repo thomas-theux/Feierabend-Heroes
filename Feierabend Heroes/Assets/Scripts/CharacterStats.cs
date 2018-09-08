@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour {
 
-	public static float[] characterSpeed = {10f, 10f, 10f, 10f};
-	public static float[] characterJumpHeight = {2f, 2f, 2f, 2f};
+	public static float characterSpeed = 10f;
+	public static float characterJumpHeight = 2f;
+
+	public int currentStatPoints;
 
 }

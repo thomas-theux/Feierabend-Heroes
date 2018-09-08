@@ -88,10 +88,11 @@ GameObject:
   - component: {fileID: 136363627865481380}
   - component: {fileID: 143925342972345008}
   - component: {fileID: 114380791941650344}
+  - component: {fileID: 114485658149013478}
   - component: {fileID: 114153771071423158}
   - component: {fileID: 114617496825833298}
   m_Layer: 0
-  m_Name: Character
+  m_Name: Character01
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -507,6 +508,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6fca9185b18347bbbbdce4570c4ce0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114485658149013478
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580099178078186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793a029c9b1f4428789f8657c6aa0b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStatPoints: 0
 --- !u!114 &114617496825833298
 MonoBehaviour:
   m_ObjectHideFlags: 1

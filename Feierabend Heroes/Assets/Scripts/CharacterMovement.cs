@@ -33,8 +33,8 @@ public class CharacterMovement : MonoBehaviour {
 		_gravity = Physics.gravity.y * 4f;
 
 		// Grabbing the stats from the Stats Sheet
-		moveSpeed = CharacterStats.characterSpeed[charID];
-		jumpHeight = CharacterStats.characterJumpHeight[charID];
+		moveSpeed = CharacterStats.characterSpeed;
+		jumpHeight = CharacterStats.characterJumpHeight;
 
 		// Let all characters look to the center of the level
 		levelAnchor = GameObject.Find("LevelAnchor").transform;
