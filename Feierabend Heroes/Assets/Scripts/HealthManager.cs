@@ -48,7 +48,7 @@ public class HealthManager : MonoBehaviour {
 		}
 
 		// Display current health
-		displayedHealth = currentHealth / 100;
+		displayedHealth = currentHealth / maxHealth;
 		healthBar.transform.localScale = new Vector3(displayedHealth, transform.localScale.y, transform.localScale.z);
 	}
 

@@ -30,7 +30,7 @@ public class GameSelector : MonoBehaviour {
 	void Start ()
 	{
 		// Get every Map located inside the Maps folder and push it into a List
-		string mapsFolder = Application.dataPath + "/Scenes/Maps";
+		string mapsFolder = Application.dataPath + "/Scenes/2 Maps";
 		var mapsDirInfo = new DirectoryInfo(mapsFolder);
 		var allMapsFileInfos = mapsDirInfo.GetFiles("*.unity", SearchOption.AllDirectories);
 		foreach (var fileInfo in allMapsFileInfos) {
