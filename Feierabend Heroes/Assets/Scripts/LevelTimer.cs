@@ -70,20 +70,9 @@ public class LevelTimer : MonoBehaviour {
 			countdownTimerText.text = Mathf.Ceil(lastSecondsCounter) + "";
 			
 			if (lastSecondsCounter <= 0) {
-				levelEnd = true;
-
-				countdownTimerText.enabled = false;
-
+				GetComponent<GameManager>().LevelEnd();
 				lastSeconds = false;
 			}
-		}
-
-		// Call level end function
-		if (levelEnd) {
-			countdownTimerText.enabled = false;
-			levelDurationText.enabled = false;
-
-			GameManager.LevelEnd();
 		}
 	}
 }

@@ -15,6 +15,11 @@ public class CharacterAttack : MonoBehaviour {
 	{
 		if (Time.time > nextFire) {
 			nextFire = Time.time + fireRate;
+
+			// Give damage values from character stats sheet
+			projectile.GetComponent<ProjectileMover>().damageMin = GetComponent<CharacterStats>().characterAttackMin;
+			projectile.GetComponent<ProjectileMover>().damageMax = GetComponent<CharacterStats>().characterAttackMax;
+			
 			Instantiate(projectile, shotSpawner.position, shotSpawner.rotation);
 		}
 	}

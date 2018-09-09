@@ -519,6 +519,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793a029c9b1f4428789f8657c6aa0b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterHealth: 100
+  characterAttackMin: 8
+  characterAttackMax: 12
+  characterDefense: 10
+  characterSpeed: 10
+  characterLuck: 10
+  characterJumpHeight: 2
   currentStatPoints: 0
 --- !u!114 &114617496825833298
 MonoBehaviour:

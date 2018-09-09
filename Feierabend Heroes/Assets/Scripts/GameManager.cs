@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+	public GameObject statsCharacter;
+	public GameObject statsParent;
+
 	public static int playerCount = 2;
 
 	public static bool enableModifier;
@@ -21,13 +24,27 @@ public class GameManager : MonoBehaviour {
 
 
 	// Level end script
-	public static void LevelEnd () {
+	public void LevelEnd () {
+		GetComponent<LevelTimer>().countdownTimerText.enabled = false;
+		GetComponent<LevelTimer>().levelDurationText.enabled = false;
+
 		activePlayers = 0;
 
 		allowMovement = false;
 		enableModifier = false;
 
-		SceneManager.LoadScene("Next Game");
+		// Instantiate the stats sheet
+		GameObject statsSheet = Instantiate(statsCharacter, statsCharacter.transform.position, statsCharacter.transform.rotation);
+		statsSheet.transform.parent = statsParent.transform;
+
+		// Position the stats sheet
+		statsSheet.transform.position = new Vector3(456, 222, 0);
+
+		for (int i = 0; i < playerCount; i++) {
+			// PlayerPrefs.SetInt("char0" + i + "Health", );
+		}
+
+		// SceneManager.LoadScene("1 Next Game");
 	}
 
 }

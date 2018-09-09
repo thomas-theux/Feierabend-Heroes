@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ProjectileMover : MonoBehaviour {
 
+	public int projectileID;
+
 	private float moveSpeed = 20f;
 
 	private float damage;
-	private float damageMin = 8;
-	private float damageMax = 12;
+	public float damageMin;
+	public float damageMax;
 
 
 	void Start ()

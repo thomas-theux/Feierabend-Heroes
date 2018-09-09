@@ -21,7 +21,7 @@ public class HealthManager : MonoBehaviour {
 		levelManager = GameObject.Find("LevelManager");
 		healthBar = this.gameObject.transform.GetChild(3).GetChild(1).gameObject;
 
-		maxHealth = 100;
+		maxHealth = GetComponent<CharacterStats>().characterHealth;
 		currentHealth = maxHealth;
 	}
 

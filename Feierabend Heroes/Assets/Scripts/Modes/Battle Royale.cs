@@ -13,7 +13,7 @@ public class BattleRoyale : MonoBehaviour {
 	void Update()
 	{
 		if (GameManager.activePlayers == 1) {
-			GameManager.LevelEnd();
+			GetComponent<GameManager>().LevelEnd();
 		}
 	}
 
