@@ -24,7 +24,7 @@ public class GameSelector : MonoBehaviour {
 	private int randomMode;
 	private int randomModifier;
 
-	private float sceneSwitchTimer = 2.0f;
+	private float sceneSwitchTimer = 1.0f;
 
 
 	void Start ()

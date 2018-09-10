@@ -7,9 +7,8 @@ public class StatsSelector : MonoBehaviour {
 	private GameObject characterInstance;
 	private int selectorID;
 
-	private float[] selectorPosY = {389, 359, 329, 299, 269};
+	private float[] selectorPosY = {0, -10, -20, -30, -40};
 	private int posIndex = 0;
-	private float test;
 
 	private bool dpadPressed = false;
 	private bool stickPressed = false;
@@ -17,16 +16,15 @@ public class StatsSelector : MonoBehaviour {
 
 	void Start()
 	{
-		characterInstance = GameObject.Find("Character0" + selectorID + "(Clone)");
+		characterInstance = GameObject.Find("Character0" + "0" + "(Clone)");
 		selectorID = characterInstance.GetComponent<CharacterMovement>().charID;
-
-		// test = GameObject.Find("HealthText").transform.position.y;
-		// selectorPosY = {test, test+30, test+60, test+90, test+120};
 	}
 
 
 	void Update()
 	{
+		print(posIndex);
+
 		// If player has stat points they can navigate and assign them
 		if (characterInstance.GetComponent<CharacterStats>().currentStatPoints > 0) {
 
@@ -72,8 +70,9 @@ public class StatsSelector : MonoBehaviour {
 			}
 
 			// Displaying the selector
-			this.gameObject.GetComponent<RectTransform>().position = new Vector2(
-				this.gameObject.GetComponent<RectTransform>().position.x,
+			this.gameObject.GetComponent<RectTransform>().position = new Vector3(
+				0,
+				selectorPosY[posIndex],
 				selectorPosY[posIndex]
 			);
 

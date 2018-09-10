@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	public GameObject statsCharacter;
-	public GameObject statsParent;
+	public GameObject statsSheet;
+	// public GameObject statsParent;
 
 	public static int playerCount = 2;
 
@@ -34,8 +34,10 @@ public class GameManager : MonoBehaviour {
 		enableModifier = false;
 
 		// Instantiate the stats sheet
-		GameObject statsSheet = Instantiate(statsCharacter, statsCharacter.transform.position, statsCharacter.transform.rotation);
-		statsSheet.transform.parent = statsParent.transform;
+		for (int i = 0; i < playerCount; i++) {
+			GameObject statsCanvas = Instantiate(statsSheet, new Vector3(0, 0, 0), statsSheet.transform.rotation);
+			statsCanvas.GetComponent<Canvas>().worldCamera = GameObject.Find("Camera0" + i + "(Clone)").GetComponent<Camera>();
+		}
 
 		// Position the stats sheet
 		statsSheet.transform.position = new Vector3(456, 222, 0);
