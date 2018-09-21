@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	public GameObject statsSheet;
-	// public GameObject statsParent;
+	public UISpawner uiSpawnerScript;
 
 	public static int playerCount = 2;
 
@@ -34,7 +33,7 @@ public class GameManager : MonoBehaviour {
 		enableModifier = false;
 
 		// Instantiate the stats sheet
-		// CODE
+		uiSpawnerScript.SpawnUI();
 
 		// Save all stats to file
 		// CODE

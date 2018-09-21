@@ -11010,6 +11010,7 @@ GameObject:
   - component: {fileID: 1866202856}
   - component: {fileID: 1866202853}
   - component: {fileID: 1866202854}
+  - component: {fileID: 1866202857}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -11089,7 +11090,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad51e996ef3cc4e87b893a95b3aa72ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statsSheet: {fileID: 1410036979541324, guid: de2b0db50beb84e87b1c50219376d62c, type: 2}
+  uiSpawnerScript: {fileID: 1866202857}
+--- !u!114 &1866202857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866202851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bec147c6fc29460c8633890fbc18763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsUI: {fileID: 1038085355455610, guid: 495bc4eef2ed04bb7a6e54885852ee61, type: 2}
+  UICursor: {fileID: 1009773953965420, guid: d47c85868e40b47c9a46ee44a664fcdf, type: 2}
 --- !u!1 &1885660475
 GameObject:
   m_ObjectHideFlags: 0
