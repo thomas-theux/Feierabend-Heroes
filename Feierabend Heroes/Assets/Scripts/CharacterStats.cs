@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour {
 
+	private int getCharID;
+
 	public int characterHealth = 100;
 	public float characterAttackMin = 8;
 	public float characterAttackMax = 12;
@@ -18,7 +20,15 @@ public class CharacterStats : MonoBehaviour {
 
 	void Start()
 	{
-		currentStatPoints = 5;
+		getCharID = GetComponent<CharacterMovement>().charID;
+
+		characterHealth = PlayerPrefs.GetInt("P" + getCharID + "StatHealth");
+		characterAttackMin = PlayerPrefs.GetFloat("P" + getCharID + "StatAttackMin");
+		characterAttackMax = PlayerPrefs.GetFloat("P" + getCharID + "StatAttackMax");
+		characterDefense = PlayerPrefs.GetInt("P" + getCharID + "StatDefense");
+		characterSpeed = PlayerPrefs.GetFloat("P" + getCharID + "StatSpeed");
+		characterLuck = PlayerPrefs.GetInt("P" + getCharID + "StatLuck");
+		currentStatPoints = PlayerPrefs.GetInt("P" + getCharID + "CurrentStatPoints");
 	}
 
 }
