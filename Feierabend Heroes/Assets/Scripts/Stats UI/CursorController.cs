@@ -22,6 +22,8 @@ public class CursorController : MonoBehaviour {
 	public Text luckStat;
 	public Text availablePoints;
 
+	public static bool enableDistribution;
+
 
 	void Start()
 	{
@@ -31,82 +33,84 @@ public class CursorController : MonoBehaviour {
 
 	void Update()
 	{
-		// If the character has more than 0 stat points, they can assign them
-		if (characterInstance.GetComponent<CharacterStats>().currentStatPoints > 0) {
+		if (enableDistribution) {
+			// If the character has more than 0 stat points, they can assign them
+			if (characterInstance.GetComponent<CharacterStats>().currentStatPoints > 0) {
 
-			this.gameObject.SetActive(true);
+				this.gameObject.SetActive(true);
 
-			// DPad navigation in UI
-			if (!dpadPressed) {
-				// DOWN
-				if (Input.GetAxis(InputScript.gamepadInput[cursorID, 19]) == -1) {
-					if (positionIndex == textPositions.Length -1) { positionIndex = 0; }
-					else { positionIndex++; }
-					dpadPressed = true;
+				// DPad navigation in UI
+				if (!dpadPressed) {
+					// DOWN
+					if (Input.GetAxis(InputScript.gamepadInput[cursorID, 19]) == -1) {
+						if (positionIndex == textPositions.Length -1) { positionIndex = 0; }
+						else { positionIndex++; }
+						dpadPressed = true;
+					}
+					// UP
+					if (Input.GetAxis(InputScript.gamepadInput[cursorID, 19]) == 1) {
+						if (positionIndex == 0) { positionIndex = textPositions.Length -1; }
+						else { positionIndex--; }
+						dpadPressed = true;
+					}
 				}
-				// UP
-				if (Input.GetAxis(InputScript.gamepadInput[cursorID, 19]) == 1) {
-					if (positionIndex == 0) { positionIndex = textPositions.Length -1; }
-					else { positionIndex--; }
-					dpadPressed = true;
+				// Stick navigation in UI
+				if (!stickPressed) {
+					// DOWN
+					if (Input.GetAxisRaw(InputScript.gamepadInput[cursorID, 15]) <= -0.5f) {
+						if (positionIndex == textPositions.Length -1) { positionIndex = 0; }
+						else { positionIndex++; }
+						stickPressed = true;
+					}
+					// UP
+					if (Input.GetAxisRaw(InputScript.gamepadInput[cursorID, 15]) >= 0.5f) {
+						if (positionIndex == 0) { positionIndex = textPositions.Length -1; }
+						else { positionIndex--; }
+						stickPressed = true;
+					}
 				}
-			}
-			// Stick navigation in UI
-			if (!stickPressed) {
-				// DOWN
-				if (Input.GetAxisRaw(InputScript.gamepadInput[cursorID, 15]) <= -0.5f) {
-					if (positionIndex == textPositions.Length -1) { positionIndex = 0; }
-					else { positionIndex++; }
-					stickPressed = true;
-				}
-				// UP
-				if (Input.GetAxisRaw(InputScript.gamepadInput[cursorID, 15]) >= 0.5f) {
-					if (positionIndex == 0) { positionIndex = textPositions.Length -1; }
-					else { positionIndex--; }
-					stickPressed = true;
-				}
-			}
 
-			// Reset DPad input access
-			if (Input.GetAxis(InputScript.gamepadInput[cursorID, 19]) == 0) {
-				dpadPressed = false;
-			}
-			// Reset Stick input access
-			if (Input.GetAxis(InputScript.gamepadInput[cursorID, 15]) >= -0.5f && Input.GetAxis(InputScript.gamepadInput[cursorID, 15]) <= 0.5f) {
-				stickPressed = false;
-			}
-
-			// Display the cursor at the right position
-			this.transform.localPosition = new Vector3(0, textPositions[positionIndex], 0);
-
-			// Assign stat point by pressing button
-			if (Input.GetButtonDown(InputScript.gamepadInput[cursorID, 0])) {
-				switch (positionIndex) {
-					case 0:
-						characterInstance.GetComponent<CharacterStats>().characterHealth += 10;
-						characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
-						break;
-					case 1:
-						characterInstance.GetComponent<CharacterStats>().characterAttackMin += 4;
-						characterInstance.GetComponent<CharacterStats>().characterAttackMax += 4;
-						characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
-						break;
-					case 2:
-						characterInstance.GetComponent<CharacterStats>().characterDefense += 4;
-						characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
-						break;
-					case 3:
-						characterInstance.GetComponent<CharacterStats>().characterSpeed += 0.5f;
-						characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
-						break;
-					case 4:
-						characterInstance.GetComponent<CharacterStats>().characterLuck += 2;
-						characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
-						break;
+				// Reset DPad input access
+				if (Input.GetAxis(InputScript.gamepadInput[cursorID, 19]) == 0) {
+					dpadPressed = false;
 				}
+				// Reset Stick input access
+				if (Input.GetAxis(InputScript.gamepadInput[cursorID, 15]) >= -0.5f && Input.GetAxis(InputScript.gamepadInput[cursorID, 15]) <= 0.5f) {
+					stickPressed = false;
+				}
+
+				// Display the cursor at the right position
+				this.transform.localPosition = new Vector3(0, textPositions[positionIndex], 0);
+
+				// Assign stat point by pressing button
+				if (Input.GetButtonDown(InputScript.gamepadInput[cursorID, 0])) {
+					switch (positionIndex) {
+						case 0:
+							characterInstance.GetComponent<CharacterStats>().characterHealth += 10;
+							characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
+							break;
+						case 1:
+							characterInstance.GetComponent<CharacterStats>().characterAttackMin += 4;
+							characterInstance.GetComponent<CharacterStats>().characterAttackMax += 4;
+							characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
+							break;
+						case 2:
+							characterInstance.GetComponent<CharacterStats>().characterDefense += 4;
+							characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
+							break;
+						case 3:
+							characterInstance.GetComponent<CharacterStats>().characterSpeed += 0.5f;
+							characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
+							break;
+						case 4:
+							characterInstance.GetComponent<CharacterStats>().characterLuck += 2;
+							characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
+							break;
+					}
+				}
+			} else {
+				this.gameObject.SetActive(false);
 			}
-		} else {
-			this.gameObject.SetActive(false);
 		}
 
 		// Display the current stats of the character

@@ -54,7 +54,7 @@ public class CharacterMovement : MonoBehaviour {
 		Vector3 move = new Vector3(Input.GetAxis(InputScript.gamepadInput[charID, 14]), 0, Input.GetAxis(InputScript.gamepadInput[charID, 15]));
 		move = move.normalized;
 
-		if (GameManager.allowMovement) {
+		if (GameManager.allowMovement && !this.gameObject.GetComponent<HealthManager>().isRespawning) {
 			// Move the character – but only if they are not attacking
 			if (waitToMove <= 0) {
 				controller.Move(move * Time.deltaTime * moveSpeed);

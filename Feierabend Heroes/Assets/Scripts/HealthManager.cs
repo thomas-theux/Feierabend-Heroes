@@ -12,7 +12,7 @@ public class HealthManager : MonoBehaviour {
 
 	private GameObject healthBar;
 
-	private bool isRespawning = false;
+	public bool isRespawning = false;
 	private float waitToRespawn;
 
 
@@ -40,6 +40,7 @@ public class HealthManager : MonoBehaviour {
 			isRespawning = true;
 			this.gameObject.GetComponent<Renderer>().enabled = false;
 			this.gameObject.transform.GetChild(1).GetComponent<Renderer>().enabled = false;
+			this.gameObject.transform.GetChild(3).gameObject.SetActive(false);
 
 			// If respawning is allowed then respawn character
 			if (GameManager.allowRespawning) {
