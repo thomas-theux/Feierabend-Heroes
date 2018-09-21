@@ -13,7 +13,7 @@ public class CursorController : MonoBehaviour {
 	private bool dpadPressed;
 	private bool stickPressed;
 
-	private GameObject characterGO;
+	private GameObject characterInstance;
 
 	public Text healthStat;
 	public Text attackStat;
@@ -24,14 +24,14 @@ public class CursorController : MonoBehaviour {
 
 	void Start()
 	{
-		characterGO = GameObject.Find("Character0" + cursorID + "(Clone)");
+		characterInstance = GameObject.Find("Character0" + cursorID + "(Clone)");
 	}
 
 
 	void Update()
 	{
 		// If the character has more than 0 stat points, they can assign them
-		if (characterGO.GetComponent<CharacterStats>().currentStatPoints > 0) {
+		if (characterInstance.GetComponent<CharacterStats>().currentStatPoints > 0) {
 
 			this.gameObject.SetActive(true);
 
@@ -77,16 +77,43 @@ public class CursorController : MonoBehaviour {
 
 			// Display the cursor at the right position
 			this.transform.localPosition = new Vector3(0, textPositions[positionIndex], 0);
+
+			// Assign stat point by pressing button
+			if (Input.GetButtonDown(InputScript.gamepadInput[cursorID, 0])) {
+				switch (positionIndex) {
+					case 0:
+						characterInstance.GetComponent<CharacterStats>().characterHealth += 10;
+						characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
+						break;
+					case 1:
+						characterInstance.GetComponent<CharacterStats>().characterAttackMin += 4;
+						characterInstance.GetComponent<CharacterStats>().characterAttackMax += 4;
+						characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
+						break;
+					case 2:
+						characterInstance.GetComponent<CharacterStats>().characterDefense += 4;
+						characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
+						break;
+					case 3:
+						characterInstance.GetComponent<CharacterStats>().characterSpeed += 0.5f;
+						characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
+						break;
+					case 4:
+						characterInstance.GetComponent<CharacterStats>().characterLuck += 2;
+						characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
+						break;
+				}
+			}
 		} else {
 			this.gameObject.SetActive(false);
 		}
 
 		// Display the current stats of the character
-		healthStat.text = characterGO.GetComponent<CharacterStats>().characterHealth + "";
-		attackStat.text = characterGO.GetComponent<CharacterStats>().characterAttackMin + " – " + characterGO.GetComponent<CharacterStats>().characterAttackMax;
-		defenseStat.text = characterGO.GetComponent<CharacterStats>().characterDefense + "";
-		speedStat.text = characterGO.GetComponent<CharacterStats>().characterSpeed + "";
-		luckStat.text = characterGO.GetComponent<CharacterStats>().characterLuck + "";
+		healthStat.text = characterInstance.GetComponent<CharacterStats>().characterHealth + "";
+		attackStat.text = characterInstance.GetComponent<CharacterStats>().characterAttackMin + "-" + characterInstance.GetComponent<CharacterStats>().characterAttackMax;
+		defenseStat.text = characterInstance.GetComponent<CharacterStats>().characterDefense + "";
+		speedStat.text = characterInstance.GetComponent<CharacterStats>().characterSpeed + "";
+		luckStat.text = characterInstance.GetComponent<CharacterStats>().characterLuck + "";
 	}
 
 }

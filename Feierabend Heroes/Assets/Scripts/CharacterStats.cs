@@ -18,7 +18,7 @@ public class CharacterStats : MonoBehaviour {
 
 	void Start()
 	{
-		currentStatPoints = 0;
+		currentStatPoints = 5;
 	}
 
 }
