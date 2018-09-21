@@ -34,17 +34,10 @@ public class GameManager : MonoBehaviour {
 		enableModifier = false;
 
 		// Instantiate the stats sheet
-		for (int i = 0; i < playerCount; i++) {
-			GameObject statsCanvas = Instantiate(statsSheet, new Vector3(0, 0, 0), statsSheet.transform.rotation);
-			statsCanvas.GetComponent<Canvas>().worldCamera = GameObject.Find("Camera0" + i + "(Clone)").GetComponent<Camera>();
-		}
+		// CODE
 
-		// Position the stats sheet
-		statsSheet.transform.position = new Vector3(456, 222, 0);
-
-		for (int i = 0; i < playerCount; i++) {
-			// PlayerPrefs.SetInt("char0" + i + "Health", );
-		}
+		// Save all stats to file
+		// CODE
 
 		// SceneManager.LoadScene("1 Next Game");
 	}
