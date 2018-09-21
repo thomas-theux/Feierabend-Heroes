@@ -20,6 +20,7 @@ public class CursorController : MonoBehaviour {
 	public Text defenseStat;
 	public Text speedStat;
 	public Text luckStat;
+	public Text availablePoints;
 
 
 	void Start()
@@ -114,6 +115,7 @@ public class CursorController : MonoBehaviour {
 		defenseStat.text = characterInstance.GetComponent<CharacterStats>().characterDefense + "";
 		speedStat.text = characterInstance.GetComponent<CharacterStats>().characterSpeed + "";
 		luckStat.text = characterInstance.GetComponent<CharacterStats>().characterLuck + "";
+		availablePoints.text = characterInstance.GetComponent<CharacterStats>().currentStatPoints + "";
 	}
 
 }
