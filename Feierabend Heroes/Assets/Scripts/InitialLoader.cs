@@ -21,8 +21,6 @@ public class InitialLoader : MonoBehaviour {
 
 		// Attach Timer script to the LevelManager
 		gameObject.AddComponent<LevelTimer>();
-
-		// Load all stats of the characters
 	}
 }
 

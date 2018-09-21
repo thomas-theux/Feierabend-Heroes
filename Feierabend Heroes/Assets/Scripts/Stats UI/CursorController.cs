@@ -22,6 +22,12 @@ public class CursorController : MonoBehaviour {
 	public Text luckStat;
 	public Text availablePoints;
 
+	private int healthIncrease = 10;
+	private float attackIncrease = 2;
+	private int defenseIncrease = 2;
+	private float speedIncrease = 0.3f;
+	private int luckIncrease = 1;
+
 	public static bool enableDistribution;
 
 
@@ -86,24 +92,24 @@ public class CursorController : MonoBehaviour {
 				if (Input.GetButtonDown(InputScript.gamepadInput[cursorID, 0])) {
 					switch (positionIndex) {
 						case 0:
-							characterInstance.GetComponent<CharacterStats>().characterHealth += 10;
+							characterInstance.GetComponent<CharacterStats>().characterHealth += healthIncrease;
 							characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
 							break;
 						case 1:
-							characterInstance.GetComponent<CharacterStats>().characterAttackMin += 4;
-							characterInstance.GetComponent<CharacterStats>().characterAttackMax += 4;
+							characterInstance.GetComponent<CharacterStats>().characterAttackMin += attackIncrease;
+							characterInstance.GetComponent<CharacterStats>().characterAttackMax += attackIncrease;
 							characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
 							break;
 						case 2:
-							characterInstance.GetComponent<CharacterStats>().characterDefense += 4;
+							characterInstance.GetComponent<CharacterStats>().characterDefense += defenseIncrease;
 							characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
 							break;
 						case 3:
-							characterInstance.GetComponent<CharacterStats>().characterSpeed += 0.5f;
+							characterInstance.GetComponent<CharacterStats>().characterSpeed += speedIncrease;
 							characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
 							break;
 						case 4:
-							characterInstance.GetComponent<CharacterStats>().characterLuck += 2;
+							characterInstance.GetComponent<CharacterStats>().characterLuck += luckIncrease;
 							characterInstance.GetComponent<CharacterStats>().currentStatPoints--;
 							break;
 					}

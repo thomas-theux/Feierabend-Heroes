@@ -19,6 +19,7 @@ public class CharacterAttack : MonoBehaviour {
 			// Give damage values from character stats sheet
 			projectile.GetComponent<ProjectileMover>().damageMin = GetComponent<CharacterStats>().characterAttackMin;
 			projectile.GetComponent<ProjectileMover>().damageMax = GetComponent<CharacterStats>().characterAttackMax;
+			projectile.GetComponent<ProjectileMover>().characterLuck = GetComponent<CharacterStats>().characterLuck;
 			
 			Instantiate(projectile, shotSpawner.position, shotSpawner.rotation);
 		}

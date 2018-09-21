@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Character
   - Platform
+  - Stat Point
   layers:
   - Default
   - TransparentFX

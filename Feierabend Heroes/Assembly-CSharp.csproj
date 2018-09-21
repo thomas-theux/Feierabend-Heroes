@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\Modes\Battle Royale.cs" />
      <Compile Include="Assets\Scripts\Modifiers\Platform Survivor.cs" />
      <Compile Include="Assets\Scripts\ProjectileMover.cs" />
+     <Compile Include="Assets\Scripts\ResetAllStats.cs" />
      <Compile Include="Assets\Scripts\SpawnCharacter.cs" />
      <Compile Include="Assets\Scripts\Stats UI\CursorController.cs" />
      <Compile Include="Assets\Scripts\Stats UI\UISpawner.cs" />

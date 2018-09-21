@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 
 	public UISpawner uiSpawnerScript;
 
-	public static int playerCount = 3;
+	public static int playerCount = 2;
 
 	public static bool enableModifier;
 	public static bool allowMovement;
@@ -27,14 +27,14 @@ public class GameManager : MonoBehaviour {
 	void Start()
 	{
 		activePlayers = playerCount;
-		startDistributionTimer = 1.0f;
-		distributionTimer = 10.0f;
+		startDistributionTimer = 0.5f;
+		distributionTimer = 5.0f;
 	}
 
 
 	void Update()
 	{
-		// 1 second before distribution is open
+		// 1/2 second before distribution is open
 		if (startStatsTimer) {
 			startDistributionTimer -= Time.deltaTime;
 			if (startDistributionTimer <= 0) {
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour {
 		// Save all stats to file
 		for (int i = 0; i < playerCount; i++) {
 			CharacterStats charInstance = GameObject.Find("Character0" + i + "(Clone)").GetComponent<CharacterStats>();
-			
+
 			PlayerPrefs.SetInt("P" + i + "StatHealth", charInstance.characterHealth);
 			PlayerPrefs.SetFloat("P" + i + "StatAttackMin", charInstance.characterAttackMin);
 			PlayerPrefs.SetFloat("P" + i + "StatAttackMax", charInstance.characterAttackMax);

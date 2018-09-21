@@ -3475,7 +3475,7 @@ GameObject:
   - component: {fileID: 402317835}
   m_Layer: 0
   m_Name: StatPoint (6)
-  m_TagString: Untagged
+  m_TagString: Stat Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3615,7 +3615,7 @@ GameObject:
   - component: {fileID: 433937060}
   m_Layer: 0
   m_Name: StatPoint (1)
-  m_TagString: Untagged
+  m_TagString: Stat Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3905,7 +3905,7 @@ GameObject:
   - component: {fileID: 599791096}
   m_Layer: 0
   m_Name: StatPoint (3)
-  m_TagString: Untagged
+  m_TagString: Stat Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4115,7 +4115,7 @@ GameObject:
   - component: {fileID: 604170214}
   m_Layer: 0
   m_Name: StatPoint (4)
-  m_TagString: Untagged
+  m_TagString: Stat Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4774,7 +4774,7 @@ GameObject:
   - component: {fileID: 810326217}
   m_Layer: 0
   m_Name: StatPoint
-  m_TagString: Untagged
+  m_TagString: Stat Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5614,7 +5614,7 @@ GameObject:
   - component: {fileID: 989367533}
   m_Layer: 0
   m_Name: StatPoint (2)
-  m_TagString: Untagged
+  m_TagString: Stat Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7328,7 +7328,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1307663342}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7337,7 +7337,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 5e59f2a75c97148508a344f0255c2039, type: 2}
+  - {fileID: 2100000, guid: edc77bab8d5c149d383d1cd59485f599, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7374,7 +7374,7 @@ GameObject:
   - component: {fileID: 1309745060}
   m_Layer: 0
   m_Name: StatPoints
-  m_TagString: Untagged
+  m_TagString: Stat Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8132,7 +8132,7 @@ GameObject:
   - component: {fileID: 1408331624}
   m_Layer: 0
   m_Name: StatPoint (5)
-  m_TagString: Untagged
+  m_TagString: Stat Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11278,7 +11278,7 @@ GameObject:
   - component: {fileID: 1885660476}
   m_Layer: 0
   m_Name: StatPoint (7)
-  m_TagString: Untagged
+  m_TagString: Stat Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
