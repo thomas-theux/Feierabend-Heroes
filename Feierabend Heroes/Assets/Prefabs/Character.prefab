@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4624919497813288}
   m_Layer: 0
   m_Name: GroundChecker
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 114386106471404186}
   m_Layer: 0
   m_Name: Health
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 114153771071423158}
   - component: {fileID: 114617496825833298}
   m_Layer: 0
-  m_Name: Character01
+  m_Name: Character
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 65127584395956328}
   m_Layer: 0
   m_Name: ViewingDirection
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4541745066841116}
   m_Layer: 0
   m_Name: ShotSpawner
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

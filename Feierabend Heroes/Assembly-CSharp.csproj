@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\CharacterMovement.cs" />
      <Compile Include="Assets\Scripts\CharacterStats.cs" />
      <Compile Include="Assets\Scripts\CollectStatPoint.cs" />
+     <Compile Include="Assets\Scripts\DeathCircle.cs" />
      <Compile Include="Assets\Scripts\DeathZone.cs" />
      <Compile Include="Assets\Scripts\FPSDisplay.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
@@ -74,6 +75,7 @@
      <Compile Include="Assets\Scripts\InputScript.cs" />
      <Compile Include="Assets\Scripts\LevelTimer.cs" />
      <Compile Include="Assets\Scripts\Modes\Battle Royale.cs" />
+     <Compile Include="Assets\Scripts\Modifiers\Circle Of Death.cs" />
      <Compile Include="Assets\Scripts\Modifiers\Platform Survivor.cs" />
      <Compile Include="Assets\Scripts\ProjectileMover.cs" />
      <Compile Include="Assets\Scripts\ResetAllStats.cs" />

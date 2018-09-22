@@ -87,10 +87,12 @@ public class GameManager : MonoBehaviour {
 		enableModifier = false;
 
 		// Winner gets stat points
-		int lastID = activePlayerArr[0];
-		GameObject levelWinner = GameObject.Find("Character0" + lastID + "(Clone)");
-		levelWinner.GetComponent<CharacterStats>().currentStatPoints += wonStatPoints;
-
+		if (activePlayerArr.Count == 1) {
+			int lastID = activePlayerArr[0];
+			GameObject levelWinner = GameObject.Find("Character0" + lastID + "(Clone)");
+			levelWinner.GetComponent<CharacterStats>().currentStatPoints += wonStatPoints;
+		}
+		
 		// Instantiate the stats sheet
 		uiSpawnerScript.SpawnUI();
 		startStatsTimer = true;

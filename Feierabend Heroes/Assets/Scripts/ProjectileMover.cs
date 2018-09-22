@@ -45,7 +45,7 @@ public class ProjectileMover : MonoBehaviour {
 			other.GetComponent<HealthManager>().getHit(damage);
 		}
 
-		if (other.tag != "Stat Point") {
+		if (other.tag != "Dont Destroy") {
 			Destroy(gameObject);
 		}
 	}

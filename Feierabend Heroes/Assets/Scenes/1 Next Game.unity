@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 719738805}
   - component: {fileID: 719738804}
   m_Layer: 5
-  m_Name: Modifier
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1179924939}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -249,7 +249,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Applied Modifier
+  m_Text: Game Mode
 --- !u!222 &719738805
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 816421841}
   - component: {fileID: 816421840}
   m_Layer: 5
-  m_Name: Mode
+  m_Name: Modifier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,7 +347,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1179924939}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Game Mode
+  m_Text: Applied Modifier
 --- !u!222 &816421841
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 1076820360}
   - component: {fileID: 1076820359}
   m_Layer: 5
-  m_Name: Map
+  m_Name: Mode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,7 +422,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1179924939}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -555,9 +555,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 713106291}
+  - {fileID: 719738803}
   - {fileID: 1076820358}
   - {fileID: 816421839}
-  - {fileID: 719738803}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -607,9 +607,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7796a5ea6a534e0b8ba7ed695eee288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayedMap: {fileID: 1076820359}
-  displayedMode: {fileID: 816421840}
-  displayedModifier: {fileID: 719738804}
+  displayedMap: {fileID: 719738804}
+  displayedMode: {fileID: 1076820359}
+  displayedModifier: {fileID: 816421840}
 --- !u!114 &1494649415
 MonoBehaviour:
   m_ObjectHideFlags: 0

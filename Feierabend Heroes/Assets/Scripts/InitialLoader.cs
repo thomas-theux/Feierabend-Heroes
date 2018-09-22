@@ -19,6 +19,12 @@ public class InitialLoader : MonoBehaviour {
 		gameObject.AddComponent(Type.GetType(attachMode));
 		gameObject.AddComponent(Type.GetType(attachModifier));
 
+		switch (selectedModifier) {
+			case "Circle Of Death":
+				GameObject.Find("DeathCircle").GetComponent<Renderer>().enabled = true;
+				break;
+		}
+
 		// Attach Timer script to the LevelManager
 		gameObject.AddComponent<LevelTimer>();
 	}

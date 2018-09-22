@@ -75,7 +75,7 @@ public class CharacterMovement : MonoBehaviour {
 
 			// Attacking
 			if (Input.GetButtonDown(InputScript.gamepadInput[charID, 0])) {
-				waitToMove = 0.3f;
+				waitToMove = 0.4f;
 				this.gameObject.GetComponent<CharacterAttack>().shootProjectile();
 			} else if (waitToMove > 0) {
 				waitToMove -= Time.deltaTime;
