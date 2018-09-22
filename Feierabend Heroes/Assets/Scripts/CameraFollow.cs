@@ -28,42 +28,42 @@ public class CameraFollow : MonoBehaviour {
 				break;
 			case 2:
 				// 2 Spieler – Position 1
-				cam.rect = new Rect(0, 0, 0.5f, 1);
+				cam.rect = new Rect(0, 0, 0.498f, 1);
 				break;
 			case 3:
 				// 3 Spieler – Position 1
-				cam.rect = new Rect(0.25f, 0.5f, 0.5f, 0.5f);
+				cam.rect = new Rect(0.251f, 0.502f, 0.498f, 0.498f);
 				break;
 			case 4:
 				// 4 Spieler – Position 1
-				cam.rect = new Rect(0, 0.5f, 0.5f, 0.5f);
+				cam.rect = new Rect(0, 0.502f, 0.498f, 0.498f);
 				break;
 
 			case 12:
 				// 2 Spieler – Position 2
-				cam.rect = new Rect(0.5f, 0, 0.5f, 1);
+				cam.rect = new Rect(0.501f, 0, 0.498f, 1);
 				break;
 			case 13:
 				// 3 Spieler – Position 2
-				cam.rect = new Rect(0, 0, 0.5f, 0.5f);
+				cam.rect = new Rect(0, 0, 0.498f, 0.498f);
 				break;
 			case 14:
 				// 4 Spieler – Position 2
-				cam.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+				cam.rect = new Rect(0.501f, 0.502f, 0.498f, 0.498f);
 				break;
 
 			case 23:
 				// 3 Spieler – Position 3
-				cam.rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+				cam.rect = new Rect(0.501f, 0, 0.498f, 0.498f);
 				break;
 			case 24:
 				// 4 Spieler – Position 3
-				cam.rect = new Rect(0, 0, 0.5f, 0.5f);
+				cam.rect = new Rect(0, 0, 0.498f, 0.498f);
 				break;
 
 			case 34:
 				// 4 Spieler – Position 4
-				cam.rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+				cam.rect = new Rect(0.501f, 0, 0.498f, 0.498f);
 				break;
 		}
 	}

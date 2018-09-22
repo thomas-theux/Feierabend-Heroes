@@ -36,7 +36,9 @@ public class HealthManager : MonoBehaviour {
 	{
 		// If health of character is below 0 then disable them
 		if (currentHealth <= 0 && !isRespawning) {
+			GameManager.activePlayerArr.Remove(GetComponent<CharacterMovement>().charID);
 			GameManager.activePlayers--;
+
 			isRespawning = true;
 			this.gameObject.GetComponent<Renderer>().enabled = false;
 			this.gameObject.transform.GetChild(1).GetComponent<Renderer>().enabled = false;

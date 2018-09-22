@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LevelTimer : MonoBehaviour {
 
 	public Text countdownTimerText;
-	public Text levelDurationText;
+	// public Text levelDurationText;
 
 	private float levelStartCounter = 1.5f;
 	public static float levelDurationCounter;
@@ -22,9 +22,9 @@ public class LevelTimer : MonoBehaviour {
 	{
 		levelStart = true;
 		countdownTimerText = GameObject.Find("CountdownTimer").GetComponent<Text>();
-		levelDurationText = GameObject.Find("LevelDuration").GetComponent<Text>();
+		// levelDurationText = GameObject.Find("LevelDuration").GetComponent<Text>();
 
-		levelDurationText.enabled = false;
+		// levelDurationText.enabled = false;
 	}
 
 
@@ -42,8 +42,8 @@ public class LevelTimer : MonoBehaviour {
 				GameManager.allowMovement = true;
 				GameManager.enableModifier = true;
 
-				countdownTimerText.enabled = false;
-				levelDurationText.enabled = true;
+				// countdownTimerText.enabled = false;
+				// levelDurationText.enabled = true;
 
 				levelStart = false;
 			}
@@ -52,13 +52,13 @@ public class LevelTimer : MonoBehaviour {
 		// Level duration timer
 		if (levelDuration && GameManager.activePlayers > 1) {
 			levelDurationCounter -= Time.deltaTime;
-			levelDurationText.text = Mathf.Ceil(levelDurationCounter) + "";
+			countdownTimerText.text = Mathf.Ceil(levelDurationCounter) + "";
 			
 			if (levelDurationCounter <= 3) {
 				lastSeconds = true;
 
-				countdownTimerText.enabled = true;
-				levelDurationText.enabled = false;
+				// countdownTimerText.enabled = true;
+				// levelDurationText.enabled = false;
 
 				levelDuration = false;
 			}

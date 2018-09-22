@@ -7,7 +7,7 @@ public class CursorController : MonoBehaviour {
 
 	public int cursorID;
 
-	private float[] textPositions = {80, 40, 0, -40, -80};
+	private float[] textPositions = {84, 52, 20, -12, -44};
 	private int positionIndex = 0;
 
 	private bool dpadPressed;
@@ -86,7 +86,7 @@ public class CursorController : MonoBehaviour {
 				}
 
 				// Display the cursor at the right position
-				this.transform.localPosition = new Vector3(0, textPositions[positionIndex], 0);
+				this.transform.localPosition = new Vector3(14, textPositions[positionIndex], 0);
 
 				// Assign stat point by pressing button
 				if (Input.GetButtonDown(InputScript.gamepadInput[cursorID, 0])) {

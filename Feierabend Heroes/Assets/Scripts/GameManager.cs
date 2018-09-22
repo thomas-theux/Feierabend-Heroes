@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 
 	public static int playerCount = 2;
 
+	public static List<int> activePlayerArr = new List<int>();
+
 	public static bool enableModifier;
 	public static bool allowMovement;
 	public static bool allowRespawning;
@@ -22,13 +24,28 @@ public class GameManager : MonoBehaviour {
 	private float distributionTimer;
 
 	public Text distributionDurationText;
+	public Image timerOuter;
+	public Image timerInner;
+
+	private int wonStatPoints;
 
 
 	void Start()
 	{
 		activePlayers = playerCount;
+		wonStatPoints = playerCount;
 		startDistributionTimer = 0.5f;
 		distributionTimer = 5.0f;
+
+		// Write all players in an array to see who is (still) in the game
+		activePlayerArr.Clear();
+		for (int j = 0; j < playerCount; j++) {
+			activePlayerArr.Add(j);
+		}
+
+		// Disable timer background
+		// timerOuter.color = new Color32(255,255,255,0);
+		// timerInner.color = new Color32(0,0,0,0);
 	}
 
 
@@ -48,6 +65,8 @@ public class GameManager : MonoBehaviour {
 		if (distributionStarted) {
 			distributionTimer -= Time.deltaTime;
 			distributionDurationText.text = Mathf.Ceil(distributionTimer) + "";
+			timerOuter.color = new Color32(255,255,255,255);
+			timerInner.color = new Color32(0,0,0,255);
 			if (distributionTimer <= 0.3f) {
 				CursorController.enableDistribution = false;
 				distributionStarted = false;
@@ -60,12 +79,17 @@ public class GameManager : MonoBehaviour {
 	// Level end script
 	public void LevelEnd () {
 		GetComponent<LevelTimer>().countdownTimerText.enabled = false;
-		GetComponent<LevelTimer>().levelDurationText.enabled = false;
+		// GetComponent<LevelTimer>().levelDurationText.enabled = false;
 
 		activePlayers = 0;
 
 		allowMovement = false;
 		enableModifier = false;
+
+		// Winner gets stat points
+		int lastID = activePlayerArr[0];
+		GameObject levelWinner = GameObject.Find("Character0" + lastID + "(Clone)");
+		levelWinner.GetComponent<CharacterStats>().currentStatPoints += wonStatPoints;
 
 		// Instantiate the stats sheet
 		uiSpawnerScript.SpawnUI();
