@@ -20,7 +20,7 @@ public class ProjectileMover : MonoBehaviour {
 	{
 		Rigidbody rb = GetComponent<Rigidbody>();
 		rb.velocity = transform.forward * moveSpeed;
-		Destroy(gameObject, 5);
+		Destroy(gameObject, 0.5f);
 	}
 
 	void OnTriggerEnter(Collider other)
