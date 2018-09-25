@@ -23,7 +23,7 @@ public class ResetAllStats : MonoBehaviour {
 		if (!resetAllStats) {
 			for (int i = 0; i < 4; i++) {
 				// Reset stats
-				PlayerPrefs.SetInt("P" + i + "StatHealth", defaultHealth);
+				PlayerPrefs.SetFloat("P" + i + "StatHealth", defaultHealth);
 				PlayerPrefs.SetFloat("P" + i + "StatAttackMin", defaultAttackMin);
 				PlayerPrefs.SetFloat("P" + i + "StatAttackMax", defaultAttackMax);
 				PlayerPrefs.SetInt("P" + i + "StatDefense", defaultDefense);

@@ -7,7 +7,7 @@ public class CursorController : MonoBehaviour {
 
 	public int cursorID;
 
-	private float[] textPositions = {84, 52, 20, -12, -44};
+	private float[] textPositions = {52, 20, -12, -44, -76};
 	private int positionIndex = 0;
 
 	private bool dpadPressed;
@@ -23,10 +23,10 @@ public class CursorController : MonoBehaviour {
 	public Text availablePoints;
 
 	private int healthIncrease = 10;
-	private float attackIncrease = 2;
+	private float attackIncrease = 1;
 	private int defenseIncrease = 2;
-	private float speedIncrease = 0.3f;
-	private int luckIncrease = 1;
+	private float speedIncrease = 0.4f;
+	private int luckIncrease = 2;
 
 	public static bool enableDistribution;
 

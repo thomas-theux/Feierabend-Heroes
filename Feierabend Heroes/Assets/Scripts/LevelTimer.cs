@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class LevelTimer : MonoBehaviour {
 
 	public Text countdownTimerText;
-	// public Text levelDurationText;
 
 	private float levelStartCounter = 1.5f;
 	public static float levelDurationCounter;
@@ -16,15 +15,13 @@ public class LevelTimer : MonoBehaviour {
 	private bool levelDuration;
 	private bool lastSeconds;
 	private bool levelEnd;
+	private bool decreaseHealth;
 
 
 	void Start()
 	{
 		levelStart = true;
 		countdownTimerText = GameObject.Find("CountdownTimer").GetComponent<Text>();
-		// levelDurationText = GameObject.Find("LevelDuration").GetComponent<Text>();
-
-		// levelDurationText.enabled = false;
 	}
 
 
@@ -42,9 +39,6 @@ public class LevelTimer : MonoBehaviour {
 				GameManager.allowMovement = true;
 				GameManager.enableModifier = true;
 
-				// countdownTimerText.enabled = false;
-				// levelDurationText.enabled = true;
-
 				levelStart = false;
 			}
 		}
@@ -57,9 +51,6 @@ public class LevelTimer : MonoBehaviour {
 			if (levelDurationCounter <= 3) {
 				lastSeconds = true;
 
-				// countdownTimerText.enabled = true;
-				// levelDurationText.enabled = false;
-
 				levelDuration = false;
 			}
 		}
@@ -70,9 +61,19 @@ public class LevelTimer : MonoBehaviour {
 			countdownTimerText.text = Mathf.Ceil(lastSecondsCounter) + "";
 			
 			if (lastSecondsCounter <= 0) {
-				GetComponent<GameManager>().LevelEnd();
 				lastSeconds = false;
+				decreaseHealth = true;
 			}
+		}
+
+		// If there is still more than 1 player left after the 3 seconds countdown it will decrease their health
+		if (decreaseHealth && GameManager.activePlayers > 1) {
+			for (int i = 0; i < GameManager.activePlayerArr.Count; i++) {
+				GameObject.Find("Character0" + GameManager.activePlayerArr[i] + "(Clone)").GetComponent<HealthManager>().currentHealth -= 0.5f;
+			}
+		} else if (decreaseHealth) {
+			GetComponent<GameManager>().LevelEnd();
+			lastSeconds = false;
 		}
 	}
 }

@@ -6,7 +6,7 @@ public class HealthManager : MonoBehaviour {
 
 	private GameObject levelManager;
 
-	public int maxHealth;
+	public float maxHealth;
 	public float currentHealth;
 	private float displayedHealth;
 
@@ -36,6 +36,11 @@ public class HealthManager : MonoBehaviour {
 	{
 		// If health of character is below 0 then disable them
 		if (currentHealth <= 0 && !isRespawning) {
+			// Disable camera of this player
+			int diedCharacterID = GetComponent<CharacterMovement>().charID;
+			GameObject.Find("Camera0" + diedCharacterID + "(Clone)").GetComponent<Camera>().enabled = false;
+
+			// Remove this character from the "still alive"-array
 			GameManager.activePlayerArr.Remove(GetComponent<CharacterMovement>().charID);
 			GameManager.activePlayers--;
 

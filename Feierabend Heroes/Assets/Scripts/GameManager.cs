@@ -24,10 +24,25 @@ public class GameManager : MonoBehaviour {
 	private float distributionTimer;
 
 	public Text distributionDurationText;
-	public Image timerOuter;
-	public Image timerInner;
 
 	private int wonStatPoints;
+
+	public static bool lastDudeStanding;
+	private int winnerID;
+	private Camera winnerCam;
+	private bool foundCamera;
+
+	private float camPosX;
+	private float camPosY;
+	private float camScaleX;
+	private float camScaleY;
+	private Rect defaultCamPos;
+
+	private float camScaleSpeed = 0.02f;
+
+	private float camTimer = 1;
+
+	public GameObject timerBox;
 
 
 	void Start()
@@ -42,10 +57,6 @@ public class GameManager : MonoBehaviour {
 		for (int j = 0; j < playerCount; j++) {
 			activePlayerArr.Add(j);
 		}
-
-		// Disable timer background
-		// timerOuter.color = new Color32(255,255,255,0);
-		// timerInner.color = new Color32(0,0,0,0);
 	}
 
 
@@ -65,13 +76,55 @@ public class GameManager : MonoBehaviour {
 		if (distributionStarted) {
 			distributionTimer -= Time.deltaTime;
 			distributionDurationText.text = Mathf.Ceil(distributionTimer) + "";
-			timerOuter.color = new Color32(255,255,255,255);
-			timerInner.color = new Color32(0,0,0,255);
 			if (distributionTimer <= 0.3f) {
 				CursorController.enableDistribution = false;
 				distributionStarted = false;
 				NextLevel();
 			}
+		}
+
+		if (lastDudeStanding) {
+
+			if (!foundCamera) {
+				// Find winner camera and bring it to the front
+				winnerCam = GameObject.Find("Camera0" + winnerID + "(Clone)").GetComponent<Camera>();
+				winnerCam.depth = 10;
+
+				// Disable the timer box
+				timerBox.SetActive(false);
+
+				// Get camera rect data
+				camPosX = winnerCam.rect.x;
+				camPosY = winnerCam.rect.y;
+				camScaleX = winnerCam.rect.width;
+				camScaleY = winnerCam.rect.height;
+				defaultCamPos = winnerCam.rect;
+
+				foundCamera = true;
+			}
+
+			// Resize the camera until it spans across the whole screen
+			camPosX = camPosX > 0 ? camPosX-camScaleSpeed : 0;
+			camPosY = camPosY > 0 ? camPosY-camScaleSpeed : 0;
+			camScaleX = camScaleX < 1 ? camScaleX+camScaleSpeed : 1;
+			camScaleY = camScaleY < 1 ? camScaleY+camScaleSpeed : 1;
+
+			winnerCam.rect = new Rect(camPosX, camPosY, camScaleX, camScaleY);
+
+			if (winnerCam.rect == new Rect(0, 0, 1, 1) && camTimer > 0) {
+				camTimer -= Time.deltaTime;
+			} else if (winnerCam.rect == new Rect(0, 0, 1, 1) && camTimer <= 0) {
+				// Reset all cameras to normal
+				lastDudeStanding = false;
+				winnerCam.rect = defaultCamPos;
+				for (int k = 0; k < playerCount; k++) {
+					GameObject.Find("Camera0" + k + "(Clone)").GetComponent<Camera>().enabled = true;
+				}
+				timerBox.SetActive(true);
+				// Instantiate the stats sheet
+				uiSpawnerScript.SpawnUI();
+				startStatsTimer = true;
+			}			
 		}
 	}
 
@@ -79,7 +132,6 @@ public class GameManager : MonoBehaviour {
 	// Level end script
 	public void LevelEnd () {
 		GetComponent<LevelTimer>().countdownTimerText.enabled = false;
-		// GetComponent<LevelTimer>().levelDurationText.enabled = false;
 
 		activePlayers = 0;
 
@@ -88,14 +140,11 @@ public class GameManager : MonoBehaviour {
 
 		// Winner gets stat points
 		if (activePlayerArr.Count == 1) {
-			int lastID = activePlayerArr[0];
-			GameObject levelWinner = GameObject.Find("Character0" + lastID + "(Clone)");
+			winnerID = activePlayerArr[0];
+			GameObject levelWinner = GameObject.Find("Character0" + winnerID + "(Clone)");
 			levelWinner.GetComponent<CharacterStats>().currentStatPoints += wonStatPoints;
+			lastDudeStanding = true;
 		}
-		
-		// Instantiate the stats sheet
-		uiSpawnerScript.SpawnUI();
-		startStatsTimer = true;
 	}
 
 	
@@ -104,7 +153,7 @@ public class GameManager : MonoBehaviour {
 		for (int i = 0; i < playerCount; i++) {
 			CharacterStats charInstance = GameObject.Find("Character0" + i + "(Clone)").GetComponent<CharacterStats>();
 
-			PlayerPrefs.SetInt("P" + i + "StatHealth", charInstance.characterHealth);
+			PlayerPrefs.SetFloat("P" + i + "StatHealth", charInstance.characterHealth);
 			PlayerPrefs.SetFloat("P" + i + "StatAttackMin", charInstance.characterAttackMin);
 			PlayerPrefs.SetFloat("P" + i + "StatAttackMax", charInstance.characterAttackMax);
 			PlayerPrefs.SetInt("P" + i + "StatDefense", charInstance.characterDefense);

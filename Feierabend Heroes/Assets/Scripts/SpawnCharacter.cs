@@ -9,6 +9,7 @@ public class SpawnCharacter : MonoBehaviour {
 
 	public GameObject spawnPointContainer;
 	private List<GameObject> allSpawnPoints = new List<GameObject>();
+	private List<GameObject> tempSpawnPoints = new List<GameObject>();
 
 
 	void Start ()
@@ -18,13 +19,21 @@ public class SpawnCharacter : MonoBehaviour {
 			allSpawnPoints.Add(child.gameObject);
 		}
 
+		// Set temporary spawn points
+		tempSpawnPoints = allSpawnPoints;
+
 		// Spawning characters and cameras
 		for (int i = 0; i < GameManager.playerCount; i++) {
+			// Pick random spawn point
+			int randomSpawnPoint = Random.Range(0, tempSpawnPoints.Count);
+
 			// Instantiate a character, rename it and give it an ID
 			characterModel.name = "Character0" + i;
 			characterModel.GetComponent<CharacterMovement>().charID = i;
-			// Instantiate(characterModel, new Vector3(i * 2, 1.5f, 0), Quaternion.identity);
-			Instantiate(characterModel, allSpawnPoints[i].transform.position, Quaternion.identity);
+			Instantiate(characterModel, tempSpawnPoints[randomSpawnPoint].transform.position, Quaternion.identity);
+
+			// Remove the already used random spawn point from the list
+			tempSpawnPoints.RemoveAt(randomSpawnPoint);
 
 			// Instantiate the according Camera, rename it and give it an ID
 			cameraFollow.name = "Camera0" + i;

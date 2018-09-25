@@ -19,7 +19,7 @@ public class CircleOfDeath : MonoBehaviour {
 		deathCircleSpawn = GameObject.Find("DeathCircleSpawn");
 
 		// Instantiate the death circle at the spawn position
-		deathCircle = (GameObject)Resources.Load("DeathCircle", typeof(GameObject));
+		deathCircle = (GameObject)Resources.Load("CircleOfDeath", typeof(GameObject));
 		GameObject newDeathCircle = Instantiate(deathCircle, Vector3.zero, Quaternion.identity);
 		// newDeathCircle.transform.parent = deathCircleSpawn.transform;
 		newDeathCircle.transform.localScale = deathCircleSpawn.transform.localScale;

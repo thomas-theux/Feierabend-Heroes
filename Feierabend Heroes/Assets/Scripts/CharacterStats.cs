@@ -6,7 +6,7 @@ public class CharacterStats : MonoBehaviour {
 
 	private int getCharID;
 
-	public int characterHealth = 100;
+	public float characterHealth = 100;
 	public float characterAttackMin = 8;
 	public float characterAttackMax = 12;
 	public int characterDefense = 10;
@@ -22,7 +22,7 @@ public class CharacterStats : MonoBehaviour {
 	{
 		getCharID = GetComponent<CharacterMovement>().charID;
 
-		characterHealth = PlayerPrefs.GetInt("P" + getCharID + "StatHealth");
+		characterHealth = PlayerPrefs.GetFloat("P" + getCharID + "StatHealth");
 		characterAttackMin = PlayerPrefs.GetFloat("P" + getCharID + "StatAttackMin");
 		characterAttackMax = PlayerPrefs.GetFloat("P" + getCharID + "StatAttackMax");
 		characterDefense = PlayerPrefs.GetInt("P" + getCharID + "StatDefense");

@@ -15,8 +15,16 @@ public class CameraFollow : MonoBehaviour {
 	void Start ()
 	{
 		characterModel = GameObject.Find("Character0" + (cameraID / 10) + ("(Clone)"));
-		offset = new Vector3(0f, 24f, -24f);
-		transform.Rotate(50f, 0, 0);
+
+		if (GameManager.playerCount <= 2) {
+			offset = new Vector3(0f, 24f, -24f);
+			transform.Rotate(50f, 0, 0);
+		} else {
+			offset = new Vector3(0f, 22f, -16f);
+			transform.Rotate(56f, 0, 0);
+		}
+		
+		
 
 		camIdentifier = GameManager.playerCount + cameraID;
 		cam = this.gameObject.GetComponent<Camera>();
