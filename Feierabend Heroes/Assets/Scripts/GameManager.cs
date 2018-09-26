@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 
 	public UISpawner uiSpawnerScript;
 
-	public static int playerCount = 2;
+	public static int playerCount = 4;
 
 	public static List<int> activePlayerArr = new List<int>();
 

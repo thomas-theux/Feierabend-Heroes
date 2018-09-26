@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 114153771071423158}
   - component: {fileID: 114617496825833298}
   m_Layer: 0
-  m_Name: Character01
+  m_Name: Character03
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc63af72861b04c35873dd5f1fb6e7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charID: 1
+  charID: 3
   Ground:
     serializedVersion: 2
     m_Bits: 512
