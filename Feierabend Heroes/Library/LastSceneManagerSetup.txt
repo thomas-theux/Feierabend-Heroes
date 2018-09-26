@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Triggering.unity
+- path: Assets/Scenes/1 Next Game.unity
   isLoaded: 1
   isActive: 1

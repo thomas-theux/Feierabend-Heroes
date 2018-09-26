@@ -147,7 +147,6 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	
 	public void NextLevel () {
 		// Save all stats to file
 		for (int i = 0; i < playerCount; i++) {

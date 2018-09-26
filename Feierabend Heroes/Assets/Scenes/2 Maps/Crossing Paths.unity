@@ -10688,6 +10688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1866202852}
   - component: {fileID: 1866202855}
+  - component: {fileID: 1866202858}
   - component: {fileID: 1866202856}
   - component: {fileID: 1866202853}
   - component: {fileID: 1866202854}
@@ -10786,6 +10787,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsUI: {fileID: 1038085355455610, guid: 495bc4eef2ed04bb7a6e54885852ee61, type: 2}
+--- !u!114 &1866202858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866202851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f140115f64842258b76fda2c31b00b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 1554735292930874, guid: aa28155ada44b4aeaa81271a746391c7, type: 2}
 --- !u!43 &1880341772
 Mesh:
   m_ObjectHideFlags: 0

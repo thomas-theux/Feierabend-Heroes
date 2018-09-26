@@ -120,11 +120,11 @@ public class CursorController : MonoBehaviour {
 		}
 
 		// Display the current stats of the character
-		healthStat.text = characterInstance.GetComponent<CharacterStats>().characterHealth + "";
+		healthStat.text = characterInstance.GetComponent<CharacterStats>().characterHealth + "HP";
 		attackStat.text = characterInstance.GetComponent<CharacterStats>().characterAttackMin + "-" + characterInstance.GetComponent<CharacterStats>().characterAttackMax;
 		defenseStat.text = characterInstance.GetComponent<CharacterStats>().characterDefense + "";
-		speedStat.text = characterInstance.GetComponent<CharacterStats>().characterSpeed + "";
-		luckStat.text = characterInstance.GetComponent<CharacterStats>().characterLuck + "";
+		speedStat.text = characterInstance.GetComponent<CharacterStats>().characterSpeed + "%";
+		luckStat.text = characterInstance.GetComponent<CharacterStats>().characterLuck + "%";
 		availablePoints.text = characterInstance.GetComponent<CharacterStats>().currentStatPoints + "";
 	}
 
