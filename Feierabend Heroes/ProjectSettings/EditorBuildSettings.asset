@@ -6,21 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/1 Next Game.unity
-    guid: f61eaf8f89da2434cb915084e80283a8
-  - enabled: 1
-    path: Assets/Scenes/2 Maps/Airy Gardens.unity
-    guid: 045408496d2494b9c86af805a478f664
-  - enabled: 1
-    path: Assets/Scenes/2 Maps/Crossing Paths.unity
-    guid: d6c2ae7258d834ad7b7fc92d1dbde5d2
-  - enabled: 1
-    path: Assets/Scenes/2 Maps/Floating Pieces.unity
-    guid: f45349d2f572b434081da865dca62cd9
-  - enabled: 1
-    path: Assets/Scenes/2 Maps/Octo Island.unity
-    guid: 7e20bfd543f9345d881d8a6c89b42199
-  - enabled: 1
-    path: Assets/Scenes/2 Maps/Snowflakes.unity
-    guid: 66c1b86e6c553427aa7904dc4596508a
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}
