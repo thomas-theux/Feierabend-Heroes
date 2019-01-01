@@ -1812,7 +1812,7 @@ GameObject:
   - component: {fileID: 1575002574}
   m_Layer: 0
   m_Name: AttackSpawner
-  m_TagString: Untagged
+  m_TagString: Character1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1823,13 +1823,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1575002573}
-  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1694534284}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1602759871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,10 +1875,9 @@ GameObject:
   - component: {fileID: 1610843802}
   - component: {fileID: 1610843805}
   - component: {fileID: 1610843804}
-  - component: {fileID: 1610843803}
   m_Layer: 0
   m_Name: ViewingDirection
-  m_TagString: Untagged
+  m_TagString: Character1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1896,18 +1895,6 @@ Transform:
   m_Father: {fileID: 1694534284}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1610843803
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1610843801}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1610843804
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1963,10 +1950,12 @@ GameObject:
   - component: {fileID: 1694534281}
   - component: {fileID: 1694534285}
   - component: {fileID: 1694534286}
+  - component: {fileID: 1694534288}
+  - component: {fileID: 1694534289}
   - component: {fileID: 1694534287}
   m_Layer: 0
-  m_Name: Character
-  m_TagString: Character
+  m_Name: Character1
+  m_TagString: Character1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2070,6 +2059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 0
+  isAttacking: 0
   moveSpeed: 10
 --- !u!114 &1694534287
 MonoBehaviour:
@@ -2082,5 +2072,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedf198795e564046989dc639f198f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  punchGO: {fileID: 1634264099159212, guid: 4f7cc6ac3b2074aab9539fe257b7ffc3, type: 2}
   bombsGO: {fileID: 1834776707093772, guid: 9eff63e0233324dff870744909e26d43, type: 2}
   attackSpawner: {fileID: 1575002574}
+--- !u!114 &1694534288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1694534280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef1c5bf2b212d42e18ec204723bb7fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  delayAttackOne: 1
+  delayAttackTwo: 1
+  health: 1
+  defense: 1
+  skillOne: 0
+  skillTwo: 0
+--- !u!114 &1694534289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1694534280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52b3685a3bf354fc8ac63a45839d8fdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cmHealth: 100
+  cmDefense: 10

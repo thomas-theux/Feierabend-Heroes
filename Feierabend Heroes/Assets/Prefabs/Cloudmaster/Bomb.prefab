@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114119520497141008}
   m_Layer: 0
   m_Name: Bomb
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,8 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768724aceadd74cef92f8e9b29159fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravityScale: 2.4
   bombRadius: {fileID: 1139214440405836, guid: 91b24ba75d48d45b0932e5387a925eee, type: 2}
-  moveSpeed: 14
+  moveSpeed: 24
 --- !u!135 &135943931053235144
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -5,16 +5,27 @@ using Rewired;
 
 public class CharacterMovement : MonoBehaviour {
 
-	public int playerID = 0;
-
+	public int playerID;
 	private CharacterController cc;
+	private CharacterSkills skillsScript;
 
-	public float moveSpeed = 10.0f;
+	public bool isAttacking = false;
+
+	// These variables can be improved by advancing on the skill tree
+	public float moveSpeed;
+
+	// REWIRED
 	private float moveHorizontal;
 	private float moveVertical;
 
 
-	private void Start() {
+	private void Awake() {
+		// Get stats from skill script
+		moveSpeed = GetComponent<CharacterSkills>().moveSpeed;
+
+		// Get stats from skill script
+		skillsScript = GetComponent<CharacterSkills>();
+
 		cc = this.gameObject.GetComponent<CharacterController>();
 	}
 
@@ -42,8 +53,10 @@ public class CharacterMovement : MonoBehaviour {
 	private void PlayerMovement() {
 		// Movement of the character
 		Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-		//movement = movement.normalized;
-		cc.Move(movement * moveSpeed * Time.deltaTime);
+		// movement = movement.normalized;
+		if (!isAttacking) {
+			cc.Move(movement * skillsScript.moveSpeed * Time.deltaTime);
+		}
 
 		// Rotate character depending on the direction they are going
 		if (movement != Vector3.zero) {

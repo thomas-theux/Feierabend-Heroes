@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Environment
-  - Character
+  - Attack
+  - Character1
+  - Character2
+  - Character3
+  - Character4
   layers:
   - Default
   - TransparentFX
