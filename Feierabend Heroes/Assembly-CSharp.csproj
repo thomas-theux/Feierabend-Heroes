@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Health.cs" />
      <Compile Include="Assets\Rewired\Examples\ControlRemapping1\Scripts\ControlRemappingDemo1.cs" />
      <Compile Include="Assets\Rewired\Examples\CustomControllersTilt\Scripts\CustomControllersTiltDemo.cs" />
      <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\CustomControllerDemo.cs" />
@@ -115,15 +116,17 @@
      <Compile Include="Assets\Rewired\Internal\Scripts\InputManager.cs" />
      <Compile Include="Assets\Rewired\Internal\Scripts\Misc\ExternalTools.cs" />
      <Compile Include="Assets\Rewired\Internal\Scripts\Platforms\Ouya\OuyaInputSource.cs" />
+     <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\Bomb.cs" />
+     <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\BombRadius.cs" />
+     <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\WrenchPunch.cs" />
+     <Compile Include="Assets\Scripts\_Cloudmaster\Attack_Cloudmaster.cs" />
+     <Compile Include="Assets\Scripts\_Novist\_Attacks\MeteorShot.cs" />
+     <Compile Include="Assets\Scripts\_Novist\Attack_Novist.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\CharacterMovement.cs" />
      <Compile Include="Assets\Scripts\CharacterSkills.cs" />
-     <Compile Include="Assets\Scripts\Cloudmaster\Attack_Cloudmaster.cs" />
-     <Compile Include="Assets\Scripts\Cloudmaster\Attacks\Bomb.cs" />
-     <Compile Include="Assets\Scripts\Cloudmaster\Attacks\BombRadius.cs" />
-     <Compile Include="Assets\Scripts\Cloudmaster\Attacks\WrenchPunch.cs" />
-     <Compile Include="Assets\Scripts\Cloudmaster\Health_Cloudmaster.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\HealthHandler.cs" />
      <Compile Include="Assets\Scripts\LevelTimers.cs" />
      <None Include="Assets\Rewired\Documentation\licences.txt" />
      <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
