@@ -39,7 +39,7 @@ public class Attack_Novist : MonoBehaviour {
 	private bool performAttackTwo;
 
 
-	private void Awake() {
+	private void Start() {
 		charID = GetComponent<CharacterMovement>().playerID;
 		player = ReInput.players.GetPlayer(charID);
 
