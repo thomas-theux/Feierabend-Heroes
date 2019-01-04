@@ -20,8 +20,10 @@ public class MeteorShot : MonoBehaviour {
 
 
 	private void OnTriggerEnter(Collider other) {
-		if (other.tag != "Attack") {
-			CalculateDamage(other);
+		if (other.tag != "Attack" && other.tag != transform.GetChild(0).tag) {
+			if (other.tag != "Environment") {
+				CalculateDamage(other);
+			}
 			Destroy(gameObject);
 		}
 	}

@@ -1559,7 +1559,7 @@ GameObject:
   - component: {fileID: 1050003634}
   m_Layer: 0
   m_Name: ViewingDirection
-  m_TagString: Character1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1884,7 +1884,7 @@ GameObject:
   - component: {fileID: 1354242461}
   m_Layer: 0
   m_Name: AttackSpawner
-  m_TagString: Character1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1912,7 +1912,7 @@ GameObject:
   - component: {fileID: 1575002574}
   m_Layer: 0
   m_Name: AttackSpawner
-  m_TagString: Character1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1977,7 +1977,7 @@ GameObject:
   - component: {fileID: 1610843804}
   m_Layer: 0
   m_Name: ViewingDirection
-  m_TagString: Character1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2054,8 +2054,8 @@ GameObject:
   - component: {fileID: 1694534288}
   - component: {fileID: 1694534287}
   m_Layer: 0
-  m_Name: Character1
-  m_TagString: Character1
+  m_Name: Character0
+  m_TagString: Character0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2158,7 +2158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed0ac54800524f4396ef2c00d4d4b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 1
+  playerID: 0
   isAttacking: 0
   moveSpeed: 10
 --- !u!114 &1694534287
@@ -2172,7 +2172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedf198795e564046989dc639f198f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackOneGO: {fileID: 1517915524367542, guid: 313959377e3e04f23850feefa2eeb46d,
+  attackOneGO: {fileID: 1432069511768234, guid: 4f7cc6ac3b2074aab9539fe257b7ffc3,
     type: 2}
   attackTwoGO: {fileID: 1834776707093772, guid: 9eff63e0233324dff870744909e26d43,
     type: 2}
@@ -2225,7 +2225,7 @@ GameObject:
   - component: {fileID: 1969036473}
   - component: {fileID: 1969036471}
   m_Layer: 0
-  m_Name: Character2
+  m_Name: Character1
   m_TagString: Character1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2244,7 +2244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackOneGO: {fileID: 1791714189052350, guid: e016e7384e14e489faeb0148098fa471,
     type: 2}
-  attackTwoGO: {fileID: 0}
+  attackTwoGO: {fileID: 1867879130109316, guid: 4115b609ba711474e9e0e6d5a2de39e1,
+    type: 2}
   attackSpawner: {fileID: 1354242461}
 --- !u!114 &1969036472
 MonoBehaviour:
@@ -2288,7 +2289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed0ac54800524f4396ef2c00d4d4b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
+  playerID: 1
   isAttacking: 0
   moveSpeed: 10
 --- !u!143 &1969036475

@@ -8,12 +8,14 @@ public class WrenchPunch : MonoBehaviour {
 
 
 	private void Awake() {
-		Destroy(transform.parent.gameObject, 0.2f);
+		Destroy(gameObject, 0.2f);
 	}
 
 
 	private void OnTriggerEnter(Collider other) {
-		CalculateDamage(other);
+		if (other.tag != "Attack" && other.tag != "Environment" && other.tag != transform.GetChild(0).tag) {
+			CalculateDamage(other);
+		}
 	}
 
 

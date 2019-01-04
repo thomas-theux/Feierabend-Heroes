@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bomb : MonoBehaviour {
 
 	public float casterDamage = 0;
+	public string casterTag;
 
 	private Rigidbody rb;
 	public GameObject bombRadius;
@@ -31,6 +32,7 @@ public class Bomb : MonoBehaviour {
 	private void OnTriggerEnter(Collider other) {
 		if (other.tag != "Attack") {
 			GameObject newBombRadius = Instantiate(bombRadius, transform.position, transform.rotation);
+			newBombRadius.transform.GetChild(0).gameObject.tag = casterTag;
 			newBombRadius.GetComponent<BombRadius>().bombDamage = casterDamage;
 			Destroy(gameObject);
 		}

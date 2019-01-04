@@ -11,13 +11,15 @@ public class Attack_Novist : MonoBehaviour {
 
 	public Transform attackSpawner;
 
+	private int charID;
+
 	// These variables can be improved by advancing on the skill tree
 	private float attackOne = 0.5f;
-	private float attackTwo = 0.6f;
+	private float attackTwo = 2.0f;
 	private float attackOneDelay;
 	private float attackTwoDelay;
 	private float attackOneDmg = 10.0f;
-	// private float attackTwoDmg = 99999.0f;
+	private float attackTwoDmg = 0.05f;
 
 	// Movement delay when attacking
 	private float moveDelay = 0.1f;
@@ -29,7 +31,7 @@ public class Attack_Novist : MonoBehaviour {
 
 	// Attack Two – ???
 	private float attackTwoDelayTimer;
-	// private bool attackTwoDelayActive = false;
+	private bool attackTwoDelayActive = false;
 
 	// REWIRED
 	private Player player;
@@ -38,7 +40,7 @@ public class Attack_Novist : MonoBehaviour {
 
 
 	private void Awake() {
-		int charID = GetComponent<CharacterMovement>().playerID;
+		charID = GetComponent<CharacterMovement>().playerID;
 		player = ReInput.players.GetPlayer(charID);
 
 		// Set stats in skill script
@@ -85,8 +87,9 @@ public class Attack_Novist : MonoBehaviour {
 			attackOneDelayTimer = skillsScript.delayAttackOne;
 			attackOneDelayActive = true;
 
-			GameObject newMeteor = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
-			newMeteor.transform.GetComponent<MeteorShot>().casterDamage = attackOneDmg;
+			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
+			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newAttackOne.transform.GetComponent<MeteorShot>().casterDamage = attackOneDmg;
 		}
 
 		if (attackOneDelayActive) {
@@ -99,6 +102,21 @@ public class Attack_Novist : MonoBehaviour {
 
 
 	private void AttackTwo() {
+		if (performAttackTwo && !attackTwoDelayActive) {
+			attackTwoDelayTimer = skillsScript.delayAttackTwo;
+			attackTwoDelayActive = true;
+
+			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
+			newAttackTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newAttackTwo.transform.GetComponent<FireBlock>().casterDamage = attackTwoDmg;
+		}
+
+		if (attackTwoDelayActive) {
+			attackTwoDelayTimer -= Time.deltaTime;
+			if (attackTwoDelayTimer <= 0) {
+				attackTwoDelayActive = false;
+			}
+		}
 	}
 
 }

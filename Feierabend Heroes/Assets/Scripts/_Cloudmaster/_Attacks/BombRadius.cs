@@ -24,7 +24,9 @@ public class BombRadius : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		if (!didDamage) {
-			CalculateDamage(other);
+			if (other.tag != "Attack" && other.tag != "Environment" && other.tag != transform.GetChild(0).tag) {
+				CalculateDamage(other);
+			}
 		}
 	}
 
