@@ -38,7 +38,7 @@ public class BombRadius : MonoBehaviour {
 		float victimDefense = other.gameObject.GetComponent<HealthHandler>().defenseStat;
 
 		dealDamage = bombDamage - ((victimDefense / 100) * bombDamage);
-		other.gameObject.GetComponent<HealthHandler>().healthPoints -= dealDamage;
+		other.gameObject.GetComponent<HealthHandler>().currentHealthPoints -= dealDamage;
 	}
 
 

@@ -34,7 +34,7 @@ public class MeteorShot : MonoBehaviour {
 		float victimDefense = other.gameObject.GetComponent<HealthHandler>().defenseStat;
 
 		dealDamage = casterDamage - ((victimDefense / 100) * casterDamage);
-		other.gameObject.GetComponent<HealthHandler>().healthPoints -= dealDamage;
+		other.gameObject.GetComponent<HealthHandler>().currentHealthPoints -= dealDamage;
 	}
 
 }

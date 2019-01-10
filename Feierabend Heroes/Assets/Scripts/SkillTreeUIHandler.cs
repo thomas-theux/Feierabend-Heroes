@@ -62,7 +62,9 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 
 	private void Update() {
-		GetInput();
+		if (this.gameObject.transform.parent.GetComponent<CharacterMovement>().skillBoardOn) {
+			GetInput();
+		}
 
 		DisplayCursorImage();
 	}

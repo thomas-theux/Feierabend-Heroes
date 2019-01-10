@@ -12,7 +12,8 @@ public class CharacterSkills : MonoBehaviour {
 	public float delayAttackTwo;
 
 	// Health
-	public float health = 1.0f;
+	public float currentHealth = 1.0f;
+	public float maxHealth = 1.0f;
 
 	// Defense
 	public float defense = 1.0f;

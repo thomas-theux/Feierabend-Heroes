@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour {
 	private CharacterSkills skillsScript;
 
 	public bool isAttacking = false;
+	public bool skillBoardOn;
 
 	// These variables can be improved by advancing on the skill tree
 	public float moveSpeed;
@@ -17,6 +18,7 @@ public class CharacterMovement : MonoBehaviour {
 	// REWIRED
 	private float moveHorizontal;
 	private float moveVertical;
+	private bool showSkillUI;
 
 
 	private void Awake() {
@@ -33,13 +35,17 @@ public class CharacterMovement : MonoBehaviour {
 	private void Update() {
 		if (LevelTimers.startLevel) {
 			GetInput();
+
+			ShowSkillBoard();
 		}
 	}
 
 
 	private void FixedUpdate() {
 		if (LevelTimers.startLevel) {
-			PlayerMovement();
+			if (!skillBoardOn) {
+				PlayerMovement();
+			}
 		}
 	}
 
@@ -47,6 +53,8 @@ public class CharacterMovement : MonoBehaviour {
 	private void GetInput() {
 		moveHorizontal = ReInput.players.GetPlayer(playerID).GetAxis("LS Horizontal");
 		moveVertical = ReInput.players.GetPlayer(playerID).GetAxis("LS Vertical");
+
+		showSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Triangle");
 	}
 
 
@@ -62,6 +70,18 @@ public class CharacterMovement : MonoBehaviour {
 		if (movement != Vector3.zero) {
 			transform.forward = movement;
 		}
+	}
+
+
+	private void ShowSkillBoard() {
+
+		if (showSkillUI) {
+			skillBoardOn = !skillBoardOn;
+		}
+		
+		this.gameObject.transform.GetChild(2).gameObject.SetActive(skillBoardOn);
+
+
 	}
 
 }

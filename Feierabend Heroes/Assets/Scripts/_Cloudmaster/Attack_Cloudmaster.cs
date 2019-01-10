@@ -53,7 +53,9 @@ public class Attack_Cloudmaster : MonoBehaviour {
 
 
 	private void Update() {
-		GetInput();
+		if (!GetComponent<CharacterMovement>().skillBoardOn) {
+			GetInput();
+		}
 
 		AttackOne();
 		AttackTwo();

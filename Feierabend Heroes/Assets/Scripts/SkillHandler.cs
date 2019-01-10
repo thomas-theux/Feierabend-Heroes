@@ -22,23 +22,28 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("HP +10%");
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints * 0.1f;
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints * 0.1f;
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints * 0.1f;
 						break;
 					case 2:
 						print("HP +10%");
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints * 0.1f;
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints * 0.1f;
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints * 0.1f;
 						break;
 					case 3:
 						print("HP +10%");
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints * 0.1f;
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints * 0.1f;
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints * 0.1f;
 						break;
 					case 4:
 						print("HP +10%");
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints * 0.1f;
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints * 0.1f;
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints * 0.1f;
 						break;
 					case 5:
 						print("HP +10%");
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints * 0.1f;
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints * 0.1f;
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints * 0.1f;
 						break;
 				}
 				break;

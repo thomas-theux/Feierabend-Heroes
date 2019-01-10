@@ -5,13 +5,17 @@ using UnityEngine;
 public class HealthHandler : MonoBehaviour {
 
 	// These variables can be improved by advancing on the skill tree
-	public float healthPoints = 100.0f;
+	public float currentHealthPoints;
+	public float maxHealthPoints = 100.0f;
 	public float defenseStat = 10.0f;
 
 
 	private void Awake() {
+		currentHealthPoints = maxHealthPoints;
+
 		// Set stats in skill script
-		GetComponent<CharacterSkills>().health = healthPoints;
+		GetComponent<CharacterSkills>().maxHealth = maxHealthPoints;
+		GetComponent<CharacterSkills>().currentHealth = currentHealthPoints;
 		GetComponent<CharacterSkills>().defense = defenseStat;
 	}
 
@@ -22,7 +26,7 @@ public class HealthHandler : MonoBehaviour {
 
 
 	private void KillCharacter() {
-		if (healthPoints <= 0) {
+		if (currentHealthPoints <= 0) {
 			gameObject.SetActive(false);
 		}
 	}

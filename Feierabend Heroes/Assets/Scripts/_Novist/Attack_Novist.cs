@@ -53,7 +53,9 @@ public class Attack_Novist : MonoBehaviour {
 
 
 	private void Update() {
-		GetInput();
+		if (!GetComponent<CharacterMovement>().skillBoardOn) {
+			GetInput();
+		}
 
 		AttackOne();
 		AttackTwo();
