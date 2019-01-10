@@ -11,6 +11,8 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	public Text currentOrbsText;
 	public Text orbCostsText;
 
+	private int charID;
+
 	public List<Image> buttonArr;
 	public List<int> skillUpgradeCurrent;
 	private List<int> skillUpgradeMax = new List<int>(new int[] {
@@ -32,7 +34,9 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	private int currentOrbs = 200;
 
 
-	private void Awake() {
+	public void InitializeSkillUI() {
+		charID = this.gameObject.transform.parent.GetComponent<CharacterMovement>().playerID;
+
 		// Save all skill buttons in an array
 		for (int i = 0; i < buttonParent.transform.childCount; i++) {
 			buttonArr.Add(buttonParent.transform.GetChild(i).GetComponent<Image>());
@@ -65,23 +69,23 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 
 	private void GetInput() {
-		if (ReInput.players.GetPlayer(0).GetButtonDown("Up")) {
+		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadUp")) {
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navUp.GetComponent<ButtonNav>().indexID;
 		}
 
-		if (ReInput.players.GetPlayer(0).GetButtonDown("Down")) {
+		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadDown")) {
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navDown.GetComponent<ButtonNav>().indexID;
 		}
 
-		if (ReInput.players.GetPlayer(0).GetButtonDown("Left")) {
+		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadLeft")) {
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navLeft.GetComponent<ButtonNav>().indexID;
 		}
 
-		if (ReInput.players.GetPlayer(0).GetButtonDown("Right")) {
+		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadRight")) {
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navRight.GetComponent<ButtonNav>().indexID;
 		}
 
-		if (ReInput.players.GetPlayer(0).GetButtonDown("X")) {
+		if (ReInput.players.GetPlayer(charID).GetButtonDown("X")) {
 			if (skillCosts[currentIndex] <= currentOrbs) {
 				SkillActivationProcess();
 			} else {

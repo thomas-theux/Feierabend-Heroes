@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class SkillHandler : MonoBehaviour {
 
+	private float charHealth;
+	private float charDamage;
+	private float charDefense;
+
+
+	private void Awake() {
+	}
+
+
 	public void ActivateSkill(List<int> skillUpgradeCurrent, int currentIndex) {
 
 		switch(currentIndex) {
@@ -13,18 +22,23 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("HP +10%");
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints * 0.1f;
 						break;
 					case 2:
 						print("HP +10%");
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints * 0.1f;
 						break;
 					case 3:
 						print("HP +10%");
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints * 0.1f;
 						break;
 					case 4:
 						print("HP +10%");
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints * 0.1f;
 						break;
 					case 5:
 						print("HP +10%");
+						this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().healthPoints * 0.1f;
 						break;
 				}
 				break;

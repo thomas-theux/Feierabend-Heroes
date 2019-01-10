@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
 			newChar.name = "Character" + i;
 			newChar.tag = "Character" + i;
 		}
+
+		GetComponent<CameraManager>().InstantiateCams();
 	}
 	
 }
