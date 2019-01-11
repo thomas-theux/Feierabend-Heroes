@@ -7,26 +7,21 @@ public class CharacterMovement : MonoBehaviour {
 
 	public int playerID;
 	private CharacterController cc;
-	private CharacterSkills skillsScript;
+	private CharacterSheet characterSheetScript;
 
 	public bool isAttacking = false;
 	public bool skillBoardOn;
-
-	// These variables can be improved by advancing on the skill tree
-	public float moveSpeed;
 
 	// REWIRED
 	private float moveHorizontal;
 	private float moveVertical;
 	private bool showSkillUI;
+	private bool closeSkillUI;
 
 
 	private void Awake() {
 		// Get stats from skill script
-		moveSpeed = GetComponent<CharacterSkills>().moveSpeed;
-
-		// Get stats from skill script
-		skillsScript = GetComponent<CharacterSkills>();
+		characterSheetScript = GetComponent<CharacterSheet>();
 
 		cc = this.gameObject.GetComponent<CharacterController>();
 	}
@@ -36,7 +31,7 @@ public class CharacterMovement : MonoBehaviour {
 		if (LevelTimers.startLevel) {
 			GetInput();
 
-			ShowSkillBoard();
+			ToggleSkillboard();
 		}
 	}
 
@@ -55,6 +50,7 @@ public class CharacterMovement : MonoBehaviour {
 		moveVertical = ReInput.players.GetPlayer(playerID).GetAxis("LS Vertical");
 
 		showSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Triangle");
+		closeSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Circle");
 	}
 
 
@@ -63,7 +59,7 @@ public class CharacterMovement : MonoBehaviour {
 		Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 		// movement = movement.normalized;
 		if (!isAttacking) {
-			cc.Move(movement * skillsScript.moveSpeed * Time.deltaTime);
+			cc.Move(movement * characterSheetScript.moveSpeed * Time.deltaTime);
 		}
 
 		// Rotate character depending on the direction they are going
@@ -73,15 +69,20 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 
-	private void ShowSkillBoard() {
-
+	private void ToggleSkillboard() {
 		if (showSkillUI) {
 			skillBoardOn = !skillBoardOn;
+			ShowSkillboard();
 		}
-		
+		if (skillBoardOn && closeSkillUI) {
+			skillBoardOn = false;
+			ShowSkillboard();
+		}
+	}
+
+
+	private void ShowSkillboard() {
 		this.gameObject.transform.GetChild(2).gameObject.SetActive(skillBoardOn);
-
-
 	}
 
 }

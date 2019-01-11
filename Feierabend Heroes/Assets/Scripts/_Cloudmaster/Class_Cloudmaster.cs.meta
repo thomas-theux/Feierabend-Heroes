@@ -3,7 +3,11 @@ guid: fedf198795e564046989dc639f198f62
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - attackOneGO: {fileID: 1432069511768234, guid: 4f7cc6ac3b2074aab9539fe257b7ffc3,
+      type: 2}
+  - attackTwoGO: {fileID: 1834776707093772, guid: 9eff63e0233324dff870744909e26d43,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

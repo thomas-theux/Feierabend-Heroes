@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 
-public class Attack_Cloudmaster : MonoBehaviour {
+public class Class_Cloudmaster : MonoBehaviour {
 
 	public GameObject attackOneGO;
 	public GameObject attackTwoGO;
-	private CharacterSkills skillsScript;
+	private CharacterSheet characterSheetScript;
+	private CharacterMovement charactMovementScript;
 
-	public Transform attackSpawner;
+	private Transform attackSpawner;
 
 	private int charID;
 
 	// These variables can be improved by advancing on the skill tree
 	private float attackOne = 0.4f;
 	private float attackTwo = 0.6f;
+
 	private float attackOneDelay;
 	private float attackTwoDelay;
-	private float attackOneDmg = 20.0f;
+
+	private float attackOneDmg = 24.0f;
 	private float attackTwoDmg = 50.0f;
+
+	private float charHealth = 340.0f;
+	
+	private float charDefense = 12.0f;
 
 	// Movement delay when attacking
 	private float moveDelay = 0.1f;
@@ -40,20 +47,32 @@ public class Attack_Cloudmaster : MonoBehaviour {
 
 
 	private void Start() {
-		charID = GetComponent<CharacterMovement>().playerID;
+		// Get stats from skill script
+		characterSheetScript = GetComponent<CharacterSheet>();
+		charactMovementScript = GetComponent<CharacterMovement>();
+
+		// Get gameobjects for classes
+		attackSpawner = transform.GetChild(1).gameObject.transform;
+
+		charID = charactMovementScript.playerID;
 		player = ReInput.players.GetPlayer(charID);
 
 		// Set stats in skill script
-		GetComponent<CharacterSkills>().delayAttackOne = attackOne;
-		GetComponent<CharacterSkills>().delayAttackTwo = attackTwo;
+		characterSheetScript.delayAttackOne = attackOne;
+		characterSheetScript.delayAttackTwo = attackTwo;
 
-		// Get stats from skill script
-		skillsScript = GetComponent<CharacterSkills>();
+		characterSheetScript.attackOneDmg = attackOneDmg;
+		characterSheetScript.attackTwoDmg = attackTwoDmg;
+
+		characterSheetScript.currentHealth = charHealth;
+		characterSheetScript.maxHealth = charHealth;
+
+		characterSheetScript.charDefense = charDefense;
 	}
 
 
 	private void Update() {
-		if (!GetComponent<CharacterMovement>().skillBoardOn) {
+		if (!charactMovementScript.skillBoardOn) {
 			GetInput();
 		}
 
@@ -76,23 +95,23 @@ public class Attack_Cloudmaster : MonoBehaviour {
 		}
 
 		if (moveDelayTimer > 0) {
-			GetComponent<CharacterMovement>().isAttacking = true;
+			charactMovementScript.isAttacking = true;
 			moveDelayTimer -= Time.deltaTime;
-		} else if (moveDelayTimer <= 0 && GetComponent<CharacterMovement>().isAttacking) {
-			GetComponent<CharacterMovement>().isAttacking = false;
+		} else if (moveDelayTimer <= 0 && charactMovementScript.isAttacking) {
+			charactMovementScript.isAttacking = false;
 		}
 	}
 
 
 	private void AttackOne() {
 		if (performAttackOne && !attackOneDelayActive) {
-			attackOneDelayTimer = skillsScript.delayAttackOne;
+			attackOneDelayTimer = characterSheetScript.delayAttackOne;
 			attackOneDelayActive = true;
 
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newAttackOne.transform.parent = gameObject.transform;
-			newAttackOne.GetComponent<WrenchPunch>().casterDamage = attackOneDmg;
+			newAttackOne.GetComponent<WrenchPunch>().casterDamage = characterSheetScript.attackOneDmg;
 		}
 
 		if (attackOneDelayActive) {
@@ -106,13 +125,13 @@ public class Attack_Cloudmaster : MonoBehaviour {
 
 	private void AttackTwo() {
 		if (performAttackTwo && !attackTwoDelayActive) {
-			attackTwoDelayTimer = skillsScript.delayAttackTwo;
+			attackTwoDelayTimer = characterSheetScript.delayAttackTwo;
 			attackTwoDelayActive = true;
 			
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-35, 0, 0);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackTwo.GetComponent<Bomb>().casterTag = "Character" + charID;
-			newAttackTwo.transform.GetComponent<Bomb>().casterDamage = attackTwoDmg;
+			newAttackTwo.transform.GetComponent<Bomb>().casterDamage = characterSheetScript.attackTwoDmg;
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 0);
 		}
 

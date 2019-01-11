@@ -670,6 +670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterGO: {fileID: 1877961924020008, guid: ce778906fd4b4493a9ab6c09eb4ba6c1,
     type: 2}
+  classesArr: 
 --- !u!4 &546525273
 Transform:
   m_ObjectHideFlags: 0
@@ -2269,7 +2270,6 @@ MonoBehaviour:
     type: 2}
   attackTwoGO: {fileID: 1867879130109316, guid: 4115b609ba711474e9e0e6d5a2de39e1,
     type: 2}
-  attackSpawner: {fileID: 1354242461}
 --- !u!114 &1969036472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2281,9 +2281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3685a3bf354fc8ac63a45839d8fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealthPoints: 0
-  maxHealthPoints: 100
-  defenseStat: 10
 --- !u!114 &1969036473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2296,11 +2293,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  attackOneDmg: 0
+  attackTwoDmg: 0
   delayAttackOne: 1
   delayAttackTwo: 1
   currentHealth: 1
   maxHealth: 1
-  defense: 1
+  charDefense: 10
   skillOne: 0
   skillTwo: 0
 --- !u!114 &1969036474
@@ -2316,6 +2315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 1
   isAttacking: 0
+  skillBoardOn: 0
   moveSpeed: 10
 --- !u!143 &1969036475
 CharacterController:

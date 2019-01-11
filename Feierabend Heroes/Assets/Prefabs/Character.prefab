@@ -55,8 +55,8 @@ GameObject:
   - component: {fileID: 23566512722428718}
   - component: {fileID: 136210116224776738}
   - component: {fileID: 143428789155396842}
-  - component: {fileID: 114984178142480010}
   - component: {fileID: 114000317615226034}
+  - component: {fileID: 114984178142480010}
   - component: {fileID: 114583881753239530}
   - component: {fileID: 114075205076927528}
   m_Layer: 0
@@ -202,15 +202,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3685a3bf354fc8ac63a45839d8fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 100
-  defenseStat: 10
 --- !u!114 &114075205076927528
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1877961924020008}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fedf198795e564046989dc639f198f62, type: 3}
   m_Name: 
@@ -232,10 +230,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  attackOneDmg: 0
+  attackTwoDmg: 0
   delayAttackOne: 1
   delayAttackTwo: 1
-  health: 1
-  defense: 1
+  currentHealth: 1
+  maxHealth: 1
+  charDefense: 10
   skillOne: 0
   skillTwo: 0
 --- !u!114 &114984178142480010
@@ -251,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 0
   isAttacking: 0
+  skillBoardOn: 0
   moveSpeed: 10
 --- !u!136 &136210116224776738
 CapsuleCollider:

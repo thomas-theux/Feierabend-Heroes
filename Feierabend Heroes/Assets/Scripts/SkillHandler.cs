@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class SkillHandler : MonoBehaviour {
 
+	private CharacterSheet characterSheetScript;
+
 	private float charHealth;
 	private float charDamage;
 	private float charDefense;
 
+	private float increaseHP = 0.1f;
+	private float increaseDMG = 0.14f;
+	private float increaseDEF = 8.0f;
+	private float increaseMSPD= 0.1f;
+	private float increaseASPD= 0.1f;
+
 
 	private void Awake() {
+		characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
 	}
 
 
@@ -22,28 +31,28 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("HP +10%");
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints * 0.1f;
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints * 0.1f;
+						characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
+						characterSheetScript.currentHealth += characterSheetScript.currentHealth * increaseHP;
 						break;
 					case 2:
 						print("HP +10%");
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints * 0.1f;
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints * 0.1f;
+						characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
+						characterSheetScript.currentHealth += characterSheetScript.currentHealth * increaseHP;
 						break;
 					case 3:
 						print("HP +10%");
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints * 0.1f;
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints * 0.1f;
+						characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
+						characterSheetScript.currentHealth += characterSheetScript.currentHealth * increaseHP;
 						break;
 					case 4:
 						print("HP +10%");
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints * 0.1f;
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints * 0.1f;
+						characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
+						characterSheetScript.currentHealth += characterSheetScript.currentHealth * increaseHP;
 						break;
 					case 5:
 						print("HP +10%");
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().maxHealthPoints * 0.1f;
-						this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints += this.gameObject.transform.parent.GetComponent<HealthHandler>().currentHealthPoints * 0.1f;
+						characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
+						characterSheetScript.currentHealth += characterSheetScript.currentHealth * increaseHP;
 						break;
 				}
 				break;
@@ -53,18 +62,28 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Damage +14%");
+						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
+						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 2:
 						print("Damage +14%");
+						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
+						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 3:
 						print("Damage +14%");
+						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
+						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 4:
 						print("Damage +14%");
+						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
+						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 5:
 						print("Damage +14%");
+						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
+						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 				}
 				break;
@@ -74,18 +93,23 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Damage +8");
+						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 2:
 						print("Damage +8");
+						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 3:
 						print("Damage +8");
+						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 4:
 						print("Damage +8");
+						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 5:
 						print("Damage +8");
+						characterSheetScript.charDefense += increaseDEF;
 						break;
 				}
 				break;
@@ -122,18 +146,23 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Move Speed +10%");
+						characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
 						break;
 					case 2:
 						print("Move Speed +10%");
+						characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
 						break;
 					case 3:
 						print("Move Speed +10%");
+						characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
 						break;
 					case 4:
 						print("Move Speed +10%");
+						characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
 						break;
 					case 5:
 						print("Move Speed +10%");
+						characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
 						break;
 				}
 				break;
@@ -173,18 +202,28 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Attack Speed +10%");
+						characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
+						characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
 						break;
 					case 2:
 						print("Attack Speed +10%");
+						characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
+						characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
 						break;
 					case 3:
 						print("Attack Speed +10%");
+						characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
+						characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
 						break;
 					case 4:
 						print("Attack Speed +10%");
+						characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
+						characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
 						break;
 					case 5:
 						print("Attack Speed +10%");
+						characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
+						characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
 						break;
 				}
 				break;

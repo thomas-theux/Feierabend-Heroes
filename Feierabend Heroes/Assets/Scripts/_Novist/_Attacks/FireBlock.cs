@@ -20,10 +20,10 @@ public class FireBlock : MonoBehaviour {
 
 	private void CalculateDamage(Collider other) {
 		float dealDamage = 0;
-		float victimDefense = other.gameObject.GetComponent<HealthHandler>().defenseStat;
+		float victimDefense = other.gameObject.GetComponent<CharacterSheet>().charDefense;
 
 		dealDamage = casterDamage - ((victimDefense / 100) * casterDamage);
-		other.gameObject.GetComponent<HealthHandler>().currentHealthPoints -= dealDamage;
+		other.gameObject.GetComponent<CharacterSheet>().currentHealth -= dealDamage;
 	}
 
 }

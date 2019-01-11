@@ -33,6 +33,11 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	private int currentIndex = 15;
 	private int currentOrbs = 200;
 
+	private float minThreshold = 0.5f;
+	private float maxThreshold = 0.5f;
+	private bool axisXActive;
+	private bool axisYActive;
+
 
 	public void InitializeSkillUI() {
 		charID = this.gameObject.transform.parent.GetComponent<CharacterMovement>().playerID;
@@ -71,18 +76,42 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 
 	private void GetInput() {
-		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadUp")) {
+
+		// UI navigation with the analog sticks
+		if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") > maxThreshold && !axisYActive) {
+			axisYActive = true;
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navUp.GetComponent<ButtonNav>().indexID;
 		}
-
-		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadDown")) {
+		if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") < -maxThreshold && !axisYActive) {
+			axisYActive = true;
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navDown.GetComponent<ButtonNav>().indexID;
 		}
-
-		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadLeft")) {
+		if (ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") > maxThreshold && !axisXActive) {
+			axisXActive = true;
+			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navRight.GetComponent<ButtonNav>().indexID;
+		}
+		if (ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") < -maxThreshold && !axisXActive) {
+			axisXActive = true;
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navLeft.GetComponent<ButtonNav>().indexID;
 		}
 
+		if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") <= minThreshold && ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") >= -minThreshold) {
+			axisYActive = false;
+		}
+		if (ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") <= minThreshold && ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") >= -minThreshold) {
+			axisXActive = false;
+		}
+
+		// UI navigation with the D-Pad buttons
+		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadUp")) {
+			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navUp.GetComponent<ButtonNav>().indexID;
+		}
+		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadDown")) {
+			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navDown.GetComponent<ButtonNav>().indexID;
+		}
+		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadLeft")) {
+			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navLeft.GetComponent<ButtonNav>().indexID;
+		}
 		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadRight")) {
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navRight.GetComponent<ButtonNav>().indexID;
 		}
