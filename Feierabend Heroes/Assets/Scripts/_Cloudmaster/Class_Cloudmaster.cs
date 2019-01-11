@@ -18,6 +18,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float attackOne = 0.4f;
 	private float attackTwo = 0.6f;
 
+	private float rageAttackSpeed = 1.0f;
+
 	private float attackOneDelay;
 	private float attackTwoDelay;
 
@@ -105,7 +107,14 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private void AttackOne() {
 		if (performAttackOne && !attackOneDelayActive) {
-			attackOneDelayTimer = characterSheetScript.delayAttackOne;
+			// Check if rage mode is on and on level 3
+			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 3) {
+				rageAttackSpeed = 2.0f;
+			} else if (!characterSheetScript.rageModeOn) {
+				rageAttackSpeed = 1.0f;
+			}
+
+			attackOneDelayTimer = characterSheetScript.delayAttackOne / rageAttackSpeed;
 			attackOneDelayActive = true;
 
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
@@ -125,7 +134,14 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private void AttackTwo() {
 		if (performAttackTwo && !attackTwoDelayActive) {
-			attackTwoDelayTimer = characterSheetScript.delayAttackTwo;
+			// Check if rage mode is on and on level 3
+			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 3) {
+				rageAttackSpeed = 2.0f;
+			} else if (!characterSheetScript.rageModeOn) {
+				rageAttackSpeed = 1.0f;
+			}
+
+			attackTwoDelayTimer = characterSheetScript.delayAttackTwo / rageAttackSpeed;
 			attackTwoDelayActive = true;
 			
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-35, 0, 0);

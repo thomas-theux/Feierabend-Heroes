@@ -32,13 +32,51 @@ public class BombRadius : MonoBehaviour {
 
 
 	private void CalculateDamage(Collider other) {
+		CharacterSheet characterSheetScript = other.gameObject.GetComponent<CharacterSheet>();
+
 		didDamage = true;
 
 		float dealDamage = 0;
-		float victimDefense = other.gameObject.GetComponent<CharacterSheet>().charDefense;
+		float enemyDefense = characterSheetScript.charDefense;
+		int enemyDodge = characterSheetScript.dodgeChance;
+		bool enemyDodgeHeal = characterSheetScript.dodgeHeal;
+		int selfCrit = GetComponent<CharacterSheet>().critChance;
+		int critDMG = GetComponent<CharacterSheet>().critDMG;
 
-		dealDamage = bombDamage - ((victimDefense / 100) * bombDamage);
-		other.gameObject.GetComponent<CharacterSheet>().currentHealth -= dealDamage;
+		int dodgeChance = Random.Range(0, 100);
+		int critChance = Random.Range(0, 100);
+
+		// Check if enemy has rage mode on
+		if (characterSheetScript.rageModeOn) {
+			enemyDefense *= 2;
+		} else if (!characterSheetScript.rageModeOn) {
+			enemyDefense *= 1;
+		}
+
+		// Check if enemy dodges attack
+		if (dodgeChance > enemyDodge) {
+			dealDamage = bombDamage - ((enemyDefense / 100) * bombDamage);
+
+			// If rage mode is on and on level 2 then multiply damage
+			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 2) {
+				dealDamage *= 2;
+			} else if (!characterSheetScript.rageModeOn) {
+				dealDamage *= 1;
+			}
+
+			// If character lands a critical strike then multiply damage
+			if (selfCrit <= critChance) {
+				dealDamage *= critDMG;
+			}
+
+			characterSheetScript.currentHealth -= dealDamage;
+		} else {
+			// Healing when dodging an attack
+			if (enemyDodgeHeal) {
+				characterSheetScript.currentHealth += characterSheetScript.currentHealth * 0.2f;
+			}
+			print("Enemy dodged!");
+		}
 	}
 
 

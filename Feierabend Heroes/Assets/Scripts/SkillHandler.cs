@@ -13,8 +13,12 @@ public class SkillHandler : MonoBehaviour {
 	private float increaseHP = 0.1f;
 	private float increaseDMG = 0.14f;
 	private float increaseDEF = 8.0f;
-	private float increaseMSPD= 0.1f;
-	private float increaseASPD= 0.1f;
+	private float increaseMSPD = 0.1f;
+	private float increaseASPD = 0.1f;
+	private int increaseDodge = 6;
+	private int setCrit = 5;
+	private int increaseCrit = 3;
+	private int critMax = 3;
 
 
 	private void Awake() {
@@ -242,6 +246,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Enable Crit");
+						characterSheetScript.critChance = setCrit;
 						break;
 				}
 				break;
@@ -251,6 +256,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Enable Dodge");
+						characterSheetScript.dodgeChance += increaseDodge;
 						break;
 				}
 				break;
@@ -307,18 +313,23 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Crit +3%");
+						characterSheetScript.critChance += increaseCrit;
 						break;
 					case 2:
 						print("Crit +3%");
+						characterSheetScript.critChance += increaseCrit;
 						break;
 					case 3:
 						print("Crit +3%");
+						characterSheetScript.critChance += increaseCrit;
 						break;
 					case 4:
 						print("Crit +3%");
+						characterSheetScript.critChance += increaseCrit;
 						break;
 					case 5:
 						print("Crit +3%");
+						characterSheetScript.critChance += increaseCrit;
 						break;
 				}
 				break;
@@ -328,15 +339,19 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Dodge +6%");
+						characterSheetScript.dodgeChance += increaseDodge;
 						break;
 					case 2:
 						print("Dodge +6%");
+						characterSheetScript.dodgeChance += increaseDodge;
 						break;
 					case 3:
 						print("Dodge +6%");
+						characterSheetScript.dodgeChance += increaseDodge;
 						break;
 					case 4:
 						print("Dodge +6%");
+						characterSheetScript.dodgeChance += increaseDodge;
 						break;
 				}
 				break;
@@ -385,6 +400,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Enable Rage Mode");
+						characterSheetScript.rageSkillActivated = true;
 						break;
 				}
 				break;
@@ -448,6 +464,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Perfect Crit");
+						characterSheetScript.critDMG = critMax;
 						break;
 				}
 				break;
@@ -457,6 +474,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Perfect Dodge");
+						characterSheetScript.dodgeHeal = true;
 						break;
 				}
 				break;
@@ -475,15 +493,19 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Rage 1");
+						characterSheetScript.rageLevel += 1;
 						break;
 					case 2:
 						print("Rage 2");
+						characterSheetScript.rageLevel += 1;
 						break;
 					case 3:
 						print("Rage 3");
+						characterSheetScript.rageLevel += 1;
 						break;
 					case 4:
 						print("Rage 4");
+						characterSheetScript.rageLevel += 1;
 						break;
 				}
 				break;

@@ -12,6 +12,8 @@ public class CharacterMovement : MonoBehaviour {
 	public bool isAttacking = false;
 	public bool skillBoardOn;
 
+	private float rageMoveSpeed = 1;
+
 	// REWIRED
 	private float moveHorizontal;
 	private float moveVertical;
@@ -59,7 +61,14 @@ public class CharacterMovement : MonoBehaviour {
 		Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 		// movement = movement.normalized;
 		if (!isAttacking) {
-			cc.Move(movement * characterSheetScript.moveSpeed * Time.deltaTime);
+			// Check if hero has rage mode on and HP < 10%
+			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 1) {
+				rageMoveSpeed = 1.5f;
+			} else if (!characterSheetScript.rageModeOn) {
+				rageMoveSpeed = 1.0f;
+			}
+
+			cc.Move(movement * characterSheetScript.moveSpeed * rageMoveSpeed * Time.deltaTime);
 		}
 
 		// Rotate character depending on the direction they are going
