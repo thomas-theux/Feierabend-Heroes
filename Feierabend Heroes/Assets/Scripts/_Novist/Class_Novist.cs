@@ -16,15 +16,15 @@ public class Class_Novist : MonoBehaviour {
 
 	// These variables can be improved by advancing on the skill tree
 	private float attackOne = 0.5f;
-	private float attackTwo = 2.0f;
+	private float attackTwo = 10.0f;
 
 	private float rageAttackSpeed = 1.0f;
 
 	private float attackOneDelay;
 	private float attackTwoDelay;
 
-	private float attackOneDmg = 32.0f;
-	private float attackTwoDmg = 0.1f;
+	private float attackOneDmg = 20.0f;
+	private float attackTwoDmg = 0.08f;
 
 	private float charHealth = 280.0f;
 
@@ -119,8 +119,10 @@ public class Class_Novist : MonoBehaviour {
 
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newAttackOne.tag = "Character" + charID;
+			newAttackOne.tag = "Attack";
 			newAttackOne.transform.GetComponent<MeteorShot>().casterDamage = characterSheetScript.attackOneDmg;
+			newAttackOne.GetComponent<MeteorShot>().casterCritChance = characterSheetScript.critChance;
+			newAttackOne.GetComponent<MeteorShot>().casterCritDMG = characterSheetScript.critDMG;
 		}
 
 		if (attackOneDelayActive) {
@@ -144,10 +146,14 @@ public class Class_Novist : MonoBehaviour {
 			attackTwoDelayTimer = characterSheetScript.delayAttackTwo / rageAttackSpeed;
 			attackTwoDelayActive = true;
 
+			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition + new Vector3(0, 0, 2);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newAttackTwo.tag = "Character" + charID;
+			newAttackTwo.tag = "Attack";
 			newAttackTwo.transform.GetComponent<FireBlock>().casterDamage = characterSheetScript.attackTwoDmg;
+			newAttackTwo.GetComponent<FireBlock>().casterCritChance = characterSheetScript.critChance;
+			newAttackTwo.GetComponent<FireBlock>().casterCritDMG = characterSheetScript.critDMG;
+			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 2);
 		}
 
 		if (attackTwoDelayActive) {

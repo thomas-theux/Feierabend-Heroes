@@ -6,6 +6,8 @@ using Rewired;
 
 public class SkillTreeUIHandler : MonoBehaviour {
 
+	private CharacterSheet characterSheetscript;
+
 	public GameObject buttonParent;
 	public Image cursorImage;
 	public Text currentOrbsText;
@@ -39,7 +41,17 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	private bool axisYActive;
 
 
+	private void OnEnable() {
+		DisplayOrbs();
+	}
+
+
 	public void InitializeSkillUI() {
+		characterSheetscript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
+
+		// Set stats in skill script
+		characterSheetscript.currentOrbs = currentOrbs;
+
 		charID = this.gameObject.transform.parent.GetComponent<CharacterMovement>().playerID;
 
 		// Save all skill buttons in an array
@@ -117,7 +129,7 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		}
 
 		if (ReInput.players.GetPlayer(charID).GetButtonDown("X")) {
-			if (skillCosts[currentIndex] <= currentOrbs) {
+			if (skillCosts[currentIndex] <= characterSheetscript.currentOrbs) {
 				SkillActivationProcess();
 			} else {
 				print("Not enough ORBS");
@@ -159,13 +171,13 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 	private void PayOrbs() {
 		// Subtract ORBS
-		currentOrbs -= skillCosts[currentIndex];
+		characterSheetscript.currentOrbs -= skillCosts[currentIndex];
 	}
 
 
 	private void DisplayOrbs() {
 		// Update ORBS count
-		currentOrbsText.text = currentOrbs + "";
+		currentOrbsText.text = characterSheetscript.currentOrbs + "";
 	}
 
 

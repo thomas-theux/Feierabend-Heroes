@@ -6,6 +6,7 @@ public class CameraManager : MonoBehaviour {
 
 	public Camera playerCamera;
 	public GameObject skillUIGO;
+	public GameObject charUIGO;
 
 	private float camWidth = 0.5f;
 	private float camHeight = 0.5f;
@@ -40,23 +41,37 @@ public class CameraManager : MonoBehaviour {
 			}
 
 			if (GameManager.playerCount == 2) {
-				camPosY = 0;
+				camPosY = 0.0f;
 				camHeight = 1.0f;
+			}
+
+			// Single player camera for dev testing
+			if (GameManager.playerCount == 1) {
+				camPosX = 0.0f;
+				camPosY = 0.0f;
+				camHeight = 1.0f;
+				camWidth = 1.0f;
 			}
 
 			newCam.name = "PlayerCamera" + i;
 			newCam.rect = new Rect(camPosX, camPosY, camWidth, camHeight);
 			newCam.GetComponent<CameraFollow>().target = GameObject.Find("Character" + i).transform;
 
-
+			// Instantiate skill UI for every player
 			GameObject newSkillUI = Instantiate(skillUIGO);
-
 			newSkillUI.name = "SkillUI" + i;
 			newSkillUI.transform.parent = GameObject.Find("Character" + i).transform;
 			newSkillUI.transform.GetChild(0).GetComponent<Canvas>().worldCamera = GameObject.Find("PlayerCamera" + i).gameObject.GetComponent<Camera>();
 			newSkillUI.transform.GetChild(0).GetComponent<Canvas>().planeDistance = 1;
-
 			newSkillUI.GetComponent<SkillTreeUIHandler>().InitializeSkillUI();
+
+			// Instantiate character UI for every player
+			GameObject newCharUI = Instantiate(charUIGO);
+			newCharUI.name = "CharUI" + i;
+			newCharUI.transform.SetParent(GameObject.Find("Character" + i).transform);
+			newCharUI.GetComponent<Canvas>().worldCamera = GameObject.Find("PlayerCamera" + i).gameObject.GetComponent<Camera>();
+			newCharUI.GetComponent<Canvas>().planeDistance = 1;
+			newCharUI.GetComponent<CharUIHandler>().InitializeCharUI();
 		}
 	}
 

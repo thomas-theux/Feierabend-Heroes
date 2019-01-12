@@ -5,6 +5,8 @@ using UnityEngine;
 public class WrenchPunch : MonoBehaviour {
 
 	public float casterDamage = 0;
+	public float casterCritChance = 0;
+	public float casterCritDMG = 0;
 
 
 	private void Awake() {
@@ -26,11 +28,9 @@ public class WrenchPunch : MonoBehaviour {
 		float enemyDefense = characterSheetScript.charDefense;
 		int enemyDodge = characterSheetScript.dodgeChance;
 		bool enemyDodgeHeal = characterSheetScript.dodgeHeal;
-		int selfCrit = GetComponent<CharacterSheet>().critChance;
-		int critDMG = GetComponent<CharacterSheet>().critDMG;
 
-		int dodgeChance = Random.Range(0, 100);
-		int critChance = Random.Range(0, 100);
+		int dodgeChance = Random.Range(1, 101);
+		int critChance = Random.Range(1, 101);
 
 		// Check if enemy has rage mode on
 		if (characterSheetScript.rageModeOn) {
@@ -51,8 +51,8 @@ public class WrenchPunch : MonoBehaviour {
 			}
 
 			// If character lands a critical strike then multiply damage
-			if (selfCrit <= critChance) {
-				dealDamage *= critDMG;
+			if (casterCritChance <= critChance) {
+				dealDamage *= casterCritDMG;
 			}
 
 			characterSheetScript.currentHealth -= dealDamage;

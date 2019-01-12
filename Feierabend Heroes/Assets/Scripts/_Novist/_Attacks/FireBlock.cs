@@ -5,6 +5,8 @@ using UnityEngine;
 public class FireBlock : MonoBehaviour {
 
 	public float casterDamage = 0;
+	public float casterCritChance = 0;
+	public float casterCritDMG = 0;
 
 	private void Awake() {
 		Destroy(gameObject, 8.0f);
@@ -12,7 +14,7 @@ public class FireBlock : MonoBehaviour {
 
 
 	private void OnTriggerStay(Collider other) {
-		if (other.tag != transform.GetChild(0).tag) {
+		if (other.tag != "Attack" && other.transform.GetChild(0).tag != transform.GetChild(0).tag) {
 			CalculateDamage(other);
 		}
 	}
@@ -25,11 +27,9 @@ public class FireBlock : MonoBehaviour {
 		float enemyDefense = characterSheetScript.charDefense;
 		int enemyDodge = characterSheetScript.dodgeChance;
 		bool enemyDodgeHeal = characterSheetScript.dodgeHeal;
-		int selfCrit = GetComponent<CharacterSheet>().critChance;
-		int critDMG = GetComponent<CharacterSheet>().critDMG;
 
-		int dodgeChance = Random.Range(0, 100);
-		int critChance = Random.Range(0, 100);
+		int dodgeChance = Random.Range(1, 101);
+		int critChance = Random.Range(1, 101);
 
 		// Check if enemy has rage mode on
 		if (characterSheetScript.rageModeOn) {
@@ -50,8 +50,8 @@ public class FireBlock : MonoBehaviour {
 			}
 
 			// If character lands a critical strike then multiply damage
-			if (selfCrit <= critChance) {
-				dealDamage *= critDMG;
+			if (casterCritChance <= critChance) {
+				dealDamage *= casterCritDMG;
 			}
 
 			characterSheetScript.currentHealth -= dealDamage;

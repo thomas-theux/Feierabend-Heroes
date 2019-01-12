@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bomb : MonoBehaviour {
 
 	public float casterDamage = 0;
+	public float casterCritChance = 0;
+	public float casterCritDMG = 0;
 	public string casterTag;
 
 	private Rigidbody rb;
@@ -33,7 +35,9 @@ public class Bomb : MonoBehaviour {
 		if (other.tag != "Attack") {
 			GameObject newBombRadius = Instantiate(bombRadius, transform.position, transform.rotation);
 			newBombRadius.transform.GetChild(0).gameObject.tag = casterTag;
-			newBombRadius.GetComponent<BombRadius>().bombDamage = casterDamage;
+			newBombRadius.GetComponent<BombRadius>().casterDamage = casterDamage;
+			newBombRadius.GetComponent<BombRadius>().casterCritChance = casterCritChance;
+			newBombRadius.GetComponent<BombRadius>().casterCritDMG = casterCritDMG;
 			Destroy(gameObject);
 		}
 	}

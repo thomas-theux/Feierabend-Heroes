@@ -13,6 +13,8 @@ public class LifeDeathHandler : MonoBehaviour {
 	private float defOneSPD;
 	private float defTwoSPD;
 
+	public bool healthIsFull = true;
+
 
 	private void Awake() {
 		characterSheetScript = GetComponent<CharacterSheet>();
@@ -20,9 +22,32 @@ public class LifeDeathHandler : MonoBehaviour {
 
 
 	private void LateUpdate() {
+		// Continuously increase HP if SELF HEAL skill is activated
+		if (characterSheetScript.selfHealActive && !healthIsFull) {
+			SelfHeal();
+		}
+
+		HPCapCheck();
+
 		CheckForRageMode();
 
 		KillCharacter();
+	}
+
+
+	private void SelfHeal() {
+		characterSheetScript.currentHealth += 0.1f;
+	}
+
+
+	private void HPCapCheck() {
+		// Cap the current HP if higher than max HP
+		if (characterSheetScript.currentHealth > characterSheetScript.maxHealth && !healthIsFull) {
+			characterSheetScript.currentHealth = characterSheetScript.maxHealth;
+			healthIsFull = true;
+		} else if (characterSheetScript.currentHealth < characterSheetScript.maxHealth && healthIsFull) {
+			healthIsFull = false;
+		}
 	}
 
 
@@ -35,37 +60,6 @@ public class LifeDeathHandler : MonoBehaviour {
 				characterSheetScript.rageModeOn = false;
 			}
 		}
-
-		// Activate rage mode if HP is below 10%
-		// if (characterSheetScript.rageSkillActivated) {
-		// 	if (characterSheetScript.currentHealth <= characterSheetScript.maxHealth / 10) {
-
-		// 		if (characterSheetScript.rageLevel >= 0) {
-		// 			defDefense = characterSheetScript.charDefense;
-		// 			characterSheetScript.charDefense *= 2.0f;
-
-		// 			if (characterSheetScript.rageLevel >= 1) {
-		// 				defMoveSPD = characterSheetScript.moveSpeed;
-		// 				characterSheetScript.moveSpeed *= 1.5f;
-
-		// 				if (characterSheetScript.rageLevel >= 2) {
-		// 					defOneDMG = characterSheetScript.attackOneDmg;
-		// 					defTwoDMG = characterSheetScript.attackTwoDmg;
-		// 					characterSheetScript.attackOneDmg *= 2.0f;
-		// 					characterSheetScript.attackTwoDmg *= 2.0f;
-
-		// 					if (characterSheetScript.rageLevel >= 3) {
-		// 						defOneSPD = characterSheetScript.delayAttackOne;
-		// 						defTwoSPD = characterSheetScript.delayAttackTwo;
-		// 						characterSheetScript.delayAttackOne /= 2.0f;
-		// 						characterSheetScript.delayAttackTwo /= 2.0f;
-		// 					}
-		// 				}
-		// 			}
-		// 		}
-		// 	} else {
-		// 	}
-		// }
 	}
 
 

@@ -17,6 +17,7 @@ public class CharacterMovement : MonoBehaviour {
 	// REWIRED
 	private float moveHorizontal;
 	private float moveVertical;
+	public bool activationBtn;
 	private bool showSkillUI;
 	private bool closeSkillUI;
 
@@ -50,6 +51,8 @@ public class CharacterMovement : MonoBehaviour {
 	private void GetInput() {
 		moveHorizontal = ReInput.players.GetPlayer(playerID).GetAxis("LS Horizontal");
 		moveVertical = ReInput.players.GetPlayer(playerID).GetAxis("LS Vertical");
+
+		activationBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("R1");
 
 		showSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Triangle");
 		closeSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Circle");
@@ -92,6 +95,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	private void ShowSkillboard() {
 		this.gameObject.transform.GetChild(2).gameObject.SetActive(skillBoardOn);
+		this.gameObject.transform.GetChild(3).gameObject.SetActive(!skillBoardOn);
 	}
 
 }

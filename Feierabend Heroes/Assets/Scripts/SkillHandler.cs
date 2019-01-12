@@ -19,6 +19,8 @@ public class SkillHandler : MonoBehaviour {
 	private int setCrit = 5;
 	private int increaseCrit = 3;
 	private int critMax = 3;
+	private float increaseAppleHeal = 0.1f;
+	private int increaseDoubleOrbChance = 20;
 
 
 	private void Awake() {
@@ -295,6 +297,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Enable Orb Finding");
+						characterSheetScript.doubleOrbChance += increaseDoubleOrbChance;
 						break;
 				}
 				break;
@@ -304,6 +307,8 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Enable Apple Finding");
+						characterSheetScript.canFindApples = true;
+						GameObject.Find("PlayerCamera" + 0).GetComponent<Camera>().cullingMask = ~ (1 << 7);	// Activate APPLES layer in culling mask for the camera
 						break;
 				}
 				break;
@@ -431,12 +436,15 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Orb +20%");
+						characterSheetScript.doubleOrbChance += increaseDoubleOrbChance;
 						break;
 					case 2:
 						print("Orb +20%");
+						characterSheetScript.doubleOrbChance += increaseDoubleOrbChance;
 						break;
 					case 3:
 						print("Orb +20%");
+						characterSheetScript.doubleOrbChance += increaseDoubleOrbChance;
 						break;
 				}
 				break;
@@ -445,16 +453,20 @@ public class SkillHandler : MonoBehaviour {
 			case 26:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Apple +50%");
+						print("Apple 30%");
+						characterSheetScript.healPercentage += increaseAppleHeal;
 						break;
 					case 2:
-						print("Apple +50%");
+						print("Apple 40%");
+						characterSheetScript.healPercentage += increaseAppleHeal;
 						break;
 					case 3:
-						print("Apple +50%");
+						print("Apple 50%");
+						characterSheetScript.healPercentage += increaseAppleHeal;
 						break;
 					case 4:
-						print("Apple +50%");
+						print("Apple 60%");
+						characterSheetScript.healPercentage += increaseAppleHeal;
 						break;
 				}
 				break;
@@ -515,6 +527,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Perfect Orb Finding");
+						characterSheetScript.findThreeOrbs = true;
 						break;
 				}
 				break;
@@ -524,6 +537,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Perfect Apple Finding");
+						characterSheetScript.selfHealActive = true;
 						break;
 				}
 				break;

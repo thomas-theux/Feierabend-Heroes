@@ -16,15 +16,15 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	// These variables can be improved by advancing on the skill tree
 	private float attackOne = 0.4f;
-	private float attackTwo = 0.6f;
+	private float attackTwo = 1.0f;
 
 	private float rageAttackSpeed = 1.0f;
 
 	private float attackOneDelay;
 	private float attackTwoDelay;
 
-	private float attackOneDmg = 24.0f;
-	private float attackTwoDmg = 50.0f;
+	private float attackOneDmg = 16.0f;
+	private float attackTwoDmg = 40.0f;
 
 	private float charHealth = 340.0f;
 	
@@ -119,8 +119,11 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newAttackOne.tag = "Attack";
 			newAttackOne.transform.parent = gameObject.transform;
 			newAttackOne.GetComponent<WrenchPunch>().casterDamage = characterSheetScript.attackOneDmg;
+			newAttackOne.GetComponent<WrenchPunch>().casterCritChance = characterSheetScript.critChance;
+			newAttackOne.GetComponent<WrenchPunch>().casterCritDMG = characterSheetScript.critDMG;
 		}
 
 		if (attackOneDelayActive) {
@@ -147,7 +150,10 @@ public class Class_Cloudmaster : MonoBehaviour {
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-35, 0, 0);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackTwo.GetComponent<Bomb>().casterTag = "Character" + charID;
+			newAttackTwo.tag = "Attack";
 			newAttackTwo.transform.GetComponent<Bomb>().casterDamage = characterSheetScript.attackTwoDmg;
+			newAttackTwo.GetComponent<Bomb>().casterCritChance = characterSheetScript.critChance;
+			newAttackTwo.GetComponent<Bomb>().casterCritDMG = characterSheetScript.critDMG;
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 0);
 		}
 

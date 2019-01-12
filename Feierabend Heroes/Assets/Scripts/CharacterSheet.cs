@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterSheet : MonoBehaviour {
 
+	public int currentOrbs = 0;
+
 	// Movement
 	public float moveSpeed = 10.0f;
 
@@ -32,5 +34,12 @@ public class CharacterSheet : MonoBehaviour {
 	public bool rageSkillActivated = false;
 	public int rageLevel = 0;
 	public bool rageModeOn = false;
+
+	// Finding Skills
+	public bool canFindApples = false;
+	public float healPercentage = 0.2f;
+	public bool selfHealActive = false;
+	public int doubleOrbChance = 0;
+	public bool findThreeOrbs = false;
 
 }
