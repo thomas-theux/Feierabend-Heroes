@@ -71,7 +71,6 @@ public class MeteorShot : MonoBehaviour {
 			if (enemyDodgeHeal) {
 				characterSheetScript.currentHealth += characterSheetScript.currentHealth * 0.2f;
 			}
-			print("Enemy dodged!");
 		}
 	}
 

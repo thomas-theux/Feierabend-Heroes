@@ -27,6 +27,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private float attackOneDmg = 16.0f;
 	private float attackTwoDmg = 40.0f;
+	private float skillOneDmg = 4.0f;
+	private float skillTwoDmg = 4.0f;
 
 	private float charHealth = 300.0f;
 	
@@ -73,9 +75,13 @@ public class Class_Cloudmaster : MonoBehaviour {
 		// Set stats in skill script
 		characterSheetScript.delayAttackOne = attackOne;
 		characterSheetScript.delayAttackTwo = attackTwo;
+		characterSheetScript.delaySkillOne = skillOne;
+		characterSheetScript.delaySkillTwo = skillTwo;
 
 		characterSheetScript.attackOneDmg = attackOneDmg;
 		characterSheetScript.attackTwoDmg = attackTwoDmg;
+		characterSheetScript.skillOneDmg = skillOneDmg;
+		characterSheetScript.skillTwoDmg = skillTwoDmg;
 
 		characterSheetScript.currentHealth = charHealth;
 		characterSheetScript.maxHealth = charHealth;
@@ -99,6 +105,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private void GetInput() {
 		performAttackOne = player.GetButton("X");
 		performAttackTwo = player.GetButton("Square");
+
+		castSkill = player.GetButtonDown("Circle");
 	}
 
 

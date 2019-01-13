@@ -17,6 +17,8 @@ public class CharacterSheet : MonoBehaviour {
 	public int skillActivated = 0;
 	public float delaySkillOne = 0;
 	public float delaySkillTwo = 0;
+	public float skillOneDmg = 0;
+	public float skillTwoDmg = 0;
 
 	// Health
 	public float currentHealth;

@@ -28,6 +28,8 @@ public class Class_Novist : MonoBehaviour {
 
 	private float attackOneDmg = 20.0f;
 	private float attackTwoDmg = 0.08f;
+	private float skillOneDmg = 4.0f;
+	private float skillTwoDmg = 6.0f;
 
 	private float charHealth = 240.0f;
 
@@ -49,7 +51,7 @@ public class Class_Novist : MonoBehaviour {
 	private float skillOneDelayTimer;
 	private bool skillOneDelayActive = false;
 
-	// Skill Two – Double HP
+	// Skill Two – Spawn Companion
 	private float skillTwoDelayTimer;
 	private bool skillTwoDelayActive = false;
 
@@ -79,6 +81,8 @@ public class Class_Novist : MonoBehaviour {
 
 		characterSheetScript.attackOneDmg = attackOneDmg;
 		characterSheetScript.attackTwoDmg = attackTwoDmg;
+		characterSheetScript.skillOneDmg = skillOneDmg;
+		characterSheetScript.skillTwoDmg = skillTwoDmg;
 
 		characterSheetScript.currentHealth = charHealth;
 		characterSheetScript.maxHealth = charHealth;
@@ -216,8 +220,10 @@ public class Class_Novist : MonoBehaviour {
 			newSkillTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newSkillTwo.transform.GetChild(1).gameObject.tag = "Attack";
 			newSkillTwo.tag = "Attack";
-			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = gameObject.transform;
-			// newSkillTwo.transform.parent = gameObject.transform;
+			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = gameObject;
+			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterDamage = characterSheetScript.skillTwoDmg;
+			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritChance = characterSheetScript.critChance;
+			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritDMG = characterSheetScript.critDMG;
 		}
 
 		if (skillTwoDelayActive) {
