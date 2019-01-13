@@ -20,7 +20,7 @@ public class OrbChest : MonoBehaviour {
 				if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 4) {
 					rndDoubleOrb = -1;
 				} else {
-					int rndDoubleOrb = Random.Range(1, 101);
+					rndDoubleOrb = Random.Range(1, 101);
 				}
 
 				// Check if player has activated the DOUBLE ORB skill

@@ -22,7 +22,7 @@ public class MeteorShot : MonoBehaviour {
 
 
 	private void OnTriggerEnter(Collider other) {
-		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != transform.GetChild(0).tag) {
+		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != transform.GetChild(0).tag) {
 			if (other.tag != "Environment") {
 				CalculateDamage(other);
 			}

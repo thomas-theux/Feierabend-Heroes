@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject characterGO;
 
-	public static int playerCount = 4;
+	public static int playerCount = 2;
 	public List<int> classesArr;
 
 
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
 
 	private void AssignClasses() {
 		for (int i = 0; i < playerCount; i++) {
-			int rndClass = Random.Range(0, 2);
+			int rndClass = Random.Range(1, 2);
 			classesArr.Add(rndClass);
 		}
 	}

@@ -11,6 +11,7 @@ TagManager:
   - Character2
   - Character3
   - Apple
+  - Orb
   layers:
   - Default
   - TransparentFX

@@ -17,6 +17,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 	// These variables can be improved by advancing on the skill tree
 	private float attackOne = 0.4f;
 	private float attackTwo = 1.0f;
+	private float skillOne = 18.0f;
+	private float skillTwo = 20.0f;
 
 	private float rageAttackSpeed = 1.0f;
 
@@ -26,7 +28,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float attackOneDmg = 16.0f;
 	private float attackTwoDmg = 40.0f;
 
-	private float charHealth = 340.0f;
+	private float charHealth = 300.0f;
 	
 	private float charDefense = 12.0f;
 
@@ -42,10 +44,19 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float attackTwoDelayTimer;
 	private bool attackTwoDelayActive = false;
 
+	// Skill One – Healing Beacon
+	private float skillOneDelayTimer;
+	private bool skillOneDelayActive = false;
+
+	// Skill Two – Turret Gun
+	private float skillTwoDelayTimer;
+	private bool skillTwoDelayActive = false;
+
 	// REWIRED
 	private Player player;
 	private bool performAttackOne;
 	private bool performAttackTwo;
+	private bool castSkill;
 
 
 	private void Start() {
@@ -161,6 +172,42 @@ public class Class_Cloudmaster : MonoBehaviour {
 			attackTwoDelayTimer -= Time.deltaTime;
 			if (attackTwoDelayTimer <= 0) {
 				attackTwoDelayActive = false;
+			}
+		}
+	}
+
+
+	private void SkillOne() {
+		if (castSkill && characterSheetScript.skillActivated == 1 && !skillOneDelayActive) {
+
+			skillOneDelayTimer = characterSheetScript.delaySkillOne;
+			skillOneDelayActive = true;
+
+			// Skill HEALING BEACON
+		}
+
+		if (skillOneDelayActive) {
+			skillOneDelayTimer -= Time.deltaTime;
+			if (skillOneDelayTimer <= 0) {
+				skillOneDelayActive = false;
+			}
+		}
+	}
+
+
+	private void SkillTwo() {
+		if (castSkill && characterSheetScript.skillActivated == 2 && !skillTwoDelayActive) {
+
+			skillTwoDelayTimer = characterSheetScript.delaySkillTwo;
+			skillTwoDelayActive = true;
+
+			// Skill TURRET GUN
+		}
+
+		if (skillTwoDelayActive) {
+			skillTwoDelayTimer -= Time.deltaTime;
+			if (skillTwoDelayTimer <= 0) {
+				skillTwoDelayActive = false;
 			}
 		}
 	}

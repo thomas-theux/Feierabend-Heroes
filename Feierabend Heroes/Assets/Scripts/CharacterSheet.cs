@@ -12,13 +12,17 @@ public class CharacterSheet : MonoBehaviour {
 	// Attack
 	public float attackOneDmg;
 	public float attackTwoDmg;
-
 	public float delayAttackOne;
 	public float delayAttackTwo;
+	public int skillActivated = 0;
+	public float delaySkillOne = 0;
+	public float delaySkillTwo = 0;
 
 	// Health
 	public float currentHealth;
 	public float maxHealth;
+	public int respawnChance = 0;
+	public bool respawnOrb = false;
 
 	// Defense
 	public float charDefense;
@@ -26,7 +30,6 @@ public class CharacterSheet : MonoBehaviour {
 	public int critDMG = 2;
 	public int dodgeChance = 0;
 	public bool dodgeHeal = false;
-	public int respawnChance = 0;
 
 	// Special Skills
 	public bool skillOne = false;

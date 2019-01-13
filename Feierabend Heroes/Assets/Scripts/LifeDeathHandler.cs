@@ -6,6 +6,9 @@ public class LifeDeathHandler : MonoBehaviour {
 
 	private CharacterSheet characterSheetScript;
 
+	private GameObject levelGO;
+	private float clearance = 5.0f;
+
 	private float defDefense;
 	private float defMoveSPD;
 	private float defOneDMG;
@@ -18,6 +21,7 @@ public class LifeDeathHandler : MonoBehaviour {
 
 	private void Awake() {
 		characterSheetScript = GetComponent<CharacterSheet>();
+		levelGO = GameObject.Find("Ground");
 	}
 
 
@@ -67,6 +71,34 @@ public class LifeDeathHandler : MonoBehaviour {
 		// Kill player if health is below 0
 		if (characterSheetScript.currentHealth <= 0) {
 			gameObject.SetActive(false);
+
+			// Check for RESPAWN skill
+			if (characterSheetScript.respawnChance > 0) {
+				int rndRespawn = Random.Range(1, 101);
+
+				if (rndRespawn > characterSheetScript.respawnChance) {
+					
+				} else {
+					float minX = (levelGO.transform.localScale.x / 2) - levelGO.transform.localScale.x + clearance;
+					float maxX = (levelGO.transform.localScale.x / 2) - clearance;
+					float minZ = (levelGO.transform.localScale.z / 2) - levelGO.transform.localScale.z + clearance;
+					float maxZ = (levelGO.transform.localScale.z / 2) - clearance;
+
+					float posX = Random.Range(minX, maxX);
+					float posZ = Random.Range(minZ, maxZ);
+
+					this.gameObject.transform.position = new Vector3(posX, 1, posZ);
+
+					characterSheetScript.currentHealth = characterSheetScript.maxHealth;
+
+					gameObject.SetActive(true);
+
+					// Give 1 ORB when ORB skill is perfected and character is being respawned
+					if (characterSheetScript.respawnOrb) {
+						characterSheetScript.currentOrbs += 1;
+					}
+				}
+			}
 		}
 	}
 

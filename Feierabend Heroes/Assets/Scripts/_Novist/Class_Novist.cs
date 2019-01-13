@@ -7,6 +7,7 @@ public class Class_Novist : MonoBehaviour {
 
 	public GameObject attackOneGO;
 	public GameObject attackTwoGO;
+	public GameObject skillTwoGO;
 	private CharacterSheet characterSheetScript;
 	private CharacterMovement charactMovementScript;
 
@@ -17,6 +18,8 @@ public class Class_Novist : MonoBehaviour {
 	// These variables can be improved by advancing on the skill tree
 	private float attackOne = 0.5f;
 	private float attackTwo = 10.0f;
+	private float skillOne = 18.0f;
+	private float skillTwo = 20.0f;
 
 	private float rageAttackSpeed = 1.0f;
 
@@ -26,7 +29,7 @@ public class Class_Novist : MonoBehaviour {
 	private float attackOneDmg = 20.0f;
 	private float attackTwoDmg = 0.08f;
 
-	private float charHealth = 280.0f;
+	private float charHealth = 240.0f;
 
 	private float charDefense = 8.0f;
 
@@ -42,10 +45,19 @@ public class Class_Novist : MonoBehaviour {
 	private float attackTwoDelayTimer;
 	private bool attackTwoDelayActive = false;
 
+	// Skill One – Double HP
+	private float skillOneDelayTimer;
+	private bool skillOneDelayActive = false;
+
+	// Skill Two – Double HP
+	private float skillTwoDelayTimer;
+	private bool skillTwoDelayActive = false;
+
 	// REWIRED
 	private Player player;
 	private bool performAttackOne;
 	private bool performAttackTwo;
+	private bool castSkill;
 
 
 	private void Start() {
@@ -62,6 +74,8 @@ public class Class_Novist : MonoBehaviour {
 		// Set stats in skill script
 		characterSheetScript.delayAttackOne = attackOne;
 		characterSheetScript.delayAttackTwo = attackTwo;
+		characterSheetScript.delaySkillOne = skillOne;
+		characterSheetScript.delaySkillTwo = skillTwo;
 
 		characterSheetScript.attackOneDmg = attackOneDmg;
 		characterSheetScript.attackTwoDmg = attackTwoDmg;
@@ -81,6 +95,12 @@ public class Class_Novist : MonoBehaviour {
 		AttackOne();
 		AttackTwo();
 
+		if (characterSheetScript.skillActivated == 1) {
+			SkillOne();
+		} else if (characterSheetScript.skillActivated == 2) {
+			SkillTwo();
+		}
+
 		DelayMovement();
 	}
 
@@ -88,6 +108,8 @@ public class Class_Novist : MonoBehaviour {
 	private void GetInput() {
 		performAttackOne = player.GetButton("X");
 		performAttackTwo = player.GetButton("Square");
+
+		castSkill = player.GetButtonDown("Circle");
 	}
 
 
@@ -160,6 +182,48 @@ public class Class_Novist : MonoBehaviour {
 			attackTwoDelayTimer -= Time.deltaTime;
 			if (attackTwoDelayTimer <= 0) {
 				attackTwoDelayActive = false;
+			}
+		}
+	}
+
+
+	private void SkillOne() {
+		if (castSkill && characterSheetScript.skillActivated == 1 && !skillOneDelayActive) {
+
+			skillOneDelayTimer = characterSheetScript.delaySkillOne;
+			skillOneDelayActive = true;
+
+			// Skill DOUBLE HP
+		}
+
+		if (skillOneDelayActive) {
+			skillOneDelayTimer -= Time.deltaTime;
+			if (skillOneDelayTimer <= 0) {
+				skillOneDelayActive = false;
+			}
+		}
+	}
+
+
+	private void SkillTwo() {
+		if (castSkill && characterSheetScript.skillActivated == 2 && !skillTwoDelayActive) {
+
+			skillTwoDelayTimer = characterSheetScript.delaySkillTwo;
+			skillTwoDelayActive = true;
+
+			// Skill SPAWN COMPANION
+			GameObject newSkillTwo = Instantiate(skillTwoGO, attackSpawner.position, attackSpawner.rotation);
+			newSkillTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newSkillTwo.transform.GetChild(1).gameObject.tag = "Attack";
+			newSkillTwo.tag = "Attack";
+			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = gameObject.transform;
+			// newSkillTwo.transform.parent = gameObject.transform;
+		}
+
+		if (skillTwoDelayActive) {
+			skillTwoDelayTimer -= Time.deltaTime;
+			if (skillTwoDelayTimer <= 0) {
+				skillTwoDelayActive = false;
 			}
 		}
 	}

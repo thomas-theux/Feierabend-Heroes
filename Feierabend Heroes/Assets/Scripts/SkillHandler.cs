@@ -11,7 +11,7 @@ public class SkillHandler : MonoBehaviour {
 	private float charDefense;
 
 	private float increaseHP = 0.1f;
-	private float increaseDMG = 0.14f;
+	private float increaseDMG = 0.20f;
 	private float increaseDEF = 8.0f;
 	private float increaseMSPD = 0.1f;
 	private float increaseASPD = 0.1f;
@@ -21,6 +21,7 @@ public class SkillHandler : MonoBehaviour {
 	private int critMax = 3;
 	private float increaseAppleHeal = 0.1f;
 	private int increaseDoubleOrbChance = 20;
+	private int increaseRespawnChance = 2;
 
 
 	private void Awake() {
@@ -67,27 +68,27 @@ public class SkillHandler : MonoBehaviour {
 			case 01:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Damage +14%");
+						print("Damage +20%");
 						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
 						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 2:
-						print("Damage +14%");
+						print("Damage +20%");
 						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
 						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 3:
-						print("Damage +14%");
+						print("Damage +20%");
 						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
 						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 4:
-						print("Damage +14%");
+						print("Damage +20%");
 						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
 						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 5:
-						print("Damage +14%");
+						print("Damage +20%");
 						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
 						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
@@ -268,6 +269,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Enable Respawn");
+						characterSheetScript.respawnChance += increaseRespawnChance;
 						break;
 				}
 				break;
@@ -277,6 +279,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Enable Skill One");
+						characterSheetScript.skillActivated = 1;
 						break;
 				}
 				break;
@@ -288,6 +291,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Enable Skill Two");
+						characterSheetScript.skillActivated = 2;
 						break;
 				}
 				break;
@@ -308,7 +312,7 @@ public class SkillHandler : MonoBehaviour {
 					case 1:
 						print("Enable Apple Finding");
 						characterSheetScript.canFindApples = true;
-						GameObject.Find("PlayerCamera" + 0).GetComponent<Camera>().cullingMask = ~ (1 << 7);	// Activate APPLES layer in culling mask for the camera
+						GameObject.Find("PlayerCamera" + transform.parent.GetComponent<CharacterMovement>().playerID).GetComponent<Camera>().cullingMask = ~ (1 << 7);	// Activate APPLES layer in culling mask for the camera
 						break;
 				}
 				break;
@@ -366,15 +370,19 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Respawn +2%");
+						characterSheetScript.respawnChance += increaseRespawnChance;
 						break;
 					case 2:
 						print("Respawn +2%");
+						characterSheetScript.respawnChance += increaseRespawnChance;
 						break;
 					case 3:
 						print("Respawn +2%");
+						characterSheetScript.respawnChance += increaseRespawnChance;
 						break;
 					case 4:
 						print("Respawn +2%");
+						characterSheetScript.respawnChance += increaseRespawnChance;
 						break;
 				}
 				break;
@@ -496,6 +504,7 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Perfect Respawn");
+						characterSheetScript.respawnOrb = true;
 						break;
 				}
 				break;
