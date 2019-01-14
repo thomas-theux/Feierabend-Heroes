@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641275, b: 0.57481736, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1505,8 +1505,28 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
         type: 2}
+      propertyPath: _userData.keyboardMaps.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.mapCategories.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.players.Array.data[2]._defaultKeyboardMaps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.size
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.size
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4653256493879030, guid: 537830b43c3544d11a26e01dbf254098, type: 2}
       propertyPath: m_LocalPosition.x
@@ -1579,6 +1599,126 @@ Prefab:
         type: 2}
       propertyPath: _userData.keyboardMaps.Array.data[0].actionElementMaps.Array.data[13]._actionId
       value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.mapCategoryIdCounter
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.mapCategories.Array.data[1]._name
+      value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.mapCategories.Array.data[1]._descriptiveName
+      value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMapIdCounter
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[0]._keyboardKeyCode
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[0]._actionId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[0]._axisContribution
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[1]._keyboardKeyCode
+      value: 108
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[1]._actionId
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[2]._keyboardKeyCode
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[2]._actionId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[3]._keyboardKeyCode
+      value: 107
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[3]._actionId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[3]._axisContribution
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[4]._keyboardKeyCode
+      value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[4]._actionId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[5]._keyboardKeyCode
+      value: 122
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[5]._actionId
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[6]._keyboardKeyCode
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[6]._actionId
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[7]._keyboardKeyCode
+      value: 98
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.keyboardMaps.Array.data[1].actionElementMaps.Array.data[7]._actionId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.players.Array.data[2]._defaultKeyboardMaps.Array.data[0]._categoryId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
+        type: 2}
+      propertyPath: _userData.players.Array.data[2]._assignKeyboardOnStart
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 537830b43c3544d11a26e01dbf254098, type: 2}
@@ -1889,11 +2029,14 @@ MonoBehaviour:
         _categoryId: 0
         _layoutId: 0
       _defaultMouseMaps: []
-      _defaultKeyboardMaps: []
+      _defaultKeyboardMaps:
+      - _enabled: 1
+        _categoryId: 1
+        _layoutId: 0
       _defaultCustomControllerMaps: []
       _startingCustomControllers: []
       _assignMouseOnStart: 0
-      _assignKeyboardOnStart: 0
+      _assignKeyboardOnStart: 1
       _excludeFromControllerAutoAssignment: 0
     - _id: 3
       _name: Player2
@@ -2154,6 +2297,13 @@ MonoBehaviour:
       _descriptiveName: Default
       _tag: 
       _id: 0
+      _userAssignable: 1
+      _checkConflictsWithAllCategories: 1
+      _checkConflictsCategoryIds: 
+    - _name: Player1
+      _descriptiveName: Player1
+      _tag: 
+      _id: 1
       _userAssignable: 1
       _checkConflictsWithAllCategories: 1
       _checkConflictsCategoryIds: 
@@ -2574,6 +2724,101 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+    - id: 1
+      categoryId: 1
+      layoutId: 0
+      name: 
+      hardwareGuidString: 
+      customControllerUid: 0
+      actionElementMaps:
+      - _actionCategoryId: 0
+        _actionId: 0
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 1
+        _keyboardKeyCode: 106
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 0
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 108
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 105
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 1
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 1
+        _keyboardKeyCode: 107
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 5
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 103
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 6
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 122
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 7
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 104
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 4
+        _elementType: 1
+        _elementIdentifierId: -1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 98
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     mouseMaps: []
     customControllerMaps: []
     customControllers: []
@@ -2581,13 +2826,13 @@ MonoBehaviour:
     actionIdCounter: 22
     actionCategoryIdCounter: 1
     inputBehaviorIdCounter: 1
-    mapCategoryIdCounter: 1
+    mapCategoryIdCounter: 2
     joystickLayoutIdCounter: 1
     keyboardLayoutIdCounter: 1
     mouseLayoutIdCounter: 1
     customControllerLayoutIdCounter: 1
     joystickMapIdCounter: 1
-    keyboardMapIdCounter: 1
+    keyboardMapIdCounter: 2
     mouseMapIdCounter: 0
     customControllerMapIdCounter: 0
     customControllerIdCounter: 0
@@ -2724,6 +2969,18 @@ MonoBehaviour:
   skillActivated: 0
   delaySkillOne: 0
   delaySkillTwo: 0
+  skillOneDmg: 0
+  skillTwoDmg: 0
+  skillOneStats:
+  - 0
+  - 0
+  - 0
+  - 0
+  skillTwoStats:
+  - 0
+  - 0
+  - 0
+  - 0
   currentHealth: 1
   maxHealth: 1
   respawnChance: 0

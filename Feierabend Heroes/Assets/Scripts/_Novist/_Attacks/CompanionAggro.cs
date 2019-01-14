@@ -10,7 +10,7 @@ public class CompanionAggro : MonoBehaviour {
 	private float followSpeed = 3.0f;
 	private float approachEnemySpeed = 2.0f;
 
-	private float lifeTime = 10.0f;
+	public float lifeTime = 8.0f;
 
 	private Vector3 offset;
 
@@ -28,7 +28,8 @@ public class CompanionAggro : MonoBehaviour {
 
 
 	private void Awake() {
-		StartCoroutine(LifeTime());
+		Destroy(transform.parent.gameObject, lifeTime);
+		// StartCoroutine(LifeTime());
 	}
 
 
@@ -132,10 +133,10 @@ public class CompanionAggro : MonoBehaviour {
 	}
 
 
-	private IEnumerator LifeTime() {
-		yield return new WaitForSeconds(lifeTime);
-		Destroy(transform.parent.gameObject);
-	}
+	// private IEnumerator LifeTime() {
+	// 	yield return new WaitForSeconds(lifeTime);
+	// 	Destroy(transform.parent.gameObject);
+	// }
 
 
 	private IEnumerator FollowTimer() {

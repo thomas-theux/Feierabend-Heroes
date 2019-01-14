@@ -7,6 +7,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	public GameObject attackOneGO;
 	public GameObject attackTwoGO;
+	public GameObject skillOneGO;
+	public GameObject skillTwoGO;
 	private CharacterSheet characterSheetScript;
 	private CharacterMovement charactMovementScript;
 
@@ -17,8 +19,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 	// These variables can be improved by advancing on the skill tree
 	private float attackOne = 0.4f;
 	private float attackTwo = 1.0f;
-	private float skillOne = 18.0f;
-	private float skillTwo = 20.0f;
+	private float skillOne = 15.0f;
+	private float skillTwo = 30.0f;
 
 	private float rageAttackSpeed = 1.0f;
 
@@ -27,8 +29,12 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private float attackOneDmg = 16.0f;
 	private float attackTwoDmg = 40.0f;
-	private float skillOneDmg = 4.0f;
-	private float skillTwoDmg = 4.0f;
+	private float skillOneDmg = 0.0f;
+	private float skillTwoDmg = 3.0f;
+
+	// Initial variables and increase values for the skills
+	private float[] skillOneStats = {0.4f, 5.0f, 0.2f, 1.0f};
+	private float[] skillTwoStats = {0.3f, 24.0f, -0.05f, 4.0f};
 
 	private float charHealth = 300.0f;
 	
@@ -83,6 +89,11 @@ public class Class_Cloudmaster : MonoBehaviour {
 		characterSheetScript.skillOneDmg = skillOneDmg;
 		characterSheetScript.skillTwoDmg = skillTwoDmg;
 
+		for (int i = 0; i < 4; i++) {
+			characterSheetScript.skillOneStats[i] = skillOneStats[i];
+			characterSheetScript.skillTwoStats[i] = skillTwoStats[i];
+		}
+
 		characterSheetScript.currentHealth = charHealth;
 		characterSheetScript.maxHealth = charHealth;
 
@@ -97,6 +108,12 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		AttackOne();
 		AttackTwo();
+
+		if (characterSheetScript.skillActivated == 1) {
+			SkillOne();
+		} else if (characterSheetScript.skillActivated == 2) {
+			SkillTwo();
+		}
 
 		DelayMovement();
 	}
@@ -192,6 +209,17 @@ public class Class_Cloudmaster : MonoBehaviour {
 			skillOneDelayActive = true;
 
 			// Skill HEALING BEACON
+			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition + new Vector3(0, 0, 2);
+
+			GameObject newSkillOne = Instantiate(skillOneGO, attackSpawner.position, attackSpawner.rotation);
+			newSkillOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newSkillOne.transform.GetChild(1).gameObject.tag = "Attack";
+			newSkillOne.tag = "Attack";
+
+			newSkillOne.transform.GetChild(1).GetComponent<HealingBeacon>().healAmount = characterSheetScript.skillOneStats[0];
+			newSkillOne.transform.GetChild(1).GetComponent<HealingBeacon>().lifeTime = characterSheetScript.skillOneStats[1];
+			
+			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 2);
 		}
 
 		if (skillOneDelayActive) {
@@ -210,6 +238,25 @@ public class Class_Cloudmaster : MonoBehaviour {
 			skillTwoDelayActive = true;
 
 			// Skill TURRET GUN
+			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition + new Vector3(0, 0, 2);
+
+			GameObject newSkillTwo = Instantiate(skillTwoGO, attackSpawner.position, attackSpawner.rotation);
+			newSkillTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			for (int i = 1; i < 5; i++) {
+				newSkillTwo.transform.GetChild(i).gameObject.tag = "Attack";
+			}
+			newSkillTwo.tag = "Attack";
+
+			// Set shoot speed and radius of turret gun from skillboard
+			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().shotDelayDefault = characterSheetScript.skillTwoStats[0];
+			newSkillTwo.transform.GetChild(4).transform.localScale = new Vector3(characterSheetScript.skillTwoStats[1], characterSheetScript.skillTwoStats[1] * 2, characterSheetScript.skillTwoStats[1]);
+
+			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().casterDamage = characterSheetScript.skillTwoDmg;
+			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().casterCritChance = characterSheetScript.critChance;
+			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().casterCritDMG = characterSheetScript.critDMG;
+			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().charID = charID;
+
+			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 2);
 		}
 
 		if (skillTwoDelayActive) {

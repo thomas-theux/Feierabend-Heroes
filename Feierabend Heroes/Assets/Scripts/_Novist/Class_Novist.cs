@@ -19,7 +19,7 @@ public class Class_Novist : MonoBehaviour {
 	private float attackOne = 0.5f;
 	private float attackTwo = 10.0f;
 	private float skillOne = 18.0f;
-	private float skillTwo = 20.0f;
+	private float skillTwo = 32.0f;
 
 	private float rageAttackSpeed = 1.0f;
 
@@ -28,8 +28,12 @@ public class Class_Novist : MonoBehaviour {
 
 	private float attackOneDmg = 20.0f;
 	private float attackTwoDmg = 0.08f;
-	private float skillOneDmg = 4.0f;
+	private float skillOneDmg = 0.0f;
 	private float skillTwoDmg = 6.0f;
+
+	// Initial variables and increase values for the skills
+	private float[] skillOneStats = {2.0f, 8.0f, 0.5f, 2.0f};
+	private float[] skillTwoStats = {20.0f, 12.0f, 3.0f, 4.0f};
 
 	private float charHealth = 240.0f;
 
@@ -50,6 +54,9 @@ public class Class_Novist : MonoBehaviour {
 	// Skill One – Double HP
 	private float skillOneDelayTimer;
 	private bool skillOneDelayActive = false;
+	private bool HPSkillActive = false;
+	private float skillOneTimer;
+	private float savedMultiplier;
 
 	// Skill Two – Spawn Companion
 	private float skillTwoDelayTimer;
@@ -83,6 +90,11 @@ public class Class_Novist : MonoBehaviour {
 		characterSheetScript.attackTwoDmg = attackTwoDmg;
 		characterSheetScript.skillOneDmg = skillOneDmg;
 		characterSheetScript.skillTwoDmg = skillTwoDmg;
+
+		for (int i = 0; i < 4; i++) {
+			characterSheetScript.skillOneStats[i] = skillOneStats[i];
+			characterSheetScript.skillTwoStats[i] = skillTwoStats[i];
+		}
 
 		characterSheetScript.currentHealth = charHealth;
 		characterSheetScript.maxHealth = charHealth;
@@ -198,12 +210,26 @@ public class Class_Novist : MonoBehaviour {
 			skillOneDelayActive = true;
 
 			// Skill DOUBLE HP
+			savedMultiplier = characterSheetScript.skillOneStats[0];
+			characterSheetScript.currentHealth *= savedMultiplier;
+			characterSheetScript.maxHealth *= savedMultiplier;
+			skillOneTimer = characterSheetScript.skillOneStats[1];
+			HPSkillActive = true;
 		}
 
 		if (skillOneDelayActive) {
 			skillOneDelayTimer -= Time.deltaTime;
 			if (skillOneDelayTimer <= 0) {
 				skillOneDelayActive = false;
+			}
+		}
+
+		if (HPSkillActive) {
+			skillOneTimer -= Time.deltaTime;
+			if (skillOneTimer <= 0) {
+				characterSheetScript.currentHealth /= savedMultiplier;
+				characterSheetScript.maxHealth /= savedMultiplier;
+				HPSkillActive = false;
 			}
 		}
 	}
@@ -220,6 +246,11 @@ public class Class_Novist : MonoBehaviour {
 			newSkillTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newSkillTwo.transform.GetChild(1).gameObject.tag = "Attack";
 			newSkillTwo.tag = "Attack";
+			
+			// Set size and lifetime of aggro radius from skillboard
+			newSkillTwo.transform.GetChild(1).transform.localScale = new Vector3(characterSheetScript.skillTwoStats[0], characterSheetScript.skillTwoStats[0], characterSheetScript.skillTwoStats[0]);
+			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().lifeTime = characterSheetScript.skillTwoStats[1];
+
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = gameObject;
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterDamage = characterSheetScript.skillTwoDmg;
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritChance = characterSheetScript.critChance;

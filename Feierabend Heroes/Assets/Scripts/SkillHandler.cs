@@ -392,18 +392,23 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Skill One 1");
+						for (int i = 0; i< 2; i++) { characterSheetScript.skillOneStats[i] += characterSheetScript.skillOneStats[i+2]; }
 						break;
 					case 2:
 						print("Skill One 2");
+						for (int i = 0; i< 2; i++) { characterSheetScript.skillOneStats[i] += characterSheetScript.skillOneStats[i+2]; }
 						break;
 					case 3:
 						print("Skill One 3");
+						for (int i = 0; i< 2; i++) { characterSheetScript.skillOneStats[i] += characterSheetScript.skillOneStats[i+2]; }
 						break;
 					case 4:
 						print("Skill One 4");
+						for (int i = 0; i< 2; i++) { characterSheetScript.skillOneStats[i] += characterSheetScript.skillOneStats[i+2]; }
 						break;
 					case 5:
 						print("Skill One 5");
+						for (int i = 0; i< 2; i++) { characterSheetScript.skillOneStats[i] += characterSheetScript.skillOneStats[i+2]; }
 						break;
 				}
 				break;
@@ -423,18 +428,23 @@ public class SkillHandler : MonoBehaviour {
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
 						print("Skill Two 1");
+						for (int i = 0; i< 2; i++) { characterSheetScript.skillTwoStats[i] += characterSheetScript.skillTwoStats[i+2]; }
 						break;
 					case 2:
 						print("Skill Two 2");
+						for (int i = 0; i< 2; i++) { characterSheetScript.skillTwoStats[i] += characterSheetScript.skillTwoStats[i+2]; }
 						break;
 					case 3:
 						print("Skill Two 3");
+						for (int i = 0; i< 2; i++) { characterSheetScript.skillTwoStats[i] += characterSheetScript.skillTwoStats[i+2]; }
 						break;
 					case 4:
 						print("Skill Two 4");
+						for (int i = 0; i< 2; i++) { characterSheetScript.skillTwoStats[i] += characterSheetScript.skillTwoStats[i+2]; }
 						break;
 					case 5:
 						print("Skill Two 5");
+						for (int i = 0; i< 2; i++) { characterSheetScript.skillTwoStats[i] += characterSheetScript.skillTwoStats[i+2]; }
 						break;
 				}
 				break;

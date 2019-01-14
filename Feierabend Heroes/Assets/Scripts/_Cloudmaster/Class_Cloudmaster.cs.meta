@@ -8,6 +8,10 @@ MonoImporter:
       type: 2}
   - attackTwoGO: {fileID: 1834776707093772, guid: 9eff63e0233324dff870744909e26d43,
       type: 2}
+  - skillOneGO: {fileID: 1822410233893990, guid: 4802f0ca4e1e24e2d86b284fe6d0c393,
+      type: 2}
+  - skillTwoGO: {fileID: 1741329130831764, guid: aa4c0c826d1054677a297bd54e5d577d,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

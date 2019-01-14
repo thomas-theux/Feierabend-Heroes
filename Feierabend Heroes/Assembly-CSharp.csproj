@@ -117,6 +117,8 @@
      <Compile Include="Assets\Rewired\Internal\Scripts\Platforms\Ouya\OuyaInputSource.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\Bomb.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\BombRadius.cs" />
+     <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\HealingBeacon.cs" />
+     <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\TurretGun.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\WrenchPunch.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\Class_Cloudmaster.cs" />
      <Compile Include="Assets\Scripts\_Novist\_Attacks\CompanionAggro.cs" />
@@ -140,16 +142,16 @@
      <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
      <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Hub/Editor/2018.2.16f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -353,16 +355,16 @@
  <HintPath>/Applications/Unity/Hub/Editor/2018.2.16f1/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="Rewired_Core">
- <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll</HintPath>
+ <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll</HintPath>
  </Reference>
  <Reference Include="Rewired_OSX_Lib">
- <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Assets/Rewired/Internal/Libraries/Runtime/Rewired_OSX_Lib.dll</HintPath>
+ <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Assets/Rewired/Internal/Libraries/Runtime/Rewired_OSX_Lib.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>/Users/thomas_ge/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>/Users/strichpunkt/Library/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
- <HintPath>/Users/thomas_ge/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
+ <HintPath>/Users/strichpunkt/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>/Applications/Unity/Hub/Editor/2018.2.16f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>
