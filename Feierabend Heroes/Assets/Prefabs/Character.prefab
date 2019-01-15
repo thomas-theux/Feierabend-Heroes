@@ -213,19 +213,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1c5bf2b212d42e18ec204723bb7fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentOrbs: 0
   moveSpeed: 10
   attackOneDmg: 0
   attackTwoDmg: 0
   delayAttackOne: 1
   delayAttackTwo: 1
+  skillActivated: 0
+  delaySkillOne: 0
+  delaySkillTwo: 0
+  skillOneDmg: 0
+  skillTwoDmg: 0
+  skillOneStats:
+  - 0
+  - 0
+  - 0
+  - 0
+  skillTwoStats:
+  - 0
+  - 0
+  - 0
+  - 0
   currentHealth: 1
   maxHealth: 1
+  respawnChance: 0
+  respawnOrb: 0
   charDefense: 10
   critChance: 0
   critDMG: 2
   dodgeChance: 0
   dodgeHeal: 0
-  respawnChance: 0
   skillOne: 0
   skillTwo: 0
   rageSkillActivated: 0
@@ -234,6 +251,8 @@ MonoBehaviour:
   canFindApples: 0
   healPercentage: 0.2
   selfHealActive: 0
+  doubleOrbChance: 0
+  findThreeOrbs: 0
 --- !u!114 &114984178142480010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -248,6 +267,7 @@ MonoBehaviour:
   playerID: 0
   isAttacking: 0
   skillBoardOn: 0
+  activationBtn: 0
 --- !u!136 &136210116224776738
 CapsuleCollider:
   m_ObjectHideFlags: 1

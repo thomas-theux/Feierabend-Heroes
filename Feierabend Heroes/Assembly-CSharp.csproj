@@ -136,6 +136,7 @@
      <Compile Include="Assets\Scripts\LevelTimers.cs" />
      <Compile Include="Assets\Scripts\LifeDeathHandler.cs" />
      <Compile Include="Assets\Scripts\OrbChest.cs" />
+     <Compile Include="Assets\Scripts\ParticleDamage.cs" />
      <Compile Include="Assets\Scripts\SkillHandler.cs" />
      <Compile Include="Assets\Scripts\SkillTreeUIHandler.cs" />
      <None Include="Assets\Rewired\Documentation\licences.txt" />

@@ -11,7 +11,7 @@ public class MeteorShot : MonoBehaviour {
 	private Rigidbody rb;
 
 	// These variables can be improved by advancing on the skill tree
-	public float moveSpeed = 32.0f;
+	private float moveSpeed = 42.0f;
 
 
 	void Awake () {
