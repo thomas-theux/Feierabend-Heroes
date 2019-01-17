@@ -99,23 +99,23 @@ public class SkillHandler : MonoBehaviour {
 			case 02:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Damage +8");
+						print("Defense +8");
 						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 2:
-						print("Damage +8");
+						print("Defense +8");
 						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 3:
-						print("Damage +8");
+						print("Defense +8");
 						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 4:
-						print("Damage +8");
+						print("Defense +8");
 						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 5:
-						print("Damage +8");
+						print("Defense +8");
 						characterSheetScript.charDefense += increaseDEF;
 						break;
 				}
