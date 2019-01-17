@@ -10,8 +10,21 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 	public GameObject buttonParent;
 	public Image cursorImage;
-	public Text currentOrbsText;
 	public Text orbCostsText;
+
+	public Text charHP;
+	public Text charDefense;
+	public Text charMSPD;
+
+	public Text charAttackOne;
+	public Text charAttackTwo;
+
+	public Text charDodge;
+	public Text charCritHit;
+	public Text charRespawn;
+	public Text charOrbFinding;
+
+	public Text currentOrbsText;
 
 	private int charID;
 
@@ -178,6 +191,19 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	private void DisplayOrbs() {
 		// Update ORBS count
 		currentOrbsText.text = characterSheetscript.currentOrbs + "";
+
+		// Update character stats
+		charHP.text = characterSheetscript.maxHealth + "";
+		charDefense.text = characterSheetscript.charDefense + "";
+		charMSPD.text = characterSheetscript.moveSpeed.ToString("F1");
+
+		charAttackOne.text = characterSheetscript.attackOneDmg + "";
+		charAttackTwo.text = characterSheetscript.attackTwoDmg + "";
+
+		charDodge.text = characterSheetscript.dodgeChance + "%";
+		charCritHit.text = characterSheetscript.critChance + "%";
+		charRespawn.text = characterSheetscript.respawnChance + "%";
+		charOrbFinding.text = characterSheetscript.doubleOrbChance + "%";
 	}
 
 
