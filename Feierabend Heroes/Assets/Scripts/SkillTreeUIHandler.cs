@@ -275,7 +275,7 @@ public class SkillTreeUIHandler : MonoBehaviour {
 			case 25:
 			case 26:
 			case 30:
-				buttonArr[currentIndex].transform.GetChild(1).GetComponent<Text>().text = skillUpgradeCurrent[currentIndex] + "/" + skillUpgradeMax[currentIndex];
+				buttonArr[currentIndex].transform.GetChild(2).GetComponent<Text>().text = skillUpgradeCurrent[currentIndex] + "/" + skillUpgradeMax[currentIndex];
 				break;
 			
 			// Lock the other skills when activating these
@@ -308,11 +308,15 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		// Enable all skill buttons that have a 0 – aka make it non-transparent
 		for (int k = 0; k < buttonArr.Count; k++) {
 			if (skillUpgradeCurrent[k] == -2) {
-				buttonArr[k].GetComponent<Image>().color = new Color32(255, 255, 225, 30);
+				buttonArr[k].GetComponent<Image>().color = new Color32(255, 255, 225, 100);
 			}
 			
 			if (skillUpgradeCurrent[k] == 0) {
 				buttonArr[k].GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+				buttonArr[currentIndex].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+				if (buttonArr[k].transform.Find("SkillLevel")) {
+					buttonArr[k].transform.Find("SkillLevel").GetComponent<Text>().color = new Color32(35, 45, 55, 255);
+				}
 			}
 
 			if (skillUpgradeCurrent[k] == 1) {
@@ -322,7 +326,10 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 		// Set the selected skill to "done"
 		if (skillUpgradeCurrent[currentIndex] == skillUpgradeMax[currentIndex]) {
-			buttonArr[currentIndex].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+			if (buttonArr[currentIndex].transform.Find("SkillLevel")) {
+				buttonArr[currentIndex].transform.Find("SkillLevel").gameObject.SetActive(false);
+			}
+			buttonArr[currentIndex].transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 		}
 	}
 
