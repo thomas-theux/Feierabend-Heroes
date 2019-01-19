@@ -7,10 +7,17 @@ using Rewired;
 public class SkillTreeUIHandler : MonoBehaviour {
 
 	private CharacterSheet characterSheetscript;
+	private SkillHandler skillHandlerScript;
 
 	public GameObject buttonParent;
 	public Image cursorImage;
-	public Text orbCostsText;
+	public GameObject infoBox;
+	private Vector3 infoBoxOffset = new Vector3(200, 100, 0);
+
+	public Text skillTitleText;
+	public Text skillTextText;
+	public Text skillPerkText;
+	public Text skillCostsText;
 
 	public Text charHP;
 	public Text charDefense;
@@ -29,7 +36,9 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	private int charID;
 
 	public List<Image> buttonArr;
+	public Sprite[] activeButtonArr;
 	public List<int> skillUpgradeCurrent;
+	public Sprite skillLocked;
 	private List<int> skillUpgradeMax = new List<int>(new int[] {
 		5, 5, 5, 1, 1, 1, 5, 1,
 		5, 5, 1,
@@ -61,6 +70,7 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 	public void InitializeSkillUI() {
 		characterSheetscript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
+		skillHandlerScript = GetComponent<SkillHandler>();
 
 		// Set stats in skill script
 		characterSheetscript.currentOrbs = currentOrbs;
@@ -145,7 +155,7 @@ public class SkillTreeUIHandler : MonoBehaviour {
 			if (skillCosts[currentIndex] <= characterSheetscript.currentOrbs) {
 				SkillActivationProcess();
 			} else {
-				print("Not enough ORBS");
+				// print("Not enough ORBS");
 			}
 		}
 	}
@@ -154,9 +164,23 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	private void DisplayCursorImage() {
 		// Display cursor at the right position
 		cursorImage.transform.position = buttonArr[currentIndex].transform.position;
+		if (currentIndex == 15 && infoBox) {
+			infoBox.SetActive(false);
+		} else if (currentIndex != 15) {
+			infoBox.SetActive(true);
+		}
+		infoBox.transform.localPosition = buttonArr[currentIndex].transform.localPosition + infoBoxOffset;
+
+		infoBox.transform.GetChild(0).GetComponent<Text>().text = skillHandlerScript.skillTitles[currentIndex];
+		infoBox.transform.GetChild(1).GetComponent<Text>().text = skillHandlerScript.skillTexts[currentIndex];
+		infoBox.transform.GetChild(2).GetComponent<Text>().text = skillHandlerScript.skillPerks[currentIndex];
 
 		// Show ORB costs for this skill
-		orbCostsText.text = skillCosts[currentIndex] + "";
+		if (skillCosts[currentIndex] > 1) {
+			skillCostsText.text = skillCosts[currentIndex] + " Orbs";
+		} else {
+			skillCostsText.text = skillCosts[currentIndex] + " Orb";
+		}
 	}
 
 
@@ -168,16 +192,16 @@ public class SkillTreeUIHandler : MonoBehaviour {
 				skillUpgradeCurrent[currentIndex]++;
 
 				PayOrbs();
-				GetComponent<SkillHandler>().ActivateSkill(skillUpgradeCurrent, currentIndex);
+				skillHandlerScript.ActivateSkill(skillUpgradeCurrent, currentIndex);
 				DisplayOrbs();
 				ActivateNext();
 				DisplayActivations();
 				CalculateNewCosts();
 			} else {
-				print("Already activated!");
+				// print("Already activated!");
 			}
 		} else {
-			print("This skill is locked");
+			// print("This skill is locked");
 		}
 	}
 
@@ -193,12 +217,12 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		currentOrbsText.text = characterSheetscript.currentOrbs + "";
 
 		// Update character stats
-		charHP.text = characterSheetscript.maxHealth + "";
+		charHP.text = characterSheetscript.maxHealth.ToString("F0");
 		charDefense.text = characterSheetscript.charDefense + "";
 		charMSPD.text = characterSheetscript.moveSpeed.ToString("F1");
 
-		charAttackOne.text = characterSheetscript.attackOneDmg + "";
-		charAttackTwo.text = characterSheetscript.attackTwoDmg + "";
+		charAttackOne.text = characterSheetscript.attackOneDmg.ToString("F0");
+		charAttackTwo.text = characterSheetscript.attackTwoDmg.ToString("F0");
 
 		charDodge.text = characterSheetscript.dodgeChance + "%";
 		charCritHit.text = characterSheetscript.critChance + "%";
@@ -308,29 +332,36 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		// Enable all skill buttons that have a 0 – aka make it non-transparent
 		for (int k = 0; k < buttonArr.Count; k++) {
 			if (skillUpgradeCurrent[k] == -2) {
-				buttonArr[k].GetComponent<Image>().color = new Color32(255, 255, 225, 100);
+				buttonArr[k].GetComponent<Image>().sprite = skillLocked;
+				buttonArr[k].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 			}
 			
 			if (skillUpgradeCurrent[k] == 0) {
-				buttonArr[k].GetComponent<Image>().color = new Color32(255, 255, 225, 255);
-				buttonArr[currentIndex].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+				buttonArr[k].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+				
 				if (buttonArr[k].transform.Find("SkillLevel")) {
+					buttonArr[k].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 					buttonArr[k].transform.Find("SkillLevel").GetComponent<Text>().color = new Color32(35, 45, 55, 255);
+					buttonArr[k].transform.Find("SkillLevel").GetComponent<Text>().text = skillUpgradeCurrent[k] + "/" + skillUpgradeMax[k];
 				}
 			}
 
 			if (skillUpgradeCurrent[k] == 1) {
-				buttonArr[k].GetComponent<Image>().color = new Color32(255, 255, 225, 255);
+				if (buttonArr[k].transform.Find("SkillLevel")) {
+					buttonArr[k].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+				}
+				buttonArr[currentIndex].GetComponent<Image>().sprite = activeButtonArr[currentIndex];
+				buttonArr[k].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 			}
 		}
 
 		// Set the selected skill to "done"
-		if (skillUpgradeCurrent[currentIndex] == skillUpgradeMax[currentIndex]) {
-			if (buttonArr[currentIndex].transform.Find("SkillLevel")) {
-				buttonArr[currentIndex].transform.Find("SkillLevel").gameObject.SetActive(false);
-			}
-			buttonArr[currentIndex].transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-		}
+		// if (skillUpgradeCurrent[currentIndex] == skillUpgradeMax[currentIndex]) {
+		// 	if (buttonArr[currentIndex].transform.Find("SkillLevel")) {
+		// 		buttonArr[currentIndex].transform.Find("SkillLevel").gameObject.SetActive(false);
+		// 	}
+		// 	buttonArr[currentIndex].transform.GetChild(1).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+		// }
 	}
 
 

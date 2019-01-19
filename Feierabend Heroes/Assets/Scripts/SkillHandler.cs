@@ -23,6 +23,153 @@ public class SkillHandler : MonoBehaviour {
 	private int increaseDoubleOrbChance = 20;
 	private int increaseRespawnChance = 2;
 
+	public string[] skillTitles = {
+		"HEALTH",
+		"DAMAGE",
+		"DEFENSE",
+
+		"???",
+		"???",
+		"???",
+
+		"MOVE SPEED",
+		"JUMP",
+		
+		"UPGRADE",
+		
+		"ATTACK SPEED",
+		"DOUBLE JUMP",
+		
+		"ENABLE CRITICAL HITS",
+		"ENABLE DODGING",
+		"ENABLE RESPAWNING",
+		
+		"LEARN SKILL X",
+		"CLASS",
+		"LEARN SKILL Y",
+		
+		"ENABLE DOUBLE ORBS",
+		"ENABLE APPLE FINDING",
+		
+		"IMPROVE CRITICAL HITS",
+		"IMPROVE DODGING",
+		"IMPROVE RESPAWNING",
+		
+		"IMPROVE SKILL X",
+		"ENABLE RAGE MODE",
+		"IMPROVE SKILL Y",
+		
+		"DOUBLE ORB CHANCE",
+		"APPLE HEALING",
+		
+		"PERFECT CRITICAL HITS",
+		"PERFECT DODGING",
+		"PERFECT RESPAWNING",
+		
+		"IMPROVE RAGE",
+		
+		"PERFECT ORB FINDING",
+		"PERFECT APPLE HEALING",
+	};
+
+	public string[] skillTexts = {
+		"Increases your maximum health.",
+		"Increases your weapons damage.",
+		"Increases your Defense.",
+		
+		"Lorem.",
+		"Lorem.",
+		"Lorem.",
+		
+		"Increases your movement speed.",
+		"Your character learns to jump.",
+		
+		"Lorem.",
+		
+		"Increases your weapons speed.",
+		"Your character learns how to double jump.",
+		
+		"Teaches your character to perform Critical Hits (200% damage).",
+		"Teaches your character how to dodge atacks.",
+		"Your character learns how to respawn after death.",
+		
+		"Lorem.",
+		"Lorem.",
+		"Lorem.",
+		
+		"Enables the chance to get 2 orbs from chests instead of 1.",
+		"Teaches your character how to find Apples (Apples heal 20%).",
+		
+		"Increases your critical hit chance.",
+		"Increases the chance to dodge attacks.",
+		"Increases the chance to respawn after death.",
+		
+		"Lorem.",
+		"Your character goes into Rage Mode when their health is below 10%.",
+		"Lorem.",
+		
+		"Increases the chance to get 2 orbs from chests.",
+		"Increases the amount your character gets healed from Apples.",
+		
+		"Every Critical Hit deals more damage.",
+		"Everytime your character dodges an attack they get healed.",
+		"Every Respawn gives your character one additional Orb.",
+		
+		"Gives your character one additional perk per level.",
+		
+		"Enables the chance to get 3 orbs from chests instead of 2.",
+		"Your character learns how to heal automatically over time."
+	};
+
+	public string[] skillPerks = {
+		"HP +10%",
+		"Damage +20%",
+		"Defense +8",
+		
+		"LOREM",
+		"LOREM",
+		"LOREM",
+		
+		"Move Speed +10%",
+		"Enable Jumping",
+		
+		"LOREM",
+		
+		"Attack Speed +10%",
+		"Enable Double Jump",
+		
+		"Enables Critical Hits (5% chance)",
+		"Enables Dodging (6% chance)",
+		"Enables Respawning (2% chance)",
+		
+		"LOREM",
+		"LOREM",
+		"LOREM",
+		
+		"Enables Double Orb Chests (20% chance)",
+		"Enables Apple Finding",
+		
+		"Crit Chance +3%",
+		"Dodge Chance +6%",
+		"Respawn Chance +2%",
+		
+		"LOREM",
+		"Defense x2.0",
+		"LOREM",
+		
+		"Double Orb Chance +20%",
+		"Apples heal +10%",
+		
+		"Crit Damage 300%",
+		"Dodging heals 20%",
+		"1 Orb per Respawn",
+		
+		"Move Speed x1.5",
+		
+		"3 Orbs from Chests",
+		"Auto heal"
+	};
+
 
 	private void Awake() {
 		characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
@@ -37,27 +184,22 @@ public class SkillHandler : MonoBehaviour {
 			case 0:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("HP +10%");
 						characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
 						characterSheetScript.currentHealth += characterSheetScript.currentHealth * increaseHP;
 						break;
 					case 2:
-						print("HP +10%");
 						characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
 						characterSheetScript.currentHealth += characterSheetScript.currentHealth * increaseHP;
 						break;
 					case 3:
-						print("HP +10%");
 						characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
 						characterSheetScript.currentHealth += characterSheetScript.currentHealth * increaseHP;
 						break;
 					case 4:
-						print("HP +10%");
 						characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
 						characterSheetScript.currentHealth += characterSheetScript.currentHealth * increaseHP;
 						break;
 					case 5:
-						print("HP +10%");
 						characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
 						characterSheetScript.currentHealth += characterSheetScript.currentHealth * increaseHP;
 						break;
@@ -68,27 +210,22 @@ public class SkillHandler : MonoBehaviour {
 			case 01:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Damage +20%");
 						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
 						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 2:
-						print("Damage +20%");
 						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
 						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 3:
-						print("Damage +20%");
 						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
 						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 4:
-						print("Damage +20%");
 						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
 						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
 					case 5:
-						print("Damage +20%");
 						characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
 						characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
 						break;
@@ -99,23 +236,18 @@ public class SkillHandler : MonoBehaviour {
 			case 02:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Defense +8");
 						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 2:
-						print("Defense +8");
 						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 3:
-						print("Defense +8");
 						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 4:
-						print("Defense +8");
 						characterSheetScript.charDefense += increaseDEF;
 						break;
 					case 5:
-						print("Defense +8");
 						characterSheetScript.charDefense += increaseDEF;
 						break;
 				}
@@ -125,7 +257,6 @@ public class SkillHandler : MonoBehaviour {
 			case 03:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Time");
 						break;
 				}
 				break;
@@ -134,7 +265,6 @@ public class SkillHandler : MonoBehaviour {
 			case 04:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Chaos");
 						break;
 				}
 				break;
@@ -143,7 +273,6 @@ public class SkillHandler : MonoBehaviour {
 			case 05:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Venom");
 						break;
 				}
 				break;
@@ -152,23 +281,18 @@ public class SkillHandler : MonoBehaviour {
 			case 06:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Move Speed +10%");
 						characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
 						break;
 					case 2:
-						print("Move Speed +10%");
 						characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
 						break;
 					case 3:
-						print("Move Speed +10%");
 						characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
 						break;
 					case 4:
-						print("Move Speed +10%");
 						characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
 						break;
 					case 5:
-						print("Move Speed +10%");
 						characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
 						break;
 				}
@@ -178,7 +302,6 @@ public class SkillHandler : MonoBehaviour {
 			case 07:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Single Jump");
 						break;
 				}
 				break;
@@ -187,19 +310,14 @@ public class SkillHandler : MonoBehaviour {
 			case 08:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Weapon Upgrade 1");
 						break;
 					case 2:
-						print("Weapon Upgrade 2");
 						break;
 					case 3:
-						print("Weapon Upgrade 3");
 						break;
 					case 4:
-						print("Weapon Upgrade 4");
 						break;
 					case 5:
-						print("Weapon Upgrade 5");
 						break;
 				}
 				break;
@@ -208,27 +326,22 @@ public class SkillHandler : MonoBehaviour {
 			case 09:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Attack Speed +10%");
 						characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
 						characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
 						break;
 					case 2:
-						print("Attack Speed +10%");
 						characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
 						characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
 						break;
 					case 3:
-						print("Attack Speed +10%");
 						characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
 						characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
 						break;
 					case 4:
-						print("Attack Speed +10%");
 						characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
 						characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
 						break;
 					case 5:
-						print("Attack Speed +10%");
 						characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
 						characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
 						break;
@@ -239,7 +352,6 @@ public class SkillHandler : MonoBehaviour {
 			case 10:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Double Jump");
 						break;
 				}
 				break;
@@ -248,7 +360,6 @@ public class SkillHandler : MonoBehaviour {
 			case 11:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Crit");
 						characterSheetScript.critChance = setCrit;
 						break;
 				}
@@ -258,7 +369,6 @@ public class SkillHandler : MonoBehaviour {
 			case 12:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Dodge");
 						characterSheetScript.dodgeChance += increaseDodge;
 						break;
 				}
@@ -268,7 +378,6 @@ public class SkillHandler : MonoBehaviour {
 			case 13:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Respawn");
 						characterSheetScript.respawnChance += increaseRespawnChance;
 						break;
 				}
@@ -278,7 +387,6 @@ public class SkillHandler : MonoBehaviour {
 			case 14:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Skill One");
 						characterSheetScript.skillActivated = 1;
 						break;
 				}
@@ -290,7 +398,6 @@ public class SkillHandler : MonoBehaviour {
 			case 16:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Skill Two");
 						characterSheetScript.skillActivated = 2;
 						break;
 				}
@@ -300,7 +407,6 @@ public class SkillHandler : MonoBehaviour {
 			case 17:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Orb Finding");
 						characterSheetScript.doubleOrbChance += increaseDoubleOrbChance;
 						break;
 				}
@@ -310,7 +416,6 @@ public class SkillHandler : MonoBehaviour {
 			case 18:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Apple Finding");
 						characterSheetScript.canFindApples = true;
 						GameObject.Find("PlayerCamera" + transform.parent.GetComponent<CharacterMovement>().playerID).GetComponent<Camera>().cullingMask = ~ (1 << 7);	// Activate APPLES layer in culling mask for the camera
 						break;
@@ -321,23 +426,18 @@ public class SkillHandler : MonoBehaviour {
 			case 19:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Crit +3%");
 						characterSheetScript.critChance += increaseCrit;
 						break;
 					case 2:
-						print("Crit +3%");
 						characterSheetScript.critChance += increaseCrit;
 						break;
 					case 3:
-						print("Crit +3%");
 						characterSheetScript.critChance += increaseCrit;
 						break;
 					case 4:
-						print("Crit +3%");
 						characterSheetScript.critChance += increaseCrit;
 						break;
 					case 5:
-						print("Crit +3%");
 						characterSheetScript.critChance += increaseCrit;
 						break;
 				}
@@ -347,19 +447,15 @@ public class SkillHandler : MonoBehaviour {
 			case 20:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Dodge +6%");
 						characterSheetScript.dodgeChance += increaseDodge;
 						break;
 					case 2:
-						print("Dodge +6%");
 						characterSheetScript.dodgeChance += increaseDodge;
 						break;
 					case 3:
-						print("Dodge +6%");
 						characterSheetScript.dodgeChance += increaseDodge;
 						break;
 					case 4:
-						print("Dodge +6%");
 						characterSheetScript.dodgeChance += increaseDodge;
 						break;
 				}
@@ -369,19 +465,15 @@ public class SkillHandler : MonoBehaviour {
 			case 21:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Respawn +2%");
 						characterSheetScript.respawnChance += increaseRespawnChance;
 						break;
 					case 2:
-						print("Respawn +2%");
 						characterSheetScript.respawnChance += increaseRespawnChance;
 						break;
 					case 3:
-						print("Respawn +2%");
 						characterSheetScript.respawnChance += increaseRespawnChance;
 						break;
 					case 4:
-						print("Respawn +2%");
 						characterSheetScript.respawnChance += increaseRespawnChance;
 						break;
 				}
@@ -391,23 +483,18 @@ public class SkillHandler : MonoBehaviour {
 			case 22:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Skill One 1");
 						for (int i = 0; i< 2; i++) { characterSheetScript.skillOneStats[i] += characterSheetScript.skillOneStats[i+2]; }
 						break;
 					case 2:
-						print("Skill One 2");
 						for (int i = 0; i< 2; i++) { characterSheetScript.skillOneStats[i] += characterSheetScript.skillOneStats[i+2]; }
 						break;
 					case 3:
-						print("Skill One 3");
 						for (int i = 0; i< 2; i++) { characterSheetScript.skillOneStats[i] += characterSheetScript.skillOneStats[i+2]; }
 						break;
 					case 4:
-						print("Skill One 4");
 						for (int i = 0; i< 2; i++) { characterSheetScript.skillOneStats[i] += characterSheetScript.skillOneStats[i+2]; }
 						break;
 					case 5:
-						print("Skill One 5");
 						for (int i = 0; i< 2; i++) { characterSheetScript.skillOneStats[i] += characterSheetScript.skillOneStats[i+2]; }
 						break;
 				}
@@ -417,7 +504,6 @@ public class SkillHandler : MonoBehaviour {
 			case 23:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Enable Rage Mode");
 						characterSheetScript.rageSkillActivated = true;
 						break;
 				}
@@ -427,23 +513,18 @@ public class SkillHandler : MonoBehaviour {
 			case 24:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Skill Two 1");
 						for (int i = 0; i< 2; i++) { characterSheetScript.skillTwoStats[i] += characterSheetScript.skillTwoStats[i+2]; }
 						break;
 					case 2:
-						print("Skill Two 2");
 						for (int i = 0; i< 2; i++) { characterSheetScript.skillTwoStats[i] += characterSheetScript.skillTwoStats[i+2]; }
 						break;
 					case 3:
-						print("Skill Two 3");
 						for (int i = 0; i< 2; i++) { characterSheetScript.skillTwoStats[i] += characterSheetScript.skillTwoStats[i+2]; }
 						break;
 					case 4:
-						print("Skill Two 4");
 						for (int i = 0; i< 2; i++) { characterSheetScript.skillTwoStats[i] += characterSheetScript.skillTwoStats[i+2]; }
 						break;
 					case 5:
-						print("Skill Two 5");
 						for (int i = 0; i< 2; i++) { characterSheetScript.skillTwoStats[i] += characterSheetScript.skillTwoStats[i+2]; }
 						break;
 				}
@@ -453,15 +534,12 @@ public class SkillHandler : MonoBehaviour {
 			case 25:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Orb +20%");
 						characterSheetScript.doubleOrbChance += increaseDoubleOrbChance;
 						break;
 					case 2:
-						print("Orb +20%");
 						characterSheetScript.doubleOrbChance += increaseDoubleOrbChance;
 						break;
 					case 3:
-						print("Orb +20%");
 						characterSheetScript.doubleOrbChance += increaseDoubleOrbChance;
 						break;
 				}
@@ -471,19 +549,15 @@ public class SkillHandler : MonoBehaviour {
 			case 26:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Apple 30%");
 						characterSheetScript.healPercentage += increaseAppleHeal;
 						break;
 					case 2:
-						print("Apple 40%");
 						characterSheetScript.healPercentage += increaseAppleHeal;
 						break;
 					case 3:
-						print("Apple 50%");
 						characterSheetScript.healPercentage += increaseAppleHeal;
 						break;
 					case 4:
-						print("Apple 60%");
 						characterSheetScript.healPercentage += increaseAppleHeal;
 						break;
 				}
@@ -493,7 +567,6 @@ public class SkillHandler : MonoBehaviour {
 			case 27:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Perfect Crit");
 						characterSheetScript.critDMG = critMax;
 						break;
 				}
@@ -503,7 +576,6 @@ public class SkillHandler : MonoBehaviour {
 			case 28:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Perfect Dodge");
 						characterSheetScript.dodgeHeal = true;
 						break;
 				}
@@ -513,7 +585,6 @@ public class SkillHandler : MonoBehaviour {
 			case 29:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Perfect Respawn");
 						characterSheetScript.respawnOrb = true;
 						break;
 				}
@@ -523,19 +594,15 @@ public class SkillHandler : MonoBehaviour {
 			case 30:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Rage 1");
 						characterSheetScript.rageLevel += 1;
 						break;
 					case 2:
-						print("Rage 2");
 						characterSheetScript.rageLevel += 1;
 						break;
 					case 3:
-						print("Rage 3");
 						characterSheetScript.rageLevel += 1;
 						break;
 					case 4:
-						print("Rage 4");
 						characterSheetScript.rageLevel += 1;
 						break;
 				}
@@ -545,7 +612,6 @@ public class SkillHandler : MonoBehaviour {
 			case 31:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Perfect Orb Finding");
 						characterSheetScript.findThreeOrbs = true;
 						break;
 				}
@@ -555,7 +621,6 @@ public class SkillHandler : MonoBehaviour {
 			case 32:
 				switch(skillUpgradeCurrent[currentIndex]) {
 					case 1:
-						print("Perfect Apple Finding");
 						characterSheetScript.selfHealActive = true;
 						break;
 				}
