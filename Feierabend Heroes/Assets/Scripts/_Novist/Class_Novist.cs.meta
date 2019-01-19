@@ -10,6 +10,8 @@ MonoImporter:
       type: 2}
   - skillTwoGO: {fileID: 1058598508457264, guid: 5082a6b2b64c941b1af237c82d6edfae,
       type: 2}
+  - skillHandlerScript: {fileID: 114196006560382630, guid: e8c792ab2b0174bf5a0059388239251e,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

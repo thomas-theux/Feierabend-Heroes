@@ -10,6 +10,7 @@ public class CharacterSheet : MonoBehaviour {
 	public float moveSpeed = 10.0f;
 
 	// Attack
+	public string[] attackNames = {"", ""};
 	public float attackOneDmg;
 	public float attackTwoDmg;
 	public float delayAttackOne;
@@ -48,5 +49,19 @@ public class CharacterSheet : MonoBehaviour {
 	public bool selfHealActive = false;
 	public int doubleOrbChance = 0;
 	public bool findThreeOrbs = false;
+
+	// Skillboard skill texts
+	public string skillOneTitle = "";
+	public string skillTwoTitle = "";
+	public string skillOneText = "";
+	public string skillTwoText = "";
+	public string skillOnePerk = "";
+	public string skillTwoPerk = "";
+	public string skillOneStat = "";
+	public string skillTwoStat = "";
+	public string skillOneUpgradeText = "";
+	public string skillTwoUpgradeText = "";
+	public string skillOneUpgradePerk = "";
+	public string skillTwoUpgradePerk = "";
 
 }

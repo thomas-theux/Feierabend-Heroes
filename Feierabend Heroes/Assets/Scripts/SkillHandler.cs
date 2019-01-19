@@ -115,7 +115,7 @@ public class SkillHandler : MonoBehaviour {
 		"Everytime your character dodges an attack they get healed.",
 		"Every Respawn gives your character one additional Orb.",
 		
-		"Gives your character one additional perk per level.",
+		"Improves your characters Rage Mode by one level.",
 		
 		"Enables the chance to get 3 orbs from chests instead of 2.",
 		"Your character learns how to heal automatically over time."
@@ -164,7 +164,7 @@ public class SkillHandler : MonoBehaviour {
 		"Dodging heals 20%",
 		"1 Orb per Respawn",
 		
-		"Move Speed x1.5",
+		"One additional perk",
 		
 		"3 Orbs from Chests",
 		"Auto heal"
@@ -173,6 +173,26 @@ public class SkillHandler : MonoBehaviour {
 
 	private void Awake() {
 		characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
+
+		// Setting the skill title, text and perks for Skill One
+		skillTitles[14] = characterSheetScript.skillOneTitle;
+		skillTitles[22] = characterSheetScript.skillOneTitle;
+
+		skillTexts[14] = characterSheetScript.skillOneText;
+		skillTexts[22] = characterSheetScript.skillOneUpgradeText;
+
+		skillPerks[14] = characterSheetScript.skillOnePerk;
+		skillPerks[22] = characterSheetScript.skillOneUpgradePerk;
+
+		// Setting the skill title, text and perks for Skill Two
+		skillTitles[16] = characterSheetScript.skillTwoTitle;
+		skillTitles[24] = characterSheetScript.skillTwoTitle;
+
+		skillTexts[16] = characterSheetScript.skillTwoText;
+		skillTexts[24] = characterSheetScript.skillTwoUpgradeText;
+
+		skillPerks[16] = characterSheetScript.skillTwoPerk;
+		skillPerks[24] = characterSheetScript.skillTwoUpgradePerk;
 	}
 
 

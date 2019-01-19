@@ -12,12 +12,18 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	public GameObject buttonParent;
 	public Image cursorImage;
 	public GameObject infoBox;
+	public GameObject rageModeBox;
 	private Vector3 infoBoxOffset = new Vector3(200, 100, 0);
+
+	public Text[] attackNames;
 
 	public Text skillTitleText;
 	public Text skillTextText;
 	public Text skillPerkText;
 	public Text skillCostsText;
+	public Text[] rageModePerks;
+
+	public Font plexBold;
 
 	public Text charHP;
 	public Text charDefense;
@@ -74,6 +80,10 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 		// Set stats in skill script
 		characterSheetscript.currentOrbs = currentOrbs;
+
+		// Set names of the attacks of the classes
+		attackNames[0].text = characterSheetscript.attackNames[0];
+		attackNames[1].text = characterSheetscript.attackNames[1];
 
 		charID = this.gameObject.transform.parent.GetComponent<CharacterMovement>().playerID;
 
@@ -171,15 +181,34 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		}
 		infoBox.transform.localPosition = buttonArr[currentIndex].transform.localPosition + infoBoxOffset;
 
+		// Display skillboard titles, texts and perks
 		infoBox.transform.GetChild(0).GetComponent<Text>().text = skillHandlerScript.skillTitles[currentIndex];
 		infoBox.transform.GetChild(1).GetComponent<Text>().text = skillHandlerScript.skillTexts[currentIndex];
 		infoBox.transform.GetChild(2).GetComponent<Text>().text = skillHandlerScript.skillPerks[currentIndex];
 
 		// Show ORB costs for this skill
-		if (skillCosts[currentIndex] > 1) {
-			skillCostsText.text = skillCosts[currentIndex] + " Orbs";
+		if (skillUpgradeCurrent[currentIndex] < skillUpgradeMax[currentIndex] && skillUpgradeCurrent[currentIndex] > -2) {
+			if (skillCosts[currentIndex] > 1) {
+				skillCostsText.text = skillCosts[currentIndex] + " Orbs";
+			} else {
+				skillCostsText.text = skillCosts[currentIndex] + " Orb";
+			}
+		} else if (skillUpgradeCurrent[currentIndex] == skillUpgradeMax[currentIndex]) {
+			skillCostsText.text = "✔ COMPLETE";
+		} else if (skillUpgradeCurrent[currentIndex] == -2) {
+			skillCostsText.text = "✖ LOCKED";
+		}
+		
+
+		// Show extra box for Rage Mode levels
+		if (currentIndex == 30) {
+			rageModeBox.SetActive(true);
+			for (int i = 0; i < skillUpgradeCurrent[30]+1; i++) {
+				rageModePerks[i].color = new Color32(255, 109, 1, 255);
+				rageModePerks[i].font = plexBold;
+			}
 		} else {
-			skillCostsText.text = skillCosts[currentIndex] + " Orb";
+			rageModeBox.SetActive(false);
 		}
 	}
 
@@ -221,8 +250,14 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		charDefense.text = characterSheetscript.charDefense + "";
 		charMSPD.text = characterSheetscript.moveSpeed.ToString("F1");
 
-		charAttackOne.text = characterSheetscript.attackOneDmg.ToString("F0");
-		charAttackTwo.text = characterSheetscript.attackTwoDmg.ToString("F0");
+		// charAttackOne.text = characterSheetscript.attackOneDmg.ToString("F0");
+		// charAttackTwo.text = characterSheetscript.attackTwoDmg.ToString("F0");
+
+		float attackOneDPS = (1.0f / characterSheetscript.delayAttackOne) * characterSheetscript.attackOneDmg;
+		charAttackOne.text = attackOneDPS.ToString("F0");
+
+		float attackTwoDPS = (1.0f / characterSheetscript.delayAttackTwo) * characterSheetscript.attackTwoDmg;
+		charAttackTwo.text = attackTwoDPS.ToString("F0");
 
 		charDodge.text = characterSheetscript.dodgeChance + "%";
 		charCritHit.text = characterSheetscript.critChance + "%";
@@ -487,11 +522,11 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		// Skill 32 – Perfect Apple Finding – NOT NEEDED
 
 		// Set all completed skills to 0 costs
-		for (int m = 0; m < buttonArr.Count; m++) {
-			if (skillUpgradeCurrent[m] == skillUpgradeMax[m]) {
-				skillCosts[m] = 0;
-			}
-		}
+		// for (int m = 0; m < buttonArr.Count; m++) {
+		// 	if (skillUpgradeCurrent[m] == skillUpgradeMax[m]) {
+		// 		skillCosts[m] = 0;
+		// 	}
+		// }
 	}
 
 }

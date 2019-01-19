@@ -16,9 +16,11 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private int charID;
 
+	private string[] attackNames = {"Wrench Punch", "Bomb Throw"};
+
 	// These variables can be improved by advancing on the skill tree
-	private float attackOne = 0.4f;
-	private float attackTwo = 1.0f;
+	private float delayAttackOne = 0.4f;
+	private float delayAttackTwo = 1.0f;
 	private float skillOne = 15.0f;
 	private float skillTwo = 30.0f;
 
@@ -35,6 +37,20 @@ public class Class_Cloudmaster : MonoBehaviour {
 	// Initial variables and increase values for the skills
 	private float[] skillOneStats = {0.4f, 5.0f, 0.2f, 1.0f};
 	private float[] skillTwoStats = {0.3f, 24.0f, -0.05f, 4.0f};
+
+	// Skill titles and texts for the skill board
+	private string skillOneTitle = "HEALING BEACON";
+	private string skillTwoTitle = "TURRET GUN";
+	private string skillOneText = "Place a Healing Beacon that gives back health over time.";
+	private string skillTwoText = "Spawn a immobile Turret Gun that shoots enemies on sight.";
+	private string skillOnePerk = "• 0.4 HP\n• lasts 5 seconds";
+	private string skillTwoPerk = "• 0.3 Damage\n• lasts 24 seconds";
+	private string skillOneStat = "HP";
+	private string skillTwoStat = "Damage";
+	private string skillOneUpgradeText = "Improves the Beacon's healing speed and lifetime.";
+	private string skillTwoUpgradeText = "Improves the Gun's attack speed and increases the radius.";
+	private string skillOneUpgradePerk = "+50% HP heal\n+1s lifetime";
+	private string skillTwoUpgradePerk = "+16% shot speed\n+4m radius";
 
 	private float charHealth = 300.0f;
 	
@@ -67,7 +83,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private bool castSkill;
 
 
-	private void Start() {
+	private void Awake() {
 		// Get stats from skill script
 		characterSheetScript = GetComponent<CharacterSheet>();
 		charactMovementScript = GetComponent<CharacterMovement>();
@@ -78,9 +94,13 @@ public class Class_Cloudmaster : MonoBehaviour {
 		charID = charactMovementScript.playerID;
 		player = ReInput.players.GetPlayer(charID);
 
+		// Set names of attacks in character sheet
+		characterSheetScript.attackNames[0] = attackNames[0];
+		characterSheetScript.attackNames[1] = attackNames[1];
+
 		// Set stats in skill script
-		characterSheetScript.delayAttackOne = attackOne;
-		characterSheetScript.delayAttackTwo = attackTwo;
+		characterSheetScript.delayAttackOne = delayAttackOne;
+		characterSheetScript.delayAttackTwo = delayAttackTwo;
 		characterSheetScript.delaySkillOne = skillOne;
 		characterSheetScript.delaySkillTwo = skillTwo;
 
@@ -93,6 +113,19 @@ public class Class_Cloudmaster : MonoBehaviour {
 			characterSheetScript.skillOneStats[i] = skillOneStats[i];
 			characterSheetScript.skillTwoStats[i] = skillTwoStats[i];
 		}
+
+		characterSheetScript.skillOneTitle = skillOneTitle;
+		characterSheetScript.skillTwoTitle = skillTwoTitle;
+		characterSheetScript.skillOneText = skillOneText;
+		characterSheetScript.skillTwoText = skillTwoText;
+		characterSheetScript.skillOnePerk = skillOnePerk;
+		characterSheetScript.skillTwoPerk = skillTwoPerk;
+		characterSheetScript.skillOneStat = skillOneStat;
+		characterSheetScript.skillTwoStat = skillTwoStat;
+		characterSheetScript.skillOneUpgradeText = skillOneUpgradeText;
+		characterSheetScript.skillTwoUpgradeText = skillTwoUpgradeText;
+		characterSheetScript.skillOneUpgradePerk = skillOneUpgradePerk;
+		characterSheetScript.skillTwoUpgradePerk = skillTwoUpgradePerk;
 
 		characterSheetScript.currentHealth = charHealth;
 		characterSheetScript.maxHealth = charHealth;
