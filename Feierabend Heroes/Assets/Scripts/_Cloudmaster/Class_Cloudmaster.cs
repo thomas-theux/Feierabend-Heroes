@@ -13,6 +13,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 	public GameObject skillTwoGO;
 	private CharacterSheet characterSheetScript;
 	private CharacterMovement charactMovementScript;
+	private UIHandler uiHandlerScript;
 
 	private Transform attackSpawner;
 
@@ -93,6 +94,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 		// Get stats from skill script
 		characterSheetScript = GetComponent<CharacterSheet>();
 		charactMovementScript = GetComponent<CharacterMovement>();
+		uiHandlerScript = transform.GetChild(transform.childCount-1).transform.GetChild(0).GetComponent<UIHandler>();
 
 		// Set character class in character sheet
 		characterSheetScript.charClass = charClass;
@@ -210,6 +212,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		if (attackOneDelayActive) {
 			attackOneDelayTimer -= Time.deltaTime;
+			uiHandlerScript.attackOneDelayTimer = attackOneDelayTimer;
 			if (attackOneDelayTimer <= 0) {
 				attackOneDelayActive = false;
 			}
@@ -241,6 +244,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		if (attackTwoDelayActive) {
 			attackTwoDelayTimer -= Time.deltaTime;
+			uiHandlerScript.attackTwoDelayTimer = attackTwoDelayTimer;
 			if (attackTwoDelayTimer <= 0) {
 				attackTwoDelayActive = false;
 			}
@@ -270,6 +274,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		if (skillOneDelayActive) {
 			skillOneDelayTimer -= Time.deltaTime;
+			uiHandlerScript.skillOneDelayTimer = skillOneDelayTimer;
 			if (skillOneDelayTimer <= 0) {
 				skillOneDelayActive = false;
 			}
@@ -307,6 +312,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		if (skillTwoDelayActive) {
 			skillTwoDelayTimer -= Time.deltaTime;
+			uiHandlerScript.skillTwoDelayTimer = skillTwoDelayTimer;
 			if (skillTwoDelayTimer <= 0) {
 				skillTwoDelayActive = false;
 			}

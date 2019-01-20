@@ -12,6 +12,7 @@ public class Class_Novist : MonoBehaviour {
 	public GameObject skillTwoGO;
 	private CharacterSheet characterSheetScript;
 	private CharacterMovement charactMovementScript;
+	private UIHandler uiHandlerScript;
 
 	private Transform attackSpawner;
 
@@ -212,6 +213,7 @@ public class Class_Novist : MonoBehaviour {
 
 		if (attackOneDelayActive) {
 			attackOneDelayTimer -= Time.deltaTime;
+			uiHandlerScript.attackOneDelayTimer = attackOneDelayTimer;
 			if (attackOneDelayTimer <= 0) {
 				attackOneDelayActive = false;
 			}
@@ -243,6 +245,7 @@ public class Class_Novist : MonoBehaviour {
 
 		if (attackTwoDelayActive) {
 			attackTwoDelayTimer -= Time.deltaTime;
+			uiHandlerScript.attackTwoDelayTimer = attackTwoDelayTimer;
 			if (attackTwoDelayTimer <= 0) {
 				attackTwoDelayActive = false;
 			}
@@ -266,6 +269,7 @@ public class Class_Novist : MonoBehaviour {
 
 		if (skillOneDelayActive) {
 			skillOneDelayTimer -= Time.deltaTime;
+			uiHandlerScript.skillOneDelayTimer = skillOneDelayTimer;
 			if (skillOneDelayTimer <= 0) {
 				skillOneDelayActive = false;
 			}
@@ -306,6 +310,7 @@ public class Class_Novist : MonoBehaviour {
 
 		if (skillTwoDelayActive) {
 			skillTwoDelayTimer -= Time.deltaTime;
+			uiHandlerScript.skillTwoDelayTimer = skillTwoDelayTimer;
 			if (skillTwoDelayTimer <= 0) {
 				skillTwoDelayActive = false;
 			}

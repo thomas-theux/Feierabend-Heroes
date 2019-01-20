@@ -139,6 +139,7 @@
      <Compile Include="Assets\Scripts\ParticleDamage.cs" />
      <Compile Include="Assets\Scripts\SkillHandler.cs" />
      <Compile Include="Assets\Scripts\SkillTreeUIHandler.cs" />
+     <Compile Include="Assets\Scripts\UIHandler.cs" />
      <None Include="Assets\Rewired\Documentation\licences.txt" />
      <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
      <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />

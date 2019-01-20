@@ -10,7 +10,7 @@ public class CharUIHandler : MonoBehaviour {
 
 
 	public void InitializeCharUI() {
-		HPGauge = transform.GetChild(0).GetComponent<Slider>();
+		HPGauge = transform.GetChild(transform.childCount-1).GetComponent<Slider>();
 		characterSheetScript = transform.parent.GetComponent<CharacterSheet>();
 	}
 
