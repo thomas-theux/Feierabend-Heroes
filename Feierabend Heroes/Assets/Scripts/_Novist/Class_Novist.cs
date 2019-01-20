@@ -296,7 +296,7 @@ public class Class_Novist : MonoBehaviour {
 			
 			// Set size and lifetime of aggro radius from skillboard
 			newSkillTwo.transform.GetChild(1).transform.localScale = new Vector3(characterSheetScript.skillTwoStats[0], characterSheetScript.skillTwoStats[0], characterSheetScript.skillTwoStats[0]);
-			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().lifeTime = characterSheetScript.skillTwoStats[1];
+			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().SetLifeTime(characterSheetScript.skillTwoStats[1]);
 
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = gameObject;
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterDamage = characterSheetScript.skillTwoDmg;
