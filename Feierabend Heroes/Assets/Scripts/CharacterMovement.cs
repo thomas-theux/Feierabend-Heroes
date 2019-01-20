@@ -25,6 +25,7 @@ public class CharacterMovement : MonoBehaviour {
 	private void Awake() {
 		// Get stats from skill script
 		characterSheetScript = GetComponent<CharacterSheet>();
+		characterSheetScript.charID = playerID;
 
 		cc = this.gameObject.GetComponent<CharacterController>();
 	}

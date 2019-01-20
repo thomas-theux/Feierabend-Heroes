@@ -1059,6 +1059,48 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 551690843}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &588495242
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1050003632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,48 +2012,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1905229670
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162897528413318, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e8c792ab2b0174bf5a0059388239251e, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1911872699
 GameObject:
   m_ObjectHideFlags: 0
@@ -3124,6 +3124,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentOrbs: 0
+  charID: 0
+  charClass: 0
+  classType: 
+  classText: 
+  classPerk: 
   moveSpeed: 10
   attackNames:
   - 

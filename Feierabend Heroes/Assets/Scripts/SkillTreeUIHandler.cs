@@ -11,9 +11,11 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 	public GameObject buttonParent;
 	public Image cursorImage;
+	public Image statsCursorImage;
+	public Image statsCursorImageClone;
 	public GameObject infoBox;
 	public GameObject rageModeBox;
-	private Vector3 infoBoxOffset = new Vector3(200, 100, 0);
+	// private Vector3 infoBoxOffset = new Vector3(200, 100, 0);
 
 	public Text[] attackNames;
 
@@ -71,6 +73,11 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 	private void OnEnable() {
 		DisplayOrbs();
+	}
+
+	private void OnDisable() {
+		currentIndex = 15;
+		DisplayCursorImage();
 	}
 
 
@@ -174,12 +181,14 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	private void DisplayCursorImage() {
 		// Display cursor at the right position
 		cursorImage.transform.position = buttonArr[currentIndex].transform.position;
-		if (currentIndex == 15 && infoBox) {
-			infoBox.SetActive(false);
-		} else if (currentIndex != 15) {
-			infoBox.SetActive(true);
-		}
-		infoBox.transform.localPosition = buttonArr[currentIndex].transform.localPosition + infoBoxOffset;
+
+		// Set Info Box to follow the cursor
+		// if (currentIndex == 15 && infoBox) {
+		// 	infoBox.SetActive(false);
+		// } else if (currentIndex != 15) {
+		// 	infoBox.SetActive(true);
+		// }
+		// infoBox.transform.localPosition = buttonArr[currentIndex].transform.localPosition + infoBoxOffset;
 
 		// Display skillboard titles, texts and perks
 		infoBox.transform.GetChild(0).GetComponent<Text>().text = skillHandlerScript.skillTitles[currentIndex];
@@ -194,12 +203,11 @@ public class SkillTreeUIHandler : MonoBehaviour {
 				skillCostsText.text = skillCosts[currentIndex] + " Orb";
 			}
 		} else if (skillUpgradeCurrent[currentIndex] == skillUpgradeMax[currentIndex]) {
-			skillCostsText.text = "✔ COMPLETE";
+			skillCostsText.text = "✔ DONE";
 		} else if (skillUpgradeCurrent[currentIndex] == -2) {
 			skillCostsText.text = "✖ LOCKED";
 		}
 		
-
 		// Show extra box for Rage Mode levels
 		if (currentIndex == 30) {
 			rageModeBox.SetActive(true);
@@ -209,6 +217,63 @@ public class SkillTreeUIHandler : MonoBehaviour {
 			}
 		} else {
 			rageModeBox.SetActive(false);
+		}
+
+		// Highlight stat that will be improved with the selected skill
+		switch (currentIndex) {
+			default:
+				statsCursorImage.transform.localPosition = new Vector3(statsCursorImage.transform.localPosition.x, 5000, statsCursorImage.transform.localPosition.z);
+				statsCursorImageClone.gameObject.SetActive(false);
+				break;
+			// Health
+			case 0:
+				statsCursorImage.transform.localPosition = new Vector3(statsCursorImage.transform.localPosition.x, 153, statsCursorImage.transform.localPosition.z);
+				statsCursorImageClone.gameObject.SetActive(false);
+				break;
+			// Defense
+			case 2:
+				statsCursorImage.transform.localPosition = new Vector3(statsCursorImage.transform.localPosition.x, 123, statsCursorImage.transform.localPosition.z);
+				statsCursorImageClone.gameObject.SetActive(false);
+				break;
+			// Move Speed
+			case 6:
+				statsCursorImage.transform.localPosition = new Vector3(statsCursorImage.transform.localPosition.x, 93, statsCursorImage.transform.localPosition.z);
+				statsCursorImageClone.gameObject.SetActive(false);
+				break;
+			// Damage && Attack Speed
+			case 1:
+			case 9:
+				statsCursorImage.transform.localPosition = new Vector3(statsCursorImage.transform.localPosition.x, 11, statsCursorImage.transform.localPosition.z);
+				statsCursorImageClone.gameObject.SetActive(true);
+				break;
+			// Critical Hit
+			case 11:
+			case 19:
+			case 27:
+				statsCursorImage.transform.localPosition = new Vector3(statsCursorImage.transform.localPosition.x, -99, statsCursorImage.transform.localPosition.z);
+				statsCursorImageClone.gameObject.SetActive(false);
+				break;
+			// Dodge
+			case 12:
+			case 20:
+			case 28:
+				statsCursorImage.transform.localPosition = new Vector3(statsCursorImage.transform.localPosition.x, -129, statsCursorImage.transform.localPosition.z);
+				statsCursorImageClone.gameObject.SetActive(false);
+				break;
+			// Respawn
+			case 13:
+			case 21:
+			case 29:
+				statsCursorImage.transform.localPosition = new Vector3(statsCursorImage.transform.localPosition.x, -159, statsCursorImage.transform.localPosition.z);
+				statsCursorImageClone.gameObject.SetActive(false);
+				break;
+			// Orb Finding
+			case 17:
+			case 25:
+			case 31:
+				statsCursorImage.transform.localPosition = new Vector3(statsCursorImage.transform.localPosition.x, -189, statsCursorImage.transform.localPosition.z);
+				statsCursorImageClone.gameObject.SetActive(false);
+				break;
 		}
 	}
 
@@ -246,7 +311,7 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		currentOrbsText.text = characterSheetscript.currentOrbs + "";
 
 		// Update character stats
-		charHP.text = characterSheetscript.maxHealth.ToString("F0");
+		charHP.text = characterSheetscript.currentHealth.ToString("F0") + "/" + characterSheetscript.maxHealth.ToString("F0");
 		charDefense.text = characterSheetscript.charDefense + "";
 		charMSPD.text = characterSheetscript.moveSpeed.ToString("F1");
 
@@ -256,7 +321,13 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		float attackOneDPS = (1.0f / characterSheetscript.delayAttackOne) * characterSheetscript.attackOneDmg;
 		charAttackOne.text = attackOneDPS.ToString("F0");
 
-		float attackTwoDPS = (1.0f / characterSheetscript.delayAttackTwo) * characterSheetscript.attackTwoDmg;
+		// If class is Novist then change DPS calculation
+		float attackTwoDPS = 0;
+		if (characterSheetscript.charClass == 1) {
+			attackTwoDPS = characterSheetscript.attackTwoDmg * 100.0f;
+		} else {
+			attackTwoDPS = (1.0f / characterSheetscript.delayAttackTwo) * characterSheetscript.attackTwoDmg;
+		}
 		charAttackTwo.text = attackTwoDPS.ToString("F0");
 
 		charDodge.text = characterSheetscript.dodgeChance + "%";

@@ -5,6 +5,8 @@ using Rewired;
 
 public class Class_Cloudmaster : MonoBehaviour {
 
+	private int charClass = 0;
+
 	public GameObject attackOneGO;
 	public GameObject attackTwoGO;
 	public GameObject skillOneGO;
@@ -16,7 +18,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private int charID;
 
-	private string[] attackNames = {"Wrench Punch", "Bomb Throw"};
+	private string[] attackNames = {"Wrench Punch (DPS)", "Bomb Throw (DPS)"};
 
 	// These variables can be improved by advancing on the skill tree
 	private float delayAttackOne = 0.4f;
@@ -39,6 +41,10 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float[] skillTwoStats = {0.3f, 24.0f, -0.05f, 4.0f};
 
 	// Skill titles and texts for the skill board
+	private string classType = "CLOUD MASTER";
+	private string classText = "An Engineer that uses Cloud technology to defeat enemies.";
+	private string classPerk = "• Wrench Punch\n• Bomb Throw";
+	
 	private string skillOneTitle = "HEALING BEACON";
 	private string skillTwoTitle = "TURRET GUN";
 	private string skillOneText = "Place a Healing Beacon that gives back health over time.";
@@ -88,11 +94,18 @@ public class Class_Cloudmaster : MonoBehaviour {
 		characterSheetScript = GetComponent<CharacterSheet>();
 		charactMovementScript = GetComponent<CharacterMovement>();
 
+		// Set character class in character sheet
+		characterSheetScript.charClass = charClass;
+
 		// Get gameobjects for classes
 		attackSpawner = transform.GetChild(1).gameObject.transform;
 
 		charID = charactMovementScript.playerID;
 		player = ReInput.players.GetPlayer(charID);
+		
+		characterSheetScript.classType = classType;
+		characterSheetScript.classText = classText;
+		characterSheetScript.classPerk = classPerk;
 
 		// Set names of attacks in character sheet
 		characterSheetScript.attackNames[0] = attackNames[0];

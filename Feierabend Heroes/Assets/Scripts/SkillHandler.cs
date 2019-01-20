@@ -77,36 +77,36 @@ public class SkillHandler : MonoBehaviour {
 		"Increases your weapons damage.",
 		"Increases your Defense.",
 		
-		"Lorem.",
-		"Lorem.",
-		"Lorem.",
+		"???",
+		"???",
+		"???",
 		
 		"Increases your movement speed.",
 		"Your character learns to jump.",
 		
-		"Lorem.",
+		"???",
 		
 		"Increases your weapons speed.",
 		"Your character learns how to double jump.",
 		
-		"Teaches your character to perform Critical Hits (200% damage).",
-		"Teaches your character how to dodge atacks.",
+		"Your character learns to perform Critical Hits (200% damage).",
+		"Your character learns how to dodge atacks.",
 		"Your character learns how to respawn after death.",
 		
-		"Lorem.",
-		"Lorem.",
-		"Lorem.",
+		"???",
+		"???",
+		"???",
 		
 		"Enables the chance to get 2 orbs from chests instead of 1.",
-		"Teaches your character how to find Apples (Apples heal 20%).",
+		"Your character learns how to find Apples (Apples heal 20%).",
 		
 		"Increases your critical hit chance.",
 		"Increases the chance to dodge attacks.",
 		"Increases the chance to respawn after death.",
 		
-		"Lorem.",
-		"Your character goes into Rage Mode when their health is below 10%.",
-		"Lorem.",
+		"???",
+		"Your character goes into Rage Mode when health is below 10%.",
+		"???",
 		
 		"Increases the chance to get 2 orbs from chests.",
 		"Increases the amount your character gets healed from Apples.",
@@ -126,14 +126,14 @@ public class SkillHandler : MonoBehaviour {
 		"Damage +20%",
 		"Defense +8",
 		
-		"LOREM",
-		"LOREM",
-		"LOREM",
+		"???",
+		"???",
+		"???",
 		
 		"Move Speed +10%",
 		"Enable Jumping",
 		
-		"LOREM",
+		"???",
 		
 		"Attack Speed +10%",
 		"Enable Double Jump",
@@ -142,9 +142,9 @@ public class SkillHandler : MonoBehaviour {
 		"Enables Dodging (6% chance)",
 		"Enables Respawning (2% chance)",
 		
-		"LOREM",
-		"LOREM",
-		"LOREM",
+		"???",
+		"???",
+		"???",
 		
 		"Enables Double Orb Chests (20% chance)",
 		"Enables Apple Finding",
@@ -153,9 +153,9 @@ public class SkillHandler : MonoBehaviour {
 		"Dodge Chance +6%",
 		"Respawn Chance +2%",
 		
-		"LOREM",
+		"???",
 		"Defense x2.0",
-		"LOREM",
+		"???",
 		
 		"Double Orb Chance +20%",
 		"Apples heal +10%",
@@ -173,6 +173,11 @@ public class SkillHandler : MonoBehaviour {
 
 	private void Awake() {
 		characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
+
+		// Getting class type and description from character sheet
+		skillTitles[15] = characterSheetScript.classType;
+		skillTexts[15] = characterSheetScript.classText;
+		skillPerks[15] = characterSheetScript.classPerk;
 
 		// Setting the skill title, text and perks for Skill One
 		skillTitles[14] = characterSheetScript.skillOneTitle;

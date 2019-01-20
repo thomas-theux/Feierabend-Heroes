@@ -5,6 +5,11 @@ using UnityEngine;
 public class CharacterSheet : MonoBehaviour {
 
 	public int currentOrbs = 0;
+	public int charID = 0;
+	public int charClass = 0;
+	public string classType = "";
+	public string classText = "";
+	public string classPerk = "";
 
 	// Movement
 	public float moveSpeed = 10.0f;

@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject characterGO;
 
-	public static int playerCount = 4;
+	public static int playerCount = 1;
 	public List<int> classesArr;
 
 

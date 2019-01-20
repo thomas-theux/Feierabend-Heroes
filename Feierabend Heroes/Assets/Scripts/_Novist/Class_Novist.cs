@@ -5,6 +5,8 @@ using Rewired;
 
 public class Class_Novist : MonoBehaviour {
 
+	private int charClass = 1;
+
 	public GameObject attackOneGO;
 	public GameObject attackTwoGO;
 	public GameObject skillTwoGO;
@@ -15,7 +17,7 @@ public class Class_Novist : MonoBehaviour {
 
 	private int charID;
 
-	private string[] attackNames = {"Meteoo Shot", "Fire Block"};
+	private string[] attackNames = {"Meteor Shot (DPS)", "Fire Block (DPS)"};
 
 	// These variables can be improved by advancing on the skill tree
 	private float delayAttackOne = 0.5f;
@@ -38,6 +40,11 @@ public class Class_Novist : MonoBehaviour {
 	private float[] skillTwoStats = {20.0f, 12.0f, 3.0f, 4.0f};
 
 	// Skill titles and texts for the skill board
+	private string classType = "NOVIST";
+	private string classText = "A Mage that has mastered the powers of the nova star.";
+	private string classPerk = "• Meteor Shot\n• Fire Block";
+
+	
 	private string skillOneTitle = "LIKE A TANK";
 	private string skillTwoTitle = "COMPANION";
 	private string skillOneText = "Increase your characters health for a limited time.";
@@ -90,11 +97,18 @@ public class Class_Novist : MonoBehaviour {
 		characterSheetScript = GetComponent<CharacterSheet>();
 		charactMovementScript = GetComponent<CharacterMovement>();
 
+		// Set character class in character sheet
+		characterSheetScript.charClass = charClass;
+
 		// Get gameobjects for classes
 		attackSpawner = transform.GetChild(1).gameObject.transform;
 
 		charID = charactMovementScript.playerID;
 		player = ReInput.players.GetPlayer(charID);
+
+		characterSheetScript.classType = classType;
+		characterSheetScript.classText = classText;
+		characterSheetScript.classPerk = classPerk;
 
 		// Set names of attacks in character sheet
 		characterSheetScript.attackNames[0] = attackNames[0];
