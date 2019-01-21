@@ -105,7 +105,7 @@ public class SkillHandler : MonoBehaviour {
 		"Increases the chance to respawn after death.",
 		
 		"???",
-		"Your character goes into Rage Mode when health is below 10%.",
+		"Your character goes into Rage Mode when health is below 20%.",
 		"???",
 		
 		"Increases the chance to get 2 orbs from chests.",

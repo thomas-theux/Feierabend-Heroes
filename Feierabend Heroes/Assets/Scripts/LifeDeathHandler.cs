@@ -58,7 +58,7 @@ public class LifeDeathHandler : MonoBehaviour {
 	private void CheckForRageMode() {
 		// Activate rage mode if HP is below 10%
 		if (characterSheetScript.rageSkillActivated) {
-			if (characterSheetScript.currentHealth <= characterSheetScript.maxHealth / 10) {
+			if (characterSheetScript.currentHealth <= characterSheetScript.maxHealth / 5) {
 				characterSheetScript.rageModeOn = true;
 			} else {
 				characterSheetScript.rageModeOn = false;

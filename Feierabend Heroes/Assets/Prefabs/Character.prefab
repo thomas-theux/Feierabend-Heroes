@@ -214,7 +214,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentOrbs: 0
+  charID: 0
+  charClass: 0
+  classType: 
+  classText: 
+  classPerk: 
   moveSpeed: 10
+  attackNames:
+  - 
+  - 
   attackOneDmg: 0
   attackTwoDmg: 0
   delayAttackOne: 1
@@ -253,6 +261,18 @@ MonoBehaviour:
   selfHealActive: 0
   doubleOrbChance: 0
   findThreeOrbs: 0
+  skillOneTitle: 
+  skillTwoTitle: 
+  skillOneText: 
+  skillTwoText: 
+  skillOnePerk: 
+  skillTwoPerk: 
+  skillOneStat: 
+  skillTwoStat: 
+  skillOneUpgradeText: 
+  skillTwoUpgradeText: 
+  skillOneUpgradePerk: 
+  skillTwoUpgradePerk: 
 --- !u!114 &114984178142480010
 MonoBehaviour:
   m_ObjectHideFlags: 1

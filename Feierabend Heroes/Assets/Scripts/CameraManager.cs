@@ -71,7 +71,7 @@ public class CameraManager : MonoBehaviour {
 			newCharUI.transform.SetParent(GameObject.Find("Character" + i).transform);
 			newCharUI.GetComponent<Canvas>().worldCamera = GameObject.Find("PlayerCamera" + i).gameObject.GetComponent<Camera>();
 			newCharUI.GetComponent<Canvas>().planeDistance = 1;
-			newCharUI.GetComponent<CharUIHandler>().InitializeCharUI();
+			newCharUI.GetComponent<UIHandler>().InitializeCharUI();
 		}
 	}
 

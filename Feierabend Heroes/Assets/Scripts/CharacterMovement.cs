@@ -64,6 +64,8 @@ public class CharacterMovement : MonoBehaviour {
 		// Movement of the character
 		Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
 		// movement = movement.normalized;
+		movement = Vector3.ClampMagnitude(movement, 1);
+
 		if (!isAttacking) {
 			// Check if hero has rage mode on and HP < 10%
 			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 1) {

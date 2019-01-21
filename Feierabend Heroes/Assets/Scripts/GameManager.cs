@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject characterGO;
 
-	public static int playerCount = 1;
+	public static int playerCount = 4;
 	public List<int> classesArr;
 
 
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 		GetComponent<CameraManager>().InstantiateCams();
+		// GetComponent<CameraFirstPerson>().InstantiateCams();
 	}
 
 

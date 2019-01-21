@@ -90,11 +90,11 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private bool castSkill;
 
 
-	private void Awake() {
+	private void Start() {
 		// Get stats from skill script
 		characterSheetScript = GetComponent<CharacterSheet>();
 		charactMovementScript = GetComponent<CharacterMovement>();
-		uiHandlerScript = transform.GetChild(transform.childCount-1).transform.GetChild(0).GetComponent<UIHandler>();
+		uiHandlerScript = transform.GetChild(transform.childCount-1).GetComponent<UIHandler>();
 
 		// Set character class in character sheet
 		characterSheetScript.charClass = charClass;
