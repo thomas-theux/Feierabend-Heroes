@@ -5,17 +5,29 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public GameObject characterGO;
+	public GameObject spawnParent;
+	public List<GameObject> startSpawns;
 
-	public static int playerCount = 4;
+	public static int playerCount = 2;
 	public List<int> classesArr;
 
 
 	private void Awake() {
 		AssignClasses();
 
+		SpawnCharacter();
+
+		GetComponent<CameraManager>().InstantiateCams();
+		// GetComponent<CameraFirstPerson>().InstantiateCams();
+	}
+
+
+	private void SpawnCharacter() {
 		for (int i = 0; i < playerCount; i++) {
+			startSpawns.Add(spawnParent.transform.GetChild(i).gameObject);
+
 			GameObject newChar = Instantiate(characterGO);
-			newChar.transform.position = new Vector3(i * 3.0f, 1.0f, 0);
+			newChar.transform.position = startSpawns[i].transform.position;
 			newChar.GetComponent<CharacterMovement>().playerID = i;
 			newChar.name = "Character" + i;
 			newChar.tag = "Character" + i;
@@ -29,9 +41,6 @@ public class GameManager : MonoBehaviour {
 					break;
 			}
 		}
-
-		GetComponent<CameraManager>().InstantiateCams();
-		// GetComponent<CameraFirstPerson>().InstantiateCams();
 	}
 
 
