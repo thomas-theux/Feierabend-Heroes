@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4478156, g: 0.49780172, b: 0.5754356, a: 1}
+  m_IndirectSpecularColor: {r: 0.44781512, g: 0.49780095, b: 0.575435, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -378,7 +378,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 95155234041805258, guid: d0e76f6d08ce67d48994804f237e67eb,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 95155234041805258, guid: d0e76f6d08ce67d48994804f237e67eb, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: d0e76f6d08ce67d48994804f237e67eb, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &95426601 stripped
@@ -1332,8 +1338,8 @@ Transform:
   - {fileID: 357855702}
   - {fileID: 418764488}
   - {fileID: 1191772277}
-  - {fileID: 1498569994}
   - {fileID: 460325521}
+  - {fileID: 1498569994}
   - {fileID: 5844083}
   - {fileID: 105820342}
   - {fileID: 1516294019}
@@ -2422,7 +2428,7 @@ Transform:
   - {fileID: 906341363}
   - {fileID: 574734388}
   m_Father: {fileID: 252403735}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &463212963
 Prefab:
@@ -10646,6 +10652,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4825834909521966, guid: ac42f59b9c44c274b9612f7df5333cf3,
     type: 2}
   m_PrefabInternal: {fileID: 2069824744}
+--- !u!1 &2084199858 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1334708611183978, guid: d0e76f6d08ce67d48994804f237e67eb,
+    type: 2}
+  m_PrefabInternal: {fileID: 95426600}
+--- !u!64 &2084199859
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2084199858}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 188bd570a5b66d448a0d183907b418eb, type: 3}
 --- !u!1001 &2088039580
 Prefab:
   m_ObjectHideFlags: 0
