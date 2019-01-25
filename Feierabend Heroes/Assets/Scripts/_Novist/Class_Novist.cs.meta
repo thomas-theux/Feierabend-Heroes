@@ -10,7 +10,9 @@ MonoImporter:
       type: 2}
   - skillTwoGO: {fileID: 1058598508457264, guid: 5082a6b2b64c941b1af237c82d6edfae,
       type: 2}
-  - skillHandlerScript: {fileID: 114196006560382630, guid: e8c792ab2b0174bf5a0059388239251e,
+  - meteorShotSound: {fileID: 1149458933727414, guid: 1cfcc9bb1b3994eb4882dd835cc956b9,
+      type: 2}
+  - fireBlockCastSound: {fileID: 1016277380169116, guid: e9ba4dd6964cb404597a51dc1c8c44e7,
       type: 2}
   executionOrder: 0
   icon: {instanceID: 0}

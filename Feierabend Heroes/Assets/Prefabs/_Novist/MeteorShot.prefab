@@ -154,4 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   casterDamage: 0
-  moveSpeed: 20
+  casterCritChance: 0
+  casterCritDMG: 0
+  meteorShotHitSound: {fileID: 1094490263527588, guid: b87cc1040bc4041bda56d58c281e287a,
+    type: 2}

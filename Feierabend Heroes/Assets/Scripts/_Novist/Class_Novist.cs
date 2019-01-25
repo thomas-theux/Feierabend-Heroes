@@ -14,6 +14,9 @@ public class Class_Novist : MonoBehaviour {
 	private CharacterMovement charactMovementScript;
 	private UIHandler uiHandlerScript;
 
+	public GameObject meteorShotSound;
+	public GameObject fireBlockCastSound;
+
 	private Transform attackSpawner;
 
 	private int charID;
@@ -204,6 +207,8 @@ public class Class_Novist : MonoBehaviour {
 			attackOneDelayTimer = characterSheetScript.delayAttackOne / rageAttackSpeed;
 			attackOneDelayActive = true;
 
+			Instantiate(meteorShotSound);
+			
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newAttackOne.tag = "Attack";
@@ -233,6 +238,8 @@ public class Class_Novist : MonoBehaviour {
 
 			attackTwoDelayTimer = characterSheetScript.delayAttackTwo / rageAttackSpeed;
 			attackTwoDelayActive = true;
+
+			Instantiate(fireBlockCastSound);
 
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition + new Vector3(0, 0, 2);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);

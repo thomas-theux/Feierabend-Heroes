@@ -15,6 +15,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private CharacterMovement charactMovementScript;
 	private UIHandler uiHandlerScript;
 
+	public GameObject wrenchPunchSound;
+	public GameObject bombThrowSound;
+
 	private Transform attackSpawner;
 
 	private int charID;
@@ -201,6 +204,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 			attackOneDelayTimer = characterSheetScript.delayAttackOne / rageAttackSpeed;
 			attackOneDelayActive = true;
 
+			Instantiate(wrenchPunchSound);
+
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newAttackOne.tag = "Attack";
@@ -231,6 +236,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 			attackTwoDelayTimer = characterSheetScript.delayAttackTwo / rageAttackSpeed;
 			attackTwoDelayActive = true;
+
+			Instantiate(bombThrowSound);
 			
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-35, 0, 0);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);

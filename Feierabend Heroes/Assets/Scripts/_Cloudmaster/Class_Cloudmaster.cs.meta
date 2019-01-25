@@ -12,7 +12,9 @@ MonoImporter:
       type: 2}
   - skillTwoGO: {fileID: 1741329130831764, guid: aa4c0c826d1054677a297bd54e5d577d,
       type: 2}
-  - skillHandlerGO: {fileID: 1024090547248734, guid: e8c792ab2b0174bf5a0059388239251e,
+  - wrenchPunchSound: {fileID: 1459602113219918, guid: a02bc9b2f9e694ad2b740243643e3f54,
+      type: 2}
+  - bombThrowSound: {fileID: 1485007804091936, guid: 37ed33a5cf4eb4c13a1e97e89a3af59f,
       type: 2}
   executionOrder: 0
   icon: {instanceID: 0}

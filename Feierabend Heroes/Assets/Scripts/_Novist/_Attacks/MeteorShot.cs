@@ -8,6 +8,8 @@ public class MeteorShot : MonoBehaviour {
 	public float casterCritChance = 0;
 	public float casterCritDMG = 0;
 
+	public GameObject meteorShotHitSound;
+
 	private Rigidbody rb;
 
 	// These variables can be improved by advancing on the skill tree
@@ -25,7 +27,11 @@ public class MeteorShot : MonoBehaviour {
 		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != transform.GetChild(0).tag) {
 			if (other.tag != "Environment") {
 				CalculateDamage(other);
+				int charID = other.GetComponent<CharacterMovement>().playerID;
+				GameObject.Find("PlayerCamera" + charID).GetComponent<CameraShake>().enabled = true;
 			}
+
+			Instantiate(meteorShotHitSound);
 			Destroy(gameObject);
 		}
 	}

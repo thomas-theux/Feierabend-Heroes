@@ -3,7 +3,9 @@ guid: 35a12130733fd4fcbb3ef251a0e708b1
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - wrenchPunchHitSound: {fileID: 1958982043510652, guid: 861213a71ebaf4e7788466eba5d8e02b,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

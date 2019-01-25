@@ -9,10 +9,13 @@ public class CharacterMovement : MonoBehaviour {
 	private CharacterController cc;
 	private CharacterSheet characterSheetScript;
 
+	public Animator anim;
+
 	public bool isAttacking = false;
 	public bool skillBoardOn;
 
 	private float rageMoveSpeed = 1;
+	private Vector3 charVelocity;
 
 	// REWIRED
 	private float moveHorizontal;
@@ -36,6 +39,8 @@ public class CharacterMovement : MonoBehaviour {
 			GetInput();
 
 			ToggleSkillboard();
+
+			AddGravity();
 		}
 	}
 
@@ -81,6 +86,11 @@ public class CharacterMovement : MonoBehaviour {
 		if (movement != Vector3.zero) {
 			transform.forward = movement;
 		}
+		
+		// Add gravity
+		cc.Move(charVelocity * Time.deltaTime);
+
+		anim.SetFloat("charSpeed", (Mathf.Abs(moveHorizontal) + Mathf.Abs(moveVertical)));
 	}
 
 
@@ -92,6 +102,14 @@ public class CharacterMovement : MonoBehaviour {
 		if (skillBoardOn && closeSkillUI) {
 			skillBoardOn = false;
 			ShowSkillboard();
+		}
+	}
+
+
+	private void AddGravity() {
+		charVelocity.y += Physics.gravity.y * Time.deltaTime;
+		if (cc.isGrounded && charVelocity.y < 0) {
+			charVelocity.y = 0.0f;
 		}
 	}
 

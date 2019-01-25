@@ -8,8 +8,11 @@ public class FireBlock : MonoBehaviour {
 	public float casterCritChance = 0;
 	public float casterCritDMG = 0;
 
+	public GameObject fireBlockActiveSound;
+
 	private void Awake() {
 		Destroy(gameObject, 8.0f);
+		Instantiate(fireBlockActiveSound);
 	}
 
 

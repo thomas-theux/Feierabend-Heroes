@@ -145,6 +145,8 @@ MonoBehaviour:
   casterCritChance: 0
   casterCritDMG: 0
   casterTag: 
+  bombThrowHitSound: {fileID: 1063373350129172, guid: 1b1e0a0e6e47a4bc79fc51e12a103675,
+    type: 2}
   bombRadius: {fileID: 1139214440405836, guid: 91b24ba75d48d45b0932e5387a925eee, type: 2}
   gravityScale: 2.4
   moveSpeed: 24

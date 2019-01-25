@@ -26,6 +26,8 @@ public class BombRadius : MonoBehaviour {
 	private void OnTriggerEnter(Collider other) {
 		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != "Environment" && other.tag != transform.GetChild(0).tag) {
 			CalculateDamage(other);
+			int charID = other.GetComponent<CharacterMovement>().playerID;
+			GameObject.Find("PlayerCamera" + charID).GetComponent<CameraShake>().enabled = true;
 		}
 	}
 

@@ -9,6 +9,8 @@ public class Bomb : MonoBehaviour {
 	public float casterCritDMG = 0;
 	public string casterTag;
 
+	public GameObject bombThrowHitSound;
+
 	private Rigidbody rb;
 	public GameObject bombRadius;
 
@@ -38,6 +40,9 @@ public class Bomb : MonoBehaviour {
 			newBombRadius.GetComponent<BombRadius>().casterDamage = casterDamage;
 			newBombRadius.GetComponent<BombRadius>().casterCritChance = casterCritChance;
 			newBombRadius.GetComponent<BombRadius>().casterCritDMG = casterCritDMG;
+
+			Instantiate(bombThrowHitSound);
+
 			Destroy(gameObject);
 		}
 	}

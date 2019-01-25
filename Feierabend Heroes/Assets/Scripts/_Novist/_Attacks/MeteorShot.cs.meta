@@ -3,7 +3,9 @@ guid: df27e9e2ed87d46378195f300b23aba5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - meteorShotHitSound: {fileID: 1773490173795312, guid: b87cc1040bc4041bda56d58c281e287a,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -8,6 +8,8 @@ public class WrenchPunch : MonoBehaviour {
 	public float casterCritChance = 0;
 	public float casterCritDMG = 0;
 
+	public GameObject wrenchPunchHitSound;
+
 
 	private void Awake() {
 		Destroy(gameObject, 0.2f);
@@ -16,7 +18,10 @@ public class WrenchPunch : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != "Environment" && other.tag != transform.GetChild(0).tag) {
+			Instantiate(wrenchPunchHitSound);
 			CalculateDamage(other);
+			int charID = other.GetComponent<CharacterMovement>().playerID;
+			GameObject.Find("PlayerCamera" + charID).GetComponent<CameraShake>().enabled = true;
 		}
 	}
 

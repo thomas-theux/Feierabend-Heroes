@@ -138,3 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   casterDamage: 0
+  casterCritChance: 0
+  casterCritDMG: 0
+  fireBlockActiveSound: {fileID: 1079249785579432, guid: 9ce38bd0b52ee44dda32e8844d6b7252,
+    type: 2}
