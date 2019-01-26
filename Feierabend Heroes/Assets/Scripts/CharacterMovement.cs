@@ -31,6 +31,9 @@ public class CharacterMovement : MonoBehaviour {
 		characterSheetScript.charID = playerID;
 
 		cc = this.gameObject.GetComponent<CharacterController>();
+
+		int rndAnim = Random.Range(0, 2);
+		anim.SetInteger("standUp", rndAnim);
 	}
 
 

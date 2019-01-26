@@ -1047,6 +1047,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 0
   anim: {fileID: 95659020114554010}
+  starterGO: {fileID: 0}
   isAttacking: 0
   skillBoardOn: 0
   activationBtn: 0
