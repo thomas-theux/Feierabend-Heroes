@@ -16,6 +16,9 @@ public class Class_Novist : MonoBehaviour {
 
 	public GameObject meteorShotSound;
 	public GameObject fireBlockCastSound;
+	
+	public AudioSource skillCoolDownSound;
+	public AudioSource skillNotAvailableSound;
 
 	private Transform attackSpawner;
 
@@ -273,6 +276,8 @@ public class Class_Novist : MonoBehaviour {
 			characterSheetScript.maxHealth *= savedMultiplier;
 			skillOneTimer = characterSheetScript.skillOneStats[1];
 			HPSkillActive = true;
+		} else if (castSkill && skillOneDelayActive) {
+			Instantiate(skillNotAvailableSound);
 		}
 
 		if (skillOneDelayActive) {
@@ -286,6 +291,7 @@ public class Class_Novist : MonoBehaviour {
 		if (HPSkillActive) {
 			skillOneTimer -= Time.deltaTime;
 			if (skillOneTimer <= 0) {
+				Instantiate(skillCoolDownSound);
 				characterSheetScript.currentHealth /= savedMultiplier;
 				characterSheetScript.maxHealth /= savedMultiplier;
 				HPSkillActive = false;
@@ -314,12 +320,15 @@ public class Class_Novist : MonoBehaviour {
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterDamage = characterSheetScript.skillTwoDmg;
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritChance = characterSheetScript.critChance;
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritDMG = characterSheetScript.critDMG;
+		} else if (castSkill && skillTwoDelayActive) {
+			Instantiate(skillNotAvailableSound);
 		}
 
 		if (skillTwoDelayActive) {
 			skillTwoDelayTimer -= Time.deltaTime;
 			uiHandlerScript.skillTwoDelayTimer = skillTwoDelayTimer;
 			if (skillTwoDelayTimer <= 0) {
+				Instantiate(skillCoolDownSound);
 				skillTwoDelayActive = false;
 			}
 		}

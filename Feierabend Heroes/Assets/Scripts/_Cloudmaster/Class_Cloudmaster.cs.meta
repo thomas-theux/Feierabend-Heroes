@@ -16,6 +16,10 @@ MonoImporter:
       type: 2}
   - bombThrowSound: {fileID: 1485007804091936, guid: 37ed33a5cf4eb4c13a1e97e89a3af59f,
       type: 2}
+  - skillCoolDownSound: {fileID: 82647613108494042, guid: 05e2adea0560a400cb21ae8968537da6,
+      type: 2}
+  - skillNotAvailableSound: {fileID: 82240621272502822, guid: 040580a175b2349cdb219e31ffd36e99,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

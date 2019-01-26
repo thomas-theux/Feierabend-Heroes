@@ -17,6 +17,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	public GameObject wrenchPunchSound;
 	public GameObject bombThrowSound;
+	
+	public AudioSource skillCoolDownSound;
+	public AudioSource skillNotAvailableSound;
 
 	private Transform attackSpawner;
 
@@ -277,12 +280,15 @@ public class Class_Cloudmaster : MonoBehaviour {
 			newSkillOne.transform.GetChild(1).GetComponent<HealingBeacon>().lifeTime = characterSheetScript.skillOneStats[1];
 			
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 2);
+		} else if (castSkill && skillOneDelayActive) {
+			Instantiate(skillNotAvailableSound);
 		}
 
 		if (skillOneDelayActive) {
 			skillOneDelayTimer -= Time.deltaTime;
 			uiHandlerScript.skillOneDelayTimer = skillOneDelayTimer;
 			if (skillOneDelayTimer <= 0) {
+				Instantiate(skillCoolDownSound);
 				skillOneDelayActive = false;
 			}
 		}
@@ -315,12 +321,15 @@ public class Class_Cloudmaster : MonoBehaviour {
 			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().charID = charID;
 
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 2);
+		} else if (castSkill && skillTwoDelayActive) {
+			Instantiate(skillNotAvailableSound);
 		}
 
 		if (skillTwoDelayActive) {
 			skillTwoDelayTimer -= Time.deltaTime;
 			uiHandlerScript.skillTwoDelayTimer = skillTwoDelayTimer;
 			if (skillTwoDelayTimer <= 0) {
+				Instantiate(skillCoolDownSound);
 				skillTwoDelayActive = false;
 			}
 		}

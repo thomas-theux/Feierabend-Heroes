@@ -15,7 +15,11 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	public Image statsCursorImageClone;
 	public GameObject infoBox;
 	public GameObject rageModeBox;
-	// private Vector3 infoBoxOffset = new Vector3(200, 100, 0);
+
+	public AudioSource cursorMoveSound;
+	public AudioSource activateSkillSound;
+	public AudioSource skillCompleteSound;
+	public AudioSource skillLockedSound;
 
 	public Text[] attackNames;
 
@@ -77,7 +81,7 @@ public class SkillTreeUIHandler : MonoBehaviour {
 
 	private void OnDisable() {
 		currentIndex = 15;
-		DisplayCursorImage();
+		cursorImage.transform.position = buttonArr[currentIndex].transform.position;
 	}
 
 
@@ -122,8 +126,6 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		if (this.gameObject.transform.parent.GetComponent<CharacterMovement>().skillBoardOn) {
 			GetInput();
 		}
-
-		DisplayCursorImage();
 	}
 
 
@@ -133,18 +135,22 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") > maxThreshold && !axisYActive) {
 			axisYActive = true;
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navUp.GetComponent<ButtonNav>().indexID;
+			DisplayCursorImage();
 		}
 		if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") < -maxThreshold && !axisYActive) {
 			axisYActive = true;
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navDown.GetComponent<ButtonNav>().indexID;
+			DisplayCursorImage();
 		}
 		if (ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") > maxThreshold && !axisXActive) {
 			axisXActive = true;
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navRight.GetComponent<ButtonNav>().indexID;
+			DisplayCursorImage();
 		}
 		if (ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") < -maxThreshold && !axisXActive) {
 			axisXActive = true;
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navLeft.GetComponent<ButtonNav>().indexID;
+			DisplayCursorImage();
 		}
 
 		if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") <= minThreshold && ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") >= -minThreshold) {
@@ -157,22 +163,26 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		// UI navigation with the D-Pad buttons
 		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadUp")) {
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navUp.GetComponent<ButtonNav>().indexID;
+			DisplayCursorImage();
 		}
 		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadDown")) {
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navDown.GetComponent<ButtonNav>().indexID;
+			DisplayCursorImage();
 		}
 		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadLeft")) {
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navLeft.GetComponent<ButtonNav>().indexID;
+			DisplayCursorImage();
 		}
 		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadRight")) {
 			currentIndex = buttonArr[currentIndex].GetComponent<ButtonNav>().navRight.GetComponent<ButtonNav>().indexID;
+			DisplayCursorImage();
 		}
 
 		if (ReInput.players.GetPlayer(charID).GetButtonDown("X")) {
 			if (skillCosts[currentIndex] <= characterSheetscript.currentOrbs) {
 				SkillActivationProcess();
 			} else {
-				// print("Not enough ORBS");
+				Instantiate(skillLockedSound);
 			}
 		}
 	}
@@ -181,14 +191,7 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	private void DisplayCursorImage() {
 		// Display cursor at the right position
 		cursorImage.transform.position = buttonArr[currentIndex].transform.position;
-
-		// Set Info Box to follow the cursor
-		// if (currentIndex == 15 && infoBox) {
-		// 	infoBox.SetActive(false);
-		// } else if (currentIndex != 15) {
-		// 	infoBox.SetActive(true);
-		// }
-		// infoBox.transform.localPosition = buttonArr[currentIndex].transform.localPosition + infoBoxOffset;
+		Instantiate(cursorMoveSound);
 
 		// Display skillboard titles, texts and perks
 		infoBox.transform.GetChild(0).GetComponent<Text>().text = skillHandlerScript.skillTitles[currentIndex];
@@ -285,6 +288,12 @@ public class SkillTreeUIHandler : MonoBehaviour {
 				// Increase the selected skill in the array
 				skillUpgradeCurrent[currentIndex]++;
 
+				if (skillUpgradeCurrent[currentIndex] == skillUpgradeMax[currentIndex]) {
+					Instantiate(skillCompleteSound);
+				} else {
+					Instantiate(activateSkillSound);
+				}
+
 				PayOrbs();
 				skillHandlerScript.ActivateSkill(skillUpgradeCurrent, currentIndex);
 				DisplayOrbs();
@@ -293,9 +302,11 @@ public class SkillTreeUIHandler : MonoBehaviour {
 				CalculateNewCosts();
 			} else {
 				// print("Already activated!");
+				Instantiate(skillLockedSound);
 			}
 		} else {
 			// print("This skill is locked");
+			Instantiate(skillLockedSound);
 		}
 	}
 

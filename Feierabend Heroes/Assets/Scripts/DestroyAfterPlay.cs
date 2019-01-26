@@ -9,7 +9,7 @@ public class DestroyAfterPlay : MonoBehaviour {
 
 	private void Awake() {
 		clipLength = GetComponent<AudioSource>().clip.length;
-		Destroy(this.gameObject, clipLength);
+		Destroy(this.gameObject, clipLength + 0.5f);
 	}
 
 }

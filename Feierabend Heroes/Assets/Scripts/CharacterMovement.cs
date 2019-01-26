@@ -10,6 +10,8 @@ public class CharacterMovement : MonoBehaviour {
 	private CharacterSheet characterSheetScript;
 
 	public Animator anim;
+	public AudioSource openSkillboardSound;
+	public AudioSource closeSkillboardSound;
 
 	public bool isAttacking = false;
 	public bool skillBoardOn;
@@ -100,10 +102,12 @@ public class CharacterMovement : MonoBehaviour {
 	private void ToggleSkillboard() {
 		if (showSkillUI) {
 			skillBoardOn = !skillBoardOn;
+			Instantiate(openSkillboardSound);
 			ShowSkillboard();
 		}
 		if (skillBoardOn && closeSkillUI) {
 			skillBoardOn = false;
+			Instantiate(closeSkillboardSound);
 			ShowSkillboard();
 		}
 	}

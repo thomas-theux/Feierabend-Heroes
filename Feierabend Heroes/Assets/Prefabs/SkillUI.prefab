@@ -7702,6 +7702,14 @@ MonoBehaviour:
   statsCursorImageClone: {fileID: 114009160059879734}
   infoBox: {fileID: 1270725261572672}
   rageModeBox: {fileID: 1189115646471924}
+  cursorMoveSound: {fileID: 82418148799504902, guid: 28c478e901c6743d5a8624be11e55034,
+    type: 2}
+  activateSkillSound: {fileID: 82638912745022070, guid: f90494be1ffc34110bccea68797d4637,
+    type: 2}
+  skillCompleteSound: {fileID: 82679573944502906, guid: 6f2b8dc03056a4e24a555ba72442977b,
+    type: 2}
+  skillLockedSound: {fileID: 82240621272502822, guid: 040580a175b2349cdb219e31ffd36e99,
+    type: 2}
   attackNames:
   - {fileID: 114724590273851038}
   - {fileID: 114850124717966070}

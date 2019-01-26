@@ -830,7 +830,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1173343900958008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4430464225084870}
@@ -1047,7 +1047,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 0
   anim: {fileID: 95659020114554010}
-  starterGO: {fileID: 0}
+  openSkillboardSound: {fileID: 82396164751504712, guid: 665661341058f43119520d2fbdb0df5e,
+    type: 2}
+  closeSkillboardSound: {fileID: 82235189814596664, guid: 8a525ce111c7f4e0cbd99949a08286c7,
+    type: 2}
   isAttacking: 0
   skillBoardOn: 0
   activationBtn: 0
