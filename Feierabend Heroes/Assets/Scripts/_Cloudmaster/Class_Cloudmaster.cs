@@ -96,10 +96,19 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private bool castSkill;
 
 
-	private void Start() {
+	private void Awake() {
 		// Get stats from skill script
 		characterSheetScript = GetComponent<CharacterSheet>();
 		charactMovementScript = GetComponent<CharacterMovement>();
+
+		// Set names of attacks in character sheet
+		characterSheetScript.attackNames[0] = attackNames[0];
+		characterSheetScript.attackNames[1] = attackNames[1];
+	}
+
+
+	private void Start() {
+		// Get stats from skill script
 		uiHandlerScript = transform.GetChild(transform.childCount-1).GetComponent<UIHandler>();
 
 		// Set character class in character sheet
@@ -114,10 +123,6 @@ public class Class_Cloudmaster : MonoBehaviour {
 		characterSheetScript.classType = classType;
 		characterSheetScript.classText = classText;
 		characterSheetScript.classPerk = classPerk;
-
-		// Set names of attacks in character sheet
-		characterSheetScript.attackNames[0] = attackNames[0];
-		characterSheetScript.attackNames[1] = attackNames[1];
 
 		// Set stats in skill script
 		characterSheetScript.delayAttackOne = delayAttackOne;
@@ -245,6 +250,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-35, 0, 0);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackTwo.GetComponent<Bomb>().casterTag = "Character" + charID;
+			newAttackTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newAttackTwo.tag = "Attack";
 			newAttackTwo.transform.GetComponent<Bomb>().casterDamage = characterSheetScript.attackTwoDmg;
 			newAttackTwo.GetComponent<Bomb>().casterCritChance = characterSheetScript.critChance;

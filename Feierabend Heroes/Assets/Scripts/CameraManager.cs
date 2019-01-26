@@ -72,6 +72,14 @@ public class CameraManager : MonoBehaviour {
 			newCharUI.GetComponent<Canvas>().worldCamera = GameObject.Find("PlayerCamera" + i).gameObject.GetComponent<Camera>();
 			newCharUI.GetComponent<Canvas>().planeDistance = 1;
 			newCharUI.GetComponent<UIHandler>().InitializeCharUI();
+
+			// Single player skill board UI for dev testing
+			if (GameManager.playerCount == 1) {
+				// print(newCharUI.transform.GetChild(0).name);
+				newSkillUI.transform.GetChild(0).GetComponent<UnityEngine.UI.CanvasScaler>().referenceResolution = new Vector2(1440, 900);
+				newCharUI.GetComponent<UnityEngine.UI.CanvasScaler>().referenceResolution = new Vector2(1440, 900);
+			}
+
 		}
 	}
 

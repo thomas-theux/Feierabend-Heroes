@@ -99,10 +99,19 @@ public class Class_Novist : MonoBehaviour {
 	private bool castSkill;
 
 
-	private void Start() {
+	private void Awake() {
 		// Get stats from skill script
 		characterSheetScript = GetComponent<CharacterSheet>();
 		charactMovementScript = GetComponent<CharacterMovement>();
+
+		// Set names of attacks in character sheet
+		characterSheetScript.attackNames[0] = attackNames[0];
+		characterSheetScript.attackNames[1] = attackNames[1];
+	}
+
+
+	private void Start() {
+		// Get stats from skill script
 		uiHandlerScript = transform.GetChild(transform.childCount-1).GetComponent<UIHandler>();
 
 		// Set character class in character sheet
@@ -117,10 +126,6 @@ public class Class_Novist : MonoBehaviour {
 		characterSheetScript.classType = classType;
 		characterSheetScript.classText = classText;
 		characterSheetScript.classPerk = classPerk;
-
-		// Set names of attacks in character sheet
-		characterSheetScript.attackNames[0] = attackNames[0];
-		characterSheetScript.attackNames[1] = attackNames[1];
 
 		// Set stats in skill script
 		characterSheetScript.delayAttackOne = delayAttackOne;

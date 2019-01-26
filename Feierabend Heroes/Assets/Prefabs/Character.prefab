@@ -161,21 +161,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1370439779821554
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4822277675231396}
-  m_Layer: 0
-  m_Name: Geo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1533586622458466
 GameObject:
   m_ObjectHideFlags: 1
@@ -292,21 +277,6 @@ GameObject:
   - component: {fileID: 4924522271262808}
   m_Layer: 0
   m_Name: LeftLeg
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1720137947463448
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4038085296157514}
-  m_Layer: 0
-  m_Name: Camera.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,34 +426,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1989498051929890
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4332897819890226}
-  m_Layer: 0
-  m_Name: Lamp
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4038085296157514
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1720137947463448}
-  m_LocalRotation: {x: -0.0071291956, y: -0.70424813, z: 0.01760976, w: 0.7096997}
-  m_LocalPosition: {x: -0.05552015, y: 2.179254, z: 7.747335}
-  m_LocalScale: {x: 99.99999, y: 100, z: 100}
-  m_Children: []
-  m_Father: {fileID: 4854129743095374}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4054403860895390
 Transform:
   m_ObjectHideFlags: 1
@@ -549,7 +491,7 @@ Transform:
   m_LocalScale: {x: 10.024099, y: 10.024099, z: 10.024099}
   m_Children: []
   m_Father: {fileID: 4854129743095374}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4232812874723020
 Transform:
@@ -564,19 +506,6 @@ Transform:
   - {fileID: 4696305117231718}
   m_Father: {fileID: 4714614518419736}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4332897819890226
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1989498051929890}
-  m_LocalRotation: {x: 0.16907571, y: -0.75588036, z: 0.27217132, w: 0.57094747}
-  m_LocalPosition: {x: -4.0762453, y: 7.049749, z: 4.104293}
-  m_LocalScale: {x: 100.00001, y: 100, z: 100}
-  m_Children: []
-  m_Father: {fileID: 4854129743095374}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4343650941626802
 Transform:
@@ -730,7 +659,7 @@ Transform:
   m_LocalScale: {x: 10.024099, y: 10.024099, z: 10.024099}
   m_Children: []
   m_Father: {fileID: 4854129743095374}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4696305117231718
 Transform:
@@ -791,19 +720,6 @@ Transform:
   m_Father: {fileID: 4773866290216038}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4822277675231396
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1370439779821554}
-  m_LocalRotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 10.024091, y: 10.024091, z: 10.024091}
-  m_Children: []
-  m_Father: {fileID: 4854129743095374}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4854129743095374
 Transform:
   m_ObjectHideFlags: 1
@@ -815,9 +731,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4559853226968832}
-  - {fileID: 4038085296157514}
-  - {fileID: 4822277675231396}
-  - {fileID: 4332897819890226}
   - {fileID: 4682047354259158}
   - {fileID: 4226380612419038}
   m_Father: {fileID: 4430464225084870}

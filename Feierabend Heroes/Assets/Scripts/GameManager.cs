@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject spawnParent;
 	public List<GameObject> startSpawns;
 
-	public static int playerCount = 4;
+	public static int playerCount = 2;
 	public List<int> classesArr;
 
 
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 			newChar.GetComponent<CharacterMovement>().playerID = i;
 			newChar.name = "Character" + i;
 			newChar.tag = "Character" + i;
+			newChar.transform.GetChild(0).tag = "Character" + i;
 
 			switch(classesArr[i]) {
 				case 0:

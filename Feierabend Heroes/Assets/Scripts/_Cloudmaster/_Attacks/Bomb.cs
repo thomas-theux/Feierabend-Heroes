@@ -34,7 +34,7 @@ public class Bomb : MonoBehaviour {
 
 
 	private void OnTriggerEnter(Collider other) {
-		if (other.tag != "Attack") {
+		if (other.tag != "Attack" && other.tag != transform.GetChild(0).tag) {
 			GameObject newBombRadius = Instantiate(bombRadius, transform.position, transform.rotation);
 			newBombRadius.transform.GetChild(0).gameObject.tag = casterTag;
 			newBombRadius.GetComponent<BombRadius>().casterDamage = casterDamage;

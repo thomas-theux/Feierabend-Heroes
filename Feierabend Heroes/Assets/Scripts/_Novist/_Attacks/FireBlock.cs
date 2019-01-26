@@ -16,6 +16,13 @@ public class FireBlock : MonoBehaviour {
 	}
 
 
+	private void OnTriggerEnter(Collider other) {
+		if (other.tag == "Attack" && other.transform.GetChild(0).tag != this.gameObject.transform.GetChild(0).tag) {
+			Destroy(other.gameObject);
+		}
+	}
+
+
 	private void OnTriggerStay(Collider other) {
 		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != "Environment" && other.transform.GetChild(0).tag != transform.GetChild(0).tag) {
 			CalculateDamage(other);
