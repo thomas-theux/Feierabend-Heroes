@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class SeekAndHome : MonoBehaviour {
 
-	public float smoothSpeed = 0f;
+	private float smoothSpeed = 0f;
+
+
+	private void Awake() {
+		smoothSpeed = transform.parent.GetComponent<MeteorShot>().moveSpeed;
+	}
 
 	private void OnTriggerStay(Collider other) {
 		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != "Environment" && other.tag != this.tag) {

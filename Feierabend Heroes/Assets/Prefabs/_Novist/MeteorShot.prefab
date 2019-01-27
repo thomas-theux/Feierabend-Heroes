@@ -261,6 +261,7 @@ MonoBehaviour:
   casterCritDMG: 0
   meteorShotHitSound: {fileID: 1094490263527588, guid: b87cc1040bc4041bda56d58c281e287a,
     type: 2}
+  moveSpeed: 32
 --- !u!114 &114927993833007218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,4 +273,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca5cc8d397c4419f9fea3eb2e2b80bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 42

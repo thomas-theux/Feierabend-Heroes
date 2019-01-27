@@ -17,6 +17,7 @@ public class CompanionAggro : MonoBehaviour {
 	private bool enemyDetected = false;
 	private float distanceToChar = 1.4f;
 	private float distanceToEnemy = 2.0f;
+	private float distanceLimit = 30.0f;
 
 	private bool isAttacking = false;
 	private float attackDelayDefault = 0.5f;
@@ -36,7 +37,8 @@ public class CompanionAggro : MonoBehaviour {
 		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != "Environment" && other.tag != transform.parent.GetChild(0).tag) {
 			enemyDetected = true;
 			enemyChar = other.gameObject.transform;
-			StartCoroutine(FollowTimer());
+			// StartCoroutine(FollowTimer());
+			StartCoroutine(DistanceTooBig());
 		}
 	}
 
@@ -129,6 +131,16 @@ public class CompanionAggro : MonoBehaviour {
 				characterSheetScript.currentHealth += characterSheetScript.currentHealth * 0.2f;
 			}
 		}
+	}
+
+
+	private IEnumerator DistanceTooBig() {
+		while (Vector3.Distance(transform.parent.position, followCaster.transform.position) <= distanceLimit) {
+			yield return null;
+		}
+
+		print("distance too high");
+		enemyDetected = false;
 	}
 
 
