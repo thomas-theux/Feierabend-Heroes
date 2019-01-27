@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BrokenVector\LowPolySurvivalEssentials\Example\Scripts\AnimatedFire.cs" />
      <Compile Include="Assets\Rewired\Examples\ControlRemapping1\Scripts\ControlRemappingDemo1.cs" />
      <Compile Include="Assets\Rewired\Examples\CustomControllersTilt\Scripts\CustomControllersTiltDemo.cs" />
      <Compile Include="Assets\Rewired\Examples\CustomControllersTouch\Scripts\CustomControllerDemo.cs" />
@@ -128,6 +129,7 @@
      <Compile Include="Assets\Scripts\_Novist\_Attacks\SeekAndHome.cs" />
      <Compile Include="Assets\Scripts\_Novist\Class_Novist.cs" />
      <Compile Include="Assets\Scripts\AppleHeal.cs" />
+     <Compile Include="Assets\Scripts\AppleSpawner.cs" />
      <Compile Include="Assets\Scripts\ButtonNav.cs" />
      <Compile Include="Assets\Scripts\CameraFirstPerson.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -141,6 +143,7 @@
      <Compile Include="Assets\Scripts\LevelTimers.cs" />
      <Compile Include="Assets\Scripts\LifeDeathHandler.cs" />
      <Compile Include="Assets\Scripts\OrbChest.cs" />
+     <Compile Include="Assets\Scripts\OrbChestSpawner.cs" />
      <Compile Include="Assets\Scripts\ParticleDamage.cs" />
      <Compile Include="Assets\Scripts\SkillHandler.cs" />
      <Compile Include="Assets\Scripts\SkillTreeUIHandler.cs" />
@@ -152,8 +155,10 @@
      <None Include="Assets\PolygonNature\Shaders\SyntyStudios_Vines.shader" />
      <None Include="Assets\PolygonNature\Shaders\SyntyStudios_Water.shader" />
      <None Include="Assets\PolygonNature\Shaders\SyntyStudios_LOD.shader" />
+     <None Include="Assets\BrokenVector\LowPolyShaders\Shaders\LowPolyPBRShader.shader" />
      <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
      <None Include="Assets\PolygonNature\Shaders\SkyGradient.shader" />
+     <None Include="Assets\BrokenVector\LowPolyShaders\Shaders\LowPolyUnlitShader.shader" />
      <None Include="Assets\PolygonNature\Shaders\StandardMike.shader" />
  <Reference Include="Unity.VectorGraphics">
  <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.VectorGraphics.dll</HintPath>

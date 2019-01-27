@@ -219,7 +219,7 @@ public class Class_Novist : MonoBehaviour {
 			
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newAttackOne.transform.GetChild(newAttackOne.transform.childCount-1).gameObject.tag = "Character" + charID;
+			newAttackOne.transform.GetChild(newAttackOne.transform.childCount-1).gameObject.tag = "Attack";
 			newAttackOne.tag = "Attack";
 			newAttackOne.transform.GetComponent<MeteorShot>().casterDamage = characterSheetScript.attackOneDmg;
 			newAttackOne.GetComponent<MeteorShot>().casterCritChance = characterSheetScript.critChance;
