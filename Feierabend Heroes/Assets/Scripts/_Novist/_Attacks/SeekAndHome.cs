@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SeekAndHome : MonoBehaviour {
 
-	private float smoothSpeed = 14.0f;
+	public float smoothSpeed = 0f;
 
 	private void OnTriggerStay(Collider other) {
 		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != "Environment" && other.tag != this.tag) {
