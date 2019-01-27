@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject spawnParent;
 	public List<GameObject> startSpawns;
 
-	public static int playerCount = 2;
+	public static int playerCount = 1;
 	public List<int> classesArr;
 
 
