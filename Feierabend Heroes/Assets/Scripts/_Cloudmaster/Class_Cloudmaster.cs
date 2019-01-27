@@ -214,6 +214,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 			Instantiate(wrenchPunchSound);
 
+			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 1);
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newAttackOne.tag = "Attack";
@@ -221,6 +222,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 			newAttackOne.GetComponent<WrenchPunch>().casterDamage = characterSheetScript.attackOneDmg;
 			newAttackOne.GetComponent<WrenchPunch>().casterCritChance = characterSheetScript.critChance;
 			newAttackOne.GetComponent<WrenchPunch>().casterCritDMG = characterSheetScript.critDMG;
+			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition + new Vector3(0, 0, 1);
 		}
 
 		if (attackOneDelayActive) {
