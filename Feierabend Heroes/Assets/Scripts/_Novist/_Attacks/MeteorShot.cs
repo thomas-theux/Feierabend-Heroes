@@ -13,13 +13,17 @@ public class MeteorShot : MonoBehaviour {
 	private Rigidbody rb;
 
 	// These variables can be improved by advancing on the skill tree
-	private float moveSpeed = 42.0f;
+	private float moveSpeed = 12.0f;
 
 
 	void Awake () {
 		rb = GetComponent<Rigidbody>();
-		rb.velocity = transform.forward * moveSpeed;
 		Destroy(gameObject, 3.0f);
+	}
+
+
+	private void Update() {
+		rb.velocity = transform.forward * moveSpeed;
 	}
 
 

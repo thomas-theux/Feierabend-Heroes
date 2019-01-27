@@ -121,9 +121,11 @@
      <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\TurretGun.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\WrenchPunch.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\Class_Cloudmaster.cs" />
+     <Compile Include="Assets\Scripts\_Novist\_Attacks\BasicShot.cs" />
      <Compile Include="Assets\Scripts\_Novist\_Attacks\CompanionAggro.cs" />
      <Compile Include="Assets\Scripts\_Novist\_Attacks\FireBlock.cs" />
      <Compile Include="Assets\Scripts\_Novist\_Attacks\MeteorShot.cs" />
+     <Compile Include="Assets\Scripts\_Novist\_Attacks\SeekAndHome.cs" />
      <Compile Include="Assets\Scripts\_Novist\Class_Novist.cs" />
      <Compile Include="Assets\Scripts\AppleHeal.cs" />
      <Compile Include="Assets\Scripts\ButtonNav.cs" />

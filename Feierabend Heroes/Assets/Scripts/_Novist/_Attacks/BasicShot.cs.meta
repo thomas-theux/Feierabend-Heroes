@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 373f3391386704b909d3d4ebf4f43a69
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - meteorShotHitSound: {fileID: 1094490263527588, guid: b87cc1040bc4041bda56d58c281e287a,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
