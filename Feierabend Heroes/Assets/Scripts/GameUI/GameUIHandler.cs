@@ -7,14 +7,21 @@ using Rewired;
 public class GameUIHandler : MonoBehaviour {
 
 	public GameObject[] gamepadsGO;
-	public static int connectedGamepads = 0;
+	public int connectedGamepads = 1;
+	private int[] uiStates = {0, 0, 0, 0};
+	private int maxGamepads = 4;
 
 
 	private void Awake() {
-		print(ReInput.controllers.joystickCount);
-		// print(ReInput.controllers.controllerCount);
+		print(ReInput.controllers.controllerCount);
 
-		connectedGamepads = ReInput.controllers.joystickCount;
+		// connectedGamepads = ReInput.controllers.controllerCount;
+		if (connectedGamepads > maxGamepads) {
+			connectedGamepads = maxGamepads;
+		}
+
+		SetConnectedGamepads();
+
 		ActivateGamePads();
 	}
 
@@ -22,16 +29,25 @@ public class GameUIHandler : MonoBehaviour {
 	private void OnControllerConnected() {
 		print("New controller detected");
 
-        if (connectedGamepads < 4) {
+        if (connectedGamepads < maxGamepads) {
 			connectedGamepads++;
 			ActivateGamePads();
 		}
     }
 
 
+	private void SetConnectedGamepads() {
+		for (int i = 0; i < connectedGamepads; i++) {
+			if (uiStates[i] < 1) {
+				uiStates[i] = 1;
+			}
+		}
+	}
+
+
 	private void ActivateGamePads() {
 		for (int i = 0; i < connectedGamepads; i++) {
-			if (gamepadsGO[i].GetComponent<Image>().color != new Color32(255, 255, 255, 255)) {
+			if (uiStates[i] == 1) {
 				gamepadsGO[i].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 			}
 		}
