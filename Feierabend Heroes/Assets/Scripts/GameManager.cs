@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Rewired;
 
 public class GameManager : MonoBehaviour {
 
@@ -8,7 +9,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject spawnParent;
 	public List<GameObject> startSpawns;
 
-	public static int playerCount = 1;
+	public static int playerCount = 4;
 	public List<int> classesArr;
 
 
