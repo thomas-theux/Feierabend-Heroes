@@ -6,50 +6,46 @@ using Rewired;
 
 public class GameUIHandler : MonoBehaviour {
 
-	public GameObject[] gamepadsGO;
-	public int connectedGamepads = 1;
-	private int[] uiStates = {0, 0, 0, 0};
-	private int maxGamepads = 4;
+	public GameObject charCardGO;
+	public GameObject cardsParent;
+
+	private float startPosX = 283;
+
+	public static int connectedGamepads;
+	private int playerMax = 4;
+
+
+	public int testInt;
 
 
 	private void Awake() {
-		print(ReInput.controllers.controllerCount);
+		ReInput.ControllerConnectedEvent += OnControllerConnected;
+		connectedGamepads = ReInput.players.playerCount;
 
-		// connectedGamepads = ReInput.controllers.controllerCount;
-		if (connectedGamepads > maxGamepads) {
-			connectedGamepads = maxGamepads;
+		for (int i = 0; i < playerMax; i++) {
+			GameObject newCharCard = Instantiate(charCardGO);
+			newCharCard.transform.SetParent(cardsParent.transform, false);
+			newCharCard.transform.localPosition = new Vector3(startPosX * i, 0, 0);
+
+			newCharCard.GetComponent<CharCardsHandler>().charID = i;
 		}
+	}
 
-		SetConnectedGamepads();
-
-		ActivateGamePads();
+	private void Update() {
+		connectedGamepads = testInt;
+		if (connectedGamepads > playerMax) {
+			connectedGamepads = playerMax;
+		}
 	}
 
 
-	private void OnControllerConnected() {
-		print("New controller detected");
-
-        if (connectedGamepads < maxGamepads) {
+	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
+		if (connectedGamepads < playerMax) {
 			connectedGamepads++;
-			ActivateGamePads();
+			print("A controller was connected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
+		} else {
+			print("No more controllers allowed");
 		}
     }
-
-
-	private void SetConnectedGamepads() {
-		for (int i = 0; i < connectedGamepads; i++) {
-			if (uiStates[i] < 1) {
-				uiStates[i] = 1;
-			}
-		}
-	}
-
-
-	private void ActivateGamePads() {
-		for (int i = 0; i < connectedGamepads; i++) {
-			if (uiStates[i] == 1) {
-				gamepadsGO[i].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-			}
-		}
-	}
+	
 }
