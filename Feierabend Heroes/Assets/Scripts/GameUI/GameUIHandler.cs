@@ -15,15 +15,12 @@ public class GameUIHandler : MonoBehaviour {
 	private int playerMax = 1;
 
 	public static int[] playerClasses = {-1, -1, -1, -1};
-
-
-	public int testInt;
+	private List<int> activeGamepads = new List<int>();
 
 
 	private void Awake() {
 		ReInput.ControllerConnectedEvent += OnControllerConnected;
-		connectedGamepads = ReInput.players.playerCount;
-		print(ReInput.controllers.controllerCount);
+		connectedGamepads = ReInput.controllers.joystickCount;
 
 		for (int i = 0; i < playerMax; i++) {
 			GameObject newCharCard = Instantiate(charCardGO);
@@ -34,17 +31,9 @@ public class GameUIHandler : MonoBehaviour {
 		}
 	}
 
-	private void Update() {
-		connectedGamepads = testInt;
-		if (connectedGamepads > playerMax) {
-			connectedGamepads = playerMax;
-		}
-	}
-
 
 	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
 		if (connectedGamepads < playerMax) {
-			connectedGamepads++;
 			print("A controller was connected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
 		} else {
 			print("No more controllers allowed");

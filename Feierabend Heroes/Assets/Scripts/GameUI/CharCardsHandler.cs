@@ -71,13 +71,23 @@ public class CharCardsHandler : MonoBehaviour {
 
 
 	private void CheckForGamepad() {
-		if (GameUIHandler.connectedGamepads >= charID+1 && !isConnected) {
-			currentStatus = 1;
-			DisplayCurrentStatus();
-		} else if (GameUIHandler.connectedGamepads < charID+1 && isConnected) {
-			currentStatus = 0;
-			DisplayCurrentStatus();
-		}
+		// if (GameUIHandler.connectedGamepads >= charID+1 && !isConnected) {
+		// 	currentStatus = 1;
+		// 	DisplayCurrentStatus();
+		// } else if (GameUIHandler.connectedGamepads < charID+1 && isConnected) {
+		// 	currentStatus = 0;
+		// 	DisplayCurrentStatus();
+		// }
+
+		// print(ReInput.controllers.Controllers[2].isConnected);
+
+		// if (ReInput.controllers.Joysticks[0].id == charID && !isConnected) {
+		// 	currentStatus = 1;
+		// 	DisplayCurrentStatus();
+		// } else if (ReInput.controllers.Joysticks[0].id == charID && isConnected) {
+		// 	currentStatus = 0;
+		// 	DisplayCurrentStatus();
+		// }
 	}
 
 
@@ -142,6 +152,8 @@ public class CharCardsHandler : MonoBehaviour {
 			attackOneText.text = charClassContentScript.attackOneTexts[currentIndex];
 			attackTwoTitleText.text = charClassContentScript.attackTwoTitleTexts[currentIndex];
 			attackTwoText.text = charClassContentScript.attackTwoTexts[currentIndex];
+			attackOneImage.sprite = charClassContentScript.attackOneImages[currentIndex];
+			attackTwoImage.sprite = charClassContentScript.attackTwoImages[currentIndex];
 			pageControlOneGO.color = new Color32(255, 255, 255, 255);
 			pageControlTwoGO.color = new Color32(255, 255, 255, 75);
 		} else if (toggleSkill == 1) {
@@ -149,6 +161,8 @@ public class CharCardsHandler : MonoBehaviour {
 			attackOneText.text = charClassContentScript.skillOneTexts[currentIndex];
 			attackTwoTitleText.text = charClassContentScript.skillTwoTitleTexts[currentIndex];
 			attackTwoText.text = charClassContentScript.skillTwoTexts[currentIndex];
+			attackOneImage.sprite = charClassContentScript.skillOneImages[currentIndex];
+			attackTwoImage.sprite = charClassContentScript.skillTwoImages[currentIndex];
 			pageControlOneGO.color = new Color32(255, 255, 255, 75);
 			pageControlTwoGO.color = new Color32(255, 255, 255, 255);
 		}

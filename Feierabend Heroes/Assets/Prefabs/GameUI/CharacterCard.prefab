@@ -671,10 +671,18 @@ MonoBehaviour:
   - Place a gun that attacks enemies on sight
   - Spawn a companion that fights alongside you
   classImages: []
-  attackOneImages: []
-  attackTwoImages: []
-  skillOneImages: []
-  skillTwoImages: []
+  attackOneImages:
+  - {fileID: 21300000, guid: caa62581b3bcb47c9a5148de64604881, type: 3}
+  - {fileID: 21300000, guid: 847d17f20d68d47c8a57397f9e53e60d, type: 3}
+  attackTwoImages:
+  - {fileID: 21300000, guid: c27648202aff9445096934f5f470238a, type: 3}
+  - {fileID: 21300000, guid: a9cb0dc00d13b451fab3614d5783dc77, type: 3}
+  skillOneImages:
+  - {fileID: 21300000, guid: 6ab6124b239854b95910c60d22e72c65, type: 3}
+  - {fileID: 21300000, guid: 9fd6a3967fcc94dab8b8bce5328d6645, type: 3}
+  skillTwoImages:
+  - {fileID: 21300000, guid: 439fe7fec35444828964df63e2135fe0, type: 3}
+  - {fileID: 21300000, guid: 0c83d67b0cebc417b9c87601bb7afea9, type: 3}
 --- !u!114 &114315918066348942
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -65,10 +65,10 @@ public class CharClassContent : MonoBehaviour {
 		""
 	};
 
-	public Image[] classImages = {};
-	public Image[] attackOneImages = {};
-	public Image[] attackTwoImages = {};
-	public Image[] skillOneImages = {};
-	public Image[] skillTwoImages = {};
+	public Sprite[] classImages = {};
+	public Sprite[] attackOneImages = {};
+	public Sprite[] attackTwoImages = {};
+	public Sprite[] skillOneImages = {};
+	public Sprite[] skillTwoImages = {};
 
 }
