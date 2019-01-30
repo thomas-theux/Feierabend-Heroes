@@ -12,7 +12,9 @@ public class GameUIHandler : MonoBehaviour {
 	private float startPosX = 283;
 
 	public static int connectedGamepads;
-	private int playerMax = 4;
+	private int playerMax = 1;
+
+	public static int[] playerClasses = {-1, -1, -1, -1};
 
 
 	public int testInt;

@@ -141,6 +141,7 @@
      <Compile Include="Assets\Scripts\FPSDisplay.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameUI\CharCardsHandler.cs" />
+     <Compile Include="Assets\Scripts\GameUI\CharClassContent.cs" />
      <Compile Include="Assets\Scripts\GameUI\GameUIHandler.cs" />
      <Compile Include="Assets\Scripts\LevelTimers.cs" />
      <Compile Include="Assets\Scripts\LifeDeathHandler.cs" />

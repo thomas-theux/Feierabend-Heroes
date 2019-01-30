@@ -181,6 +181,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1346433367144150
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224146024472292028}
+  - component: {fileID: 222709747323379580}
+  - component: {fileID: 114016425259100118}
+  m_Layer: 5
+  m_Name: PageControlOne
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1469523567418578
 GameObject:
   m_ObjectHideFlags: 1
@@ -277,7 +294,7 @@ GameObject:
   - component: {fileID: 222692041925891758}
   - component: {fileID: 114694144632567662}
   m_Layer: 5
-  m_Name: AttackTwo
+  m_Name: PageControlTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,6 +351,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1919053281033036
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224536969950720190}
+  - component: {fileID: 222672016542536494}
+  - component: {fileID: 114177473788421706}
+  m_Layer: 5
+  m_Name: AttackTwo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1985838474860816
 GameObject:
   m_ObjectHideFlags: 1
@@ -362,6 +396,7 @@ GameObject:
   - component: {fileID: 222932037980056104}
   - component: {fileID: 114492019289728990}
   - component: {fileID: 114434729012226518}
+  - component: {fileID: 114314023937656226}
   m_Layer: 5
   m_Name: CharacterCard
   m_TagString: Untagged
@@ -369,6 +404,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114016425259100118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346433367144150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 0f1243e694b29486590be3dade0dcc2f, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114162465183790480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -401,7 +463,34 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: A mid-ranged bomb that explodes on impact
+  m_Text: ???
+--- !u!114 &114177473788421706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919053281033036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
 --- !u!114 &114180211260729712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -434,7 +523,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 240
+  m_Text: ???
 --- !u!114 &114214620786218964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -533,7 +622,59 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: BASIC ATTACKS
+  m_Text: ???
+--- !u!114 &114314023937656226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992279709183464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a0b45e5af2f4d11ab96b44ea1a835e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  classTexts:
+  - CLOUD MASTER
+  - NOVIST
+  charHPTexts:
+  - 300
+  - 240
+  charDEFTexts:
+  - 12
+  - 8
+  skillsTexts:
+  - Basic Attacks
+  - Specialization
+  attackOneTitleTexts:
+  - Wrench Punch
+  - Meteor Shot
+  attackOneTexts:
+  - A melee attack that hits enemies around you
+  - A long-ranged homing fireball
+  attackTwoTitleTexts:
+  - Bomb Throw
+  - Fire Block
+  attackTwoTexts:
+  - A mid-ranged bomb that explodes on impact
+  - A shield made of fire that stops projectiles
+  skillOneTitleTexts:
+  - Healing Beacon
+  - Like a Tank
+  skillOneTexts:
+  - Place a beacon that heals over time
+  - Increases your HP for a limited amount of time
+  skillTwoTitleTexts:
+  - Turret Gun
+  - Companion
+  skillTwoTexts:
+  - Place a gun that attacks enemies on sight
+  - Spawn a companion that fights alongside you
+  classImages: []
+  attackOneImages: []
+  attackTwoImages: []
+  skillOneImages: []
+  skillTwoImages: []
 --- !u!114 &114315918066348942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -566,7 +707,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Wrench Punch
+  m_Text: ???
 --- !u!114 &114345649446351784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -599,7 +740,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Bomb Throw
+  m_Text: ???
 --- !u!114 &114375858098524846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -671,6 +812,19 @@ MonoBehaviour:
   charClassGO: {fileID: 1045880684594922}
   arrowNavGO: {fileID: 1566517575012854}
   readyGO: {fileID: 1114503584219796}
+  classText: {fileID: 114748200116075204}
+  charHPText: {fileID: 114180211260729712}
+  charDEFText: {fileID: 114938263019580724}
+  classImage: {fileID: 0}
+  skillsText: {fileID: 114298100484660590}
+  attackOneImage: {fileID: 114835256114175860}
+  attackOneTitleText: {fileID: 114315918066348942}
+  attackOneText: {fileID: 114536336620105882}
+  attackTwoImage: {fileID: 114177473788421706}
+  attackTwoTitleText: {fileID: 114345649446351784}
+  attackTwoText: {fileID: 114162465183790480}
+  pageControlOneGO: {fileID: 114016425259100118}
+  pageControlTwoGO: {fileID: 114694144632567662}
 --- !u!114 &114459487550866694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -757,7 +911,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: A melee attack that hits enemies around you
+  m_Text: ???
 --- !u!114 &114694144632567662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -770,14 +924,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.29411766}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0f1243e694b29486590be3dade0dcc2f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -844,7 +998,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: CLOUD MASTER
+  m_Text: ???
 --- !u!114 &114756996104246556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -985,7 +1139,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 12
+  m_Text: ???
 --- !u!114 &114951470645266452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1104,6 +1258,13 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1469523567418578}
   m_CullTransparentMesh: 0
+--- !u!222 &222672016542536494
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919053281033036}
+  m_CullTransparentMesh: 0
 --- !u!222 &222686674899245278
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -1124,6 +1285,13 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1586070762016344}
+  m_CullTransparentMesh: 0
+--- !u!222 &222709747323379580
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346433367144150}
   m_CullTransparentMesh: 0
 --- !u!222 &222751585809668526
 CanvasRenderer:
@@ -1225,12 +1393,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224480379704708830}
-  m_RootOrder: 10
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -86, y: -375}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchoredPosition: {x: 5, y: -439.00003}
+  m_SizeDelta: {x: 6, y: 6}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224090712789476368
 RectTransform:
@@ -1272,6 +1440,24 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -14, y: -35}
   m_SizeDelta: {x: 29, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!224 &224146024472292028
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346433367144150}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224480379704708830}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -5, y: -439}
+  m_SizeDelta: {x: 6, y: 6}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224154248298619032
 RectTransform:
@@ -1348,9 +1534,11 @@ RectTransform:
   - {fileID: 224981782667707440}
   - {fileID: 224043129484552552}
   - {fileID: 224894378960536642}
-  - {fileID: 224080976384953266}
+  - {fileID: 224536969950720190}
   - {fileID: 224709831232779232}
   - {fileID: 224599707105520456}
+  - {fileID: 224146024472292028}
+  - {fileID: 224080976384953266}
   m_Father: {fileID: 224090712789476368}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1359,6 +1547,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 211, y: 445}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &224536969950720190
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1919053281033036}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224480379704708830}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -86, y: -375}
+  m_SizeDelta: {x: 40, y: 40}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224548952496549580
 RectTransform:
   m_ObjectHideFlags: 1
