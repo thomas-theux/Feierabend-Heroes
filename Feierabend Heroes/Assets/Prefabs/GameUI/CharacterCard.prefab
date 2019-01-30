@@ -668,6 +668,9 @@ MonoBehaviour:
   charID: 0
   gamepadIcon: {fileID: 114871778498987204}
   pressToJoinGO: {fileID: 1137544533327500}
+  charClassGO: {fileID: 1045880684594922}
+  arrowNavGO: {fileID: 1566517575012854}
+  readyGO: {fileID: 1114503584219796}
 --- !u!114 &114459487550866694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1204,7 +1207,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224090712789476368}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1241,8 +1244,8 @@ RectTransform:
   m_Children:
   - {fileID: 224672188346564906}
   - {fileID: 224456648748337698}
-  - {fileID: 224060724761367162}
   - {fileID: 224480379704708830}
+  - {fileID: 224060724761367162}
   - {fileID: 224632785190264378}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1349,7 +1352,7 @@ RectTransform:
   - {fileID: 224709831232779232}
   - {fileID: 224599707105520456}
   m_Father: {fileID: 224090712789476368}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

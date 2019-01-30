@@ -2322,22 +2322,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1992279709183464, guid: 0ccbafcb3128b481d8dff780e0ab96ca, type: 2}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114434729012226518, guid: 0ccbafcb3128b481d8dff780e0ab96ca,
-        type: 2}
-      propertyPath: charClass
-      value: 
-      objectReference: {fileID: 1642978600}
-    - target: {fileID: 224480379704708830, guid: 0ccbafcb3128b481d8dff780e0ab96ca,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224060724761367162, guid: 0ccbafcb3128b481d8dff780e0ab96ca,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ccbafcb3128b481d8dff780e0ab96ca, type: 2}
@@ -2411,11 +2396,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1596795473}
   m_CullTransparentMesh: 0
---- !u!1 &1642978600 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1045880684594922, guid: 0ccbafcb3128b481d8dff780e0ab96ca,
-    type: 2}
-  m_PrefabInternal: {fileID: 1589810435}
 --- !u!1 &1720824694
 GameObject:
   m_ObjectHideFlags: 0
