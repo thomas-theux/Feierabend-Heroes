@@ -23,6 +23,7 @@ public class GameUIHandler : MonoBehaviour {
 	private void Awake() {
 		ReInput.ControllerConnectedEvent += OnControllerConnected;
 		connectedGamepads = ReInput.players.playerCount;
+		print(ReInput.controllers.controllerCount);
 
 		for (int i = 0; i < playerMax; i++) {
 			GameObject newCharCard = Instantiate(charCardGO);
