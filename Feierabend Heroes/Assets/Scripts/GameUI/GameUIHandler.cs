@@ -12,7 +12,7 @@ public class GameUIHandler : MonoBehaviour {
 	private float startPosX = 283;
 
 	public static int connectedGamepads;
-	private int playerMax = 1;
+	private int playerMax = 4;
 
 	public static int[] playerClasses = {-1, -1, -1, -1};
 	private List<int> activeGamepads = new List<int>();
@@ -20,6 +20,8 @@ public class GameUIHandler : MonoBehaviour {
 
 	private void Awake() {
 		ReInput.ControllerConnectedEvent += OnControllerConnected;
+		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
+
 		connectedGamepads = ReInput.controllers.joystickCount;
 
 		for (int i = 0; i < playerMax; i++) {
@@ -34,9 +36,20 @@ public class GameUIHandler : MonoBehaviour {
 
 	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
 		if (connectedGamepads < playerMax) {
-			print("A controller was connected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
+			connectedGamepads = ReInput.controllers.joystickCount;
+			// print("A controller was connected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
 		} else {
 			print("No more controllers allowed");
+		}
+    }
+
+
+	void OnControllerDisconnected(ControllerStatusChangedEventArgs args) {
+		if (connectedGamepads > 0) {
+			connectedGamepads = ReInput.controllers.joystickCount;
+			// print("A controller was disconnected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
+		} else {
+			print("No more controllers to disconnect");
 		}
     }
 	

@@ -71,13 +71,13 @@ public class CharCardsHandler : MonoBehaviour {
 
 
 	private void CheckForGamepad() {
-		// if (GameUIHandler.connectedGamepads >= charID+1 && !isConnected) {
-		// 	currentStatus = 1;
-		// 	DisplayCurrentStatus();
-		// } else if (GameUIHandler.connectedGamepads < charID+1 && isConnected) {
-		// 	currentStatus = 0;
-		// 	DisplayCurrentStatus();
-		// }
+		if (GameUIHandler.connectedGamepads >= charID+1 && !isConnected) {
+			currentStatus = 1;
+			DisplayCurrentStatus();
+		} else if (GameUIHandler.connectedGamepads < charID+1 && isConnected) {
+			currentStatus = 0;
+			DisplayCurrentStatus();
+		}
 
 		// print(ReInput.controllers.Controllers[2].isConnected);
 
