@@ -15,7 +15,7 @@ public class GameUIHandler : MonoBehaviour {
 	private int playerMax = 4;
 
 	public static int[] playerClasses = {-1, -1, -1, -1};
-	private List<int> activeGamepads = new List<int>();
+	// private List<int> activeGamepads = new List<int>();
 
 
 	private void Awake() {

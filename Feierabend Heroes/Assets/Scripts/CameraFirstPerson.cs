@@ -17,7 +17,7 @@ public class CameraFirstPerson : MonoBehaviour {
 	public void InstantiateCams() {
 		Destroy(GameObject.Find("DevCam"));
 
-		for (int i = 0; i < GameManager.playerCount; i++) {
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 
 			Camera newCam = Instantiate(playerCamera);
 
@@ -40,13 +40,13 @@ public class CameraFirstPerson : MonoBehaviour {
 					break;
 			}
 
-			if (GameManager.playerCount == 2) {
+			if (SettingsHolder.playerCount == 2) {
 				camPosY = 0.0f;
 				camHeight = 1.0f;
 			}
 
 			// Single player camera for dev testing
-			if (GameManager.playerCount == 1) {
+			if (SettingsHolder.playerCount == 1) {
 				camPosX = 0.0f;
 				camPosY = 0.0f;
 				camHeight = 1.0f;

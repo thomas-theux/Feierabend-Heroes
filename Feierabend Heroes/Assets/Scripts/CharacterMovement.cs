@@ -40,33 +40,33 @@ public class CharacterMovement : MonoBehaviour {
 
 
 	private void Update() {
-		if (LevelTimers.startLevel) {
-			GetInput();
+		GetInput();
+		ToggleSkillboard();
+		AddGravity();
 
-			ToggleSkillboard();
-
-			AddGravity();
+		if (skillBoardOn) {
+			anim.SetFloat("charSpeed", 0);
 		}
 	}
 
 
 	private void FixedUpdate() {
-		if (LevelTimers.startLevel) {
 			if (!skillBoardOn) {
 				PlayerMovement();
 			}
-		}
 	}
 
 
 	private void GetInput() {
 		moveHorizontal = ReInput.players.GetPlayer(playerID).GetAxis("LS Horizontal");
 		moveVertical = ReInput.players.GetPlayer(playerID).GetAxis("LS Vertical");
+		
+		if (TimeHandler.startLevel) {
+			activationBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("R1");
 
-		activationBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("R1");
-
-		showSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Triangle");
-		closeSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Circle");
+			showSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Triangle");
+			closeSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Circle");
+		}
 	}
 
 
@@ -76,7 +76,7 @@ public class CharacterMovement : MonoBehaviour {
 		// movement = movement.normalized;
 		movement = Vector3.ClampMagnitude(movement, 1);
 
-		if (!isAttacking) {
+		if (!isAttacking && TimeHandler.startLevel) {
 			// Check if hero has rage mode on and HP < 10%
 			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 1) {
 				rageMoveSpeed = 1.5f;
@@ -95,7 +95,12 @@ public class CharacterMovement : MonoBehaviour {
 		// Add gravity
 		cc.Move(charVelocity * Time.deltaTime);
 
-		anim.SetFloat("charSpeed", (Mathf.Abs(moveHorizontal) + Mathf.Abs(moveVertical)));
+		if (!isAttacking || TimeHandler.startLevel) {
+			anim.SetFloat("charSpeed", (Mathf.Abs(moveHorizontal) + Mathf.Abs(moveVertical)));
+		}
+		if (isAttacking || !TimeHandler.startLevel || skillBoardOn) {
+			anim.SetFloat("charSpeed", 0);
+		}
 	}
 
 

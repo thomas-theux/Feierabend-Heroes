@@ -107,6 +107,17 @@ public class Class_Novist : MonoBehaviour {
 		// Set names of attacks in character sheet
 		characterSheetScript.attackNames[0] = attackNames[0];
 		characterSheetScript.attackNames[1] = attackNames[1];
+
+		// Attach attack GameObjects to script
+		attackOneGO = Resources.Load<GameObject>("Attacks/MeteorShot");
+		attackTwoGO = Resources.Load<GameObject>("Attacks/FireBlock");
+		skillTwoGO = Resources.Load<GameObject>("Attacks/Companion");
+
+		meteorShotSound = Resources.Load<GameObject>("Sounds/MeteorShotSound");
+		fireBlockCastSound = Resources.Load<GameObject>("Sounds/FireBlockCastSound");
+
+		skillCoolDownSound = Resources.Load<GameObject>("Sounds/SkillCooldownReadySound").GetComponent<AudioSource>();
+		skillNotAvailableSound = Resources.Load<GameObject>("Sounds/SkillNotAvailableSound").GetComponent<AudioSource>();
 	}
 
 
@@ -164,7 +175,7 @@ public class Class_Novist : MonoBehaviour {
 
 
 	private void Update() {
-		if (!charactMovementScript.skillBoardOn) {
+		if (!charactMovementScript.skillBoardOn && TimeHandler.startBattle) {
 			GetInput();
 		}
 

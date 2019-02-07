@@ -9,22 +9,16 @@ public class GameManager : MonoBehaviour {
 	public GameObject spawnParent;
 	public List<GameObject> startSpawns;
 
-	public static int playerCount = 4;
-	public List<int> classesArr;
-
 
 	private void Awake() {
-		AssignClasses();
-
+		// AssignClasses();
 		SpawnCharacter();
-
 		GetComponent<CameraManager>().InstantiateCams();
-		// GetComponent<CameraFirstPerson>().InstantiateCams();
 	}
 
 
 	private void SpawnCharacter() {
-		for (int i = 0; i < playerCount; i++) {
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 			startSpawns.Add(spawnParent.transform.GetChild(i).gameObject);
 
 			GameObject newChar = Instantiate(characterGO);
@@ -34,7 +28,7 @@ public class GameManager : MonoBehaviour {
 			newChar.tag = "Character" + i;
 			newChar.transform.GetChild(0).tag = "Character" + i;
 
-			switch(classesArr[i]) {
+			switch(SettingsHolder.playerClasses[i]) {
 				case 0:
 					newChar.AddComponent<Class_Cloudmaster>();
 					break;
@@ -47,9 +41,9 @@ public class GameManager : MonoBehaviour {
 
 
 	private void AssignClasses() {
-		for (int i = 0; i < playerCount; i++) {
-			int rndClass = Random.Range(1, 2);
-			classesArr.Add(rndClass);
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			int rndClass = Random.Range(0, 2);
+			SettingsHolder.playerClasses[i] = rndClass;
 		}
 	}
 	

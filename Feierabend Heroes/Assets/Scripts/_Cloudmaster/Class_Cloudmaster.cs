@@ -7,19 +7,19 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private int charClass = 0;
 
-	public GameObject attackOneGO;
-	public GameObject attackTwoGO;
-	public GameObject skillOneGO;
-	public GameObject skillTwoGO;
+	private GameObject attackOneGO;
+	private GameObject attackTwoGO;
+	private GameObject skillOneGO;
+	private GameObject skillTwoGO;
 	private CharacterSheet characterSheetScript;
 	private CharacterMovement charactMovementScript;
 	private UIHandler uiHandlerScript;
 
-	public GameObject wrenchPunchSound;
-	public GameObject bombThrowSound;
+	private GameObject wrenchPunchSound;
+	private GameObject bombThrowSound;
 	
-	public AudioSource skillCoolDownSound;
-	public AudioSource skillNotAvailableSound;
+	private AudioSource skillCoolDownSound;
+	private AudioSource skillNotAvailableSound;
 
 	private Transform attackSpawner;
 
@@ -104,6 +104,18 @@ public class Class_Cloudmaster : MonoBehaviour {
 		// Set names of attacks in character sheet
 		characterSheetScript.attackNames[0] = attackNames[0];
 		characterSheetScript.attackNames[1] = attackNames[1];
+
+		// Attach attack GameObjects to script
+		attackOneGO = Resources.Load<GameObject>("Attacks/WrenchPunch");
+		attackTwoGO = Resources.Load<GameObject>("Attacks/Bomb");
+		skillOneGO = Resources.Load<GameObject>("Attacks/HealingBeacon");
+		skillTwoGO = Resources.Load<GameObject>("Attacks/TurretGun");
+
+		wrenchPunchSound = Resources.Load<GameObject>("Sounds/WrenchPunchSound");
+		bombThrowSound = Resources.Load<GameObject>("Sounds/BombThrowSound");
+
+		skillCoolDownSound = Resources.Load<GameObject>("Sounds/SkillCooldownReadySound").GetComponent<AudioSource>();
+		skillNotAvailableSound = Resources.Load<GameObject>("Sounds/SkillNotAvailableSound").GetComponent<AudioSource>();
 	}
 
 
@@ -161,7 +173,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 
 	private void Update() {
-		if (!charactMovementScript.skillBoardOn) {
+		if (!charactMovementScript.skillBoardOn && TimeHandler.startBattle) {
 			GetInput();
 		}
 
