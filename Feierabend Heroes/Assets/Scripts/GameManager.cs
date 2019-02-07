@@ -40,11 +40,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-	private void AssignClasses() {
-		for (int i = 0; i < SettingsHolder.playerCount; i++) {
-			int rndClass = Random.Range(0, 2);
-			SettingsHolder.playerClasses[i] = rndClass;
-		}
-	}
+	// DEV TESTING
+	// private void AssignClasses() {
+	// 	for (int i = 0; i < SettingsHolder.playerCount; i++) {
+	// 		int rndClass = Random.Range(0, 2);
+	// 		SettingsHolder.playerClasses[i] = rndClass;
+	// 	}
+	// }
 	
 }

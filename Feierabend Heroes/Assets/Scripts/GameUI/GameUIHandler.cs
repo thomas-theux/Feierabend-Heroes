@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Rewired;
 
 public class GameUIHandler : MonoBehaviour {
@@ -13,9 +14,6 @@ public class GameUIHandler : MonoBehaviour {
 
 	public static int connectedGamepads;
 	private int playerMax = 4;
-
-	public static int[] playerClasses = {-1, -1, -1, -1};
-	// private List<int> activeGamepads = new List<int>();
 
 
 	private void Awake() {
@@ -34,6 +32,14 @@ public class GameUIHandler : MonoBehaviour {
 	}
 
 
+	private void Update() {
+		if (ReInput.players.GetPlayer(0).GetButtonDown("Triangle")) {
+			SettingsHolder.playerCount = connectedGamepads;
+			SceneManager.LoadScene("2 TestLevel");
+		}
+	}
+
+
 	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
 		if (connectedGamepads < playerMax) {
 			connectedGamepads = ReInput.controllers.joystickCount;
@@ -41,7 +47,7 @@ public class GameUIHandler : MonoBehaviour {
 		} else {
 			print("No more controllers allowed");
 		}
-    }
+  }
 
 
 	void OnControllerDisconnected(ControllerStatusChangedEventArgs args) {
@@ -51,6 +57,6 @@ public class GameUIHandler : MonoBehaviour {
 		} else {
 			print("No more controllers to disconnect");
 		}
-    }
+  }
 	
 }

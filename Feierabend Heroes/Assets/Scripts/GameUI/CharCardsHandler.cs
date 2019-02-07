@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Rewired;
-using UnityEngine.SceneManagement;
 
 public class CharCardsHandler : MonoBehaviour {
 
@@ -44,8 +43,6 @@ public class CharCardsHandler : MonoBehaviour {
 	private bool dPadLeft;
 	private bool dPadRight;
 
-	private bool startButton;
-
 
 	private void Awake() {
 		charClassContentScript = GetComponent<CharClassContent>();
@@ -70,8 +67,6 @@ public class CharCardsHandler : MonoBehaviour {
 
 		dPadLeft = ReInput.players.GetPlayer(charID).GetButtonDown("DPadLeft");
 		dPadRight = ReInput.players.GetPlayer(charID).GetButtonDown("DPadRight");
-
-		startButton = ReInput.players.GetPlayer(charID).GetButtonDown("Triangle");
 	}
 
 
@@ -105,7 +100,7 @@ public class CharCardsHandler : MonoBehaviour {
 		}
 
 		if (currentStatus == 2 || currentStatus == 3) {
-			if (currentStatus == 2) {
+			if (currentStatus == 3) {
 				if (selectButton) {
 					SettingsHolder.playerClasses[charID] = currentIndex;
 				}
@@ -121,10 +116,6 @@ public class CharCardsHandler : MonoBehaviour {
 				toggleSkill = toggleSkill == 0 ? 1 : 0;
 				DisplayClasses();
 			}
-		}
-
-		if (startButton) {
-			SceneManager.LoadScene("2 TestLevel");
 		}
 	}
 
