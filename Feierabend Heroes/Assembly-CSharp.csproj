@@ -150,6 +150,7 @@
      <Compile Include="Assets\Scripts\OrbChest.cs" />
      <Compile Include="Assets\Scripts\OrbChestSpawner.cs" />
      <Compile Include="Assets\Scripts\ParticleDamage.cs" />
+     <Compile Include="Assets\Scripts\SafeZone.cs" />
      <Compile Include="Assets\Scripts\SettingsHolder.cs" />
      <Compile Include="Assets\Scripts\SkillHandler.cs" />
      <Compile Include="Assets\Scripts\SkillTreeUIHandler.cs" />

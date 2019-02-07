@@ -18,8 +18,20 @@ public class TimeHandler : MonoBehaviour {
 	private bool levelStartTimerActive = false;
 	private bool battleStartTimerActive = false;
 
+	private GameObject levelGO;
+	public GameObject safeZoneGO;
+
+	private float minPosX;
+	private float minPosZ;
+	private float maxPosX;
+	private float maxPosZ;
+
+	private float levelPadding = 20.0f;
+
 
 	private void Awake() {
+		levelGO = GameObject.Find("Ground");
+
 		levelStartTimerActive = true;
 		levelStartTime = levelStartTimeDef;
 		battleStartTime = battleStartTimeDef;
@@ -56,6 +68,18 @@ public class TimeHandler : MonoBehaviour {
 			battleStartTime -= Time.deltaTime;
 		} else {
 			startBattle = true;
+
+			minPosX = 0 - levelGO.transform.localScale.x / 2 + levelPadding;
+			minPosZ = 0 - levelGO.transform.localScale.z / 2 + levelPadding;
+			maxPosX = levelGO.transform.localScale.x / 2 - levelPadding;
+			maxPosZ = levelGO.transform.localScale.z / 2 - levelPadding;
+
+			float rndPosX = Random.Range(minPosX, maxPosX);
+			float rndPosZ = Random.Range(minPosZ, maxPosZ);
+
+			GameObject newSafeZone = Instantiate(safeZoneGO);
+			newSafeZone.transform.position = new Vector3(rndPosX, newSafeZone.transform.position.y, rndPosZ);
+
 			battleStartTimerActive = false;
 		}
 	}

@@ -750,6 +750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelStartTimerText: {fileID: 913712303}
+  safeZoneGO: {fileID: 1375307404633320, guid: 60c1e9fab603c4385b75617afa57728b, type: 2}
 --- !u!1 &551690843
 GameObject:
   m_ObjectHideFlags: 0
