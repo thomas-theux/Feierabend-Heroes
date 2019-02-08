@@ -19,7 +19,6 @@ public class SafeZone : MonoBehaviour {
 
 	private void Awake() {
 		safeZoneLight = GetComponent<Light>();
-
 		StartCoroutine(DecreaseSize());
 	}
 

@@ -46,12 +46,12 @@ public class LifeDeathHandler : MonoBehaviour {
 
 
 	private void SelfHeal() {
-		characterSheetScript.currentHealth += 0.1f;
+		characterSheetScript.currentHealth += 10.0f * Time.deltaTime;
 	}
 
 
 	public void OutsideSafeZone() {
-		characterSheetScript.currentHealth -= 0.001f;
+		characterSheetScript.currentHealth -= 24.0f * Time.deltaTime;
 	}
 
 

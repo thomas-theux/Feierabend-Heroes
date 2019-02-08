@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class SafeZoneDamage : MonoBehaviour {
 
-	private bool isOutside = false;
-
-
 	private void OnTriggerExit(Collider other) {
-		other.GetComponent<LifeDeathHandler>().isOutside = true;
+		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != "Environment") {
+			other.GetComponent<LifeDeathHandler>().isOutside = true;
+		}
 	}
 
 
 	private void OnTriggerEnter(Collider other) {
-		other.GetComponent<LifeDeathHandler>().isOutside = false;
+		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != "Environment") {
+			other.GetComponent<LifeDeathHandler>().isOutside = false;
+		}
 	}
 
 }
