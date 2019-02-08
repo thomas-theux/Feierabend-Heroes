@@ -4,26 +4,34 @@ using UnityEngine;
 
 public class SafeZone : MonoBehaviour {
 
-	public SphereCollider safeZoneCol;
 	private Light safeZoneLight;
+	public CapsuleCollider safeZoneCol;
 
-	private float decreaseDuration = 10.0f;
+	public float decreaseDuration;
+	private float t = 0;
+
+	private float startSizeLight = 274.0f;
+	private float endSizeLight = 18.0f;
 
 	private float startSizeCol = 110.0f;
 	private float endSizeCol = 7.0f;
 
-	private float startSizeLight = 140.0f;
-	private float endSizeLight = 20.0f;
+
+	private void Awake() {
+		safeZoneLight = GetComponent<Light>();
+
+		StartCoroutine(DecreaseSize());
+	}
 
 
-	private void Update() {
-		safeZoneCol.radius = Mathf.MoveTowards(startSizeCol, endSizeCol, decreaseDuration);
-		safeZoneLight.spotAngle = Mathf.MoveTowards(startSizeLight, endSizeLight, decreaseDuration);
+	private IEnumerator DecreaseSize() {
+		while (t < decreaseDuration) {
+			t += Time.deltaTime;
+			safeZoneLight.cookieSize = Mathf.Lerp(startSizeLight, endSizeLight, t / decreaseDuration);
+			safeZoneCol.radius = Mathf.Lerp(startSizeCol, endSizeCol, t / decreaseDuration);
 
-		// if (transform.localScale.x > minSizeCol) {
-		// 	colliderGO.transform.localScale -= new Vector3(decreaseSpeedCol, 0, decreaseSpeedCol);
-		// 	safeZoneLight.spotAngle -= decreaseSpeedLight;
-		// }
+			yield return null;
+		}
 	}
 
 }

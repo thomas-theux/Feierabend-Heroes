@@ -17,6 +17,7 @@ public class LifeDeathHandler : MonoBehaviour {
 	private float defTwoSPD;
 
 	public bool healthIsFull = true;
+	public bool isOutside = false;
 
 
 	private void Awake() {
@@ -31,6 +32,11 @@ public class LifeDeathHandler : MonoBehaviour {
 			SelfHeal();
 		}
 
+		// Damage character when outside of safe zone
+		if (isOutside && characterSheetScript.currentHealth > 0) {
+			OutsideSafeZone();
+		}
+
 		HPCapCheck();
 
 		CheckForRageMode();
@@ -41,6 +47,11 @@ public class LifeDeathHandler : MonoBehaviour {
 
 	private void SelfHeal() {
 		characterSheetScript.currentHealth += 0.1f;
+	}
+
+
+	public void OutsideSafeZone() {
+		characterSheetScript.currentHealth -= 0.001f;
 	}
 
 

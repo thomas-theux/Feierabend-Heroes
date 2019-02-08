@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -723,7 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916aee42cf0194335868d32163b24ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbChestAmount: 10
+  orbChestAmount: 0
   orbChestGO: {fileID: 1053412921110704, guid: 3776bdeaf60284bbd9895e498772cadd, type: 2}
 --- !u!114 &546525276
 MonoBehaviour:
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c76245f2cbf406d918000d6ff940f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appleAmount: 10
+  appleAmount: 0
   appleGO: {fileID: 1235436006785554, guid: 9a701eca9ef874181a5b2b1912d6d4e1, type: 2}
 --- !u!114 &546525277
 MonoBehaviour:
