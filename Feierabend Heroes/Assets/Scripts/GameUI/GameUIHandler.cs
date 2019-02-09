@@ -15,6 +15,8 @@ public class GameUIHandler : MonoBehaviour {
 	public static int connectedGamepads;
 	private int playerMax = 4;
 
+	private bool startedLevel = false;
+
 
 	private void Awake() {
 		ReInput.ControllerConnectedEvent += OnControllerConnected;
@@ -33,7 +35,8 @@ public class GameUIHandler : MonoBehaviour {
 
 
 	private void Update() {
-		if (ReInput.players.GetPlayer(0).GetButtonDown("Triangle")) {
+		if (ReInput.players.GetPlayer(0).GetButtonDown("Triangle") && !startedLevel) {
+			startedLevel = true;
 			SettingsHolder.playerCount = connectedGamepads;
 			// SceneManager.LoadScene("2 TestLevel");
 			SceneManager.LoadScene("3 Aeras");

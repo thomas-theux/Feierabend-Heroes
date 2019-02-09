@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimeHandler : MonoBehaviour {
 	
@@ -14,6 +15,8 @@ public class TimeHandler : MonoBehaviour {
 	private float levelStartTime;
 	private float battleStartTimeDef = 6.0f;
 	private float battleStartTime;
+	private float lastSecondsTimeDef = 3.0f;
+	private float lastSecondsTime;
 
 	private bool levelStartTimerActive = false;
 	private bool battleStartTimerActive = false;
@@ -28,6 +31,8 @@ public class TimeHandler : MonoBehaviour {
 
 	private float levelPadding = 20.0f;
 
+	public static bool lastSeconds = false;
+
 
 	private void Awake() {
 		levelGO = GameObject.Find("Ground");
@@ -35,6 +40,7 @@ public class TimeHandler : MonoBehaviour {
 		levelStartTimerActive = true;
 		levelStartTime = levelStartTimeDef;
 		battleStartTime = battleStartTimeDef;
+		lastSecondsTime = lastSecondsTimeDef;
 	}
 
 
@@ -45,6 +51,10 @@ public class TimeHandler : MonoBehaviour {
 
 		if (battleStartTimerActive) {
 			BattleStartTimer();
+		}
+
+		if (lastSeconds) {
+			LastSecondsTimer();
 		}
 	}
 
@@ -85,9 +95,22 @@ public class TimeHandler : MonoBehaviour {
 	}
 
 
-	IEnumerator WaitOneSec() {
+	private IEnumerator WaitOneSec() {
 		yield return new WaitForSeconds(1.0f);
 		levelStartTimerText.text = "";
+	}
+
+
+	private void LastSecondsTimer() {
+		if (lastSecondsTime > 0.1f) {
+			lastSecondsTime -= Time.deltaTime;
+			levelStartTimerText.text = Mathf.Ceil(lastSecondsTime) + "";
+		} else {
+			lastSeconds = false;
+			levelStartTimerText.text = "Round Over!";
+			startLevel = false;
+			StartCoroutine(WaitOneSec());
+		}
 	}
 
 }

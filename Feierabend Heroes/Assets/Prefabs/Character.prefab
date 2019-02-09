@@ -875,7 +875,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b3685a3bf354fc8ac63a45839d8fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dudeHeadGO: {fileID: 1562275295476370}
+  dudeBodyGO: {fileID: 1982364307173938}
   healthIsFull: 1
+  isOutside: 0
 --- !u!114 &114583881753239530
 MonoBehaviour:
   m_ObjectHideFlags: 1

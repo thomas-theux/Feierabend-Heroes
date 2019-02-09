@@ -8,12 +8,18 @@ public class GameManager : MonoBehaviour {
 	public GameObject characterGO;
 	public GameObject spawnParent;
 	public List<GameObject> startSpawns;
+	public static List<int> activePlayers = new List<int>();
 
 
 	private void Awake() {
 		// AssignClasses();
 		SpawnCharacter();
 		GetComponent<CameraManager>().InstantiateCams();
+
+		// Add players to array to see which are active
+		for (int i = 0; i < SettingsHolder.playerCount; i ++) {
+			activePlayers.Add(i);
+		}
 	}
 
 

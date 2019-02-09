@@ -6,6 +6,9 @@ public class LifeDeathHandler : MonoBehaviour {
 
 	private CharacterSheet characterSheetScript;
 
+	public GameObject dudeHeadGO;
+	public GameObject dudeBodyGO;
+
 	private GameObject levelGO;
 	private float clearance = 5.0f;
 
@@ -19,10 +22,14 @@ public class LifeDeathHandler : MonoBehaviour {
 	public bool healthIsFull = true;
 	public bool isOutside = false;
 
+	private bool isWaiting = false;
+
 
 	private void Awake() {
 		characterSheetScript = GetComponent<CharacterSheet>();
 		levelGO = GameObject.Find("Ground");
+
+		isWaiting = false;
 	}
 
 
@@ -41,7 +48,9 @@ public class LifeDeathHandler : MonoBehaviour {
 
 		CheckForRageMode();
 
-		KillCharacter();
+		if (characterSheetScript.currentHealth <= 0 && !isWaiting) {
+			StartCoroutine(KillCharacter());
+		}
 	}
 
 
@@ -78,38 +87,62 @@ public class LifeDeathHandler : MonoBehaviour {
 	}
 
 
-	private void KillCharacter() {
-		// Kill player if health is below 0
-		if (characterSheetScript.currentHealth <= 0) {
-			gameObject.SetActive(false);
+	private IEnumerator KillCharacter() {
+		isWaiting = true;
+		// gameObject.SetActive(false);
+		dudeHeadGO.GetComponent<Renderer>().enabled = false;
+		dudeBodyGO.GetComponent<Renderer>().enabled = false;
+		gameObject.GetComponent<CapsuleCollider>().enabled = false;
 
-			// Check for RESPAWN skill
-			if (characterSheetScript.respawnChance > 0) {
-				int rndRespawn = Random.Range(1, 101);
+		yield return new WaitForSeconds(2.0f);
 
-				if (rndRespawn > characterSheetScript.respawnChance) {
-					
-				} else {
-					float minX = (levelGO.transform.localScale.x / 2) - levelGO.transform.localScale.x + clearance;
-					float maxX = (levelGO.transform.localScale.x / 2) - clearance;
-					float minZ = (levelGO.transform.localScale.z / 2) - levelGO.transform.localScale.z + clearance;
-					float maxZ = (levelGO.transform.localScale.z / 2) - clearance;
+		CheckForRespawn();
+	}
 
-					float posX = Random.Range(minX, maxX);
-					float posZ = Random.Range(minZ, maxZ);
 
-					this.gameObject.transform.position = new Vector3(posX, 1, posZ);
+	private void CheckForRespawn() {
+		// Check for RESPAWN skill
+		if (characterSheetScript.respawnChance > 0) {
+			int rndRespawn = Random.Range(1, 101);
 
-					characterSheetScript.currentHealth = characterSheetScript.maxHealth;
+			if (rndRespawn > characterSheetScript.respawnChance) {
+				RemoveFromList();
+			} else {
+				float minX = (levelGO.transform.localScale.x / 2) - levelGO.transform.localScale.x + clearance;
+				float maxX = (levelGO.transform.localScale.x / 2) - clearance;
+				float minZ = (levelGO.transform.localScale.z / 2) - levelGO.transform.localScale.z + clearance;
+				float maxZ = (levelGO.transform.localScale.z / 2) - clearance;
 
-					gameObject.SetActive(true);
+				float posX = Random.Range(minX, maxX);
+				float posZ = Random.Range(minZ, maxZ);
 
-					// Give 1 ORB when ORB skill is perfected and character is being respawned
-					if (characterSheetScript.respawnOrb) {
-						characterSheetScript.currentOrbs += 1;
-					}
+				this.gameObject.transform.position = new Vector3(posX, 1, posZ);
+
+				characterSheetScript.currentHealth = characterSheetScript.maxHealth;
+
+				isWaiting = false;
+
+				// gameObject.SetActive(true);
+				dudeHeadGO.GetComponent<Renderer>().enabled = true;
+				dudeBodyGO.GetComponent<Renderer>().enabled = true;
+				gameObject.GetComponent<CapsuleCollider>().enabled = true;
+
+				// Give 1 ORB when ORB skill is perfected and character is being respawned
+				if (characterSheetScript.respawnOrb) {
+					characterSheetScript.currentOrbs += 1;
 				}
 			}
+		} else {
+			RemoveFromList();
+		}
+	}
+
+
+	private void RemoveFromList() {
+		// Remove the just killed character from the player array
+		GameManager.activePlayers.Remove(characterSheetScript.charID);
+		if (GameManager.activePlayers.Count == 1) {
+			TimeHandler.lastSeconds = true;
 		}
 	}
 
