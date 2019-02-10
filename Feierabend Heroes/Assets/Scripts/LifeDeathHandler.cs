@@ -123,9 +123,7 @@ public class LifeDeathHandler : MonoBehaviour {
 				isWaiting = false;
 
 				// gameObject.SetActive(true);
-				dudeHeadGO.GetComponent<Renderer>().enabled = true;
-				dudeBodyGO.GetComponent<Renderer>().enabled = true;
-				gameObject.GetComponent<CapsuleCollider>().enabled = true;
+				EnableCharRenderer();
 
 				// Give 1 ORB when ORB skill is perfected and character is being respawned
 				if (characterSheetScript.respawnOrb) {
@@ -144,6 +142,13 @@ public class LifeDeathHandler : MonoBehaviour {
 		if (GameManager.activePlayers.Count == 1) {
 			TimeHandler.lastSeconds = true;
 		}
+	}
+
+
+	public void EnableCharRenderer() {
+		dudeHeadGO.GetComponent<Renderer>().enabled = true;
+		dudeBodyGO.GetComponent<Renderer>().enabled = true;
+		gameObject.GetComponent<CapsuleCollider>().enabled = true;
 	}
 
 }

@@ -20,6 +20,7 @@ public class CameraManager : MonoBehaviour {
 		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 
 			Camera newCam = Instantiate(playerCamera);
+			// SettingsHolder.camArr.Add(newCam);
 
 			switch (i) {
 				case 0:
@@ -59,6 +60,7 @@ public class CameraManager : MonoBehaviour {
 
 			// Instantiate skill UI for every player
 			GameObject newSkillUI = Instantiate(skillUIGO);
+			// SettingsHolder.skillUIArr.Add(newSkillUI);
 			newSkillUI.name = "SkillUI" + i;
 			newSkillUI.transform.parent = GameObject.Find("Character" + i).transform;
 			newSkillUI.transform.GetChild(0).GetComponent<Canvas>().worldCamera = GameObject.Find("PlayerCamera" + i).gameObject.GetComponent<Camera>();
@@ -67,6 +69,7 @@ public class CameraManager : MonoBehaviour {
 
 			// Instantiate character UI for every player
 			GameObject newCharUI = Instantiate(charUIGO);
+			// SettingsHolder.charUIArr.Add(newCharUI);
 			newCharUI.name = "CharUI" + i;
 			newCharUI.transform.SetParent(GameObject.Find("Character" + i).transform);
 			newCharUI.GetComponent<Canvas>().worldCamera = GameObject.Find("PlayerCamera" + i).gameObject.GetComponent<Camera>();
@@ -81,6 +84,9 @@ public class CameraManager : MonoBehaviour {
 			}
 
 		}
+
+		// Tell the SettingsHolder that the UIs have been spawned once and don't need to be spawned again
+		SettingsHolder.initializeUI = true;
 	}
 
 }

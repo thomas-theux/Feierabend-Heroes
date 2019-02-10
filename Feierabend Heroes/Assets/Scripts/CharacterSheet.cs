@@ -69,4 +69,9 @@ public class CharacterSheet : MonoBehaviour {
 	public string skillOneUpgradePerk = "";
 	public string skillTwoUpgradePerk = "";
 
+
+	private void Awake() {
+		DontDestroyOnLoad(this.gameObject);
+	}
+
 }

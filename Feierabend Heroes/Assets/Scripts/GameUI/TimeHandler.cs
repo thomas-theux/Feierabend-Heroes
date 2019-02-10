@@ -110,6 +110,7 @@ public class TimeHandler : MonoBehaviour {
 			levelStartTimerText.text = "Round Over!";
 			startLevel = false;
 			StartCoroutine(WaitOneSec());
+			SceneManager.LoadScene("3 Aeras");
 		}
 	}
 
