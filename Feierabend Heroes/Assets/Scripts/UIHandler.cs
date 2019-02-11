@@ -21,6 +21,8 @@ public class UIHandler : MonoBehaviour {
 	
 	public float smoothSpeed;
 
+	private bool lowHealth = false;
+
 	
 	public void InitializeCharUI() {
 		characterSheetScript = transform.root.GetComponent<CharacterSheet>();
@@ -76,9 +78,14 @@ public class UIHandler : MonoBehaviour {
 		float smoothedHP = Mathf.Lerp(currentHealthImage.fillAmount, desiredHP, smoothSpeed * Time.deltaTime);
 		currentHealthImage.fillAmount = smoothedHP;
 
-		if (currentHealthImage.fillAmount <= 0.2f) {
+		if (currentHealthImage.fillAmount <= 0.2f && !lowHealth) {
+			lowHealth = true;
 			healthBarImage.color = new Color32(255, 0, 0, 255);
 			currentHealthImage.color = new Color32(255, 0, 0, 255);
+		} else if (currentHealthImage.fillAmount > 0.2f && lowHealth) {
+			lowHealth = false;
+			healthBarImage.color = new Color32(255, 255, 255, 255);
+			currentHealthImage.color = new Color32(255, 255, 255, 255);
 		}
 	}
 

@@ -37,9 +37,13 @@ public class GameUIHandler : MonoBehaviour {
 	private void Update() {
 		if (ReInput.players.GetPlayer(0).GetButtonDown("Triangle") && !startedLevel) {
 			startedLevel = true;
+			
 			SettingsHolder.playerCount = connectedGamepads;
-			// SceneManager.LoadScene("2 TestLevel");
 			SceneManager.LoadScene("3 Aeras");
+
+			// DEV TESTING
+			// SettingsHolder.playerCount = 4;
+			// SceneManager.LoadScene("2 TestLevel");
 		}
 	}
 

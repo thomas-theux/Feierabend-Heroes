@@ -37,6 +37,12 @@ public class TimeHandler : MonoBehaviour {
 	private void Awake() {
 		levelGO = GameObject.Find("Ground");
 
+		// Reset all bools
+		startLevel = false;
+		startBattle = false;
+		battleStartTimerActive = false;
+		lastSeconds = false;
+
 		levelStartTimerActive = true;
 		levelStartTime = levelStartTimeDef;
 		battleStartTime = battleStartTimeDef;
@@ -64,7 +70,7 @@ public class TimeHandler : MonoBehaviour {
 			levelStartTime -= Time.deltaTime;
 			levelStartTimerText.text = Mathf.Ceil(levelStartTime) + "";
 		} else {
-			levelStartTimerText.text = "GO!";
+			levelStartTimerText.text = "Explore!";
 			StartCoroutine(WaitOneSec());
 			startLevel = true;
 			battleStartTimerActive = true;
@@ -109,6 +115,8 @@ public class TimeHandler : MonoBehaviour {
 			lastSeconds = false;
 			levelStartTimerText.text = "Round Over!";
 			startLevel = false;
+			startBattle = false;
+
 			StartCoroutine(WaitOneSec());
 			SceneManager.LoadScene("3 Aeras");
 		}

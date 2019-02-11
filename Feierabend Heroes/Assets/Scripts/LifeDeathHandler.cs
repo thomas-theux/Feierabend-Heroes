@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LifeDeathHandler : MonoBehaviour {
 
@@ -23,13 +24,30 @@ public class LifeDeathHandler : MonoBehaviour {
 	public bool isOutside = false;
 
 	private bool isWaiting = false;
+	public bool charIsDead = false;
 
 
 	private void Awake() {
 		characterSheetScript = GetComponent<CharacterSheet>();
 		levelGO = GameObject.Find("Ground");
+	}
 
+
+	void OnEnable() {
+		SceneManager.sceneLoaded += OnLevelFinishedLoading;
+	}
+         
+	void OnDisable() {
+		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+	}
+
+
+	private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
+		// Reset all bools
+		healthIsFull = true;
+		isOutside = false;
 		isWaiting = false;
+		charIsDead = false;
 	}
 
 
@@ -48,7 +66,7 @@ public class LifeDeathHandler : MonoBehaviour {
 
 		CheckForRageMode();
 
-		if (characterSheetScript.currentHealth <= 0 && !isWaiting) {
+		if (characterSheetScript.currentHealth <= 0 && !isWaiting && !charIsDead) {
 			StartCoroutine(KillCharacter());
 		}
 	}
@@ -89,6 +107,7 @@ public class LifeDeathHandler : MonoBehaviour {
 
 	private IEnumerator KillCharacter() {
 		isWaiting = true;
+		charIsDead = true;
 		// gameObject.SetActive(false);
 		dudeHeadGO.GetComponent<Renderer>().enabled = false;
 		dudeBodyGO.GetComponent<Renderer>().enabled = false;
@@ -121,6 +140,7 @@ public class LifeDeathHandler : MonoBehaviour {
 				characterSheetScript.currentHealth = characterSheetScript.maxHealth;
 
 				isWaiting = false;
+				charIsDead = false;
 
 				// gameObject.SetActive(true);
 				EnableCharRenderer();

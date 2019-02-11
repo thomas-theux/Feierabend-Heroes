@@ -10,11 +10,17 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> startSpawns;
 	public static List<int> activePlayers = new List<int>();
 
-	// private List<GameObject> characterArr = new List<GameObject>();
+	private List<GameObject> characterArr = new List<GameObject>();
 
 
 	private void Awake() {
 		// AssignClasses();
+
+		// Clear list on startup
+		activePlayers.Clear();
+
+		// Destroy dev cam
+		Destroy(GameObject.Find("DevCam"));
 
 		// Check if characters have already been spawned
 		if (!SettingsHolder.initialSpawn) {
@@ -33,7 +39,7 @@ public class GameManager : MonoBehaviour {
 			startSpawns.Add(spawnParent.transform.GetChild(i).gameObject);
 
 			GameObject newChar = Instantiate(characterGO);
-			SettingsHolder.characterArr.Add(newChar);
+			characterArr.Add(newChar);
 			newChar.transform.position = startSpawns[i].transform.position;
 
 			newChar.GetComponent<CharacterMovement>().playerID = i;
@@ -66,11 +72,14 @@ public class GameManager : MonoBehaviour {
 
 	private void ResetCharacters() {
 		for (int j = 0; j < SettingsHolder.playerCount; j++) {
-			SettingsHolder.charUIArr[j].GetComponent<CharacterSheet>().currentHealth = SettingsHolder.charUIArr[j].GetComponent<CharacterSheet>().maxHealth;
 			startSpawns.Add(spawnParent.transform.GetChild(j).gameObject);
+			GameObject findChar = GameObject.Find("Character" + j);
 
-			SettingsHolder.characterArr[j].transform.position = startSpawns[j].transform.position;
-			SettingsHolder.characterArr[j].GetComponent<LifeDeathHandler>().EnableCharRenderer();
+			findChar.transform.position = startSpawns[j].transform.position;
+			findChar.GetComponent<LifeDeathHandler>().EnableCharRenderer();
+
+			findChar.GetComponent<CharacterSheet>().currentHealth = findChar.GetComponent<CharacterSheet>().maxHealth;
+			// charUIArr[j].GetComponent<CharacterSheet>().currentHealth = charUIArr[j].GetComponent<CharacterSheet>().maxHealth;
 		}
 	}
 

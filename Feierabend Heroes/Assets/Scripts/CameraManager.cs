@@ -15,7 +15,7 @@ public class CameraManager : MonoBehaviour {
 
 
 	public void InstantiateCams() {
-		Destroy(GameObject.Find("DevCam"));
+		// Destroy(GameObject.Find("DevCam"));
 
 		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 
@@ -84,9 +84,6 @@ public class CameraManager : MonoBehaviour {
 			}
 
 		}
-
-		// Tell the SettingsHolder that the UIs have been spawned once and don't need to be spawned again
-		SettingsHolder.initializeUI = true;
 	}
 
 }

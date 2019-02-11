@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Rewired;
 
 public class CharacterMovement : MonoBehaviour {
@@ -8,6 +9,9 @@ public class CharacterMovement : MonoBehaviour {
 	public int playerID;
 	private CharacterController cc;
 	private CharacterSheet characterSheetScript;
+	private LifeDeathHandler lifeDeathHandlerScript;
+
+	private GameObject campfireTarget;
 
 	public Animator anim;
 	public AudioSource openSkillboardSound;
@@ -30,12 +34,30 @@ public class CharacterMovement : MonoBehaviour {
 	private void Awake() {
 		// Get stats from skill script
 		characterSheetScript = GetComponent<CharacterSheet>();
+		lifeDeathHandlerScript = GetComponent<LifeDeathHandler>();
 		characterSheetScript.charID = playerID;
 
 		cc = this.gameObject.GetComponent<CharacterController>();
 
+		campfireTarget = GameObject.Find("CampfireTarget");
+
 		int rndAnim = Random.Range(0, 2);
 		anim.SetInteger("standUp", rndAnim);
+	}
+
+
+	void OnEnable() {
+		SceneManager.sceneLoaded += OnLevelFinishedLoading;
+	}
+         
+	void OnDisable() {
+		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+	}
+
+
+	private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
+		cc.enabled = true;
+		transform.LookAt(campfireTarget.transform);
 	}
 
 
@@ -51,21 +73,35 @@ public class CharacterMovement : MonoBehaviour {
 
 
 	private void FixedUpdate() {
-			if (!skillBoardOn) {
-				PlayerMovement();
-			}
+		if (!skillBoardOn && !lifeDeathHandlerScript.charIsDead) {
+			PlayerMovement();
+		}
 	}
 
 
 	private void GetInput() {
-		moveHorizontal = ReInput.players.GetPlayer(playerID).GetAxis("LS Horizontal");
-		moveVertical = ReInput.players.GetPlayer(playerID).GetAxis("LS Vertical");
+		if (!lifeDeathHandlerScript.charIsDead) {
+			moveHorizontal = ReInput.players.GetPlayer(playerID).GetAxis("LS Horizontal");
+			moveVertical = ReInput.players.GetPlayer(playerID).GetAxis("LS Vertical");
 		
-		if (TimeHandler.startLevel) {
-			activationBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("R1");
+			if (TimeHandler.startLevel) {
+				activationBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("R1");
 
-			showSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Triangle");
-			closeSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Circle");
+				showSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Triangle");
+				closeSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Circle");
+			}
+		} else {
+			moveHorizontal = 0;
+			moveVertical = 0;
+
+			cc.enabled = false;
+
+			// Close skill board if it is open when this character dies
+			if (skillBoardOn) {
+				skillBoardOn = false;
+				Instantiate(openSkillboardSound);
+				ShowSkillboard();
+			}
 		}
 	}
 

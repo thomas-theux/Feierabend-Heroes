@@ -14,6 +14,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private CharacterSheet characterSheetScript;
 	private CharacterMovement charactMovementScript;
 	private UIHandler uiHandlerScript;
+	private LifeDeathHandler lifeDeathHandlerScript;
 
 	private GameObject wrenchPunchSound;
 	private GameObject bombThrowSound;
@@ -100,6 +101,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 		// Get stats from skill script
 		characterSheetScript = GetComponent<CharacterSheet>();
 		charactMovementScript = GetComponent<CharacterMovement>();
+		lifeDeathHandlerScript = GetComponent<LifeDeathHandler>();
 
 		// Set names of attacks in character sheet
 		characterSheetScript.attackNames[0] = attackNames[0];
@@ -173,20 +175,22 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 
 	private void Update() {
-		if (!charactMovementScript.skillBoardOn && TimeHandler.startBattle) {
-			GetInput();
+		if (!lifeDeathHandlerScript.charIsDead) {
+			if (!charactMovementScript.skillBoardOn && TimeHandler.startBattle) {
+				GetInput();
+			}
+
+			AttackOne();
+			AttackTwo();
+
+			if (characterSheetScript.skillActivated == 1) {
+				SkillOne();
+			} else if (characterSheetScript.skillActivated == 2) {
+				SkillTwo();
+			}
+
+			DelayMovement();
 		}
-
-		AttackOne();
-		AttackTwo();
-
-		if (characterSheetScript.skillActivated == 1) {
-			SkillOne();
-		} else if (characterSheetScript.skillActivated == 2) {
-			SkillTwo();
-		}
-
-		DelayMovement();
 	}
 
 
