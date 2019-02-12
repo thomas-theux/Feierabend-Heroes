@@ -22,6 +22,7 @@ public class CharCardsHandler : MonoBehaviour {
 
 	private CharClassContent charClassContentScript;
 
+	public Text randomNameText;
 	public Text classText;
 	public Text charHPText;
 	public Text charDEFText;
@@ -40,12 +41,15 @@ public class CharCardsHandler : MonoBehaviour {
 	private bool selectButton;
 	private bool cancelButton;
 	private bool toggleSkillButton;
+	private bool randomizeNameButton;
 	private bool dPadLeft;
 	private bool dPadRight;
 
 
 	private void Awake() {
 		charClassContentScript = GetComponent<CharClassContent>();
+
+		RandomizeName();
 	}
 
 
@@ -64,6 +68,7 @@ public class CharCardsHandler : MonoBehaviour {
 		selectButton = ReInput.players.GetPlayer(charID).GetButtonDown("X");
 		cancelButton = ReInput.players.GetPlayer(charID).GetButtonDown("Circle");
 		toggleSkillButton = ReInput.players.GetPlayer(charID).GetButtonDown("Square");
+		randomizeNameButton = ReInput.players.GetPlayer(charID).GetButtonDown("Triangle");
 
 		dPadLeft = ReInput.players.GetPlayer(charID).GetButtonDown("DPadLeft");
 		dPadRight = ReInput.players.GetPlayer(charID).GetButtonDown("DPadRight");
@@ -100,6 +105,12 @@ public class CharCardsHandler : MonoBehaviour {
 		}
 
 		if (currentStatus == 2 || currentStatus == 3) {
+			if (currentStatus == 2) {
+				if (randomizeNameButton) {
+					RandomizeName();
+				}
+			}
+			
 			if (currentStatus == 3) {
 				if (selectButton) {
 					SettingsHolder.playerClasses[charID] = currentIndex;
@@ -206,6 +217,29 @@ public class CharCardsHandler : MonoBehaviour {
 				readyGO.SetActive(true);
 				break;
 		}
+	}
+
+
+	private void RandomizeName() {
+		int titleChance = Random.Range(0, 100);
+
+		string addTitle = "";
+		string addPrefix = "";
+		string addName = "";
+
+		// 40% chance of adding a title to the name
+		if (titleChance < 50) {
+			int rndTitle = Random.Range(0, charClassContentScript.charTitles.Length);
+			addTitle = charClassContentScript.charTitles[rndTitle] + " ";
+		}
+
+		int rndPrefix = Random.Range(0, charClassContentScript.charAdjectives.Length);
+		addPrefix = charClassContentScript.charAdjectives[rndPrefix] + " ";
+
+		int rndName = Random.Range(0, charClassContentScript.charNames.Length);
+		addName = charClassContentScript.charNames[rndName];
+
+		randomNameText.text = addTitle + addPrefix + addName;
 	}
 
 }

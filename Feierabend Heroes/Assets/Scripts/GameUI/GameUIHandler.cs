@@ -22,7 +22,7 @@ public class GameUIHandler : MonoBehaviour {
 		ReInput.ControllerConnectedEvent += OnControllerConnected;
 		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
-		connectedGamepads = ReInput.controllers.joystickCount;
+		connectedGamepads = 3; //ReInput.controllers.joystickCount;
 
 		for (int i = 0; i < playerMax; i++) {
 			GameObject newCharCard = Instantiate(charCardGO);
@@ -35,7 +35,7 @@ public class GameUIHandler : MonoBehaviour {
 
 
 	private void Update() {
-		if (ReInput.players.GetPlayer(0).GetButtonDown("Triangle") && !startedLevel) {
+		if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel) {
 			startedLevel = true;
 			
 			SettingsHolder.playerCount = connectedGamepads;

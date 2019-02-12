@@ -74,4 +74,12 @@ public class CharacterSheet : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 	}
 
+
+	private void Update() {
+		// Check if this player has enough orbs to win the match
+		if (currentOrbs >= SettingsHolder.orbsToWin && !SettingsHolder.matchOver) {
+			SettingsHolder.matchOver = true;
+		}
+	}
+
 }

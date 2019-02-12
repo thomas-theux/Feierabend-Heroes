@@ -33,6 +33,10 @@ public class TimeHandler : MonoBehaviour {
 
 	public static bool lastSeconds = false;
 
+	private bool showResults = false;
+
+	public GameObject matchResultsGO;
+
 
 	private void Awake() {
 		levelGO = GameObject.Find("Ground");
@@ -42,6 +46,7 @@ public class TimeHandler : MonoBehaviour {
 		startBattle = false;
 		battleStartTimerActive = false;
 		lastSeconds = false;
+		showResults = false;
 
 		levelStartTimerActive = true;
 		levelStartTime = levelStartTimeDef;
@@ -61,6 +66,10 @@ public class TimeHandler : MonoBehaviour {
 
 		if (lastSeconds) {
 			LastSecondsTimer();
+		}
+
+		if (SettingsHolder.matchOver && !showResults) {
+			StartCoroutine(MatchOver());
 		}
 	}
 
@@ -121,5 +130,19 @@ public class TimeHandler : MonoBehaviour {
 			SceneManager.LoadScene("3 Aeras");
 		}
 	}
+
+
+	private IEnumerator MatchOver() {
+		showResults = true;
+
+		startLevel = false;
+		startBattle = false;
+
+		yield return new WaitForSeconds(1.0f);
+
+		Instantiate(matchResultsGO);
+	}
+
+
 
 }
