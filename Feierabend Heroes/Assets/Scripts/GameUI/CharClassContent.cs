@@ -73,7 +73,7 @@ public class CharClassContent : MonoBehaviour {
 	public Sprite[] skillTwoImages = {};
 
 
-	public string[] charTitles = {
+	public static string[] titleTexts = {
 		"Mr.",
 		"Mrs.",
 		"Miss",
@@ -100,7 +100,7 @@ public class CharClassContent : MonoBehaviour {
 		"A"
 	};
 
-	public string[] charAdjectives = {
+	public static string[] adjectiveTexts = {
 		"Black",
 		"White",
 		"Red",
@@ -109,7 +109,6 @@ public class CharClassContent : MonoBehaviour {
 		"Blue",
 		"Dark",
 		"Pink",
-		"Mostly",
 		"Pretty",
 		"Ugly",
 		"Awesome",
@@ -122,14 +121,48 @@ public class CharClassContent : MonoBehaviour {
 		"Silly",
 		"Stoned",
 		"Fluffy",
-		"Hard"
+		"Hard",
+		"Mighty",
+		"Great",
+		"Big",
+		"Smart",
+		"Strong",
+		"Hairy",
+		"Stinky",
+		"Dirty",
+		"Tiny",
+		"Naked",
+		"Sweaty",
+		"Small",
+		"Grumpy",
+		"Fantastic",
+		"Extraordinary",
+		"Good",
+		"High",
+		"Fancy",
+		"Crazy",
+		"Lazy",
+		"Dancing",
+		"Proper",
+		"Creative",
+		"Fat",
+		"Chubby",
+		"Shaved",
+		"Unattractive",
+		"Smelly",
+		"Touchy",
+		"Colorful",
+		"Drunken"
 	};
 
-	public string[] charNames = {
+	public static string[] nameTexts = {
 		"Jimmy Changa",
 		"Mojo",
 		"Dude",
+		"Dudess",
 		"Douchebag",
+		"Astronaut",
+		"Cactus",
 		"Banana",
 		"Strawberry",
 		"Onion",
@@ -142,6 +175,15 @@ public class CharClassContent : MonoBehaviour {
 		"Koala",
 		"Monkey",
 		"Horse",
+		"Unicorn",
+		"Squirrel",
+		"Grandma",
+		"Grandpa",
+		"Pug",
+		"Elephant",
+		"Hamster",
+		"Raccoon",
+		"Goat",
 		"Pylonus",
 		"Knight",
 		"Johnny",
@@ -155,7 +197,23 @@ public class CharClassContent : MonoBehaviour {
 		"Bo",
 		"Username",
 		"Butt",
-		"Bellybutton"
+		"Bellybutton",
+		"Machine",
+		"Sushi",
+		"Avocado",
+		"Hat",
+		"Washing Machine",
+		"Star",
+		"Fart",
+		"Baby",
+		"Broccoli",
+		"Savage",
+		"Sauerkraut",
+		"Pig",
+		"Panda",
+		"Jellyfish",
+		"Dog",
+		"Peanut"
 	};
 
 }

@@ -222,24 +222,33 @@ public class CharCardsHandler : MonoBehaviour {
 
 	private void RandomizeName() {
 		int titleChance = Random.Range(0, 100);
+		int adjectiveChance = Random.Range(0, 100);
 
-		string addTitle = "";
-		string addPrefix = "";
-		string addName = "";
-
-		// 40% chance of adding a title to the name
-		if (titleChance < 50) {
-			int rndTitle = Random.Range(0, charClassContentScript.charTitles.Length);
-			addTitle = charClassContentScript.charTitles[rndTitle] + " ";
+		if (titleChance >= 50 && adjectiveChance >= 50) {
+			titleChance = Random.Range(0, 100);
+			adjectiveChance = Random.Range(0, 100);
 		}
 
-		int rndPrefix = Random.Range(0, charClassContentScript.charAdjectives.Length);
-		addPrefix = charClassContentScript.charAdjectives[rndPrefix] + " ";
+		string addTitle = "";
+		string addAdjective = "";
+		string addName = "";
 
-		int rndName = Random.Range(0, charClassContentScript.charNames.Length);
-		addName = charClassContentScript.charNames[rndName];
+		// 50% chance of adding a title to the name
+		if (titleChance < 50) {
+			int rndTitle = Random.Range(0, CharClassContent.titleTexts.Length);
+			addTitle = CharClassContent.titleTexts[rndTitle] + " ";
+		}
 
-		randomNameText.text = addTitle + addPrefix + addName;
+		// 50% chance of adding a adjective to the name
+		if (adjectiveChance < 50) {
+			int rndPrefix = Random.Range(0, CharClassContent.adjectiveTexts.Length);
+			addAdjective = CharClassContent.adjectiveTexts[rndPrefix] + " ";
+		}
+
+		int rndName = Random.Range(0, CharClassContent.nameTexts.Length);
+		addName = CharClassContent.nameTexts[rndName];
+
+		randomNameText.text = addTitle + addAdjective + addName;
 	}
 
 }
