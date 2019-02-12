@@ -35,6 +35,7 @@ public class TimeHandler : MonoBehaviour {
 
 	private bool showResults = false;
 
+	public AudioSource matchEndSound;
 	public GameObject matchResultsGO;
 
 
@@ -134,6 +135,10 @@ public class TimeHandler : MonoBehaviour {
 
 	private IEnumerator MatchOver() {
 		showResults = true;
+
+		Instantiate(matchEndSound);
+
+		yield return new WaitForSeconds(0.3f);
 
 		startLevel = false;
 		startBattle = false;

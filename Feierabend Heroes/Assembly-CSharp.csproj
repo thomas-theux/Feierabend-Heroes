@@ -179,14 +179,14 @@
  <Reference Include="Unity.PackageManagerUI.Editor">
  <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.CollabProxy.Editor">
+ <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.VectorGraphics.Editor">
  <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.VectorGraphics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
  <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
@@ -401,9 +401,6 @@
  <Reference Include="Rewired_OSX_Lib">
  <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Assets/Rewired/Internal/Libraries/Runtime/Rewired_OSX_Lib.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/PackageCache/com.unity.ads@2.0.8/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Analytics.Tracker">
  <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
@@ -412,9 +409,6 @@
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
  <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>/Users/strichpunkt/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Library/PackageCache/com.unity.purchasing@2.0.3/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>/Applications/Unity/Hub/Editor/2018.3.5f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

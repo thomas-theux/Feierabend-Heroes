@@ -29,7 +29,11 @@ public class SafeZone : MonoBehaviour {
 			safeZoneLight.cookieSize = Mathf.Lerp(startSizeLight, endSizeLight, t / decreaseDuration);
 			safeZoneCol.radius = Mathf.Lerp(startSizeCol, endSizeCol, t / decreaseDuration);
 
-			yield return null;
+			if (TimeHandler.startBattle) {
+				yield return null;
+			} else {
+				yield break;
+			}
 		}
 	}
 
