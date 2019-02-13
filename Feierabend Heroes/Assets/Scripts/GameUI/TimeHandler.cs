@@ -34,6 +34,7 @@ public class TimeHandler : MonoBehaviour {
 	public static bool lastSeconds = false;
 
 	private bool showResults = false;
+	private bool roundEnd = false;
 
 	public AudioSource matchEndSound;
 	public GameObject matchResultsGO;
@@ -48,11 +49,14 @@ public class TimeHandler : MonoBehaviour {
 		battleStartTimerActive = false;
 		lastSeconds = false;
 		showResults = false;
+		roundEnd = false;
 
 		levelStartTimerActive = true;
 		levelStartTime = levelStartTimeDef;
 		battleStartTime = battleStartTimeDef;
 		lastSecondsTime = lastSecondsTimeDef;
+
+		SpawnSafeZone();
 	}
 
 
@@ -80,9 +84,11 @@ public class TimeHandler : MonoBehaviour {
 			levelStartTime -= Time.deltaTime;
 			levelStartTimerText.text = Mathf.Ceil(levelStartTime) + "";
 		} else {
-			levelStartTimerText.text = "Explore!";
-			StartCoroutine(WaitOneSec());
 			startLevel = true;
+
+			levelStartTimerText.text = "Explore!";
+			StartCoroutine(WaitTwoSecs());
+			
 			battleStartTimerActive = true;
 			levelStartTimerActive = false;
 		}
@@ -92,28 +98,30 @@ public class TimeHandler : MonoBehaviour {
 	private void BattleStartTimer() {
 		if (battleStartTime > 0.1f) {
 			battleStartTime -= Time.deltaTime;
+
+			if (battleStartTime < lastSecondsTimeDef) {
+				levelStartTimerText.text = Mathf.Ceil(battleStartTime) + "";
+			}
+
 		} else {
 			startBattle = true;
 
-			minPosX = 0 - levelGO.transform.localScale.x / 2 + levelPadding;
-			minPosZ = 0 - levelGO.transform.localScale.z / 2 + levelPadding;
-			maxPosX = levelGO.transform.localScale.x / 2 - levelPadding;
-			maxPosZ = levelGO.transform.localScale.z / 2 - levelPadding;
-
-			float rndPosX = Random.Range(minPosX, maxPosX);
-			float rndPosZ = Random.Range(minPosZ, maxPosZ);
-
-			GameObject newSafeZone = Instantiate(safeZoneGO);
-			newSafeZone.transform.position = new Vector3(rndPosX, newSafeZone.transform.position.y, rndPosZ);
+			levelStartTimerText.text = "Battle!";
+			StartCoroutine(WaitTwoSecs());
 
 			battleStartTimerActive = false;
 		}
 	}
 
 
-	private IEnumerator WaitOneSec() {
-		yield return new WaitForSeconds(1.0f);
+	private IEnumerator WaitTwoSecs() {
+		yield return new WaitForSeconds(2.0f);
 		levelStartTimerText.text = "";
+
+		if (roundEnd) {
+			yield return new WaitForSeconds(1.0f);
+			SceneManager.LoadScene("3 Aeras");
+		}
 	}
 
 
@@ -127,8 +135,12 @@ public class TimeHandler : MonoBehaviour {
 			startLevel = false;
 			startBattle = false;
 
-			StartCoroutine(WaitOneSec());
-			SceneManager.LoadScene("3 Aeras");
+			roundEnd = true;
+
+			// Give round winner 2 orbs
+			GameObject.Find("Character" + GameManager.activePlayers[0]).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForRoundWin;
+
+			StartCoroutine(WaitTwoSecs());
 		}
 	}
 
@@ -149,5 +161,17 @@ public class TimeHandler : MonoBehaviour {
 	}
 
 
+	private void SpawnSafeZone() {
+		minPosX = 0 - levelGO.transform.localScale.x / 2 + levelPadding;
+		minPosZ = 0 - levelGO.transform.localScale.z / 2 + levelPadding;
+		maxPosX = levelGO.transform.localScale.x / 2 - levelPadding;
+		maxPosZ = levelGO.transform.localScale.z / 2 - levelPadding;
+
+		float rndPosX = Random.Range(minPosX, maxPosX);
+		float rndPosZ = Random.Range(minPosZ, maxPosZ);
+
+		GameObject newSafeZone = Instantiate(safeZoneGO);
+		newSafeZone.transform.position = new Vector3(rndPosX, newSafeZone.transform.position.y, rndPosZ);
+	}
 
 }

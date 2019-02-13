@@ -11,6 +11,8 @@ public class BombRadius : MonoBehaviour {
 	private Vector3 desiredScale;
 	private float destroyScale;
 
+	public int damagerID;
+
 
 	// These variables can be improved by advancing on the skill tree
 	private float smoothSpeed = 10.0f;
@@ -69,6 +71,7 @@ public class BombRadius : MonoBehaviour {
 			}
 
 			characterSheetScript.currentHealth -= dealDamage;
+			other.gameObject.GetComponent<LifeDeathHandler>().lastDamagerID = damagerID;
 		} else {
 			// Healing when dodging an attack
 			if (enemyDodgeHeal) {

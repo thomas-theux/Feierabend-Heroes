@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class UIHandler : MonoBehaviour {
 
 	private CharacterSheet characterSheetScript;
+
+	public Text currentOrbText;
+
 	public Image healthBarImage;
 	public Image currentHealthImage;
 
@@ -35,6 +38,8 @@ public class UIHandler : MonoBehaviour {
 		DisplayCoolDown();
 
 		DisplayCurrentHP();
+
+		DisplayOrbCount();
 	}
 
 
@@ -87,6 +92,11 @@ public class UIHandler : MonoBehaviour {
 			healthBarImage.color = new Color32(255, 255, 255, 255);
 			currentHealthImage.color = new Color32(255, 255, 255, 255);
 		}
+	}
+
+
+	private void DisplayOrbCount() {
+		currentOrbText.text = characterSheetScript.currentOrbs + "";
 	}
 
 }

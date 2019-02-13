@@ -35,7 +35,7 @@ public class GameUIHandler : MonoBehaviour {
 
 
 	private void Update() {
-		if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel) {
+		if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel && SettingsHolder.registeredPlayers >= 2) {
 			startedLevel = true;
 			
 			SettingsHolder.playerCount = connectedGamepads;

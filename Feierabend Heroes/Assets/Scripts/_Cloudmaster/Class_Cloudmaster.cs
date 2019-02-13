@@ -233,6 +233,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 1);
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newAttackOne.GetComponent<WrenchPunch>().damagerID = charID;
 			newAttackOne.tag = "Attack";
 			newAttackOne.transform.parent = gameObject.transform;
 			newAttackOne.GetComponent<WrenchPunch>().casterDamage = characterSheetScript.attackOneDmg;
@@ -268,6 +269,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-35, 0, 0);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackTwo.GetComponent<Bomb>().casterTag = "Character" + charID;
+			newAttackTwo.GetComponent<Bomb>().damagerID = charID;
 			newAttackTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newAttackTwo.tag = "Attack";
 			newAttackTwo.transform.GetComponent<Bomb>().casterDamage = characterSheetScript.attackTwoDmg;
@@ -330,6 +332,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 			GameObject newSkillTwo = Instantiate(skillTwoGO, attackSpawner.position, attackSpawner.rotation);
 			newSkillTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().damagerID = charID;
 			for (int i = 1; i < 5; i++) {
 				newSkillTwo.transform.GetChild(i).gameObject.tag = "Attack";
 			}

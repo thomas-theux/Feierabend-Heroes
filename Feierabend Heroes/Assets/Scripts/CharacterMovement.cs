@@ -35,11 +35,9 @@ public class CharacterMovement : MonoBehaviour {
 		// Get stats from skill script
 		characterSheetScript = GetComponent<CharacterSheet>();
 		lifeDeathHandlerScript = GetComponent<LifeDeathHandler>();
-		characterSheetScript.charID = playerID;
+		// characterSheetScript.charID = playerID;
 
 		cc = this.gameObject.GetComponent<CharacterController>();
-
-		campfireTarget = GameObject.Find("CampfireTarget");
 
 		int rndAnim = Random.Range(0, 2);
 		anim.SetInteger("standUp", rndAnim);
@@ -57,6 +55,9 @@ public class CharacterMovement : MonoBehaviour {
 
 	private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
 		cc.enabled = true;
+		characterSheetScript.charID = playerID;
+
+		campfireTarget = GameObject.Find("CampfireTarget");
 		transform.LookAt(campfireTarget.transform);
 	}
 

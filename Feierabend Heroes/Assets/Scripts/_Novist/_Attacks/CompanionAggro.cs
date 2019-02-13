@@ -26,6 +26,7 @@ public class CompanionAggro : MonoBehaviour {
 	public float casterDamage = 0;
 	public float casterCritChance = 0;
 	public float casterCritDMG = 0;
+	public int damagerID;
 
 
 	public void SetLifeTime(float lifeTime) {
@@ -125,6 +126,7 @@ public class CompanionAggro : MonoBehaviour {
 			}
 
 			characterSheetScript.currentHealth -= dealDamage;
+			enemyChar.gameObject.GetComponent<LifeDeathHandler>().lastDamagerID = damagerID;
 		} else {
 			// Healing when dodging an attack
 			if (enemyDodgeHeal) {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrbChestSpawner : MonoBehaviour {
 
-	public int orbChestAmount = 10;
+	public int orbChestAmount;
 	public GameObject orbChestGO;
 	private GameObject levelGO;
 
@@ -19,6 +19,8 @@ public class OrbChestSpawner : MonoBehaviour {
 	private void Awake() {
 		// Get the level gameobject as scale reference
 		levelGO = GameObject.Find("Ground");
+
+		orbChestAmount = SettingsHolder.orbChestAmount;
 
 		// Set limit positions for orb chests
 		minPosX = 0 - levelGO.transform.localScale.x / 2 + levelPadding;

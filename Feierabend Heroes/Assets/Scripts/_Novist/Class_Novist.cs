@@ -234,6 +234,7 @@ public class Class_Novist : MonoBehaviour {
 			
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newAttackOne.GetComponent<MeteorShot>().damagerID = charID;
 			newAttackOne.transform.GetChild(newAttackOne.transform.childCount-1).gameObject.tag = "Attack";
 			newAttackOne.tag = "Attack";
 			newAttackOne.transform.GetComponent<MeteorShot>().casterDamage = characterSheetScript.attackOneDmg;
@@ -268,6 +269,7 @@ public class Class_Novist : MonoBehaviour {
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition + new Vector3(0, 0, 2);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
 			newAttackTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newAttackTwo.GetComponent<FireBlock>().damagerID = charID;
 			newAttackTwo.tag = "Attack";
 			newAttackTwo.transform.GetComponent<FireBlock>().casterDamage = characterSheetScript.attackTwoDmg;
 			newAttackTwo.GetComponent<FireBlock>().casterCritChance = characterSheetScript.critChance;
@@ -330,6 +332,7 @@ public class Class_Novist : MonoBehaviour {
 			// Skill SPAWN COMPANION
 			GameObject newSkillTwo = Instantiate(skillTwoGO, attackSpawner.position, attackSpawner.rotation);
 			newSkillTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newSkillTwo.GetComponent<CompanionAggro>().damagerID = charID;
 			newSkillTwo.transform.GetChild(1).gameObject.tag = "Attack";
 			newSkillTwo.tag = "Attack";
 			

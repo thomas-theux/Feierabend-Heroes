@@ -16,14 +16,25 @@ public class SafeZone : MonoBehaviour {
 	private float startSizeCol = 110.0f;
 	private float endSizeCol = 7.0f;
 
+	private bool startDecreasing = false;
+
 
 	private void Awake() {
 		safeZoneLight = GetComponent<Light>();
-		StartCoroutine(DecreaseSize());
+		startDecreasing = false;
+	}
+
+
+	private void Update() {
+		if (TimeHandler.startBattle && !startDecreasing) {
+			StartCoroutine(DecreaseSize());
+		}
 	}
 
 
 	private IEnumerator DecreaseSize() {
+		startDecreasing = true;
+		
 		while (t < decreaseDuration) {
 			t += Time.deltaTime;
 			safeZoneLight.cookieSize = Mathf.Lerp(startSizeLight, endSizeLight, t / decreaseDuration);

@@ -67,7 +67,7 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	});
 
 	private int currentIndex = 15;
-	public int currentOrbs = 2;
+	public int currentOrbs = 200;
 
 	private float minThreshold = 0.5f;
 	private float maxThreshold = 0.5f;
@@ -314,6 +314,8 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	private void PayOrbs() {
 		// Subtract ORBS
 		characterSheetscript.currentOrbs -= skillCosts[currentIndex];
+		// Add one to stat "orbs spent"
+		GameManager.orbsSpentStatsArr[characterSheetscript.charID]++;
 	}
 
 
@@ -609,6 +611,19 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		// 		skillCosts[m] = 0;
 		// 	}
 		// }
+
+		// Show ORB costs for this skill
+		if (skillUpgradeCurrent[currentIndex] < skillUpgradeMax[currentIndex] && skillUpgradeCurrent[currentIndex] > -2) {
+			if (skillCosts[currentIndex] > 1) {
+				skillCostsText.text = skillCosts[currentIndex] + " Orbs";
+			} else {
+				skillCostsText.text = skillCosts[currentIndex] + " Orb";
+			}
+		} else if (skillUpgradeCurrent[currentIndex] == skillUpgradeMax[currentIndex]) {
+			skillCostsText.text = "✔ DONE";
+		} else if (skillUpgradeCurrent[currentIndex] == -2) {
+			skillCostsText.text = "✖ LOCKED";
+		}
 	}
 
 }

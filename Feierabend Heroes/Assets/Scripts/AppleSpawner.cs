@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AppleSpawner : MonoBehaviour {
 
-	public int appleAmount = 10;
+	private int appleAmount;
 	public GameObject appleGO;
 	private GameObject levelGO;
 
@@ -19,6 +19,8 @@ public class AppleSpawner : MonoBehaviour {
 	private void Awake() {
 		// Get the level gameobject as scale reference
 		levelGO = GameObject.Find("Ground");
+
+		appleAmount = SettingsHolder.appleAmount;
 
 		// Set limit positions for apples
 		minPosX = 0 - levelGO.transform.localScale.x / 2 + levelPadding;

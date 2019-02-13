@@ -8,6 +8,7 @@ public class Bomb : MonoBehaviour {
 	public float casterCritChance = 0;
 	public float casterCritDMG = 0;
 	public string casterTag;
+	public int damagerID;
 
 	public GameObject bombThrowHitSound;
 
@@ -40,6 +41,7 @@ public class Bomb : MonoBehaviour {
 			newBombRadius.GetComponent<BombRadius>().casterDamage = casterDamage;
 			newBombRadius.GetComponent<BombRadius>().casterCritChance = casterCritChance;
 			newBombRadius.GetComponent<BombRadius>().casterCritDMG = casterCritDMG;
+			newBombRadius.GetComponent<BombRadius>().damagerID = damagerID;
 
 			Instantiate(bombThrowHitSound);
 

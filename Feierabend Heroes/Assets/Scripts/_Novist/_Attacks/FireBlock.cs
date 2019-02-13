@@ -7,6 +7,7 @@ public class FireBlock : MonoBehaviour {
 	public float casterDamage = 0;
 	public float casterCritChance = 0;
 	public float casterCritDMG = 0;
+	public int damagerID;
 
 	public GameObject fireBlockActiveSound;
 
@@ -69,6 +70,7 @@ public class FireBlock : MonoBehaviour {
 			}
 
 			characterSheetScript.currentHealth -= dealDamage;
+			other.gameObject.GetComponent<LifeDeathHandler>().lastDamagerID = damagerID;
 		} else {
 			// Healing when dodging an attack
 			if (enemyDodgeHeal) {

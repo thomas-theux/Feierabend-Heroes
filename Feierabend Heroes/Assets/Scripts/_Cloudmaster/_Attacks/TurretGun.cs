@@ -10,6 +10,7 @@ public class TurretGun : MonoBehaviour {
 	public float casterDamage = 0;
 	public float casterCritChance = 0;
 	public float casterCritDMG = 0;
+	public int damagerID;
 
 	public GameObject projectileGO;
 	public Transform projectileSpawner;
@@ -36,6 +37,7 @@ public class TurretGun : MonoBehaviour {
 			} else {
 				GameObject newProjectile = Instantiate(projectileGO, projectileSpawner.position, projectileSpawner.rotation);
 				newProjectile.transform.GetChild(0).gameObject.tag = "Character" + charID;
+				newProjectile.GetComponent<MeteorShot>().damagerID = charID;
 				newProjectile.tag = "Attack";
 				newProjectile.transform.GetComponent<MeteorShot>().casterDamage = casterDamage;
 				newProjectile.GetComponent<MeteorShot>().casterCritChance = casterCritChance;

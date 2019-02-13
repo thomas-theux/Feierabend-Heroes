@@ -4,12 +4,18 @@
 
 public class SettingsHolder {
 
-	// public static int[] playerClasses = {-1, -1, -1, -1};
-	public static int[] playerClasses = {0, 0, 0, 0};
+	public static int[] playerClasses = {-1, -1, -1, -1};
+	// public static int[] playerClasses = {0, 0, 0, 0};
 	public static string[] charNames = {"", "", "", ""};
 	public static int playerCount = 0;
-	public static int orbsToWin = 15;
+	public static int registeredPlayers = 0;
+
+	public static int appleAmount = 10;
+	public static int orbChestAmount = 10;
+
+	public static int orbsToWin = 201;
 	public static bool matchOver = false;
+	public static int orbsForRoundWin = 2;
 
 	public static bool initialSpawn = false;
 

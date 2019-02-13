@@ -26,6 +26,10 @@ public class LifeDeathHandler : MonoBehaviour {
 	private bool isWaiting = false;
 	public bool charIsDead = false;
 
+	public int lastDamagerID = -1;
+	private bool isResettingID = false;
+	private float safeZoneDamage = 60.0f;
+
 
 	private void Awake() {
 		characterSheetScript = GetComponent<CharacterSheet>();
@@ -48,6 +52,14 @@ public class LifeDeathHandler : MonoBehaviour {
 		isOutside = false;
 		isWaiting = false;
 		charIsDead = false;
+	}
+
+
+	private void Update() {
+		// Reset damager ID after 100ms to avoid false stats
+		if (lastDamagerID > -1 && !isResettingID) {
+			StartCoroutine(ResetDamagerID());
+		}
 	}
 
 
@@ -78,7 +90,7 @@ public class LifeDeathHandler : MonoBehaviour {
 
 
 	public void OutsideSafeZone() {
-		characterSheetScript.currentHealth -= 24.0f * Time.deltaTime;
+		characterSheetScript.currentHealth -= safeZoneDamage * Time.deltaTime;
 	}
 
 
@@ -108,7 +120,16 @@ public class LifeDeathHandler : MonoBehaviour {
 	private IEnumerator KillCharacter() {
 		isWaiting = true;
 		charIsDead = true;
-		// gameObject.SetActive(false);
+
+		// Increase stats for deaths and kills
+		if (GameManager.killsStatsArr[lastDamagerID] > -1) {
+			GameManager.killsStatsArr[lastDamagerID]++;
+		}
+		GameManager.deathsStatsArr[characterSheetScript.charID]++;
+
+		// Give player who killed this character one extra orb
+		GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs++;
+		
 		dudeHeadGO.GetComponent<Renderer>().enabled = false;
 		dudeBodyGO.GetComponent<Renderer>().enabled = false;
 		gameObject.GetComponent<CapsuleCollider>().enabled = false;
@@ -159,6 +180,7 @@ public class LifeDeathHandler : MonoBehaviour {
 	private void RemoveFromList() {
 		// Remove the just killed character from the player array
 		GameManager.activePlayers.Remove(characterSheetScript.charID);
+
 		if (GameManager.activePlayers.Count == 1) {
 			TimeHandler.lastSeconds = true;
 		}
@@ -169,6 +191,14 @@ public class LifeDeathHandler : MonoBehaviour {
 		dudeHeadGO.GetComponent<Renderer>().enabled = true;
 		dudeBodyGO.GetComponent<Renderer>().enabled = true;
 		gameObject.GetComponent<CapsuleCollider>().enabled = true;
+	}
+
+
+	private IEnumerator ResetDamagerID() {
+		isResettingID = true;
+		yield return new WaitForSeconds(0.1f);
+		lastDamagerID = -1;
+		isResettingID = false;
 	}
 
 }
