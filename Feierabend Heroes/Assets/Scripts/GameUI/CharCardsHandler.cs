@@ -114,6 +114,7 @@ public class CharCardsHandler : MonoBehaviour {
 			if (currentStatus == 3) {
 				if (selectButton) {
 					SettingsHolder.playerClasses[charID] = currentIndex;
+					SettingsHolder.charNames[charID] = randomNameText.text;
 				}
 			}
 			if (cancelButton) {

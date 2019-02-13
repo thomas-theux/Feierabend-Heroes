@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour {
 
 	private List<GameObject> characterArr = new List<GameObject>();
 
+	public static int[] killsStatsArr = {0, 0, 0, 0};
+	public static int[] deathsStatsArr = {0, 0, 0, 0};
+	public static int[] orbsSpentStatsArr = {0, 0, 0, 0};
+	public static int[] rankingArr = {0, 0, 0, 0};
+
 
 	private void Awake() {
 		// AssignClasses();

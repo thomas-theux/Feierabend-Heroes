@@ -67,7 +67,7 @@ public class SkillTreeUIHandler : MonoBehaviour {
 	});
 
 	private int currentIndex = 15;
-	private int currentOrbs = 12;
+	public int currentOrbs = 2;
 
 	private float minThreshold = 0.5f;
 	private float maxThreshold = 0.5f;
