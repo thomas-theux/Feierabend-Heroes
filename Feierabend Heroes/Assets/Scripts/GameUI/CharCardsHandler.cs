@@ -20,6 +20,12 @@ public class CharCardsHandler : MonoBehaviour {
 	public GameObject arrowNavGO;
 	public GameObject readyGO;
 
+	public AudioSource selectSound;
+	public AudioSource navigateSound;
+	public AudioSource cancelSound;
+	public AudioSource toggleSound;
+	public AudioSource randomizeNameSound;
+
 	private CharClassContent charClassContentScript;
 
 	public Text randomNameText;
@@ -99,6 +105,7 @@ public class CharCardsHandler : MonoBehaviour {
 	private void CheckForInput() {
 		if (currentStatus == 1 || currentStatus == 2) {
 			if (selectButton) {
+				Instantiate(selectSound);
 				currentStatus++;
 				DisplayCurrentStatus();
 			}
@@ -107,18 +114,21 @@ public class CharCardsHandler : MonoBehaviour {
 		if (currentStatus == 2 || currentStatus == 3) {
 			if (currentStatus == 2) {
 				if (randomizeNameButton) {
+					Instantiate(randomizeNameSound);
 					RandomizeName();
 				}
 			}
 			
 			if (currentStatus == 3) {
 				if (selectButton) {
+					Instantiate(selectSound);
 					SettingsHolder.playerClasses[charID] = currentIndex;
 					SettingsHolder.charNames[charID] = randomNameText.text;
 					SettingsHolder.registeredPlayers++;
 				}
 			}
 			if (cancelButton) {
+				Instantiate(cancelSound);
 				if (currentStatus == 3) {
 					SettingsHolder.playerClasses[charID] = -1;
 					SettingsHolder.charNames[charID] = "";
@@ -128,6 +138,7 @@ public class CharCardsHandler : MonoBehaviour {
 				DisplayCurrentStatus();
 			}
 			if (toggleSkillButton) {
+				Instantiate(toggleSound);
 				toggleSkill = toggleSkill == 0 ? 1 : 0;
 				DisplayClasses();
 			}
@@ -137,6 +148,7 @@ public class CharCardsHandler : MonoBehaviour {
 
 	private void ClassNavigation() {
 		if (dPadLeft) {
+			Instantiate(navigateSound);
 			if (currentIndex == 0) {
 				currentIndex = charClassesArr.Length-1;
 			} else {
@@ -144,7 +156,9 @@ public class CharCardsHandler : MonoBehaviour {
 			}
 			DisplayClasses();
 		}
+
 		if (dPadRight) {
+			Instantiate(navigateSound);
 			if (currentIndex == charClassesArr.Length-1) {
 				currentIndex = 0;
 			} else {

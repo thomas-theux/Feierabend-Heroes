@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OrbChest : MonoBehaviour {
 
+	public AudioSource collectOrbSound;
+
 	private bool openedChest = false;
 	private int rndDoubleOrb;
 
@@ -15,8 +17,10 @@ public class OrbChest : MonoBehaviour {
 
 			if (characterMovementScript.activationBtn && !openedChest) {
 				openedChest = true;
+
+				Instantiate(collectOrbSound);
 				
-				// CHeck if RAGE MODE is on and on level 4
+				// Check if RAGE MODE is on and on level 4
 				if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 4) {
 					rndDoubleOrb = -1;
 				} else {

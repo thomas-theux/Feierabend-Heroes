@@ -200,7 +200,9 @@ public class Class_Novist : MonoBehaviour {
 		performAttackOne = player.GetButton("X");
 		performAttackTwo = player.GetButton("Square");
 
-		castSkill = player.GetButtonDown("Circle");
+		if (!charactMovementScript.skillboardBlocksCasting) {
+			castSkill = player.GetButtonDown("Circle");
+		}
 	}
 
 
@@ -332,7 +334,7 @@ public class Class_Novist : MonoBehaviour {
 			// Skill SPAWN COMPANION
 			GameObject newSkillTwo = Instantiate(skillTwoGO, attackSpawner.position, attackSpawner.rotation);
 			newSkillTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newSkillTwo.GetComponent<CompanionAggro>().damagerID = charID;
+			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().damagerID = charID;
 			newSkillTwo.transform.GetChild(1).gameObject.tag = "Attack";
 			newSkillTwo.tag = "Attack";
 			
@@ -340,7 +342,7 @@ public class Class_Novist : MonoBehaviour {
 			newSkillTwo.transform.GetChild(1).transform.localScale = new Vector3(characterSheetScript.skillTwoStats[0], characterSheetScript.skillTwoStats[0], characterSheetScript.skillTwoStats[0]);
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().SetLifeTime(characterSheetScript.skillTwoStats[1]);
 
-			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = gameObject;
+			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = this.gameObject;
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterDamage = characterSheetScript.skillTwoDmg;
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritChance = characterSheetScript.critChance;
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritDMG = characterSheetScript.critDMG;

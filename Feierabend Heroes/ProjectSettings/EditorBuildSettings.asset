@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3 Aeras.unity
     guid: 0b26606f857a54c81b40fe563b4d5459
+  - enabled: 1
+    path: Assets/Scenes/ReloadSceneTest.unity
+    guid: 187ba4d99f2274fb6a8065d883dc92c7
   m_configObjects: {}

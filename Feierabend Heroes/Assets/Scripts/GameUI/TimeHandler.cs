@@ -9,6 +9,11 @@ public class TimeHandler : MonoBehaviour {
 	public static bool startLevel = false;
 	public static bool startBattle = false;
 
+	public AudioSource startExploringSound;
+	public AudioSource startBattleSound;
+	public AudioSource roundEndSound;
+	public AudioSource timerTickingSound;
+
 	public Text levelStartTimerText;
 
 	private float levelStartTimeDef = 3.0f;
@@ -20,6 +25,8 @@ public class TimeHandler : MonoBehaviour {
 
 	private bool levelStartTimerActive = false;
 	private bool battleStartTimerActive = false;
+
+	private bool isTicking = false;
 
 	private GameObject levelGO;
 	public GameObject safeZoneGO;
@@ -50,11 +57,15 @@ public class TimeHandler : MonoBehaviour {
 		lastSeconds = false;
 		showResults = false;
 		roundEnd = false;
+		isTicking = false;
 
 		levelStartTimerActive = true;
 		levelStartTime = levelStartTimeDef;
 		battleStartTime = battleStartTimeDef;
 		lastSecondsTime = lastSecondsTimeDef;
+		isTicking = true;
+
+		StartCoroutine(TimeTicking());
 
 		SpawnSafeZone();
 	}
@@ -85,6 +96,9 @@ public class TimeHandler : MonoBehaviour {
 			levelStartTimerText.text = Mathf.Ceil(levelStartTime) + "";
 		} else {
 			startLevel = true;
+			isTicking = false;
+
+			Instantiate(startExploringSound);
 
 			levelStartTimerText.text = "Explore!";
 			StartCoroutine(WaitTwoSecs());
@@ -100,11 +114,19 @@ public class TimeHandler : MonoBehaviour {
 			battleStartTime -= Time.deltaTime;
 
 			if (battleStartTime < lastSecondsTimeDef) {
+				if (!isTicking) {
+					isTicking = true;
+					StartCoroutine(TimeTicking());
+				}
+
 				levelStartTimerText.text = Mathf.Ceil(battleStartTime) + "";
 			}
 
 		} else {
 			startBattle = true;
+			isTicking = false;
+
+			Instantiate(startBattleSound);
 
 			levelStartTimerText.text = "Battle!";
 			StartCoroutine(WaitTwoSecs());
@@ -128,9 +150,19 @@ public class TimeHandler : MonoBehaviour {
 	private void LastSecondsTimer() {
 		if (lastSecondsTime > 0.1f) {
 			lastSecondsTime -= Time.deltaTime;
+
+			if (!isTicking) {
+				isTicking = true;
+				StartCoroutine(TimeTicking());
+			}
+
 			levelStartTimerText.text = Mathf.Ceil(lastSecondsTime) + "";
 		} else {
 			lastSeconds = false;
+			isTicking = false;
+
+			Instantiate(roundEndSound);
+
 			levelStartTimerText.text = "Round Over!";
 			startLevel = false;
 			startBattle = false;
@@ -172,6 +204,14 @@ public class TimeHandler : MonoBehaviour {
 
 		GameObject newSafeZone = Instantiate(safeZoneGO);
 		newSafeZone.transform.position = new Vector3(rndPosX, newSafeZone.transform.position.y, rndPosZ);
+	}
+
+
+	private IEnumerator TimeTicking() {
+		while (isTicking) {
+			Instantiate(timerTickingSound);
+			yield return new WaitForSeconds(1.0f);
+		}
 	}
 
 }

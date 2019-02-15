@@ -10,6 +10,8 @@ public class LifeDeathHandler : MonoBehaviour {
 	public GameObject dudeHeadGO;
 	public GameObject dudeBodyGO;
 
+	public AudioSource characterDiesSound;
+
 	private GameObject levelGO;
 	private float clearance = 5.0f;
 
@@ -120,6 +122,8 @@ public class LifeDeathHandler : MonoBehaviour {
 	private IEnumerator KillCharacter() {
 		isWaiting = true;
 		charIsDead = true;
+
+		Instantiate(characterDiesSound);
 
 		// Increase stats for deaths and kills
 		if (GameManager.killsStatsArr[lastDamagerID] > -1) {

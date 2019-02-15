@@ -23,6 +23,8 @@ public class CharacterMovement : MonoBehaviour {
 	private float rageMoveSpeed = 1;
 	private Vector3 charVelocity;
 
+	public bool skillboardBlocksCasting = false;
+
 	// REWIRED
 	private float moveHorizontal;
 	private float moveVertical;
@@ -151,6 +153,9 @@ public class CharacterMovement : MonoBehaviour {
 			skillBoardOn = false;
 			Instantiate(closeSkillboardSound);
 			ShowSkillboard();
+			
+			skillboardBlocksCasting = true;
+			StartCoroutine(SkillCastDelay());
 		}
 	}
 
@@ -166,6 +171,12 @@ public class CharacterMovement : MonoBehaviour {
 	private void ShowSkillboard() {
 		this.gameObject.transform.GetChild(2).gameObject.SetActive(skillBoardOn);
 		this.gameObject.transform.GetChild(3).gameObject.SetActive(!skillBoardOn);
+	}
+
+
+	private IEnumerator SkillCastDelay() {
+		yield return new WaitForSeconds(0.1f);
+		skillboardBlocksCasting = false;
 	}
 
 }
