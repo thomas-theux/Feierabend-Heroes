@@ -26,44 +26,21 @@ public class MatchResults : MonoBehaviour {
     }
 
 
-    // private void Update() {
-    //     if (ReInput.players.GetPlayer(0).GetButtonDown("Circle")) {
-    //         QuitMatch();
-    //     }
-
-    //     if (ReInput.players.GetPlayer(0).GetButtonDown("X")) {
-    //         RestartMatch();
-    //     }
-
-    //     if (ReInput.players.GetPlayer(0).GetButtonDown("Square")) {
-    //         NextMatch();
-    //     }
-    // }
+    private void Update() {
+        if (ReInput.players.GetPlayer(0).GetButtonDown("Circle")) {
+            QuitMatch();
+        }
+    }
 
 
-    // private void QuitMatch() {
-    //     SceneManager.LoadScene("1 Character Selection");
-    // }
+    private void QuitMatch() {
+        // Kill DontDestroyOnLOad game objetcts
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			Destroy(GameObject.Find("Character" + i));
+			Destroy(GameObject.Find("PlayerCamera" + i));
+        }
 
-
-    // private void RestartMatch() {
-    //     // Reset all stats
-    //     for (int i = 0; i < SettingsHolder.playerCount; i++) {
-    //         GameManager.killsStatsArr[i] = 0;
-    //         GameManager.deathsStatsArr[i] = 0;
-    //         GameManager.orbsSpentStatsArr[i] = 0;
-    //         GameManager.rankingArr[i] = 0;
-
-    //         GameObject.Find("Character" + i).GetComponent<CharacterSheet>().currentOrbs = 0;
-    //         GameObject.Find("Character" + i).GetComponent<SkillTreeUIHandler>().currentOrbs = 0;
-    //     }
-
-    //     SceneManager.LoadScene("3 Aeras");
-    // }
-
-
-    // private void NextMatch() {
-    //     SceneManager.LoadScene("3 Aeras");
-    // }
+        SceneManager.LoadScene("1 Character Selection");
+    }
 
 }

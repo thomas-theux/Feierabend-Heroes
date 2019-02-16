@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class TimeHandler : MonoBehaviour {
 	
@@ -43,6 +44,12 @@ public class TimeHandler : MonoBehaviour {
 	private bool showResults = false;
 	private bool roundEnd = false;
 
+	private List<int> orbCountArr = new List<int>();
+	private List<int> killsStatsArr = new List<int>();
+	private List<int> deathsStatsArr = new List<int>();
+
+	private List<int> medianValues = new List<int>();
+
 	public AudioSource matchEndSound;
 	public GameObject matchResultsGO;
 
@@ -72,16 +79,18 @@ public class TimeHandler : MonoBehaviour {
 
 
 	private void Update() {
-		if (levelStartTimerActive) {
-			LevelStartTimer();
-		}
+		if (!SettingsHolder.matchOver) {
+			if (levelStartTimerActive) {
+				LevelStartTimer();
+			}
 
-		if (battleStartTimerActive) {
-			BattleStartTimer();
-		}
+			if (battleStartTimerActive) {
+				BattleStartTimer();
+			}
 
-		if (lastSeconds) {
-			LastSecondsTimer();
+			if (lastSeconds) {
+				LastSecondsTimer();
+			}
 		}
 
 		if (SettingsHolder.matchOver && !showResults) {
@@ -178,9 +187,18 @@ public class TimeHandler : MonoBehaviour {
 
 
 	private IEnumerator MatchOver() {
+		startLevel = false;
+		startBattle = false;
+		battleStartTimerActive = false;
+		lastSeconds = false;
+		roundEnd = false;
+		isTicking = false;
+
 		showResults = true;
 
 		Instantiate(matchEndSound);
+
+		CalculateWinner();
 
 		yield return new WaitForSeconds(0.3f);
 
@@ -212,6 +230,32 @@ public class TimeHandler : MonoBehaviour {
 			Instantiate(timerTickingSound);
 			yield return new WaitForSeconds(1.0f);
 		}
+	}
+
+
+	private void CalculateWinner() {
+		// Save all orb counts in array
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			orbCountArr.Add(GameObject.Find("Character" + i).GetComponent<CharacterSheet>().currentOrbs);
+		}
+
+		// Find highest and lowest orb count in array
+		int lowestValue = orbCountArr.Min();
+        int highestValue = orbCountArr.Max();
+
+		// Find median values
+		for (int j = 0; j <SettingsHolder.playerCount; j++) {
+			if (orbCountArr[j] > lowestValue && orbCountArr[j] < highestValue) {
+				medianValues.Add(orbCountArr[j]);
+			}
+		}
+
+		// Find index of highest and lowest orb count in array
+		int lowestOrbIndex = orbCountArr.IndexOf(lowestValue);
+		int highestOrbIndex = orbCountArr.IndexOf(highestValue);
+
+		// Set first place in the rankings array to the player with the most orbs
+		GameManager.rankingArr[highestOrbIndex] = 1;
 	}
 
 }

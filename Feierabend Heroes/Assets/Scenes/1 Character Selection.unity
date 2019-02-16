@@ -467,7 +467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &667194383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1588,6 +1588,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charCardGO: {fileID: 1992279709183464, guid: 0ccbafcb3128b481d8dff780e0ab96ca, type: 3}
   cardsParent: {fileID: 1356208932}
+  startMatchSound: {fileID: 82822903586413262, guid: 212425bfcf8384988abf87d673d89343,
+    type: 3}
 --- !u!4 &1085749876
 Transform:
   m_ObjectHideFlags: 0
@@ -2155,7 +2157,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1912415969639578, guid: 537830b43c3544d11a26e01dbf254098, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
         type: 2}

@@ -967,6 +967,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd6f8499a23e49688e3d694e9b682e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startExploringSound: {fileID: 0}
+  startBattleSound: {fileID: 0}
+  roundEndSound: {fileID: 0}
+  timerTickingSound: {fileID: 0}
   levelStartTimerText: {fileID: 913712303}
   safeZoneGO: {fileID: 1398461687968238, guid: 60c1e9fab603c4385b75617afa57728b, type: 3}
   matchEndSound: {fileID: 0}
@@ -1720,7 +1724,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1912415969639578, guid: 537830b43c3544d11a26e01dbf254098, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114551168067451850, guid: 537830b43c3544d11a26e01dbf254098,
         type: 2}
@@ -1958,7 +1962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1911872700
 MonoBehaviour:
   m_ObjectHideFlags: 0

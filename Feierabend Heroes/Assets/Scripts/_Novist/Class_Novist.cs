@@ -180,6 +180,10 @@ public class Class_Novist : MonoBehaviour {
 		if (!lifeDeathHandlerScript.charIsDead) {
 			if (!charactMovementScript.skillBoardOn && TimeHandler.startBattle) {
 				GetInput();
+			} else {
+				performAttackOne = false;
+				performAttackTwo = false;
+				castSkill = false;
 			}
 
 			AttackOne();

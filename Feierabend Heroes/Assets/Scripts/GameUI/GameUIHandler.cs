@@ -10,6 +10,8 @@ public class GameUIHandler : MonoBehaviour {
 	public GameObject charCardGO;
 	public GameObject cardsParent;
 
+	public AudioSource startMatchSound;
+
 	private float startPosX = 283;
 
 	public static int connectedGamepads;
@@ -19,10 +21,20 @@ public class GameUIHandler : MonoBehaviour {
 
 
 	private void Awake() {
+		// Reset all stats
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			SettingsHolder.playerClasses[i] = -1;
+			SettingsHolder.charNames[i] = "";
+			SettingsHolder.playerCount = 0;
+			SettingsHolder.registeredPlayers = 0;
+			SettingsHolder.matchOver = false;
+			SettingsHolder.initialSpawn = false;
+		}
+
 		ReInput.ControllerConnectedEvent += OnControllerConnected;
 		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
-		connectedGamepads = 2; // ReInput.controllers.joystickCount;
+		connectedGamepads = ReInput.controllers.joystickCount;
 
 		for (int i = 0; i < playerMax; i++) {
 			GameObject newCharCard = Instantiate(charCardGO);
@@ -37,6 +49,8 @@ public class GameUIHandler : MonoBehaviour {
 	private void Update() {
 		if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel && SettingsHolder.registeredPlayers >= 2) {
 			startedLevel = true;
+
+			Instantiate(startMatchSound);
 			
 			SettingsHolder.playerCount = connectedGamepads;
 			SceneManager.LoadScene("3 Aeras");
