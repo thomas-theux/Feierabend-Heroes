@@ -11,6 +11,8 @@ public class StartGame : MonoBehaviour {
     private int lowestValue = 1000;
 
     private void Awake() {
+        print("Laden");
+
         SceneManager.LoadScene("1 Character Selection");
 
         // testList.Add(11);

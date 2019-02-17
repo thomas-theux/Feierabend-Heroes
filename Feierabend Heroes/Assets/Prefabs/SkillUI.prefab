@@ -510,7 +510,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 625c4902943c846e888a285272b4edaf, type: 3}
   skillUpgradeCurrent: 
   skillLocked: {fileID: 21300000, guid: ef87e8b36db3c46bf851ffb3801f2e97, type: 3}
-  currentOrbs: 200
+  currentOrbs: 2
 --- !u!114 &114196006560382630
 MonoBehaviour:
   m_ObjectHideFlags: 0

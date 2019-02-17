@@ -1,9 +1,10 @@
 OSXUniversal
 PlayerPath?
-/Users/thomas_ge/Desktop/Feierabend Heroes/Feierabend Heroes v0.1.1.app
+/Users/thomas_ge/Desktop/Feierabend Heroes/Feierabend Heroes v0.1.2.app
 SceneListBegin?
 Assets/Scenes/0 Main Screen.unity
 Assets/Scenes/1 Character Selection.unity
+Assets/Scenes/2 TestLevel.unity
 Assets/Scenes/3 Aeras.unity
 SceneListEnd?
 d58f78a47ee46483847e43d42fd04e1d Assembly-CSharp.dll:.WrenchPunch
@@ -277,9 +278,9 @@ c500cf53a648a58743febea88ea54fa8 Assembly-CSharp.dll:Rewired.Integration.UnityUI
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 99ebb03ecf455dfd608cef230b71078a Assembly-CSharp.dll:.SafeZone
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.StartGame
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 8a719b8bcdf1db6437820c0340238b7a Assembly-CSharp.dll:Rewired.Demos.CustomControllerDemo_Player
 6d863c8a17acb295615f90bd0cbd55fe Assembly-CSharp.dll:.FPSDisplay
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DestroyAfterPlay
 2e6f92767b5626887fe742cc15da58b8 Assembly-CSharp.dll:Rewired.UI.ControlMapper.CanvasScalerFitter
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.StartGame
