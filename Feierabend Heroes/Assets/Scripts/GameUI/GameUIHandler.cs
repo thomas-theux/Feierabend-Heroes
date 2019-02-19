@@ -34,7 +34,7 @@ public class GameUIHandler : MonoBehaviour {
 		ReInput.ControllerConnectedEvent += OnControllerConnected;
 		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
-		connectedGamepads = ReInput.controllers.joystickCount;
+		connectedGamepads = 2; //ReInput.controllers.joystickCount;
 
 		for (int i = 0; i < playerMax; i++) {
 			GameObject newCharCard = Instantiate(charCardGO);
@@ -47,17 +47,19 @@ public class GameUIHandler : MonoBehaviour {
 
 
 	private void Update() {
-		if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel && SettingsHolder.registeredPlayers >= 2) {
-			startedLevel = true;
+		if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel) {
+			if (SettingsHolder.registeredPlayers >= 2 && SettingsHolder.registeredPlayers == connectedGamepads) {
+				startedLevel = true;
 
-			Instantiate(startMatchSound);
-			
-			SettingsHolder.playerCount = connectedGamepads;
-			SceneManager.LoadScene("3 Aeras");
+				Instantiate(startMatchSound);
+				
+				SettingsHolder.playerCount = connectedGamepads;
+				SceneManager.LoadScene("3 Aeras");
 
-			// DEV TESTING
-			// SettingsHolder.playerCount = 4;
-			// SceneManager.LoadScene("2 TestLevel");
+				// DEV TESTING
+				// SettingsHolder.playerCount = 4;
+				// SceneManager.LoadScene("2 TestLevel");
+			}
 		}
 	}
 

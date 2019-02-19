@@ -12,7 +12,7 @@ public class CharacterSheet : MonoBehaviour {
 	public string classPerk = "";
 
 	// Movement
-	public float moveSpeed = 10.0f;
+	public float moveSpeed = 0;
 
 	// Attack
 	public string[] attackNames = {"", ""};

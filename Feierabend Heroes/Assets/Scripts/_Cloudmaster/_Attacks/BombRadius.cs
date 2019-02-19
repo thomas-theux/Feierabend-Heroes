@@ -72,6 +72,7 @@ public class BombRadius : MonoBehaviour {
 
 			characterSheetScript.currentHealth -= dealDamage;
 			other.gameObject.GetComponent<LifeDeathHandler>().lastDamagerID = damagerID;
+			other.GetComponent<LifeDeathHandler>().gotHit = true;
 		} else {
 			// Healing when dodging an attack
 			if (enemyDodgeHeal) {

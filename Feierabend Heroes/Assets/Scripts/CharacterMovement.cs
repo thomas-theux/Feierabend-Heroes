@@ -40,9 +40,6 @@ public class CharacterMovement : MonoBehaviour {
 		// characterSheetScript.charID = playerID;
 
 		cc = this.gameObject.GetComponent<CharacterController>();
-
-		int rndAnim = Random.Range(0, 2);
-		anim.SetInteger("standUp", rndAnim);
 	}
 
 
@@ -57,6 +54,8 @@ public class CharacterMovement : MonoBehaviour {
 
 	private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
 		cc.enabled = true;
+		// anim.SetBool("charDies", false);
+
 		characterSheetScript.charID = playerID;
 
 		campfireTarget = GameObject.Find("CampfireTarget");
@@ -98,6 +97,8 @@ public class CharacterMovement : MonoBehaviour {
 			moveVertical = 0;
 
 			cc.enabled = false;
+
+			anim.SetBool("charDies", true);
 
 			// Close skill board if it is open when this character dies
 			if (skillBoardOn) {

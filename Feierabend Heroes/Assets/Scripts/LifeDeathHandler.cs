@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LifeDeathHandler : MonoBehaviour {
@@ -32,6 +33,9 @@ public class LifeDeathHandler : MonoBehaviour {
 	private bool isResettingID = false;
 	private float safeZoneDamage = 60.0f;
 
+	public Image redFlash;
+	public bool gotHit = false;
+
 
 	private void Awake() {
 		characterSheetScript = GetComponent<CharacterSheet>();
@@ -54,6 +58,13 @@ public class LifeDeathHandler : MonoBehaviour {
 		isOutside = false;
 		isWaiting = false;
 		charIsDead = false;
+		isResettingID = false;
+
+		lastDamagerID = -1;
+
+		GameObject firstChild = transform.GetChild(transform.childCount-1).gameObject;
+		GameObject secondChild = firstChild.transform.GetChild(transform.GetChild(transform.childCount-1).transform.childCount-1).gameObject;
+		redFlash = secondChild.GetComponent<Image>();
 	}
 
 
@@ -61,6 +72,10 @@ public class LifeDeathHandler : MonoBehaviour {
 		// Reset damager ID after 100ms to avoid false stats
 		if (lastDamagerID > -1 && !isResettingID) {
 			StartCoroutine(ResetDamagerID());
+		}
+
+		if (gotHit) {
+			StartCoroutine(HurtCharacter());
 		}
 	}
 
@@ -72,7 +87,7 @@ public class LifeDeathHandler : MonoBehaviour {
 		}
 
 		// Damage character when outside of safe zone
-		if (isOutside && characterSheetScript.currentHealth > 0) {
+		if (isOutside && characterSheetScript.currentHealth > 0 && TimeHandler.startBattle) {
 			OutsideSafeZone();
 		}
 
@@ -125,18 +140,27 @@ public class LifeDeathHandler : MonoBehaviour {
 
 		Instantiate(characterDiesSound);
 
-		// Increase stats for deaths and kills
-		if (GameManager.killsStatsArr[lastDamagerID] > -1) {
-			GameManager.killsStatsArr[lastDamagerID]++;
-		}
-		GameManager.deathsStatsArr[characterSheetScript.charID]++;
+		if (lastDamagerID > -1) {
+			// Increase stats for kills
+			if (GameManager.killsStatsArr[lastDamagerID] > -1) {
+				GameManager.killsStatsArr[lastDamagerID]++;
+			}
 
-		// Give player who killed this character one extra orb
-		GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs++;
+			// Give player who killed this character one extra orb
+			GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs++;
+
+			// Steal orb from killed character
+			if (characterSheetScript.currentOrbs > 0) {
+				characterSheetScript.currentOrbs--;
+			}
+		}
+
+		// Increase stats for deaths
+		GameManager.deathsStatsArr[characterSheetScript.charID]++;
 		
-		dudeHeadGO.GetComponent<Renderer>().enabled = false;
-		dudeBodyGO.GetComponent<Renderer>().enabled = false;
-		gameObject.GetComponent<CapsuleCollider>().enabled = false;
+		// dudeHeadGO.GetComponent<Renderer>().enabled = false;
+		// dudeBodyGO.GetComponent<Renderer>().enabled = false;
+		// gameObject.GetComponent<CapsuleCollider>().enabled = false;
 
 		yield return new WaitForSeconds(2.0f);
 
@@ -167,8 +191,7 @@ public class LifeDeathHandler : MonoBehaviour {
 				isWaiting = false;
 				charIsDead = false;
 
-				// gameObject.SetActive(true);
-				EnableCharRenderer();
+				// EnableCharRenderer();
 
 				// Give 1 ORB when ORB skill is perfected and character is being respawned
 				if (characterSheetScript.respawnOrb) {
@@ -185,7 +208,7 @@ public class LifeDeathHandler : MonoBehaviour {
 		// Remove the just killed character from the player array
 		GameManager.activePlayers.Remove(characterSheetScript.charID);
 
-		if (GameManager.activePlayers.Count == 1) {
+		if (GameManager.activePlayers.Count <= 1) {
 			TimeHandler.lastSeconds = true;
 		}
 	}
@@ -203,6 +226,15 @@ public class LifeDeathHandler : MonoBehaviour {
 		yield return new WaitForSeconds(0.1f);
 		lastDamagerID = -1;
 		isResettingID = false;
+	}
+
+
+	private IEnumerator HurtCharacter() {
+		gotHit = false;
+
+		redFlash.color = new Color32(152, 24, 24, 100);
+		yield return new WaitForSeconds(0.1f);
+		redFlash.color = new Color32(152, 24, 24, 0);
 	}
 
 }

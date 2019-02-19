@@ -14,6 +14,14 @@ public class StatsCard : MonoBehaviour {
     public Text rankingText;
 
     public Image rankingBanner;
+	public Image charBackgroundImage;
+
+	private Color[] charColors = {
+		new Color32(23, 155, 194, 255),
+		new Color32(194, 66, 64, 255),
+		new Color32(35, 194, 112, 255),
+		new Color32(182, 194, 35, 255)
+	};
 
 
     private void Start() {
@@ -22,7 +30,13 @@ public class StatsCard : MonoBehaviour {
         deathsStatText.text = GameManager.deathsStatsArr[resultsID] + "";
         orbsSpentStatText.text = GameManager.orbsSpentStatsArr[resultsID] + "";
 
-        switch (GameManager.orbsSpentStatsArr[resultsID]) {
+        charBackgroundImage.color = charColors[resultsID];
+
+        switch (GameManager.rankingArr[resultsID]) {
+            case 0:
+                rankingText.text = "Bleedsau!";
+                rankingBanner.color = new Color32(255, 255, 255, 255);
+                break;
             case 1:
                 rankingText.text = "WINNER!";
                 rankingBanner.color = new Color32(255, 109, 1, 255);

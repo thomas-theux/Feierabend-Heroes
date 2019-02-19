@@ -6,13 +6,11 @@ using System.Linq;
 
 public class StartGame : MonoBehaviour {
 
-    private List<int> testList = new List<int>();
-    private int highestValue = 0;
-    private int lowestValue = 1000;
+    // private List<int> testList = new List<int>();
+    // private int highestValue = 0;
+    // private int lowestValue = 1000;
 
     private void Awake() {
-        print("Laden");
-
         SceneManager.LoadScene("1 Character Selection");
 
         // testList.Add(11);

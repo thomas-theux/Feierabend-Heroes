@@ -26,6 +26,15 @@ public class CharCardsHandler : MonoBehaviour {
 	public AudioSource toggleSound;
 	public AudioSource randomizeNameSound;
 
+	public Image charBackgroundImage;
+
+	private Color[] charColors = {
+		new Color32(23, 155, 194, 255),
+		new Color32(194, 66, 64, 255),
+		new Color32(35, 194, 112, 255),
+		new Color32(182, 194, 35, 255)
+	};
+
 	private CharClassContent charClassContentScript;
 
 	public Text randomNameText;
@@ -56,6 +65,11 @@ public class CharCardsHandler : MonoBehaviour {
 		charClassContentScript = GetComponent<CharClassContent>();
 
 		RandomizeName();
+	}
+
+
+	private void Start() {
+		charBackgroundImage.color = charColors[charID];
 	}
 
 

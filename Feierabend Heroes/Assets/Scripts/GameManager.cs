@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> startSpawns;
 	public static List<int> activePlayers = new List<int>();
 
+	public Material[] charColorsArr;
+
 	private List<GameObject> characterArr = new List<GameObject>();
 
 	public static int[] killsStatsArr = {0, 0, 0, 0};
@@ -52,6 +54,12 @@ public class GameManager : MonoBehaviour {
 			newChar.tag = "Character" + i;
 			newChar.transform.GetChild(0).tag = "Character" + i;
 
+			newChar.GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.startingOrbs;
+
+			// Color characters
+			newChar.transform.GetChild(0).transform.GetChild(1).GetComponent<Renderer>().material = charColorsArr[i];
+			newChar.transform.GetChild(0).transform.GetChild(2).GetComponent<Renderer>().material = charColorsArr[i];
+
 			switch(SettingsHolder.playerClasses[i]) {
 				case 0:
 					newChar.AddComponent<Class_Cloudmaster>();
@@ -84,7 +92,7 @@ public class GameManager : MonoBehaviour {
 			findChar.GetComponent<LifeDeathHandler>().EnableCharRenderer();
 
 			findChar.GetComponent<CharacterSheet>().currentHealth = findChar.GetComponent<CharacterSheet>().maxHealth;
-			// charUIArr[j].GetComponent<CharacterSheet>().currentHealth = charUIArr[j].GetComponent<CharacterSheet>().maxHealth;
+			findChar.GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.startingOrbs;
 		}
 	}
 

@@ -13,9 +13,11 @@ public class SettingsHolder {
 	public static int appleAmount = 10;
 	public static int orbChestAmount = 10;
 
-	public static int orbsToWin = 15;
-	public static bool matchOver = false;
+	public static int startingOrbs = 2;
 	public static int orbsForRoundWin = 2;
+	public static int orbsToWin = 10;
+
+	public static bool matchOver = false;
 
 	public static bool initialSpawn = false;
 

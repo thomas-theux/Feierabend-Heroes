@@ -127,6 +127,7 @@ public class CompanionAggro : MonoBehaviour {
 
 			characterSheetScript.currentHealth -= dealDamage;
 			enemyChar.gameObject.GetComponent<LifeDeathHandler>().lastDamagerID = damagerID;
+			enemyChar.GetComponent<LifeDeathHandler>().gotHit = true;
 		} else {
 			// Healing when dodging an attack
 			if (enemyDodgeHeal) {

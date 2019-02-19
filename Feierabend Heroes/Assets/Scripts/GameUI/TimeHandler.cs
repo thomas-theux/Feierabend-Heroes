@@ -19,7 +19,7 @@ public class TimeHandler : MonoBehaviour {
 
 	private float levelStartTimeDef = 3.0f;
 	private float levelStartTime;
-	private float battleStartTimeDef = 60.0f;
+	private float battleStartTimeDef = 3.0f;
 	private float battleStartTime;
 	private float lastSecondsTimeDef = 3.0f;
 	private float lastSecondsTime;
@@ -45,10 +45,10 @@ public class TimeHandler : MonoBehaviour {
 	private bool roundEnd = false;
 
 	private List<int> orbCountArr = new List<int>();
-	private List<int> killsStatsArr = new List<int>();
-	private List<int> deathsStatsArr = new List<int>();
+	// private List<int> killsStatsArr = new List<int>();
+	// private List<int> deathsStatsArr = new List<int>();
 
-	private List<int> medianValues = new List<int>();
+	// private List<int> medianValues = new List<int>();
 
 	public AudioSource matchEndSound;
 	public GameObject matchResultsGO;
@@ -151,6 +151,12 @@ public class TimeHandler : MonoBehaviour {
 
 		if (roundEnd) {
 			yield return new WaitForSeconds(1.0f);
+
+			// Reset character animation
+			for (int i = 0; i < SettingsHolder.playerCount; i++) {
+				GameObject.Find("Character" + i).GetComponent<CharacterMovement>().anim.SetBool("charDies", false);
+			}
+			
 			SceneManager.LoadScene("3 Aeras");
 		}
 	}
@@ -240,18 +246,9 @@ public class TimeHandler : MonoBehaviour {
 		}
 
 		// Find highest and lowest orb count in array
-		int lowestValue = orbCountArr.Min();
         int highestValue = orbCountArr.Max();
 
-		// Find median values
-		for (int j = 0; j <SettingsHolder.playerCount; j++) {
-			if (orbCountArr[j] > lowestValue && orbCountArr[j] < highestValue) {
-				medianValues.Add(orbCountArr[j]);
-			}
-		}
-
 		// Find index of highest and lowest orb count in array
-		int lowestOrbIndex = orbCountArr.IndexOf(lowestValue);
 		int highestOrbIndex = orbCountArr.IndexOf(highestValue);
 
 		// Set first place in the rankings array to the player with the most orbs

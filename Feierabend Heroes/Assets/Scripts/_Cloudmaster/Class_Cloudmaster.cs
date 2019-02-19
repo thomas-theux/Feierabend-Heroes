@@ -46,7 +46,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	// Initial variables and increase values for the skills
 	private float[] skillOneStats = {0.4f, 5.0f, 0.2f, 1.0f};
-	private float[] skillTwoStats = {0.3f, 24.0f, -0.05f, 4.0f};
+	private float[] skillTwoStats = {0.3f, 20.0f, -0.05f, 4.0f};
 
 	// Skill titles and texts for the skill board
 	private string classType = "CLOUD MASTER";
@@ -66,9 +66,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private string skillOneUpgradePerk = "+50% HP heal\n+1s lifetime";
 	private string skillTwoUpgradePerk = "+16% shot speed\n+4m radius";
 
-	private float charHealth = 300.0f;
-	
-	private float charDefense = 12.0f;
+	private float charHealth = 260.0f;
+	private float charDefense = 8.0f;
+	private float moveSpeed = 10.0f;
 
 	// Movement delay when attacking
 	private float moveDelay = 0.1f;
@@ -169,6 +169,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		characterSheetScript.currentHealth = charHealth;
 		characterSheetScript.maxHealth = charHealth;
+		characterSheetScript.moveSpeed = moveSpeed;
 
 		characterSheetScript.charDefense = charDefense;
 	}

@@ -45,7 +45,7 @@ public class Class_Novist : MonoBehaviour {
 
 	// Initial variables and increase values for the skills
 	private float[] skillOneStats = {2.0f, 8.0f, 0.5f, 2.0f};
-	private float[] skillTwoStats = {20.0f, 12.0f, 3.0f, 4.0f};
+	private float[] skillTwoStats = {26.0f, 12.0f, 3.0f, 4.0f};
 
 	// Skill titles and texts for the skill board
 	private string classType = "NOVIST";
@@ -66,9 +66,9 @@ public class Class_Novist : MonoBehaviour {
 	private string skillOneUpgradePerk = "+0.5x HP heal\n+2s duration";
 	private string skillTwoUpgradePerk = "+3m radius\n+4s lifetime";
 
-	private float charHealth = 240.0f;
-
-	private float charDefense = 8.0f;
+	private float charHealth = 340.0f;
+	private float charDefense = 16.0f;
+	private float moveSpeed = 8.0f;
 
 	// Movement delay when attacking
 	private float moveDelay = 0.1f;
@@ -171,6 +171,7 @@ public class Class_Novist : MonoBehaviour {
 
 		characterSheetScript.currentHealth = charHealth;
 		characterSheetScript.maxHealth = charHealth;
+		characterSheetScript.moveSpeed = moveSpeed;
 		
 		characterSheetScript.charDefense = charDefense;
 	}

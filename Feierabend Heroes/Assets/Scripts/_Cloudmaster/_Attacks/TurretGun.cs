@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurretGun : MonoBehaviour {
 
-	private float lifeTime = 20.0f;
+	private float lifeTime = 16.0f;
 	public int charID;
 
 	public float casterDamage = 0;

@@ -152,7 +152,8 @@ public class CharClassContent : MonoBehaviour {
 		"Smelly",
 		"Touchy",
 		"Colorful",
-		"Drunken"
+		"Drunken",
+		"Sticky"
 	};
 
 	public static string[] nameTexts = {
@@ -213,7 +214,9 @@ public class CharClassContent : MonoBehaviour {
 		"Panda",
 		"Jellyfish",
 		"Dog",
-		"Peanut"
+		"Peanut",
+		"Soul",
+		"Donut"
 	};
 
 }

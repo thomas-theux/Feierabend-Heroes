@@ -72,6 +72,7 @@ public class BasicShot : MonoBehaviour {
 			}
 
 			characterSheetScript.currentHealth -= dealDamage;
+			other.GetComponent<LifeDeathHandler>().gotHit = true;
 		} else {
 			// Healing when dodging an attack
 			if (enemyDodgeHeal) {

@@ -3843,6 +3843,11 @@ MonoBehaviour:
     type: 3}
   spawnParent: {fileID: 1191772276}
   startSpawns: []
+  charColorsArr:
+  - {fileID: 2100000, guid: d5094a420ecde4f9d9fea30016f6734a, type: 2}
+  - {fileID: 2100000, guid: 1703193d6e2bf46639d167f9432c7f78, type: 2}
+  - {fileID: 2100000, guid: 4b799ec58fcf1411e815e4ce3b74787e, type: 2}
+  - {fileID: 2100000, guid: 1b2792256e08645e4bec662dc27722f4, type: 2}
 --- !u!4 &546525273
 Transform:
   m_ObjectHideFlags: 0
