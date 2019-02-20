@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4390572993156938}
   - component: {fileID: 82822903586413262}
+  - component: {fileID: 8564728336377631854}
   - component: {fileID: 114049048752344574}
   m_Layer: 0
   m_Name: StartMatchSound
@@ -128,6 +129,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8564728336377631854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100037408910062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b3a4d12e6c41d3a0029ea23381664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114049048752344574
 MonoBehaviour:
   m_ObjectHideFlags: 0

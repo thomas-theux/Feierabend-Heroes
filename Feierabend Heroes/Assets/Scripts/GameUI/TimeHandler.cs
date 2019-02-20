@@ -16,10 +16,11 @@ public class TimeHandler : MonoBehaviour {
 	public AudioSource timerTickingSound;
 
 	public Text levelStartTimerText;
+	public Text explorationTimerText;
 
 	private float levelStartTimeDef = 3.0f;
 	private float levelStartTime;
-	private float battleStartTimeDef = 3.0f;
+	private float battleStartTimeDef = 10.0f;
 	private float battleStartTime;
 	private float lastSecondsTimeDef = 3.0f;
 	private float lastSecondsTime;
@@ -28,6 +29,7 @@ public class TimeHandler : MonoBehaviour {
 	private bool battleStartTimerActive = false;
 
 	private bool isTicking = false;
+	private bool showExplorationTimer = false;
 
 	private GameObject levelGO;
 	public GameObject safeZoneGO;
@@ -42,7 +44,7 @@ public class TimeHandler : MonoBehaviour {
 	public static bool lastSeconds = false;
 
 	private bool showResults = false;
-	private bool roundEnd = false;
+	public static bool roundEnd = false;
 
 	private List<int> orbCountArr = new List<int>();
 	// private List<int> killsStatsArr = new List<int>();
@@ -65,16 +67,24 @@ public class TimeHandler : MonoBehaviour {
 		showResults = false;
 		roundEnd = false;
 		isTicking = false;
+		showExplorationTimer = false;
 
-		levelStartTimerActive = true;
 		levelStartTime = levelStartTimeDef;
 		battleStartTime = battleStartTimeDef;
 		lastSecondsTime = lastSecondsTimeDef;
+
+		StartCoroutine(StartTimer());
+		SpawnSafeZone();
+	}
+
+
+	private IEnumerator StartTimer() {
+		yield return new WaitForSeconds(0.8f);
+
+		levelStartTimerActive = true;
 		isTicking = true;
 
 		StartCoroutine(TimeTicking());
-
-		SpawnSafeZone();
 	}
 
 
@@ -120,9 +130,16 @@ public class TimeHandler : MonoBehaviour {
 
 	private void BattleStartTimer() {
 		if (battleStartTime > 0.1f) {
+			if (showExplorationTimer) {
+				explorationTimerText.text = Mathf.Ceil(battleStartTime) + "";
+			}
+
 			battleStartTime -= Time.deltaTime;
 
 			if (battleStartTime < lastSecondsTimeDef) {
+				explorationTimerText.text = "";
+				showExplorationTimer = false;
+
 				if (!isTicking) {
 					isTicking = true;
 					StartCoroutine(TimeTicking());
@@ -136,8 +153,8 @@ public class TimeHandler : MonoBehaviour {
 			isTicking = false;
 
 			Instantiate(startBattleSound);
-
 			levelStartTimerText.text = "Battle!";
+
 			StartCoroutine(WaitTwoSecs());
 
 			battleStartTimerActive = false;
@@ -148,15 +165,11 @@ public class TimeHandler : MonoBehaviour {
 	private IEnumerator WaitTwoSecs() {
 		yield return new WaitForSeconds(2.0f);
 		levelStartTimerText.text = "";
+		showExplorationTimer = true;
 
 		if (roundEnd) {
-			yield return new WaitForSeconds(1.0f);
+			yield return new WaitForSeconds(1.5f);
 
-			// Reset character animation
-			for (int i = 0; i < SettingsHolder.playerCount; i++) {
-				GameObject.Find("Character" + i).GetComponent<CharacterMovement>().anim.SetBool("charDies", false);
-			}
-			
 			SceneManager.LoadScene("3 Aeras");
 		}
 	}
@@ -185,7 +198,10 @@ public class TimeHandler : MonoBehaviour {
 			roundEnd = true;
 
 			// Give round winner 2 orbs
-			GameObject.Find("Character" + GameManager.activePlayers[0]).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForRoundWin;
+			if (GameManager.activePlayers.Count > 0) {
+				GameObject.Find("Character" + GameManager.activePlayers[0]).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForRoundWin;
+				GameObject.Find("Character" + GameManager.activePlayers[0]).GetComponent<CharacterMovement>().anim.SetBool("charWins", true);
+			}
 
 			StartCoroutine(WaitTwoSecs());
 		}
@@ -213,6 +229,11 @@ public class TimeHandler : MonoBehaviour {
 
 		yield return new WaitForSeconds(1.0f);
 
+		// Save current orbs count in stats
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			GameManager.orbsCountStatsArr[i] = GameObject.Find("Character" + i).GetComponent<CharacterSheet>().currentOrbs;
+		}
+
 		Instantiate(matchResultsGO);
 	}
 
@@ -232,9 +253,11 @@ public class TimeHandler : MonoBehaviour {
 
 
 	private IEnumerator TimeTicking() {
-		while (isTicking) {
-			Instantiate(timerTickingSound);
-			yield return new WaitForSeconds(1.0f);
+		if (!SettingsHolder.matchOver) {
+			while (isTicking) {
+				Instantiate(timerTickingSound);
+				yield return new WaitForSeconds(1.0f);
+			}
 		}
 	}
 

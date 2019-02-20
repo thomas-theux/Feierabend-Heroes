@@ -41,6 +41,7 @@ public class CharCardsHandler : MonoBehaviour {
 	public Text classText;
 	public Text charHPText;
 	public Text charDEFText;
+	public Text charMSPDText;
 	public Image classImage;
 	public Text skillsText;
 	public Image attackOneImage;
@@ -187,6 +188,7 @@ public class CharCardsHandler : MonoBehaviour {
 		classText.text = charClassContentScript.classTexts[currentIndex];
 		charHPText.text = charClassContentScript.charHPTexts[currentIndex];
 		charDEFText.text = charClassContentScript.charDEFTexts[currentIndex];
+		charMSPDText.text = charClassContentScript.charMSPDTexts[currentIndex];
 
 		skillsText.text = charClassContentScript.skillsTexts[toggleSkill];
 

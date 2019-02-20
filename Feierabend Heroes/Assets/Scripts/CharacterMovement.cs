@@ -54,7 +54,8 @@ public class CharacterMovement : MonoBehaviour {
 
 	private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
 		cc.enabled = true;
-		// anim.SetBool("charDies", false);
+		anim.SetBool("charDies", false);
+		anim.SetBool("charWins", false);
 
 		characterSheetScript.charID = playerID;
 
@@ -70,6 +71,12 @@ public class CharacterMovement : MonoBehaviour {
 
 		if (skillBoardOn) {
 			anim.SetFloat("charSpeed", 0);
+		}
+
+		// Close skillboard when it's open and the match ends
+		if (SettingsHolder.matchOver && skillBoardOn || TimeHandler.roundEnd && skillBoardOn) {
+			skillBoardOn = false;
+			ShowSkillboard();
 		}
 	}
 

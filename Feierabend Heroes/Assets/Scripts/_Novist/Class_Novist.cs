@@ -33,6 +33,10 @@ public class Class_Novist : MonoBehaviour {
 	private float skillOne = 18.0f;
 	private float skillTwo = 32.0f;
 
+	private bool performAttacks = false;
+	private float performTimeDef = 0.2f;
+	private float performTime = 0;
+
 	private float rageAttackSpeed = 1.0f;
 
 	private float attackOneDelay;
@@ -190,6 +194,10 @@ public class Class_Novist : MonoBehaviour {
 			AttackOne();
 			AttackTwo();
 
+			if (performAttacks) {
+				PerformAttackDelay();
+			}
+
 			if (characterSheetScript.skillActivated == 1) {
 				SkillOne();
 			} else if (characterSheetScript.skillActivated == 2) {
@@ -225,8 +233,21 @@ public class Class_Novist : MonoBehaviour {
 	}
 
 
+	private void PerformAttackDelay() {
+		performTime -= Time.deltaTime;
+
+		if (performTime <= 0) {
+			performAttacks = false;
+		}
+	}
+
+
 	private void AttackOne() {
-		if (performAttackOne && !attackOneDelayActive) {
+		if (performAttackOne && !attackOneDelayActive && !performAttacks) {
+			
+			performAttacks = true;
+			performTime = performTimeDef;
+
 			// Check if rage mode is on and on level 3
 			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 3) {
 				rageAttackSpeed = 2.0f;
@@ -260,7 +281,11 @@ public class Class_Novist : MonoBehaviour {
 
 
 	private void AttackTwo() {
-		if (performAttackTwo && !attackTwoDelayActive) {
+		if (performAttackTwo && !attackTwoDelayActive && !performAttacks) {
+			
+			performAttacks = true;
+			performTime = performTimeDef;
+
 			// Check if rage mode is on and on level 3
 			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 3) {
 				rageAttackSpeed = 2.0f;
@@ -295,7 +320,10 @@ public class Class_Novist : MonoBehaviour {
 
 
 	private void SkillOne() {
-		if (castSkill && characterSheetScript.skillActivated == 1 && !skillOneDelayActive) {
+		if (castSkill && characterSheetScript.skillActivated == 1 && !skillOneDelayActive && !performAttacks) {
+			
+			performAttacks = true;
+			performTime = performTimeDef;
 
 			skillOneDelayTimer = characterSheetScript.delaySkillOne;
 			skillOneDelayActive = true;
@@ -331,7 +359,10 @@ public class Class_Novist : MonoBehaviour {
 
 
 	private void SkillTwo() {
-		if (castSkill && characterSheetScript.skillActivated == 2 && !skillTwoDelayActive) {
+		if (castSkill && characterSheetScript.skillActivated == 2 && !skillTwoDelayActive && !performAttacks) {
+			
+			performAttacks = true;
+			performTime = performTimeDef;
 
 			skillTwoDelayTimer = characterSheetScript.delaySkillTwo;
 			skillTwoDelayActive = true;

@@ -20,6 +20,11 @@ public class CharClassContent : MonoBehaviour {
 		""
 	};
 
+	public string[] charMSPDTexts = {
+		"",
+		""
+	};
+
 	public string[] skillsTexts = {
 		"",
 		""

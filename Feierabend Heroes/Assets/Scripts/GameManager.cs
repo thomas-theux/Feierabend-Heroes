@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 
 	private List<GameObject> characterArr = new List<GameObject>();
 
+	public static int[] orbsCountStatsArr = {0, 0, 0, 0};
 	public static int[] killsStatsArr = {0, 0, 0, 0};
 	public static int[] deathsStatsArr = {0, 0, 0, 0};
 	public static int[] orbsSpentStatsArr = {0, 0, 0, 0};
@@ -92,7 +93,9 @@ public class GameManager : MonoBehaviour {
 			findChar.GetComponent<LifeDeathHandler>().EnableCharRenderer();
 
 			findChar.GetComponent<CharacterSheet>().currentHealth = findChar.GetComponent<CharacterSheet>().maxHealth;
-			findChar.GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.startingOrbs;
+
+			// Give players new orbs every round
+			// findChar.GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsEveryRound;
 		}
 	}
 

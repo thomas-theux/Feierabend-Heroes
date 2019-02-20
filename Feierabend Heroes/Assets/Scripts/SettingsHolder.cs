@@ -14,6 +14,7 @@ public class SettingsHolder {
 	public static int orbChestAmount = 10;
 
 	public static int startingOrbs = 2;
+	public static int orbsEveryRound = 1;
 	public static int orbsForRoundWin = 2;
 	public static int orbsToWin = 10;
 

@@ -8,9 +8,9 @@ public class StatsCard : MonoBehaviour {
     public int resultsID = 0;
 
     public Text charNameText;
+    public Text orbsCountStatText;
     public Text killsStatText;
     public Text deathsStatText;
-    public Text orbsSpentStatText;
     public Text rankingText;
 
     public Image rankingBanner;
@@ -26,9 +26,9 @@ public class StatsCard : MonoBehaviour {
 
     private void Start() {
         charNameText.text = SettingsHolder.charNames[resultsID];
+        orbsCountStatText.text = GameManager.orbsCountStatsArr[resultsID] + "";
         killsStatText.text = GameManager.killsStatsArr[resultsID] + "";
         deathsStatText.text = GameManager.deathsStatsArr[resultsID] + "";
-        orbsSpentStatText.text = GameManager.orbsSpentStatsArr[resultsID] + "";
 
         charBackgroundImage.color = charColors[resultsID];
 

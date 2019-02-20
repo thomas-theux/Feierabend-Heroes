@@ -49,16 +49,9 @@ public class GameUIHandler : MonoBehaviour {
 	private void Update() {
 		if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel) {
 			if (SettingsHolder.registeredPlayers >= 2 && SettingsHolder.registeredPlayers == connectedGamepads) {
+
 				startedLevel = true;
-
-				Instantiate(startMatchSound);
-				
-				SettingsHolder.playerCount = connectedGamepads;
-				SceneManager.LoadScene("3 Aeras");
-
-				// DEV TESTING
-				// SettingsHolder.playerCount = 4;
-				// SceneManager.LoadScene("2 TestLevel");
+				StartCoroutine(StartLevel());
 			}
 		}
 	}
@@ -71,7 +64,7 @@ public class GameUIHandler : MonoBehaviour {
 		} else {
 			print("No more controllers allowed");
 		}
-  }
+	}
 
 
 	void OnControllerDisconnected(ControllerStatusChangedEventArgs args) {
@@ -81,6 +74,16 @@ public class GameUIHandler : MonoBehaviour {
 		} else {
 			print("No more controllers to disconnect");
 		}
-  }
+	}
+
+
+	private IEnumerator StartLevel() {
+		SettingsHolder.playerCount = connectedGamepads;
+		Instantiate(startMatchSound);
+
+		yield return new WaitForSeconds(0.1f);
+
+		SceneManager.LoadScene("3 Aeras");
+	}
 	
 }
