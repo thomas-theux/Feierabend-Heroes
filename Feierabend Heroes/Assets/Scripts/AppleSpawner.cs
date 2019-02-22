@@ -4,38 +4,53 @@ using UnityEngine;
 
 public class AppleSpawner : MonoBehaviour {
 
-	private int appleAmount;
 	public GameObject appleGO;
-	private GameObject levelGO;
+	public GameObject levelGO;
 
 	private float minPosX;
 	private float minPosZ;
 	private float maxPosX;
 	private float maxPosZ;
 
-	private float levelPadding = 5.0f;
+	private float spawnHeight = 20.0f;
+
+	private float levelPadding = 3.0f;
+
+	private float waitingTime = 0.2f;
+	private float timeMultiplier = 1.3f;
+	public static int currentAppleCount = 0;
 
 
 	private void Awake() {
-		// Get the level gameobject as scale reference
-		levelGO = GameObject.Find("Ground");
+		StartCoroutine(WaitToSpawn());
+	}
 
-		appleAmount = SettingsHolder.appleAmount;
 
+	private IEnumerator WaitToSpawn() {
+		yield return new WaitForSeconds(waitingTime);
+		SpawnApple();
+	}
+
+
+	public void SpawnApple() {
 		// Set limit positions for apples
 		minPosX = 0 - levelGO.transform.localScale.x / 2 + levelPadding;
 		minPosZ = 0 - levelGO.transform.localScale.z / 2 + levelPadding;
 		maxPosX = levelGO.transform.localScale.x / 2 - levelPadding;
 		maxPosZ = levelGO.transform.localScale.z / 2 - levelPadding;
 
-		// Spawn apples randomly in level
-		for (int i = 0; i < appleAmount; i++) {
-			GameObject newApple = Instantiate(appleGO);
+		GameObject newApple = Instantiate(appleGO);
 
-			float rndPosX = Random.Range(minPosX, maxPosX);
-			float rndPosZ = Random.Range(minPosZ, maxPosZ);
+		float rndPosX = Random.Range(minPosX, maxPosX);
+		float rndPosZ = Random.Range(minPosZ, maxPosZ);
 
-			newApple.transform.position = new Vector3(rndPosX, newApple.transform.position.y, rndPosZ);
+		newApple.transform.position = new Vector3(rndPosX, spawnHeight, rndPosZ);
+
+		currentAppleCount++;
+
+		if (currentAppleCount < SettingsHolder.appleMax) {
+			waitingTime *= timeMultiplier;
+			StartCoroutine(WaitToSpawn());
 		}
 	}
 

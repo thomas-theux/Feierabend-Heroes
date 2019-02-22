@@ -30,6 +30,14 @@ public class MatchResults : MonoBehaviour {
         if (ReInput.players.GetPlayer(0).GetButtonDown("Circle")) {
             QuitMatch();
         }
+
+        if (ReInput.players.GetPlayer(0).GetButtonDown("Square")) {
+            NextMatch();
+        }
+
+        if (ReInput.players.GetPlayer(0).GetButtonDown("X")) {
+            RestartMatch();
+        }
     }
 
 
@@ -39,8 +47,32 @@ public class MatchResults : MonoBehaviour {
 			Destroy(GameObject.Find("Character" + i));
 			Destroy(GameObject.Find("PlayerCamera" + i));
         }
+        
+        SettingsHolder.matchOver = false;
 
         SceneManager.LoadScene("1 Character Selection");
+    }
+
+
+    private void NextMatch() {
+        SettingsHolder.nextMatch = true;
+        SettingsHolder.matchOver = false;
+
+        SceneManager.LoadScene("3 Aeras");
+    }
+
+
+    private void RestartMatch() {
+        // Kill DontDestroyOnLOad game objetcts
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			Destroy(GameObject.Find("Character" + i));
+			Destroy(GameObject.Find("PlayerCamera" + i));
+        }
+
+        SettingsHolder.initialSpawn = false;
+        SettingsHolder.matchOver = false;
+
+        SceneManager.LoadScene("3 Aeras");
     }
 
 }

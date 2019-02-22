@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 33942132486650440}
   - component: {fileID: 23485128573140658}
   - component: {fileID: 65292930364531768}
-  - component: {fileID: 54362570535084708}
   - component: {fileID: 135302955721574252}
+  - component: {fileID: 54362570535084708}
   - component: {fileID: 114850350515639110}
   m_Layer: 0
   m_Name: OrbChest
@@ -96,6 +96,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.6, z: 0.8}
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!135 &135302955721574252
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053412921110704}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &54362570535084708
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112,19 +125,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
---- !u!135 &135302955721574252
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053412921110704}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114850350515639110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1511644e5be87469bb36b910d871aed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnOrbSound: {fileID: 6464427375189394100, guid: 30cd4b705510d47c5acf1fed308a569b,
+    type: 3}
   collectOrbSound: {fileID: 6464427375189394100, guid: 1694a668904ee4711a1201bcc2dcb885,
     type: 3}
 --- !u!1 &1062586631191248

@@ -244,6 +244,10 @@ public class Class_Novist : MonoBehaviour {
 
 	private void AttackOne() {
 		if (performAttackOne && !attackOneDelayActive && !performAttacks) {
+
+			// DEV STUFF – Collect data on how many times an attack has been used
+			SettingsHolder.meteorShot++;
+			PlayerPrefs.SetInt("Meteor Shot", SettingsHolder.meteorShot);
 			
 			performAttacks = true;
 			performTime = performTimeDef;
@@ -282,6 +286,10 @@ public class Class_Novist : MonoBehaviour {
 
 	private void AttackTwo() {
 		if (performAttackTwo && !attackTwoDelayActive && !performAttacks) {
+
+			// DEV STUFF – Collect data on how many times an attack has been used
+			SettingsHolder.fireBlock++;
+			PlayerPrefs.SetInt("Fire Block", SettingsHolder.fireBlock);
 			
 			performAttacks = true;
 			performTime = performTimeDef;
@@ -321,6 +329,10 @@ public class Class_Novist : MonoBehaviour {
 
 	private void SkillOne() {
 		if (castSkill && characterSheetScript.skillActivated == 1 && !skillOneDelayActive && !performAttacks) {
+
+			// DEV STUFF – Collect data on how many times an attack has been used
+			SettingsHolder.doubleHP++;
+			PlayerPrefs.SetInt("Double HP", SettingsHolder.doubleHP);
 			
 			performAttacks = true;
 			performTime = performTimeDef;
@@ -360,6 +372,10 @@ public class Class_Novist : MonoBehaviour {
 
 	private void SkillTwo() {
 		if (castSkill && characterSheetScript.skillActivated == 2 && !skillTwoDelayActive && !performAttacks) {
+
+			// DEV STUFF – Collect data on how many times an attack has been used
+			SettingsHolder.spawnCompanion++;
+			PlayerPrefs.SetInt("Companion", SettingsHolder.spawnCompanion);
 			
 			performAttacks = true;
 			performTime = performTimeDef;

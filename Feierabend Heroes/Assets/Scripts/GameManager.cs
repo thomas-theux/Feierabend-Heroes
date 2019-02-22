@@ -94,6 +94,12 @@ public class GameManager : MonoBehaviour {
 
 			findChar.GetComponent<CharacterSheet>().currentHealth = findChar.GetComponent<CharacterSheet>().maxHealth;
 
+			// Give new orbs when players play next match
+			if (SettingsHolder.nextMatch) {
+				findChar.GetComponent<CharacterSheet>().currentOrbs = SettingsHolder.startingOrbs;
+				SettingsHolder.nextMatch = false;
+			}
+
 			// Give players new orbs every round
 			// findChar.GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsEveryRound;
 		}

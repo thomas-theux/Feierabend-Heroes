@@ -497,7 +497,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Restart Match (keep skills)
+  m_Text: Next Match (keep skills)
 --- !u!1 &5765501828508898365
 GameObject:
   m_ObjectHideFlags: 0

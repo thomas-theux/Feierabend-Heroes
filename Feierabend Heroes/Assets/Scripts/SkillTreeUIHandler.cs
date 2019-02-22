@@ -316,6 +316,10 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		characterSheetscript.currentOrbs -= skillCosts[currentIndex];
 		// Add one to stat "orbs spent"
 		GameManager.orbsSpentStatsArr[characterSheetscript.charID]++;
+
+		// DEV STUFF – Delete for production
+		SettingsHolder.spentOrbs++;
+		PlayerPrefs.SetInt("Spent Orbs", SettingsHolder.spentOrbs);
 	}
 
 

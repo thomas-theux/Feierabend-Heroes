@@ -22,19 +22,19 @@ public class ResetAllStats : MonoBehaviour {
 	{
 		if (!resetAllStats) {
 			for (int i = 0; i < 4; i++) {
-				// Reset stats
-				PlayerPrefs.SetFloat("P" + i + "StatHealth", defaultHealth);
-				PlayerPrefs.SetFloat("P" + i + "StatAttackMin", defaultAttackMin);
-				PlayerPrefs.SetFloat("P" + i + "StatAttackMax", defaultAttackMax);
-				PlayerPrefs.SetInt("P" + i + "StatDefense", defaultDefense);
-				PlayerPrefs.SetFloat("P" + i + "StatSpeed", defaultSpeed);
-				PlayerPrefs.SetInt("P" + i + "StatLuck", defaultLuck);
+				// // Reset stats
+				// PlayerPrefs.SetFloat("P" + i + "StatHealth", defaultHealth);
+				// PlayerPrefs.SetFloat("P" + i + "StatAttackMin", defaultAttackMin);
+				// PlayerPrefs.SetFloat("P" + i + "StatAttackMax", defaultAttackMax);
+				// PlayerPrefs.SetInt("P" + i + "StatDefense", defaultDefense);
+				// PlayerPrefs.SetFloat("P" + i + "StatSpeed", defaultSpeed);
+				// PlayerPrefs.SetInt("P" + i + "StatLuck", defaultLuck);
 
-				// Reset jump height
-				PlayerPrefs.SetFloat("P" + i + "JumpHeight", defaultJumpHeight);
+				// // Reset jump height
+				// PlayerPrefs.SetFloat("P" + i + "JumpHeight", defaultJumpHeight);
 
-				// Reset available stat points
-				PlayerPrefs.SetInt("P" + i + "CurrentStatPoints", defaultStatPoints);
+				// // Reset available stat points
+				// PlayerPrefs.SetInt("P" + i + "CurrentStatPoints", defaultStatPoints);
 			}
 
 			resetAllStats = true;

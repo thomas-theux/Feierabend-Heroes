@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   safeZoneCol: {fileID: 136438466751568588}
-  decreaseDuration: 10
+  decreaseDuration: 120
 --- !u!1 &1477932658653448
 GameObject:
   m_ObjectHideFlags: 0

@@ -242,6 +242,10 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private void AttackOne() {
 		if (performAttackOne && !attackOneDelayActive && !performAttacks) {
+
+			// DEV STUFF – Collect data on how many times an attack has been used
+			SettingsHolder.wrenchPunch++;
+			PlayerPrefs.SetInt("Wrench Punch", SettingsHolder.wrenchPunch);
 			
 			performAttacks = true;
 			performTime = performTimeDef;
@@ -283,6 +287,10 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private void AttackTwo() {
 		if (performAttackTwo && !attackTwoDelayActive && !performAttacks) {
 
+			// DEV STUFF – Collect data on how many times an attack has been used
+			SettingsHolder.bombThrow++;
+			PlayerPrefs.SetInt("Bomb Throw", SettingsHolder.bombThrow);
+
 			performAttacks = true;
 			performTime = performTimeDef;
 
@@ -323,6 +331,10 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private void SkillOne() {
 		if (castSkill && characterSheetScript.skillActivated == 1 && !skillOneDelayActive && !performAttacks) {
 
+			// DEV STUFF – Collect data on how many times an attack has been used
+			SettingsHolder.healingBeacon++;
+			PlayerPrefs.SetInt("Healing Beacon", SettingsHolder.healingBeacon);
+
 			performAttacks = true;
 			performTime = performTimeDef;
 
@@ -358,6 +370,10 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private void SkillTwo() {
 		if (castSkill && characterSheetScript.skillActivated == 2 && !skillTwoDelayActive && !performAttacks) {
+
+			// DEV STUFF – Collect data on how many times an attack has been used
+			SettingsHolder.turretGun++;
+			PlayerPrefs.SetInt("Turret Gun", SettingsHolder.turretGun);
 
 			performAttacks = true;
 			performTime = performTimeDef;

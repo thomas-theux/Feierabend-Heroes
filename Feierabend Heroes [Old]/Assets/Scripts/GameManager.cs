@@ -152,13 +152,13 @@ public class GameManager : MonoBehaviour {
 		for (int i = 0; i < playerCount; i++) {
 			CharacterStats charInstance = GameObject.Find("Character0" + i + "(Clone)").GetComponent<CharacterStats>();
 
-			PlayerPrefs.SetFloat("P" + i + "StatHealth", charInstance.characterHealth);
-			PlayerPrefs.SetFloat("P" + i + "StatAttackMin", charInstance.characterAttackMin);
-			PlayerPrefs.SetFloat("P" + i + "StatAttackMax", charInstance.characterAttackMax);
-			PlayerPrefs.SetInt("P" + i + "StatDefense", charInstance.characterDefense);
-			PlayerPrefs.SetFloat("P" + i + "StatSpeed", charInstance.characterSpeed);
-			PlayerPrefs.SetInt("P" + i + "StatLuck", charInstance.characterLuck);
-			PlayerPrefs.SetInt("P" + i + "CurrentStatPoints", charInstance.currentStatPoints);
+			// PlayerPrefs.SetFloat("P" + i + "StatHealth", charInstance.characterHealth);
+			// PlayerPrefs.SetFloat("P" + i + "StatAttackMin", charInstance.characterAttackMin);
+			// PlayerPrefs.SetFloat("P" + i + "StatAttackMax", charInstance.characterAttackMax);
+			// PlayerPrefs.SetInt("P" + i + "StatDefense", charInstance.characterDefense);
+			// PlayerPrefs.SetFloat("P" + i + "StatSpeed", charInstance.characterSpeed);
+			// PlayerPrefs.SetInt("P" + i + "StatLuck", charInstance.characterLuck);
+			// PlayerPrefs.SetInt("P" + i + "CurrentStatPoints", charInstance.currentStatPoints);
 		}
 
 		SceneManager.LoadScene("1 Next Game");

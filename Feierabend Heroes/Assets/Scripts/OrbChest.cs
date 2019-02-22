@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class OrbChest : MonoBehaviour {
 
+	public AudioSource spawnOrbSound;
 	public AudioSource collectOrbSound;
 
 	private bool openedChest = false;
 	private int rndDoubleOrb;
+
+
+	private void Awake() {
+		if (TimeHandler.startBattle) {
+			StartCoroutine(SpawnSound());
+		}
+	}
+
 
 	private void OnTriggerStay(Collider other) {
 
@@ -19,6 +28,10 @@ public class OrbChest : MonoBehaviour {
 				openedChest = true;
 
 				Instantiate(collectOrbSound);
+
+				// DEV STUFF – Collect data on how many times an attack has been used
+				SettingsHolder.chestsCollected++;
+				PlayerPrefs.SetInt("Chests Collected", SettingsHolder.chestsCollected);
 				
 				// Check if RAGE MODE is on and on level 4
 				if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 4) {
@@ -42,6 +55,13 @@ public class OrbChest : MonoBehaviour {
 			}
 		}
 
+	}
+
+
+	private IEnumerator SpawnSound() {
+		yield return new WaitForSeconds(0.2f);
+
+		Instantiate(spawnOrbSound);
 	}
 
 }

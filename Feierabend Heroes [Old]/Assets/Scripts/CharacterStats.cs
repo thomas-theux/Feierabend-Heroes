@@ -22,13 +22,13 @@ public class CharacterStats : MonoBehaviour {
 	{
 		getCharID = GetComponent<CharacterMovement>().charID;
 
-		characterHealth = PlayerPrefs.GetFloat("P" + getCharID + "StatHealth");
-		characterAttackMin = PlayerPrefs.GetFloat("P" + getCharID + "StatAttackMin");
-		characterAttackMax = PlayerPrefs.GetFloat("P" + getCharID + "StatAttackMax");
-		characterDefense = PlayerPrefs.GetInt("P" + getCharID + "StatDefense");
-		characterSpeed = PlayerPrefs.GetFloat("P" + getCharID + "StatSpeed");
-		characterLuck = PlayerPrefs.GetInt("P" + getCharID + "StatLuck");
-		currentStatPoints = PlayerPrefs.GetInt("P" + getCharID + "CurrentStatPoints");
+		// characterHealth = PlayerPrefs.GetFloat("P" + getCharID + "StatHealth");
+		// characterAttackMin = PlayerPrefs.GetFloat("P" + getCharID + "StatAttackMin");
+		// characterAttackMax = PlayerPrefs.GetFloat("P" + getCharID + "StatAttackMax");
+		// characterDefense = PlayerPrefs.GetInt("P" + getCharID + "StatDefense");
+		// characterSpeed = PlayerPrefs.GetFloat("P" + getCharID + "StatSpeed");
+		// characterLuck = PlayerPrefs.GetInt("P" + getCharID + "StatLuck");
+		// currentStatPoints = PlayerPrefs.GetInt("P" + getCharID + "CurrentStatPoints");
 	}
 
 }

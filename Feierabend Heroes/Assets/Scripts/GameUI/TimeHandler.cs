@@ -20,7 +20,7 @@ public class TimeHandler : MonoBehaviour {
 
 	private float levelStartTimeDef = 3.0f;
 	private float levelStartTime;
-	private float battleStartTimeDef = 10.0f;
+	private float battleStartTimeDef = 60.0f;
 	private float battleStartTime;
 	private float lastSecondsTimeDef = 3.0f;
 	private float lastSecondsTime;
