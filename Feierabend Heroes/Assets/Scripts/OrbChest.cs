@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrbChest : MonoBehaviour {
 
 	public AudioSource spawnOrbSound;
 	public AudioSource collectOrbSound;
+
+	public GameObject openChestIcon;
 
 	private bool openedChest = false;
 	private int rndDoubleOrb;
@@ -14,6 +17,20 @@ public class OrbChest : MonoBehaviour {
 	private void Awake() {
 		if (TimeHandler.startBattle) {
 			StartCoroutine(SpawnSound());
+		}
+	}
+
+
+	private void OnTriggerEnter(Collider other) {
+		if (other.tag.Contains("Character0") || other.tag.Contains("Character1") || other.tag.Contains("Character2") || other.tag.Contains("Character3")) {
+			openChestIcon.SetActive(true);
+		}
+	}
+
+
+	private void OnTriggerExit(Collider other) {
+		if (other.tag.Contains("Character0") || other.tag.Contains("Character1") || other.tag.Contains("Character2") || other.tag.Contains("Character3")) {
+			openChestIcon.SetActive(false);
 		}
 	}
 
