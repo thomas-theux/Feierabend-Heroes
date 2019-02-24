@@ -42,8 +42,9 @@ public class OrbChestSpawner : MonoBehaviour {
 		GameObject newChest = Instantiate(orbChestGO);
 
 		// DEV STUFF – Collect data on how many times an attack has been used
-		SettingsHolder.orbsSpawned++;
-		PlayerPrefs.SetInt("Orbs Spawned", SettingsHolder.orbsSpawned);
+		int orbsSpawned = PlayerPrefs.GetInt("Orbs Spawned");
+		orbsSpawned++;
+		PlayerPrefs.SetInt("Orbs Spawned", orbsSpawned);
 
 		float rndPosX = Random.Range(minPosX, maxPosX);
 		float rndPosZ = Random.Range(minPosZ, maxPosZ);

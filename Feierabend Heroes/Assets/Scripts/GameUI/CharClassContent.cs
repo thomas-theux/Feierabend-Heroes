@@ -102,7 +102,12 @@ public class CharClassContent : MonoBehaviour {
 		"Princess",
 		"King",
 		"Queen",
-		"A"
+		"A",
+		"Kaiser",
+		"Duke",
+		"Pope",
+		"Priest",
+		"Priestess"
 	};
 
 	public static string[] adjectiveTexts = {
@@ -154,11 +159,18 @@ public class CharClassContent : MonoBehaviour {
 		"Chubby",
 		"Shaved",
 		"Unattractive",
+		"Attractive",
 		"Smelly",
 		"Touchy",
 		"Colorful",
 		"Drunken",
-		"Sticky"
+		"Sticky",
+		"Handsome",
+		"Disgusting",
+		"Ridiculous",
+		"Old",
+		"Young",
+		"Racist"
 	};
 
 	public static string[] nameTexts = {
@@ -173,6 +185,7 @@ public class CharClassContent : MonoBehaviour {
 		"Strawberry",
 		"Onion",
 		"Pineapple",
+		"Ananas",
 		"Taco",
 		"Pizza",
 		"Teddy Bear",
@@ -221,7 +234,22 @@ public class CharClassContent : MonoBehaviour {
 		"Dog",
 		"Peanut",
 		"Soul",
-		"Donut"
+		"Donut",
+		"Firework",
+		"Moon Man",
+		"Mole Man",
+		"Sloth",
+		"Blobfish",
+		"Beer",
+		"Captain",
+		"Sauerkraut",
+		"God",
+		"Godfather",
+		"Racist",
+		"Monster",
+		"Boob",
+		"Nipple",
+		"Devil"
 	};
 
 }

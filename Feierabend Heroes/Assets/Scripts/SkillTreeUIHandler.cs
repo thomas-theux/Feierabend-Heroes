@@ -318,8 +318,9 @@ public class SkillTreeUIHandler : MonoBehaviour {
 		GameManager.orbsSpentStatsArr[characterSheetscript.charID]++;
 
 		// DEV STUFF – Delete for production
-		SettingsHolder.spentOrbs++;
-		PlayerPrefs.SetInt("Spent Orbs", SettingsHolder.spentOrbs);
+		int spentOrbs = PlayerPrefs.GetInt("Spent Orbs");
+		spentOrbs++;
+		PlayerPrefs.SetInt("Spent Orbs", spentOrbs);
 	}
 
 

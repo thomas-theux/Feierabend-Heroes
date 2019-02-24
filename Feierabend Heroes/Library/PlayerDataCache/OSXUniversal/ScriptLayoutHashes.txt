@@ -1,6 +1,6 @@
 OSXUniversal
 PlayerPath?
-/Users/thomas_ge/Desktop/Feierabend Heroes/Feierabend Heroes v0.1.3.app
+/Users/thomas_ge/Desktop/Feierabend Heroes/Feierabend Heroes v0.1.3.1.app
 SceneListBegin?
 Assets/Scenes/0 Main Screen.unity
 Assets/Scenes/1 Character Selection.unity

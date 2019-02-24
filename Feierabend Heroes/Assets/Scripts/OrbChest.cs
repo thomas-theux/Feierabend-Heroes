@@ -47,8 +47,9 @@ public class OrbChest : MonoBehaviour {
 				Instantiate(collectOrbSound);
 
 				// DEV STUFF – Collect data on how many times an attack has been used
-				SettingsHolder.chestsCollected++;
-				PlayerPrefs.SetInt("Chests Collected", SettingsHolder.chestsCollected);
+				int chestsCollected = PlayerPrefs.GetInt("Chests Collected");
+				chestsCollected++;
+				PlayerPrefs.SetInt("Chests Collected", chestsCollected);
 				
 				// Check if RAGE MODE is on and on level 4
 				if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 4) {

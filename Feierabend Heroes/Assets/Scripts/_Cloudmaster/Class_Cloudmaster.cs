@@ -244,8 +244,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 		if (performAttackOne && !attackOneDelayActive && !performAttacks) {
 
 			// DEV STUFF – Collect data on how many times an attack has been used
-			SettingsHolder.wrenchPunch++;
-			PlayerPrefs.SetInt("Wrench Punch", SettingsHolder.wrenchPunch);
+			int wrenchPunch = PlayerPrefs.GetInt("Wrench Punch");
+			wrenchPunch++;
+			PlayerPrefs.SetInt("Wrench Punch", wrenchPunch);
 			
 			performAttacks = true;
 			performTime = performTimeDef;
@@ -288,8 +289,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 		if (performAttackTwo && !attackTwoDelayActive && !performAttacks) {
 
 			// DEV STUFF – Collect data on how many times an attack has been used
-			SettingsHolder.bombThrow++;
-			PlayerPrefs.SetInt("Bomb Throw", SettingsHolder.bombThrow);
+			int bombThrow = PlayerPrefs.GetInt("Bomb Throw");
+			bombThrow++;
+			PlayerPrefs.SetInt("Bomb Throw", bombThrow);
 
 			performAttacks = true;
 			performTime = performTimeDef;
@@ -332,8 +334,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 		if (castSkill && characterSheetScript.skillActivated == 1 && !skillOneDelayActive && !performAttacks) {
 
 			// DEV STUFF – Collect data on how many times an attack has been used
-			SettingsHolder.healingBeacon++;
-			PlayerPrefs.SetInt("Healing Beacon", SettingsHolder.healingBeacon);
+			int healingBeacon = PlayerPrefs.GetInt("Healing Beacon");
+			healingBeacon++;
+			PlayerPrefs.SetInt("Healing Beacon", healingBeacon);
 
 			performAttacks = true;
 			performTime = performTimeDef;
@@ -372,8 +375,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 		if (castSkill && characterSheetScript.skillActivated == 2 && !skillTwoDelayActive && !performAttacks) {
 
 			// DEV STUFF – Collect data on how many times an attack has been used
-			SettingsHolder.turretGun++;
-			PlayerPrefs.SetInt("Turret Gun", SettingsHolder.turretGun);
+			int turretGun = PlayerPrefs.GetInt("Turret Gun");
+			turretGun++;
+			PlayerPrefs.SetInt("Turret Gun", turretGun);
 
 			performAttacks = true;
 			performTime = performTimeDef;
