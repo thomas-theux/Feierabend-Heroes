@@ -1,0 +1,44 @@
+fileFormatVersion: 2
+guid: d4118cb38421848fc9c09ae9199e71b0
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: IBM Plex Sans
+  fontNames:
+  - IBM Plex Sans
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b3f6acd05ec9e4938b8ba34facf50b7a, type: 3}
+  - {fileID: 12800000, guid: 8b2ba501c967f49c68c9131019c48ca4, type: 3}
+  - {fileID: 12800000, guid: b8675db23d2894ecb9e8b6c04d0fed10, type: 3}
+  - {fileID: 12800000, guid: 5d8e6fb3255e64f0b81b66a7a5e1e68c, type: 3}
+  - {fileID: 12800000, guid: a71980d3dde1f4fe18060be9f46c5cf0, type: 3}
+  - {fileID: 12800000, guid: 6068bbf3ff43d45f08d31d30b7580eb1, type: 3}
+  - {fileID: 12800000, guid: ad47cb24bb3d94e9c8f4f5bce17c24e1, type: 3}
+  - {fileID: 12800000, guid: 7e4986441bd394cc1a673348901ce57b, type: 3}
+  - {fileID: 12800000, guid: 0f40cad4a62ee498abd0b80e677f76b8, type: 3}
+  - {fileID: 12800000, guid: b6a977f55a0f744e5af8020450bf670c, type: 3}
+  - {fileID: 12800000, guid: 3a83478638bf0490da6d7aab97d46d94, type: 3}
+  - {fileID: 12800000, guid: 595492d6ac96a4c0290177d57ddea85e, type: 3}
+  - {fileID: 12800000, guid: bf54c6170fd9d40ac95ab355d1cca8c7, type: 3}
+  - {fileID: 12800000, guid: b60b2a77828f544e9ba5465e2be260af, type: 3}
+  - {fileID: 12800000, guid: 347e5bc755cb742eea54cdf476ea26d2, type: 3}
+  - {fileID: 12800000, guid: 04ce82ea6424a43de8d13524fcee2502, type: 3}
+  - {fileID: 12800000, guid: 86f8a56b009db459e97a474fe913797d, type: 3}
+  - {fileID: 12800000, guid: a96c113c457a846b69c1263567365aa8, type: 3}
+  - {fileID: 12800000, guid: 8bb2ea1dd6ee44513b8d888600452e44, type: 3}
+  - {fileID: 12800000, guid: 7af9053d1b526435bb77046ba7a74f8c, type: 3}
+  - {fileID: 12800000, guid: c5a5ebce3259743ea964542eb1bd4e94, type: 3}
+  - {fileID: 12800000, guid: 0fe7657f7acba4c9c95ebb665f4687a5, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

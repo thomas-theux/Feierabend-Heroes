@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: fedf198795e564046989dc639f198f62
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - attackOneGO: {fileID: 1432069511768234, guid: 4f7cc6ac3b2074aab9539fe257b7ffc3,
+      type: 2}
+  - attackTwoGO: {fileID: 1834776707093772, guid: 9eff63e0233324dff870744909e26d43,
+      type: 2}
+  - skillOneGO: {fileID: 1822410233893990, guid: 4802f0ca4e1e24e2d86b284fe6d0c393,
+      type: 2}
+  - skillTwoGO: {fileID: 1741329130831764, guid: aa4c0c826d1054677a297bd54e5d577d,
+      type: 2}
+  - wrenchPunchSound: {fileID: 1459602113219918, guid: a02bc9b2f9e694ad2b740243643e3f54,
+      type: 2}
+  - bombThrowSound: {fileID: 1485007804091936, guid: 37ed33a5cf4eb4c13a1e97e89a3af59f,
+      type: 2}
+  - skillCoolDownSound: {fileID: 82647613108494042, guid: 05e2adea0560a400cb21ae8968537da6,
+      type: 2}
+  - skillNotAvailableSound: {fileID: 82240621272502822, guid: 040580a175b2349cdb219e31ffd36e99,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
