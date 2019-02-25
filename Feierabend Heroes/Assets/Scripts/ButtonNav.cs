@@ -12,11 +12,4 @@ public class ButtonNav : MonoBehaviour {
 	public Image navLeft;
 	public Image navRight;
 
-
-	private void Awake() {
-		string fullName = this.gameObject.name;
-		string newName = fullName.Replace("Skill", "");
-		indexID = int.Parse(newName);
-	}
-
 }
