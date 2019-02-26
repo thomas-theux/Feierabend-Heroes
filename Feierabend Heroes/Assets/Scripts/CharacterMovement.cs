@@ -60,7 +60,7 @@ public class CharacterMovement : MonoBehaviour {
 		characterSheetScript.charID = playerID;
 
 		campfireTarget = GameObject.Find("CampfireTarget");
-		transform.LookAt(campfireTarget.transform);
+		// transform.LookAt(campfireTarget.transform);
 	}
 
 

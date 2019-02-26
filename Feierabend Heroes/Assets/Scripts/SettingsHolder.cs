@@ -23,4 +23,7 @@ public class SettingsHolder {
 	public static bool initialSpawn = false;
 	public static bool nextMatch = false;
 
+	public static int tierTwoCosts = 3;
+	public static int tierThreeCosts = 6;
+
 }
