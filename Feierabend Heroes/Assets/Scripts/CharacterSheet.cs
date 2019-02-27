@@ -20,13 +20,15 @@ public class CharacterSheet : MonoBehaviour {
 	public float attackTwoDmg;
 	public float delayAttackOne;
 	public float delayAttackTwo;
-	public int skillActivated = 0;
-	public float delaySkillOne = 0;
+	// public int skillActivated = 0;
+	// public float delaySkillOne = 0;
 	public float delaySkillTwo = 0;
-	public float skillOneDmg = 0;
+	// public float skillOneDmg = 0;
 	public float skillTwoDmg = 0;
-	public float[] skillOneStats = {0, 0, 0, 0};
-	public float[] skillTwoStats = {0, 0, 0, 0};
+	// public float[] skillOneStats = {0, 0, 0, 0};
+	public float[] charSkillStats = {0, 0, 0, 0};
+	public bool skillActivated = false;
+	public bool passiveActivated = false;
 
 	// Health
 	public float currentHealth;
@@ -42,8 +44,8 @@ public class CharacterSheet : MonoBehaviour {
 	public bool dodgeHeal = false;
 
 	// Special Skills
-	public bool skillOne = false;
-	public bool skillTwo = false;
+	// public bool skillOne = false;
+	// public bool skillTwo = false;
 	public bool rageSkillActivated = false;
 	public int rageLevel = 0;
 	public bool rageModeOn = false;
@@ -56,18 +58,18 @@ public class CharacterSheet : MonoBehaviour {
 	public bool findThreeOrbs = false;
 
 	// Skillboard skill texts
-	public string skillOneTitle = "";
-	public string skillTwoTitle = "";
-	public string skillOneText = "";
-	public string skillTwoText = "";
-	public string skillOnePerk = "";
-	public string skillTwoPerk = "";
-	public string skillOneStat = "";
-	public string skillTwoStat = "";
-	public string skillOneUpgradeText = "";
-	public string skillTwoUpgradeText = "";
-	public string skillOneUpgradePerk = "";
-	public string skillTwoUpgradePerk = "";
+	// public string skillOneTitle = "";
+	// public string skillTwoTitle = "";
+	// public string skillOneText = "";
+	// public string skillTwoText = "";
+	// public string skillOnePerk = "";
+	// public string skillTwoPerk = "";
+	// public string skillOneStat = "";
+	// public string skillTwoStat = "";
+	// public string skillOneUpgradeText = "";
+	// public string skillTwoUpgradeText = "";
+	// public string skillOneUpgradePerk = "";
+	// public string skillTwoUpgradePerk = "";
 
 
 	private void Awake() {

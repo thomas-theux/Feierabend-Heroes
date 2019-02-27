@@ -47,18 +47,66 @@ public class SkillBoardHandler : MonoBehaviour {
 
     public Text skillTitleText;
     public Text skillInfoText;
+    public Text skillCostText;
+    public Image orbIcon;
 
-    private string enableSkillText = "";
-    private string improveSkillText = "";
+    string newSkillTitle = "";
+    string newEnableInfo = "";
+    string newImproveInfo = "";
 
-    private string fullSkillText = "";
-    private string passiveSkillText = "";
+    string newPassiveTitle = "";
+    string newPassiveInfo = "";
+
+    // Character class skills
+	private string[] activeSkillTitle = new string[] {
+        "Build Turret Gun",
+        "Spawn Companion",
+        "Throw Crystal Ball",
+        "Shift Shapes",
+    };
+
+	private string[] enableSkillInfo = new string[] {
+        "Shoots at enemies on sight (lifetime 20s)",
+        "Attacks enemies on sight (lifetime 12s)",
+        "Throw a sphere that blinds enemies",
+        "Fight faster, move quicker (duration 14s)",
+    };
+
+	private string[] improveSkillInfo = new string[] {
+        "Attack Speed +5%, Radius +4m",
+        "Radius +3m, Lifetime +4s",
+        "Radius +2m, Blinding Duration +1s",
+        "Duration +3s, Attack Speed +10%",
+    };
+
+	private string[] passiveSkillTitle = new string[] {
+        "Self Repair",
+        "Slowing Tendrils",
+        "Foresight",
+        "Invisibility Cloak",
+    };
+
+	private string[] passiveSkillInfo = new string[] {
+        "Heals your character over time",
+        "Slows down nearby enemies",
+        "See other players locations",
+        "Decreases your visibility by 50%",
+    };
 
 
-    private void Awake() {
+    public void Start() {
+    // public void InitializeSkillUI() {
         characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
         skillsHandlerScript = GetComponent<SkillsHandler>();
         charID = this.gameObject.transform.parent.GetComponent<CharacterMovement>().playerID;
+
+        // Get texts from character sheet script
+        newSkillTitle = activeSkillTitle[characterSheetScript.charClass];
+        newEnableInfo = enableSkillInfo[characterSheetScript.charClass];
+        newImproveInfo = improveSkillInfo[characterSheetScript.charClass];
+
+        newPassiveTitle = passiveSkillTitle[characterSheetScript.charClass];
+        newPassiveInfo = passiveSkillInfo[characterSheetScript.charClass];
         
         // Tier ONE skills and stats
         healthSkillDict.Add("Title", "Health");
@@ -111,14 +159,14 @@ public class SkillBoardHandler : MonoBehaviour {
         doubleOrbSkillDict.Add("Cap", 5);
         
         // Tier THREE skills and stats
-        classSkillDict.Add("Title", "Enable Skill");
-        classSkillDict.Add("Info", fullSkillText);
+        classSkillDict.Add("Title", newSkillTitle);
+        classSkillDict.Add("Info", "???");
         classSkillDict.Add("Costs", new int[] {3, 1, 2, 3, 4, 5});
         classSkillDict.Add("Level", -1);
         classSkillDict.Add("Cap", 6);
 
-        passiveSkillDict.Add("Title", "Enable Passive");
-        passiveSkillDict.Add("Info", passiveSkillText);
+        passiveSkillDict.Add("Title", newPassiveTitle);
+        passiveSkillDict.Add("Info", newPassiveInfo);
         passiveSkillDict.Add("Costs", new int[] {5});
         passiveSkillDict.Add("Level", -1);
         passiveSkillDict.Add("Cap", 1);
@@ -152,7 +200,7 @@ public class SkillBoardHandler : MonoBehaviour {
         PayWithOrbs();
         UpdateOrbCount();
         CheckTiers();
-        skillsHandlerScript.ActivateSkill(currentIndex);
+        skillsHandlerScript.ActivateSkill(currentIndex, (int)skillData[currentIndex]["Level"]);
         IncreaseSkillLevel();
         UpdateSkillLevel();
         UpdateTiers();
@@ -215,9 +263,28 @@ public class SkillBoardHandler : MonoBehaviour {
 
 
     private void DisplayNewTexts() {
+        // Write texts for class and passive skills
+        if (currentIndex == 8) {
+            if ((int)skillData[currentIndex]["Level"] < 0) {
+                skillData[currentIndex]["Info"] = newEnableInfo;
+            } else {
+                skillData[currentIndex]["Info"] = newImproveInfo;
+            }
+        }
+
         // Show correspronding title and text for current skill
         skillTitleText.text = (string)skillData[currentIndex]["Title"];
         skillInfoText.text = (string)skillData[currentIndex]["Info"];
+
+        if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+            int currentLevel = (int)skillData[currentIndex]["Level"];
+            int costsForSkill = ((int[])skillData[currentIndex]["Costs"])[currentLevel+1];
+            skillCostText.text = costsForSkill + "";
+            orbIcon.color = new Color32(255, 255, 255, 255);
+        } else {
+            skillCostText.text = "";
+            orbIcon.color = new Color32(255, 255, 255, 0);
+        }
     }
     
     

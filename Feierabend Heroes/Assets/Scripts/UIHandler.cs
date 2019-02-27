@@ -61,12 +61,12 @@ public class UIHandler : MonoBehaviour {
 		}
 		
 		// Show cooldown for Skill One
-		if (skillOneDelayTimer > 0) {
-			float currentTime = skillOneDelayTimer / characterSheetScript.delaySkillOne;
-			coolDownImage[2].fillAmount = currentTime;
-		} else {
-			coolDownImage[2].fillAmount = 0;
-		}
+		// if (skillOneDelayTimer > 0) {
+		// 	float currentTime = skillOneDelayTimer / characterSheetScript.delaySkillOne;
+		// 	coolDownImage[2].fillAmount = currentTime;
+		// } else {
+		// 	coolDownImage[2].fillAmount = 0;
+		// }
 		
 		// Show cooldown for Skill Two
 		if (skillTwoDelayTimer > 0) {
