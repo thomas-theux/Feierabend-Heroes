@@ -45,6 +45,15 @@ public class SkillBoardHandler : MonoBehaviour {
     private bool tierTwoActive = false;
     private bool tierThreeActive = false;
 
+    public Text skillTitleText;
+    public Text skillInfoText;
+
+    private string enableSkillText = "";
+    private string improveSkillText = "";
+
+    private string fullSkillText = "";
+    private string passiveSkillText = "";
+
 
     private void Awake() {
         characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
@@ -53,69 +62,69 @@ public class SkillBoardHandler : MonoBehaviour {
         
         // Tier ONE skills and stats
         healthSkillDict.Add("Title", "Health");
-        healthSkillDict.Add("Text", "+10%");
+        healthSkillDict.Add("Info", "+10%");
         healthSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         healthSkillDict.Add("Level", -1);
         healthSkillDict.Add("Cap", 5);
         
         damageSkillDict.Add("Title", "Damage");
-        damageSkillDict.Add("Text", "+14");
+        damageSkillDict.Add("Info", "+14");
         damageSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         damageSkillDict.Add("Level", -1);
         damageSkillDict.Add("Cap", 5);
         
         defenseSkillDict.Add("Title", "Defense");
-        defenseSkillDict.Add("Text", "+20%");
+        defenseSkillDict.Add("Info", "+20%");
         defenseSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         defenseSkillDict.Add("Level", -1);
         defenseSkillDict.Add("Cap", 5);
         
         dodgeSkillDict.Add("Title", "Dodge");
-        dodgeSkillDict.Add("Text", "+5%");
+        dodgeSkillDict.Add("Info", "+5%");
         dodgeSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         dodgeSkillDict.Add("Level", -1);
         dodgeSkillDict.Add("Cap", 5);
         
         critSkillDict.Add("Title", "Critical Hit");
-        critSkillDict.Add("Text", "+5%");
+        critSkillDict.Add("Info", "+5%");
         critSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         critSkillDict.Add("Level", -1);
         critSkillDict.Add("Cap", 5);
         
         // Tier TWO skills and stats
         ASPDSkillDict.Add("Title", "Attack Speed");
-        ASPDSkillDict.Add("Text", "+10%");
+        ASPDSkillDict.Add("Info", "+10%");
         ASPDSkillDict.Add("Costs", new int[] {1, 2, 2, 3, 4});
         ASPDSkillDict.Add("Level", -1);
         ASPDSkillDict.Add("Cap", 5);
 
         MSPDSkillDict.Add("Title", "Move Speed");
-        MSPDSkillDict.Add("Text", "+10%");
+        MSPDSkillDict.Add("Info", "+10%");
         MSPDSkillDict.Add("Costs", new int[] {1, 2, 2, 3, 4});
         MSPDSkillDict.Add("Level", -1);
         MSPDSkillDict.Add("Cap", 5);
 
         doubleOrbSkillDict.Add("Title", "Double Orb");
-        doubleOrbSkillDict.Add("Text", "+15%");
+        doubleOrbSkillDict.Add("Info", "+15%");
         doubleOrbSkillDict.Add("Costs", new int[] {2, 3, 4, 5, 6});
         doubleOrbSkillDict.Add("Level", -1);
         doubleOrbSkillDict.Add("Cap", 5);
         
         // Tier THREE skills and stats
         classSkillDict.Add("Title", "Enable Skill");
-        classSkillDict.Add("Text", "???");
+        classSkillDict.Add("Info", fullSkillText);
         classSkillDict.Add("Costs", new int[] {3, 1, 2, 3, 4, 5});
         classSkillDict.Add("Level", -1);
         classSkillDict.Add("Cap", 6);
 
         passiveSkillDict.Add("Title", "Enable Passive");
-        passiveSkillDict.Add("Text", "???");
+        passiveSkillDict.Add("Info", passiveSkillText);
         passiveSkillDict.Add("Costs", new int[] {5});
         passiveSkillDict.Add("Level", -1);
         passiveSkillDict.Add("Cap", 1);
 
         applesSkillDict.Add("Title", "Find Apples");
-        applesSkillDict.Add("Text", "Apples heal your hero");
+        applesSkillDict.Add("Info", "Apples heal your hero");
         applesSkillDict.Add("Costs", new int[] {3});
         applesSkillDict.Add("Level", -1);
         applesSkillDict.Add("Cap", 1);
@@ -145,6 +154,8 @@ public class SkillBoardHandler : MonoBehaviour {
         CheckTiers();
         skillsHandlerScript.ActivateSkill(currentIndex);
         IncreaseSkillLevel();
+        UpdateSkillLevel();
+        UpdateTiers();
         DisplayNewTexts();
     }
 
@@ -186,10 +197,13 @@ public class SkillBoardHandler : MonoBehaviour {
     }
 
 
-    private void DisplayNewTexts() {
+    private void UpdateSkillLevel() {
         // Display current skill level
         skillArray[currentIndex].transform.GetChild(1).GetComponent<Text>().text = ((int)skillData[currentIndex]["Level"] + 1) + "/" + (int)skillData[currentIndex]["Cap"];
+    }
 
+
+    private void UpdateTiers() {
         // Update orbs needed to unlock tier TWO
         if (!tierTwoActive) {
             orbsNeededTierTwo.text = (SettingsHolder.tierTwoCosts - spentOrbs) + "";
@@ -200,13 +214,20 @@ public class SkillBoardHandler : MonoBehaviour {
     }
 
 
-    private void Update() {
-        GetInput();
+    private void DisplayNewTexts() {
+        // Show correspronding title and text for current skill
+        skillTitleText.text = (string)skillData[currentIndex]["Title"];
+        skillInfoText.text = (string)skillData[currentIndex]["Info"];
     }
     
     
     private void DisplayCursor() {
         cursorImage.transform.position = skillArray[currentIndex].transform.position;
+    }
+
+
+    private void Update() {
+        GetInput();
     }
 
 
@@ -255,6 +276,7 @@ public class SkillBoardHandler : MonoBehaviour {
                 axisYActive = true;
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navUp.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
+                DisplayNewTexts();
             }
         }
         if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") < -maxThreshold && !axisYActive) {
@@ -262,6 +284,7 @@ public class SkillBoardHandler : MonoBehaviour {
                 axisYActive = true;
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navDown.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
+                DisplayNewTexts();
             }
         }
         if (ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") > maxThreshold && !axisXActive) {
@@ -269,6 +292,7 @@ public class SkillBoardHandler : MonoBehaviour {
                 axisXActive = true;
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navRight.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
+                DisplayNewTexts();
             }
         }
         if (ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") < -maxThreshold && !axisXActive) {
@@ -276,6 +300,7 @@ public class SkillBoardHandler : MonoBehaviour {
                 axisXActive = true;
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navLeft.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
+                DisplayNewTexts();
             }
         }
 
@@ -291,24 +316,28 @@ public class SkillBoardHandler : MonoBehaviour {
             if (skillArray[currentIndex].GetComponent<ButtonNav>().navUp) {
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navUp.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
+                DisplayNewTexts();
             }
         }
         if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadDown")) {
             if (skillArray[currentIndex].GetComponent<ButtonNav>().navDown) {
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navDown.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
+                DisplayNewTexts();
             }
         }
         if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadLeft")) {
             if (skillArray[currentIndex].GetComponent<ButtonNav>().navLeft) {
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navLeft.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
+                DisplayNewTexts();
             }
         }
         if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadRight")) {
             if (skillArray[currentIndex].GetComponent<ButtonNav>().navRight) {
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navRight.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
+                DisplayNewTexts();
             }
         }
 
