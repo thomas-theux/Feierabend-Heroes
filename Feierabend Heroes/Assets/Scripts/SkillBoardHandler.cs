@@ -80,10 +80,10 @@ public class SkillBoardHandler : MonoBehaviour {
     };
 
 	private string[] passiveSkillTitle = new string[] {
-        "Self Repair",
-        "Slowing Tendrils",
-        "Foresight",
-        "Invisibility Cloak",
+        "Self Repair (passive)",
+        "Slowing Tendrils (passive)",
+        "Foresight (passive)",
+        "Invisibility Cloak (passive)",
     };
 
 	private string[] passiveSkillInfo = new string[] {
