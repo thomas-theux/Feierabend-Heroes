@@ -25,7 +25,7 @@ public class Class_Novist : MonoBehaviour {
 
 	private int charID;
 
-	private string[] attackNames = {"Meteor Shot (DPS)", "Fire Block (DPS)"};
+	// private string[] attackNames = {"Meteor Shot (DPS)", "Fire Block (DPS)"};
 
 	// These variables can be improved by advancing on the skill tree
 	private float delayAttackOne = 0.5f;
@@ -36,8 +36,6 @@ public class Class_Novist : MonoBehaviour {
 	private bool performAttacks = false;
 	private float performTimeDef = 0.2f;
 	private float performTime = 0;
-
-	private float rageAttackSpeed = 1.0f;
 
 	private float attackOneDelay;
 	private float attackTwoDelay;
@@ -52,9 +50,9 @@ public class Class_Novist : MonoBehaviour {
 	private float[] charSkillStats = {26.0f, 12.0f, 3.0f, 4.0f};
 
 	// Skill titles and texts for the skill board
-	private string classType = "NOVIST";
-	private string classText = "A Mage that has mastered the powers of the nova star.";
-	private string classPerk = "• Meteor Shot\n• Fire Block";
+	// private string classType = "NOVIST";
+	// private string classText = "A Mage that has mastered the powers of the nova star.";
+	// private string classPerk = "• Meteor Shot\n• Fire Block";
 
 	
 	// private string skillOneTitle = "LIKE A TANK";
@@ -111,8 +109,8 @@ public class Class_Novist : MonoBehaviour {
 		lifeDeathHandlerScript = GetComponent<LifeDeathHandler>();
 
 		// Set names of attacks in character sheet
-		characterSheetScript.attackNames[0] = attackNames[0];
-		characterSheetScript.attackNames[1] = attackNames[1];
+		// characterSheetScript.attackNames[0] = attackNames[0];
+		// characterSheetScript.attackNames[1] = attackNames[1];
 
 		// Attach attack GameObjects to script
 		attackOneGO = Resources.Load<GameObject>("Attacks/MeteorShot");
@@ -140,20 +138,20 @@ public class Class_Novist : MonoBehaviour {
 		charID = charactMovementScript.playerID;
 		player = ReInput.players.GetPlayer(charID);
 
-		characterSheetScript.classType = classType;
-		characterSheetScript.classText = classText;
-		characterSheetScript.classPerk = classPerk;
+		// characterSheetScript.classType = classType;
+		// characterSheetScript.classText = classText;
+		// characterSheetScript.classPerk = classPerk;
 
 		// Set stats in skill script
 		characterSheetScript.delayAttackOne = delayAttackOne;
 		characterSheetScript.delayAttackTwo = delayAttackTwo;
 		// characterSheetScript.delaySkillOne = skillOne;
-		characterSheetScript.delaySkillTwo = skillTwo;
+		characterSheetScript.delaySkill = skillTwo;
 
 		characterSheetScript.attackOneDmg = attackOneDmg;
 		characterSheetScript.attackTwoDmg = attackTwoDmg;
 		// characterSheetScript.skillOneDmg = skillOneDmg;
-		characterSheetScript.skillTwoDmg = skillTwoDmg;
+		characterSheetScript.skillDmg = skillTwoDmg;
 
 		for (int i = 0; i < 4; i++) {
 			// characterSheetScript.skillOneStats[i] = skillOneStats[i];
@@ -249,14 +247,7 @@ public class Class_Novist : MonoBehaviour {
 			performAttacks = true;
 			performTime = performTimeDef;
 
-			// Check if rage mode is on and on level 3
-			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 3) {
-				rageAttackSpeed = 2.0f;
-			} else if (!characterSheetScript.rageModeOn) {
-				rageAttackSpeed = 1.0f;
-			}
-
-			attackOneDelayTimer = characterSheetScript.delayAttackOne / rageAttackSpeed;
+			attackOneDelayTimer = characterSheetScript.delayAttackOne;
 			attackOneDelayActive = true;
 
 			Instantiate(meteorShotSound);
@@ -292,14 +283,7 @@ public class Class_Novist : MonoBehaviour {
 			performAttacks = true;
 			performTime = performTimeDef;
 
-			// Check if rage mode is on and on level 3
-			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 3) {
-				rageAttackSpeed = 2.0f;
-			} else if (!characterSheetScript.rageModeOn) {
-				rageAttackSpeed = 1.0f;
-			}
-
-			attackTwoDelayTimer = characterSheetScript.delayAttackTwo / rageAttackSpeed;
+			attackTwoDelayTimer = characterSheetScript.delayAttackTwo;
 			attackTwoDelayActive = true;
 
 			Instantiate(fireBlockCastSound);
@@ -336,7 +320,7 @@ public class Class_Novist : MonoBehaviour {
 			performAttacks = true;
 			performTime = performTimeDef;
 
-			skillTwoDelayTimer = characterSheetScript.delaySkillTwo;
+			skillTwoDelayTimer = characterSheetScript.delaySkill;
 			skillTwoDelayActive = true;
 
 			// Skill SPAWN COMPANION
@@ -351,7 +335,7 @@ public class Class_Novist : MonoBehaviour {
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().SetLifeTime(characterSheetScript.charSkillStats[1]);
 
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = this.gameObject;
-			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterDamage = characterSheetScript.skillTwoDmg;
+			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterDamage = characterSheetScript.skillDmg;
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritChance = characterSheetScript.critChance;
 			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritDMG = characterSheetScript.critDMG;
 		} else if (castSkill && skillTwoDelayActive) {
@@ -360,7 +344,7 @@ public class Class_Novist : MonoBehaviour {
 
 		if (skillTwoDelayActive) {
 			skillTwoDelayTimer -= Time.deltaTime;
-			uiHandlerScript.skillTwoDelayTimer = skillTwoDelayTimer;
+			uiHandlerScript.skillDelayTimer = skillTwoDelayTimer;
 			if (skillTwoDelayTimer <= 0) {
 				Instantiate(skillCoolDownSound);
 				skillTwoDelayActive = false;

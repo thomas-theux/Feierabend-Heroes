@@ -9,8 +9,8 @@ public class SkillsHandler : MonoBehaviour {
     private float increaseHP = 0.15f;
     private float increaseDMG = 0.15f;
     private float increaseDEF = 0.20f;
-    private int increaseDDG = 5;
-    private int increaseCRT = 5;
+    private int increaseDDG = 6;
+    private int increaseCRT = 6;
     private float increaseASPD = 0.1f;
     private float increaseMSPD = 0.1f;
     private int increaseDBLORB = 15;
@@ -88,7 +88,27 @@ public class SkillsHandler : MonoBehaviour {
             // Passive Skill
             case 9:
                 // Passive Skill
-                characterSheetScript.passiveActivated = true;
+                switch (characterSheetScript.charClass) {
+
+                    // Cloud Master
+                    case 0:
+                        characterSheetScript.selfRepairActive = true;
+                        break;
+
+                    // Novist
+                    case 1:
+                        characterSheetScript.slowingTendrilsActive = true;
+                        break;
+
+                    // Seer of War
+                    case 2:
+                        break;
+
+                    // Shape Shifter
+                    case 3:
+                        break;
+
+                }
                 break;
 
             // Find Apples

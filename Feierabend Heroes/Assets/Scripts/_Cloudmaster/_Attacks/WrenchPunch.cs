@@ -33,28 +33,13 @@ public class WrenchPunch : MonoBehaviour {
 		float dealDamage = 0;
 		float enemyDefense = characterSheetScript.charDefense;
 		int enemyDodge = characterSheetScript.dodgeChance;
-		bool enemyDodgeHeal = characterSheetScript.dodgeHeal;
 
 		int dodgeChance = Random.Range(1, 101);
 		int critChance = Random.Range(1, 101);
 
-		// Check if enemy has rage mode on
-		if (characterSheetScript.rageModeOn) {
-			enemyDefense *= 2;
-		} else if (!characterSheetScript.rageModeOn) {
-			enemyDefense *= 1;
-		}
-
 		// Check if enemy dodges attack
 		if (dodgeChance > enemyDodge) {
 			dealDamage = casterDamage - ((enemyDefense / 100) * casterDamage);
-
-			// If rage mode is on and on level 2 then multiply damage
-			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 2) {
-				dealDamage *= 2;
-			} else if (!characterSheetScript.rageModeOn) {
-				dealDamage *= 1;
-			}
 
 			// If character lands a critical strike then multiply damage
 			if (casterCritChance <= critChance) {
@@ -64,12 +49,6 @@ public class WrenchPunch : MonoBehaviour {
 			characterSheetScript.currentHealth -= dealDamage;
 			other.gameObject.GetComponent<LifeDeathHandler>().lastDamagerID = damagerID;
 			other.GetComponent<LifeDeathHandler>().gotHit = true;
-		} else {
-			// Healing when dodging an attack
-			if (enemyDodgeHeal) {
-				characterSheetScript.currentHealth += characterSheetScript.currentHealth * 0.2f;
-			}
-			print("Enemy dodged!");
 		}
 		
 	}

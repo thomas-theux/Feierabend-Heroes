@@ -10,13 +10,13 @@ public class SettingsHolder {
 	public static int playerCount = 0;
 	public static int registeredPlayers = 0;
 
-	public static int appleMax = 20;
-	public static int chestMax = 20;
+	public static int appleSpawnMax = 10;
+	public static int chestSpawnMax = 10;
 
-	public static int startingOrbs = 2;
+	public static int startingOrbs = 200;
 	public static int orbsEveryRound = 1;
 	public static int orbsForRoundWin = 2;
-	public static int orbsToWin = 15;
+	public static int orbsToWin = 215;
 
 	public static bool matchOver = false;
 

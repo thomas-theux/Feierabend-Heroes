@@ -53,7 +53,7 @@ public class OrbChestSpawner : MonoBehaviour {
 
 		currentChestCount++;
 
-		if (currentChestCount < SettingsHolder.chestMax) {
+		if (currentChestCount < SettingsHolder.chestSpawnMax) {
 			waitingTime *= timeMultiplier;
 			StartCoroutine(WaitToSpawn());
 		}

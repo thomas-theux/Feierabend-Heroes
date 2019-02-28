@@ -82,7 +82,7 @@ public class LifeDeathHandler : MonoBehaviour {
 
 	private void LateUpdate() {
 		// Continuously increase HP if SELF HEAL skill is activated
-		if (characterSheetScript.selfHealActive && !healthIsFull) {
+		if (characterSheetScript.selfRepairActive && !healthIsFull) {
 			SelfHeal();
 		}
 
@@ -92,8 +92,6 @@ public class LifeDeathHandler : MonoBehaviour {
 		}
 
 		HPCapCheck();
-
-		CheckForRageMode();
 
 		if (characterSheetScript.currentHealth <= 0 && !isWaiting && !charIsDead) {
 			StartCoroutine(KillCharacter());
@@ -122,18 +120,6 @@ public class LifeDeathHandler : MonoBehaviour {
 	}
 
 
-	private void CheckForRageMode() {
-		// Activate rage mode if HP is below 10%
-		if (characterSheetScript.rageSkillActivated) {
-			if (characterSheetScript.currentHealth <= characterSheetScript.maxHealth / 5) {
-				characterSheetScript.rageModeOn = true;
-			} else {
-				characterSheetScript.rageModeOn = false;
-			}
-		}
-	}
-
-
 	private IEnumerator KillCharacter() {
 		isWaiting = true;
 		charIsDead = true;
@@ -146,8 +132,8 @@ public class LifeDeathHandler : MonoBehaviour {
 				GameManager.killsStatsArr[lastDamagerID]++;
 			}
 
-			// Give player who killed this character one extra orb
-			GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs++;
+			// Give player who killed this character two extra orbs
+			GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs += 2;
 
 			// Steal orb from killed character
 			if (characterSheetScript.currentOrbs > 0) {
@@ -192,11 +178,6 @@ public class LifeDeathHandler : MonoBehaviour {
 				charIsDead = false;
 
 				// EnableCharRenderer();
-
-				// Give 1 ORB when ORB skill is perfected and character is being respawned
-				if (characterSheetScript.respawnOrb) {
-					characterSheetScript.currentOrbs += 1;
-				}
 			}
 		} else {
 			RemoveFromList();

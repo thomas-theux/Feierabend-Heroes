@@ -48,7 +48,7 @@ public class AppleSpawner : MonoBehaviour {
 
 		currentAppleCount++;
 
-		if (currentAppleCount < SettingsHolder.appleMax) {
+		if (currentAppleCount < SettingsHolder.appleSpawnMax) {
 			waitingTime *= timeMultiplier;
 			StartCoroutine(WaitToSpawn());
 		}

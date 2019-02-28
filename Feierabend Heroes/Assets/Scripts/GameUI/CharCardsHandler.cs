@@ -104,16 +104,6 @@ public class CharCardsHandler : MonoBehaviour {
 			currentStatus = 0;
 			DisplayCurrentStatus();
 		}
-
-		// print(ReInput.controllers.Controllers[2].isConnected);
-
-		// if (ReInput.controllers.Joysticks[0].id == charID && !isConnected) {
-		// 	currentStatus = 1;
-		// 	DisplayCurrentStatus();
-		// } else if (ReInput.controllers.Joysticks[0].id == charID && isConnected) {
-		// 	currentStatus = 0;
-		// 	DisplayCurrentStatus();
-		// }
 	}
 
 

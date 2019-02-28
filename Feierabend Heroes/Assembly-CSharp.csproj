@@ -158,9 +158,8 @@
      <Compile Include="Assets\Scripts\SafeZoneDamage.cs" />
      <Compile Include="Assets\Scripts\SettingsHolder.cs" />
      <Compile Include="Assets\Scripts\SkillBoardHandler.cs" />
-     <Compile Include="Assets\Scripts\SkillHandler.cs" />
      <Compile Include="Assets\Scripts\SkillsHandler.cs" />
-     <Compile Include="Assets\Scripts\SkillTreeUIHandler.cs" />
+     <Compile Include="Assets\Scripts\SlowingTendrils.cs" />
      <Compile Include="Assets\Scripts\StartGame.cs" />
      <Compile Include="Assets\Scripts\UIHandler.cs" />
      <None Include="Assets\PolygonNature\Shaders\SyntyStudios_Trees.shader" />

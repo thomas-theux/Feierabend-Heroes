@@ -19,8 +19,8 @@ public class UIHandler : MonoBehaviour {
 
 	public float attackOneDelayTimer;
 	public float attackTwoDelayTimer;
-	public float skillOneDelayTimer;
-	public float skillTwoDelayTimer;
+	// public float skillOneDelayTimer;
+	public float skillDelayTimer;
 	
 	public float smoothSpeed;
 
@@ -69,8 +69,8 @@ public class UIHandler : MonoBehaviour {
 		// }
 		
 		// Show cooldown for Skill Two
-		if (skillTwoDelayTimer > 0) {
-			float currentTime = skillTwoDelayTimer / characterSheetScript.delaySkillTwo;
+		if (skillDelayTimer > 0) {
+			float currentTime = skillDelayTimer / characterSheetScript.delaySkill;
 			coolDownImage[2].fillAmount = currentTime;
 		} else {
 			coolDownImage[2].fillAmount = 0;

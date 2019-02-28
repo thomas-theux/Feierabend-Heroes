@@ -51,22 +51,13 @@ public class OrbChest : MonoBehaviour {
 				chestsCollected++;
 				PlayerPrefs.SetInt("Chests Collected", chestsCollected);
 				
-				// Check if RAGE MODE is on and on level 4
-				if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 4) {
-					rndDoubleOrb = -1;
-				} else {
-					rndDoubleOrb = Random.Range(1, 101);
-				}
+				rndDoubleOrb = Random.Range(1, 101);
 
 				// Check if player has activated the DOUBLE ORB skill
 				if (rndDoubleOrb > characterSheetScript.doubleOrbChance) {
 					characterSheetScript.currentOrbs += 1;
 				} else {
-					if (characterSheetScript.findThreeOrbs) {
-						characterSheetScript.currentOrbs += 3;
-					} else {
-						characterSheetScript.currentOrbs += 2;
-					}
+					characterSheetScript.currentOrbs += 2;
 				}
 
 				Destroy(gameObject);

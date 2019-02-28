@@ -50,12 +50,12 @@ public class SkillBoardHandler : MonoBehaviour {
     public Text skillCostText;
     public Image orbIcon;
 
-    string newSkillTitle = "";
-    string newEnableInfo = "";
-    string newImproveInfo = "";
+    private string newSkillTitle = "";
+    private string newEnableInfo = "";
+    private string newImproveInfo = "";
 
-    string newPassiveTitle = "";
-    string newPassiveInfo = "";
+    private string newPassiveTitle = "";
+    private string newPassiveInfo = "";
 
     // Character class skills
 	private string[] activeSkillTitle = new string[] {
@@ -94,8 +94,8 @@ public class SkillBoardHandler : MonoBehaviour {
     };
 
 
-    public void Start() {
-    // public void InitializeSkillUI() {
+    // public void Start() {
+    public void InitializeSkillUI() {
         characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
         skillsHandlerScript = GetComponent<SkillsHandler>();
         charID = this.gameObject.transform.parent.GetComponent<CharacterMovement>().playerID;
@@ -128,13 +128,13 @@ public class SkillBoardHandler : MonoBehaviour {
         defenseSkillDict.Add("Cap", 5);
         
         dodgeSkillDict.Add("Title", "Dodge");
-        dodgeSkillDict.Add("Info", "+5%");
+        dodgeSkillDict.Add("Info", "+6%");
         dodgeSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         dodgeSkillDict.Add("Level", -1);
         dodgeSkillDict.Add("Cap", 5);
         
         critSkillDict.Add("Title", "Critical Hit");
-        critSkillDict.Add("Info", "+5%");
+        critSkillDict.Add("Info", "+6%");
         critSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         critSkillDict.Add("Level", -1);
         critSkillDict.Add("Cap", 5);
@@ -193,6 +193,7 @@ public class SkillBoardHandler : MonoBehaviour {
         skillData.Add(applesSkillDict);
 
         DisplayNewTexts();
+        UpdateTiers();
     }
 
 
@@ -294,7 +295,9 @@ public class SkillBoardHandler : MonoBehaviour {
 
 
     private void Update() {
-        GetInput();
+        if (this.gameObject.transform.parent.GetComponent<CharacterMovement>().skillBoardOn) {
+            GetInput();
+        }
     }
 
 

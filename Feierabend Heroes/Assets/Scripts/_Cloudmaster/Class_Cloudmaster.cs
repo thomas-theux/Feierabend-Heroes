@@ -25,7 +25,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private int charID;
 
-	private string[] attackNames = {"Wrench Punch (DPS)", "Bomb Throw (DPS)"};
+	// private string[] attackNames = {"Wrench Punch (DPS)", "Bomb Throw (DPS)"};
 
 	// These variables can be improved by advancing on the skill tree
 	private float delayAttackOne = 0.4f;
@@ -36,8 +36,6 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private bool performAttacks = false;
 	private float performTimeDef = 0.2f;
 	private float performTime = 0;
-
-	private float rageAttackSpeed = 1.0f;
 
 	private float attackOneDelay;
 	private float attackTwoDelay;
@@ -52,9 +50,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float[] charSkillStats = {0.3f, 20.0f, -0.05f, 4.0f};
 
 	// Skill titles and texts for the skill board
-	private string classType = "CLOUD MASTER";
-	private string classText = "An Engineer that uses Cloud technology to defeat enemies.";
-	private string classPerk = "• Wrench Punch\n• Bomb Throw";
+	// private string classType = "CLOUD MASTER";
+	// private string classText = "An Engineer that uses Cloud technology to defeat enemies.";
+	// private string classPerk = "• Wrench Punch\n• Bomb Throw";
 	
 	// private string skillOneTitle = "HEALING BEACON";
 	// private string skillTwoTitle = "TURRET GUN";
@@ -107,8 +105,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 		lifeDeathHandlerScript = GetComponent<LifeDeathHandler>();
 
 		// Set names of attacks in character sheet
-		characterSheetScript.attackNames[0] = attackNames[0];
-		characterSheetScript.attackNames[1] = attackNames[1];
+		// characterSheetScript.attackNames[0] = attackNames[0];
+		// characterSheetScript.attackNames[1] = attackNames[1];
 
 		// Attach attack GameObjects to script
 		attackOneGO = Resources.Load<GameObject>("Attacks/WrenchPunch");
@@ -137,20 +135,20 @@ public class Class_Cloudmaster : MonoBehaviour {
 		charID = charactMovementScript.playerID;
 		player = ReInput.players.GetPlayer(charID);
 		
-		characterSheetScript.classType = classType;
-		characterSheetScript.classText = classText;
-		characterSheetScript.classPerk = classPerk;
+		// characterSheetScript.classType = classType;
+		// characterSheetScript.classText = classText;
+		// characterSheetScript.classPerk = classPerk;
 
 		// Set stats in skill script
 		characterSheetScript.delayAttackOne = delayAttackOne;
 		characterSheetScript.delayAttackTwo = delayAttackTwo;
 		// characterSheetScript.delaySkillOne = skillOne;
-		characterSheetScript.delaySkillTwo = skillTwo;
+		characterSheetScript.delaySkill = skillTwo;
 
 		characterSheetScript.attackOneDmg = attackOneDmg;
 		characterSheetScript.attackTwoDmg = attackTwoDmg;
 		// characterSheetScript.skillOneDmg = skillOneDmg;
-		characterSheetScript.skillTwoDmg = skillTwoDmg;
+		characterSheetScript.skillDmg = skillTwoDmg;
 
 		for (int i = 0; i < 4; i++) {
 			// characterSheetScript.skillOneStats[i] = skillOneStats[i];
@@ -246,14 +244,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 			performAttacks = true;
 			performTime = performTimeDef;
 
-			// Check if rage mode is on and on level 3
-			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 3) {
-				rageAttackSpeed = 2.0f;
-			} else if (!characterSheetScript.rageModeOn) {
-				rageAttackSpeed = 1.0f;
-			}
-
-			attackOneDelayTimer = characterSheetScript.delayAttackOne / rageAttackSpeed;
+			attackOneDelayTimer = characterSheetScript.delayAttackOne;
 			attackOneDelayActive = true;
 
 			Instantiate(wrenchPunchSound);
@@ -291,14 +282,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 			performAttacks = true;
 			performTime = performTimeDef;
 
-			// Check if rage mode is on and on level 3
-			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 3) {
-				rageAttackSpeed = 2.0f;
-			} else if (!characterSheetScript.rageModeOn) {
-				rageAttackSpeed = 1.0f;
-			}
-
-			attackTwoDelayTimer = characterSheetScript.delayAttackTwo / rageAttackSpeed;
+			attackTwoDelayTimer = characterSheetScript.delayAttackTwo;
 			attackTwoDelayActive = true;
 
 			Instantiate(bombThrowSound);
@@ -336,7 +320,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 			performAttacks = true;
 			performTime = performTimeDef;
 
-			skillTwoDelayTimer = characterSheetScript.delaySkillTwo;
+			skillTwoDelayTimer = characterSheetScript.delaySkill;
 			skillTwoDelayActive = true;
 
 			// Skill TURRET GUN
@@ -354,7 +338,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().shotDelayDefault = characterSheetScript.charSkillStats[0];
 			newSkillTwo.transform.GetChild(4).transform.localScale = new Vector3(characterSheetScript.charSkillStats[1], characterSheetScript.charSkillStats[1] * 2, characterSheetScript.charSkillStats[1]);
 
-			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().casterDamage = characterSheetScript.skillTwoDmg;
+			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().casterDamage = characterSheetScript.skillDmg;
 			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().casterCritChance = characterSheetScript.critChance;
 			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().casterCritDMG = characterSheetScript.critDMG;
 			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().charID = charID;
@@ -366,7 +350,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		if (skillTwoDelayActive) {
 			skillTwoDelayTimer -= Time.deltaTime;
-			uiHandlerScript.skillTwoDelayTimer = skillTwoDelayTimer;
+			uiHandlerScript.skillDelayTimer = skillTwoDelayTimer;
 			if (skillTwoDelayTimer <= 0) {
 				Instantiate(skillCoolDownSound);
 				skillTwoDelayActive = false;

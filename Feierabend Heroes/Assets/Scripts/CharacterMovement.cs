@@ -20,7 +20,6 @@ public class CharacterMovement : MonoBehaviour {
 	public bool isAttacking = false;
 	public bool skillBoardOn;
 
-	private float rageMoveSpeed = 1;
 	private Vector3 charVelocity;
 
 	public bool skillboardBlocksCasting = false;
@@ -60,7 +59,7 @@ public class CharacterMovement : MonoBehaviour {
 		characterSheetScript.charID = playerID;
 
 		campfireTarget = GameObject.Find("CampfireTarget");
-		// transform.LookAt(campfireTarget.transform);
+		transform.LookAt(campfireTarget.transform);
 	}
 
 
@@ -124,14 +123,7 @@ public class CharacterMovement : MonoBehaviour {
 		movement = Vector3.ClampMagnitude(movement, 1);
 
 		if (!isAttacking && TimeHandler.startLevel) {
-			// Check if hero has rage mode on and HP < 10%
-			if (characterSheetScript.rageModeOn && characterSheetScript.rageLevel >= 1) {
-				rageMoveSpeed = 1.5f;
-			} else if (!characterSheetScript.rageModeOn) {
-				rageMoveSpeed = 1.0f;
-			}
-
-			cc.Move(movement * characterSheetScript.moveSpeed * rageMoveSpeed * Time.deltaTime);
+			cc.Move(movement * characterSheetScript.moveSpeed * Time.deltaTime);
 		}
 
 		// Rotate character depending on the direction they are going
