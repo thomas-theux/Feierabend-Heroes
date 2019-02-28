@@ -10,6 +10,8 @@ public class Class_Novist : MonoBehaviour {
 	public GameObject attackOneGO;
 	public GameObject attackTwoGO;
 	public GameObject skillTwoGO;
+	public GameObject passiveSkillGO;
+
 	private CharacterSheet characterSheetScript;
 	private CharacterMovement charactMovementScript;
 	private UIHandler uiHandlerScript;
@@ -36,6 +38,8 @@ public class Class_Novist : MonoBehaviour {
 	private bool performAttacks = false;
 	private float performTimeDef = 0.2f;
 	private float performTime = 0;
+
+	private bool assiveSkillActivated = false;
 
 	private float attackOneDelay;
 	private float attackTwoDelay;
@@ -116,6 +120,7 @@ public class Class_Novist : MonoBehaviour {
 		attackOneGO = Resources.Load<GameObject>("Attacks/MeteorShot");
 		attackTwoGO = Resources.Load<GameObject>("Attacks/FireBlock");
 		skillTwoGO = Resources.Load<GameObject>("Attacks/Companion");
+		passiveSkillGO = Resources.Load<GameObject>("Attacks/Tendrils");
 
 		meteorShotSound = Resources.Load<GameObject>("Sounds/MeteorShotSound");
 		fireBlockCastSound = Resources.Load<GameObject>("Sounds/FireBlockCastSound");
@@ -191,6 +196,10 @@ public class Class_Novist : MonoBehaviour {
 
 			AttackOne();
 			AttackTwo();
+
+			if (characterSheetScript.slowingTendrilsActive && !assiveSkillActivated) {
+				ActivatePassive();
+			}
 
 			if (performAttacks) {
 				PerformAttackDelay();
@@ -350,6 +359,14 @@ public class Class_Novist : MonoBehaviour {
 				skillTwoDelayActive = false;
 			}
 		}
+	}
+
+
+	private void ActivatePassive() {
+		assiveSkillActivated = true;
+		GameObject newTendrils = Instantiate(passiveSkillGO);
+		newTendrils.transform.parent = this.gameObject.transform;
+		newTendrils.transform.localPosition = new Vector3(0, 0, 0);
 	}
 
 }
