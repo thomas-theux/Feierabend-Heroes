@@ -17,7 +17,7 @@ public class OrbChestSpawner : MonoBehaviour {
 	private float levelPadding = 3.0f;
 
 	private float waitingTime = 0.4f;
-	private float timeMultiplier = 1.2f;
+	private float timeMultiplier = 1.7f;
 	public static int currentChestCount = 0;
 
 
