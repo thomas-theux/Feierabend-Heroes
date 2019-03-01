@@ -64,9 +64,9 @@ public class GameManager : MonoBehaviour {
 			switch(SettingsHolder.playerClasses[i]) {
 				case 0:
 					newChar.AddComponent<Class_Cloudmaster>();
-					newChar.AddComponent<Class_Novist>();
 					break;
 				case 1:
+					newChar.AddComponent<Class_Novist>();
 					break;
 			}
 		}

@@ -9,7 +9,7 @@ public class Class_Novist : MonoBehaviour {
 
 	public GameObject attackOneGO;
 	public GameObject attackTwoGO;
-	public GameObject skillTwoGO;
+	public GameObject skillGO;
 	public GameObject passiveSkillGO;
 
 	private CharacterSheet characterSheetScript;
@@ -33,7 +33,7 @@ public class Class_Novist : MonoBehaviour {
 	private float delayAttackOne = 0.5f;
 	private float delayAttackTwo = 10.0f;
 	// private float skillOne = 18.0f;
-	private float skillTwo = 32.0f;
+	private float delaySkill = 32.0f;
 
 	private bool performAttacks = false;
 	private float performTimeDef = 0.2f;
@@ -47,7 +47,7 @@ public class Class_Novist : MonoBehaviour {
 	private float attackOneDmg = 20.0f;
 	private float attackTwoDmg = 0.08f;
 	// private float skillOneDmg = 0.0f;
-	private float skillTwoDmg = 6.0f;
+	private float skillDmg = 6.0f;
 
 	// Initial variables and increase values for the skills
 	// private float[] skillOneStats = {2.0f, 8.0f, 0.5f, 2.0f};
@@ -60,17 +60,17 @@ public class Class_Novist : MonoBehaviour {
 
 	
 	// private string skillOneTitle = "LIKE A TANK";
-	// private string skillTwoTitle = "COMPANION";
+	// private string skillTitle = "COMPANION";
 	// private string skillOneText = "Increase your characters health for a limited time.";
-	// private string skillTwoText = "Spawn a companion that helps your character fight in battle.";
+	// private string skillText = "Spawn a companion that helps your character fight in battle.";
 	// private string skillOnePerk = "• 2.0x HP\n• lasts 8 seconds";
-	// private string skillTwoPerk = "• 20m aggro radius\n• lasts 12 seconds";
+	// private string skillPerk = "• 20m aggro radius\n• lasts 12 seconds";
 	// private string skillOneStat = "HP";
-	// private string skillTwoStat = "Damage";
+	// private string skillStat = "Damage";
 	// private string skillOneUpgradeText = "Increases the HP mutliplier and the overall duration.";
-	// private string skillTwoUpgradeText = "Increases the aggro radius and the companion's lifetime.";
+	// private string skillUpgradeText = "Increases the aggro radius and the companion's lifetime.";
 	// private string skillOneUpgradePerk = "+0.5x HP heal\n+2s duration";
-	// private string skillTwoUpgradePerk = "+3m radius\n+4s lifetime";
+	// private string skillUpgradePerk = "+3m radius\n+4s lifetime";
 
 	private float charHealth = 340.0f;
 	private float charDefense = 16.0f;
@@ -96,8 +96,8 @@ public class Class_Novist : MonoBehaviour {
 	// private float savedMultiplier;
 
 	// Skill Two – Spawn Companion
-	private float skillTwoDelayTimer;
-	private bool skillTwoDelayActive = false;
+	private float skillDelayTimer;
+	private bool skillDelayActive = false;
 
 	// REWIRED
 	private Player player;
@@ -119,7 +119,7 @@ public class Class_Novist : MonoBehaviour {
 		// Attach attack GameObjects to script
 		attackOneGO = Resources.Load<GameObject>("Attacks/MeteorShot");
 		attackTwoGO = Resources.Load<GameObject>("Attacks/FireBlock");
-		skillTwoGO = Resources.Load<GameObject>("Attacks/Companion");
+		skillGO = Resources.Load<GameObject>("Attacks/Companion");
 		passiveSkillGO = Resources.Load<GameObject>("Attacks/Tendrils");
 
 		meteorShotSound = Resources.Load<GameObject>("Sounds/MeteorShotSound");
@@ -151,12 +151,12 @@ public class Class_Novist : MonoBehaviour {
 		characterSheetScript.delayAttackOne = delayAttackOne;
 		characterSheetScript.delayAttackTwo = delayAttackTwo;
 		// characterSheetScript.delaySkillOne = skillOne;
-		characterSheetScript.delaySkill = skillTwo;
+		characterSheetScript.delaySkill = delaySkill;
 
 		characterSheetScript.attackOneDmg = attackOneDmg;
 		characterSheetScript.attackTwoDmg = attackTwoDmg;
 		// characterSheetScript.skillOneDmg = skillOneDmg;
-		characterSheetScript.skillDmg = skillTwoDmg;
+		characterSheetScript.skillDmg = skillDmg;
 
 		for (int i = 0; i < 4; i++) {
 			// characterSheetScript.skillOneStats[i] = skillOneStats[i];
@@ -164,17 +164,17 @@ public class Class_Novist : MonoBehaviour {
 		}
 
 		// characterSheetScript.skillOneTitle = skillOneTitle;
-		// characterSheetScript.skillTwoTitle = skillTwoTitle;
+		// characterSheetScript.skillTitle = skillTitle;
 		// characterSheetScript.skillOneText = skillOneText;
-		// characterSheetScript.skillTwoText = skillTwoText;
+		// characterSheetScript.skillText = skillText;
 		// characterSheetScript.skillOnePerk = skillOnePerk;
-		// characterSheetScript.skillTwoPerk = skillTwoPerk;
+		// characterSheetScript.skillPerk = skillPerk;
 		// characterSheetScript.skillOneStat = skillOneStat;
-		// characterSheetScript.skillTwoStat = skillTwoStat;
+		// characterSheetScript.skillStat = skillStat;
 		// characterSheetScript.skillOneUpgradeText = skillOneUpgradeText;
-		// characterSheetScript.skillTwoUpgradeText = skillTwoUpgradeText;
+		// characterSheetScript.skillUpgradeText = skillUpgradeText;
 		// characterSheetScript.skillOneUpgradePerk = skillOneUpgradePerk;
-		// characterSheetScript.skillTwoUpgradePerk = skillTwoUpgradePerk;
+		// characterSheetScript.skillUpgradePerk = skillUpgradePerk;
 
 		characterSheetScript.currentHealth = charHealth;
 		characterSheetScript.maxHealth = charHealth;
@@ -319,7 +319,7 @@ public class Class_Novist : MonoBehaviour {
 
 
 	private void CastSkill() {
-		if (castSkill && characterSheetScript.skillActivated && !skillTwoDelayActive && !performAttacks) {
+		if (castSkill && characterSheetScript.skillActivated && !skillDelayActive && !performAttacks) {
 
 			// DEV STUFF – Collect data on how many times an attack has been used
 			int spawnCompanion = PlayerPrefs.GetInt("Companion");
@@ -329,34 +329,34 @@ public class Class_Novist : MonoBehaviour {
 			performAttacks = true;
 			performTime = performTimeDef;
 
-			skillTwoDelayTimer = characterSheetScript.delaySkill;
-			skillTwoDelayActive = true;
+			skillDelayTimer = characterSheetScript.delaySkill;
+			skillDelayActive = true;
 
 			// Skill SPAWN COMPANION
-			GameObject newSkillTwo = Instantiate(skillTwoGO, attackSpawner.position, attackSpawner.rotation);
-			newSkillTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().damagerID = charID;
-			newSkillTwo.transform.GetChild(1).gameObject.tag = "Attack";
-			newSkillTwo.tag = "Attack";
+			GameObject newSkill = Instantiate(skillGO, attackSpawner.position, attackSpawner.rotation);
+			newSkill.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().damagerID = charID;
+			newSkill.transform.GetChild(1).gameObject.tag = "Attack";
+			newSkill.tag = "Attack";
 			
 			// Set size and lifetime of aggro radius from skillboard
-			newSkillTwo.transform.GetChild(1).transform.localScale = new Vector3(characterSheetScript.charSkillStats[0], characterSheetScript.charSkillStats[0], characterSheetScript.charSkillStats[0]);
-			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().SetLifeTime(characterSheetScript.charSkillStats[1]);
+			newSkill.transform.GetChild(1).transform.localScale = new Vector3(characterSheetScript.charSkillStats[0], characterSheetScript.charSkillStats[0], characterSheetScript.charSkillStats[0]);
+			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().SetLifeTime(characterSheetScript.charSkillStats[1]);
 
-			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = this.gameObject;
-			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterDamage = characterSheetScript.skillDmg;
-			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritChance = characterSheetScript.critChance;
-			newSkillTwo.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritDMG = characterSheetScript.critDMG;
-		} else if (castSkill && skillTwoDelayActive) {
+			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = this.gameObject;
+			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().casterDamage = characterSheetScript.skillDmg;
+			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritChance = characterSheetScript.critChance;
+			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritDMG = characterSheetScript.critDMG;
+		} else if (castSkill && skillDelayActive) {
 			Instantiate(skillNotAvailableSound);
 		}
 
-		if (skillTwoDelayActive) {
-			skillTwoDelayTimer -= Time.deltaTime;
-			uiHandlerScript.skillDelayTimer = skillTwoDelayTimer;
-			if (skillTwoDelayTimer <= 0) {
+		if (skillDelayActive) {
+			skillDelayTimer -= Time.deltaTime;
+			uiHandlerScript.skillDelayTimer = skillDelayTimer;
+			if (skillDelayTimer <= 0) {
 				Instantiate(skillCoolDownSound);
-				skillTwoDelayActive = false;
+				skillDelayActive = false;
 			}
 		}
 	}

@@ -11,7 +11,6 @@ public class CharCardsHandler : MonoBehaviour {
 	private bool isConnected = false;
 	
 	private int currentIndex = 0;
-	private int toggleSkill = 0;
 	private int[] charClassesArr = {0, 1};
 
 	public Image gamepadIcon;
@@ -25,8 +24,6 @@ public class CharCardsHandler : MonoBehaviour {
 	public AudioSource cancelSound;
 	public AudioSource toggleSound;
 	public AudioSource randomizeNameSound;
-
-	public Image charBackgroundImage;
 
 	private Color[] charColors = {
 		new Color32(23, 155, 194, 255),
@@ -43,20 +40,17 @@ public class CharCardsHandler : MonoBehaviour {
 	public Text charDEFText;
 	public Text charMSPDText;
 	public Image classImage;
-	public Text skillsText;
+
 	public Image attackOneImage;
 	public Text attackOneTitleText;
-	public Text attackOneText;
 	public Image attackTwoImage;
 	public Text attackTwoTitleText;
-	public Text attackTwoText;
-	public Image pageControlOneGO;
-	public Image pageControlTwoGO;
+	public Text skillTitle;
+	public Text passiveTitle;
 
 	// REWIRED
 	private bool selectButton;
 	private bool cancelButton;
-	private bool toggleSkillButton;
 	private bool randomizeNameButton;
 	private bool dPadLeft;
 	private bool dPadRight;
@@ -70,7 +64,8 @@ public class CharCardsHandler : MonoBehaviour {
 
 
 	private void Start() {
-		charBackgroundImage.color = charColors[charID];
+		randomNameText.color = charColors[charID];
+		DisplayCurrentStatus();
 	}
 
 
@@ -88,8 +83,7 @@ public class CharCardsHandler : MonoBehaviour {
 	private void GetInput() {
 		selectButton = ReInput.players.GetPlayer(charID).GetButtonDown("X");
 		cancelButton = ReInput.players.GetPlayer(charID).GetButtonDown("Circle");
-		toggleSkillButton = ReInput.players.GetPlayer(charID).GetButtonDown("Square");
-		randomizeNameButton = ReInput.players.GetPlayer(charID).GetButtonDown("Triangle");
+		randomizeNameButton = ReInput.players.GetPlayer(charID).GetButtonDown("Square");
 
 		dPadLeft = ReInput.players.GetPlayer(charID).GetButtonDown("DPadLeft");
 		dPadRight = ReInput.players.GetPlayer(charID).GetButtonDown("DPadRight");
@@ -127,25 +121,27 @@ public class CharCardsHandler : MonoBehaviour {
 			if (currentStatus == 3) {
 				if (selectButton) {
 					Instantiate(selectSound);
+					classText.text = "READY!";
 					SettingsHolder.playerClasses[charID] = currentIndex;
-					SettingsHolder.charNames[charID] = randomNameText.text;
 					SettingsHolder.registeredPlayers++;
+				}
+				if (randomizeNameButton) {
+					Instantiate(randomizeNameSound);
+					RandomizeName();
 				}
 			}
 			if (cancelButton) {
 				Instantiate(cancelSound);
 				if (currentStatus == 3) {
 					SettingsHolder.playerClasses[charID] = -1;
-					SettingsHolder.charNames[charID] = "";
 					SettingsHolder.registeredPlayers--;
 				}
+				if (currentStatus == 2) {
+					SettingsHolder.charNames[charID] = "";
+				}
+
 				currentStatus--;
 				DisplayCurrentStatus();
-			}
-			if (toggleSkillButton) {
-				Instantiate(toggleSound);
-				toggleSkill = toggleSkill == 0 ? 1 : 0;
-				DisplayClasses();
 			}
 		}
 	}
@@ -180,27 +176,13 @@ public class CharCardsHandler : MonoBehaviour {
 		charDEFText.text = charClassContentScript.charDEFTexts[currentIndex];
 		charMSPDText.text = charClassContentScript.charMSPDTexts[currentIndex];
 
-		skillsText.text = charClassContentScript.skillsTexts[toggleSkill];
-
-		if (toggleSkill == 0) {
-			attackOneTitleText.text = charClassContentScript.attackOneTitleTexts[currentIndex];
-			attackOneText.text = charClassContentScript.attackOneTexts[currentIndex];
-			attackTwoTitleText.text = charClassContentScript.attackTwoTitleTexts[currentIndex];
-			attackTwoText.text = charClassContentScript.attackTwoTexts[currentIndex];
-			attackOneImage.sprite = charClassContentScript.attackOneImages[currentIndex];
-			attackTwoImage.sprite = charClassContentScript.attackTwoImages[currentIndex];
-			pageControlOneGO.color = new Color32(255, 255, 255, 255);
-			pageControlTwoGO.color = new Color32(255, 255, 255, 75);
-		} else if (toggleSkill == 1) {
-			attackOneTitleText.text = charClassContentScript.skillOneTitleTexts[currentIndex];
-			attackOneText.text = charClassContentScript.skillOneTexts[currentIndex];
-			attackTwoTitleText.text = charClassContentScript.skillTwoTitleTexts[currentIndex];
-			attackTwoText.text = charClassContentScript.skillTwoTexts[currentIndex];
-			attackOneImage.sprite = charClassContentScript.skillOneImages[currentIndex];
-			attackTwoImage.sprite = charClassContentScript.skillTwoImages[currentIndex];
-			pageControlOneGO.color = new Color32(255, 255, 255, 75);
-			pageControlTwoGO.color = new Color32(255, 255, 255, 255);
-		}
+		attackOneTitleText.text = charClassContentScript.attackOneTitleTexts[currentIndex];
+		attackTwoTitleText.text = charClassContentScript.attackTwoTitleTexts[currentIndex];
+		attackOneImage.sprite = charClassContentScript.attackOneImages[currentIndex];
+		attackTwoImage.sprite = charClassContentScript.attackTwoImages[currentIndex];
+		skillTitle.text = charClassContentScript.skillTitles[currentIndex];
+		passiveTitle.text = charClassContentScript.passiveTitles[currentIndex];
+		classImage.sprite = charClassContentScript.classImages[currentIndex];
 	}
 
 
@@ -280,7 +262,11 @@ public class CharCardsHandler : MonoBehaviour {
 		int rndName = Random.Range(0, CharClassContent.nameTexts.Length);
 		addName = CharClassContent.nameTexts[rndName];
 
+		// Display randomized name
 		randomNameText.text = addTitle + addAdjective + addName;
+
+		// Write name in SettingsHolder array
+		SettingsHolder.charNames[charID] = randomNameText.text;
 	}
 
 }

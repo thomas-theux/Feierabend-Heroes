@@ -9,7 +9,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private GameObject attackOneGO;
 	private GameObject attackTwoGO;
-	private GameObject skillTwoGO;
+	private GameObject skillGO;
 	private CharacterSheet characterSheetScript;
 	private CharacterMovement charactMovementScript;
 	private UIHandler uiHandlerScript;
@@ -31,7 +31,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float delayAttackOne = 0.4f;
 	private float delayAttackTwo = 1.0f;
 	// private float skillOne = 15.0f;
-	private float skillTwo = 30.0f;
+	private float delaySkill = 30.0f;
 
 	private bool performAttacks = false;
 	private float performTimeDef = 0.2f;
@@ -41,9 +41,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float attackTwoDelay;
 
 	private float attackOneDmg = 16.0f;
-	private float attackTwoDmg = 42.0f;
+	private float attackTwoDmg = 36.0f;
 	// private float skillOneDmg = 0.0f;
-	private float skillTwoDmg = 3.0f;
+	private float skillDmg = 3.0f;
 
 	// Initial variables and increase values for the skills
 	// private float[] skillOneStats = {0.4f, 5.0f, 0.2f, 1.0f};
@@ -55,17 +55,17 @@ public class Class_Cloudmaster : MonoBehaviour {
 	// private string classPerk = "• Wrench Punch\n• Bomb Throw";
 	
 	// private string skillOneTitle = "HEALING BEACON";
-	// private string skillTwoTitle = "TURRET GUN";
+	// private string skillTitle = "TURRET GUN";
 	// private string skillOneText = "Place a Healing Beacon that gives back health over time.";
-	// private string skillTwoText = "Spawn a immobile Turret Gun that shoots enemies on sight.";
+	// private string skillText = "Spawn a immobile Turret Gun that shoots enemies on sight.";
 	// private string skillOnePerk = "• 0.4 HP\n• lasts 5 seconds";
-	// private string skillTwoPerk = "• 0.3 Damage\n• lasts 24 seconds";
+	// private string skillPerk = "• 0.3 Damage\n• lasts 24 seconds";
 	// private string skillOneStat = "HP";
-	// private string skillTwoStat = "Damage";
+	// private string skillStat = "Damage";
 	// private string skillOneUpgradeText = "Improves the Beacon's healing speed and lifetime.";
-	// private string skillTwoUpgradeText = "Improves the Gun's attack speed and increases the radius.";
+	// private string skillUpgradeText = "Improves the Gun's attack speed and increases the radius.";
 	// private string skillOneUpgradePerk = "+50% HP heal\n+1s lifetime";
-	// private string skillTwoUpgradePerk = "+16% shot speed\n+4m radius";
+	// private string skillUpgradePerk = "+16% shot speed\n+4m radius";
 
 	private float charHealth = 260.0f;
 	private float charDefense = 8.0f;
@@ -88,8 +88,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 	// private bool skillOneDelayActive = false;
 
 	// Skill Two – Turret Gun
-	private float skillTwoDelayTimer;
-	private bool skillTwoDelayActive = false;
+	private float skillDelayTimer;
+	private bool skillDelayActive = false;
 
 	// REWIRED
 	private Player player;
@@ -112,7 +112,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 		attackOneGO = Resources.Load<GameObject>("Attacks/WrenchPunch");
 		attackTwoGO = Resources.Load<GameObject>("Attacks/Bomb");
 		// skillOneGO = Resources.Load<GameObject>("Attacks/HealingBeacon");
-		skillTwoGO = Resources.Load<GameObject>("Attacks/TurretGun");
+		skillGO = Resources.Load<GameObject>("Attacks/TurretGun");
 
 		wrenchPunchSound = Resources.Load<GameObject>("Sounds/WrenchPunchSound");
 		bombThrowSound = Resources.Load<GameObject>("Sounds/BombThrowSound");
@@ -143,12 +143,12 @@ public class Class_Cloudmaster : MonoBehaviour {
 		characterSheetScript.delayAttackOne = delayAttackOne;
 		characterSheetScript.delayAttackTwo = delayAttackTwo;
 		// characterSheetScript.delaySkillOne = skillOne;
-		characterSheetScript.delaySkill = skillTwo;
+		characterSheetScript.delaySkill = delaySkill;
 
 		characterSheetScript.attackOneDmg = attackOneDmg;
 		characterSheetScript.attackTwoDmg = attackTwoDmg;
 		// characterSheetScript.skillOneDmg = skillOneDmg;
-		characterSheetScript.skillDmg = skillTwoDmg;
+		characterSheetScript.skillDmg = skillDmg;
 
 		for (int i = 0; i < 4; i++) {
 			// characterSheetScript.skillOneStats[i] = skillOneStats[i];
@@ -156,17 +156,17 @@ public class Class_Cloudmaster : MonoBehaviour {
 		}
 
 		// characterSheetScript.skillOneTitle = skillOneTitle;
-		// characterSheetScript.skillTwoTitle = skillTwoTitle;
+		// characterSheetScript.skillTitle = skillTitle;
 		// characterSheetScript.skillOneText = skillOneText;
-		// characterSheetScript.skillTwoText = skillTwoText;
+		// characterSheetScript.skillText = skillText;
 		// characterSheetScript.skillOnePerk = skillOnePerk;
-		// characterSheetScript.skillTwoPerk = skillTwoPerk;
+		// characterSheetScript.skillPerk = skillPerk;
 		// characterSheetScript.skillOneStat = skillOneStat;
-		// characterSheetScript.skillTwoStat = skillTwoStat;
+		// characterSheetScript.skillStat = skillStat;
 		// characterSheetScript.skillOneUpgradeText = skillOneUpgradeText;
-		// characterSheetScript.skillTwoUpgradeText = skillTwoUpgradeText;
+		// characterSheetScript.skillUpgradeText = skillUpgradeText;
 		// characterSheetScript.skillOneUpgradePerk = skillOneUpgradePerk;
-		// characterSheetScript.skillTwoUpgradePerk = skillTwoUpgradePerk;
+		// characterSheetScript.skillUpgradePerk = skillUpgradePerk;
 
 		characterSheetScript.currentHealth = charHealth;
 		characterSheetScript.maxHealth = charHealth;
@@ -310,7 +310,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 
 	private void CastSkill() {
-		if (castSkill && characterSheetScript.skillActivated && !skillTwoDelayActive && !performAttacks) {
+		if (castSkill && characterSheetScript.skillActivated && !skillDelayActive && !performAttacks) {
 
 			// DEV STUFF – Collect data on how many times an attack has been used
 			int turretGun = PlayerPrefs.GetInt("Turret Gun");
@@ -320,40 +320,40 @@ public class Class_Cloudmaster : MonoBehaviour {
 			performAttacks = true;
 			performTime = performTimeDef;
 
-			skillTwoDelayTimer = characterSheetScript.delaySkill;
-			skillTwoDelayActive = true;
+			skillDelayTimer = characterSheetScript.delaySkill;
+			skillDelayActive = true;
 
 			// Skill TURRET GUN
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition + new Vector3(0, 0, 2);
 
-			GameObject newSkillTwo = Instantiate(skillTwoGO, attackSpawner.position, attackSpawner.rotation);
-			newSkillTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().damagerID = charID;
+			GameObject newSkill = Instantiate(skillGO, attackSpawner.position, attackSpawner.rotation);
+			newSkill.transform.GetChild(0).gameObject.tag = "Character" + charID;
+			newSkill.transform.GetChild(4).GetComponent<TurretGun>().damagerID = charID;
 			for (int i = 1; i < 5; i++) {
-				newSkillTwo.transform.GetChild(i).gameObject.tag = "Attack";
+				newSkill.transform.GetChild(i).gameObject.tag = "Attack";
 			}
-			newSkillTwo.tag = "Attack";
+			newSkill.tag = "Attack";
 
 			// Set shoot speed and radius of turret gun from skillboard
-			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().shotDelayDefault = characterSheetScript.charSkillStats[0];
-			newSkillTwo.transform.GetChild(4).transform.localScale = new Vector3(characterSheetScript.charSkillStats[1], characterSheetScript.charSkillStats[1] * 2, characterSheetScript.charSkillStats[1]);
+			newSkill.transform.GetChild(4).GetComponent<TurretGun>().shotDelayDefault = characterSheetScript.charSkillStats[0];
+			newSkill.transform.GetChild(4).transform.localScale = new Vector3(characterSheetScript.charSkillStats[1], characterSheetScript.charSkillStats[1] * 2, characterSheetScript.charSkillStats[1]);
 
-			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().casterDamage = characterSheetScript.skillDmg;
-			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().casterCritChance = characterSheetScript.critChance;
-			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().casterCritDMG = characterSheetScript.critDMG;
-			newSkillTwo.transform.GetChild(4).GetComponent<TurretGun>().charID = charID;
+			newSkill.transform.GetChild(4).GetComponent<TurretGun>().casterDamage = characterSheetScript.skillDmg;
+			newSkill.transform.GetChild(4).GetComponent<TurretGun>().casterCritChance = characterSheetScript.critChance;
+			newSkill.transform.GetChild(4).GetComponent<TurretGun>().casterCritDMG = characterSheetScript.critDMG;
+			newSkill.transform.GetChild(4).GetComponent<TurretGun>().charID = charID;
 
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 2);
-		} else if (castSkill && skillTwoDelayActive) {
+		} else if (castSkill && skillDelayActive) {
 			Instantiate(skillNotAvailableSound);
 		}
 
-		if (skillTwoDelayActive) {
-			skillTwoDelayTimer -= Time.deltaTime;
-			uiHandlerScript.skillDelayTimer = skillTwoDelayTimer;
-			if (skillTwoDelayTimer <= 0) {
+		if (skillDelayActive) {
+			skillDelayTimer -= Time.deltaTime;
+			uiHandlerScript.skillDelayTimer = skillDelayTimer;
+			if (skillDelayTimer <= 0) {
 				Instantiate(skillCoolDownSound);
-				skillTwoDelayActive = false;
+				skillDelayActive = false;
 			}
 		}
 	}

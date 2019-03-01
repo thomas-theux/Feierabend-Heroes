@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlowingTendrils : MonoBehaviour {
 
-    private float slowDownSpeed = 2.0f;
+    private float slowDownSpeed = 1.6f;
 
 
     private void OnTriggerEnter(Collider other) {

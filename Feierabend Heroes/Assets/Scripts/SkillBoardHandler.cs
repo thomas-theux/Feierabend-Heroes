@@ -13,6 +13,7 @@ public class SkillBoardHandler : MonoBehaviour {
     public GameObject tierThreeImage;
     public Text orbsNeededTierTwo;
     public Text orbsNeededTierThree;
+    public Text currentOrbCount;
 
     private int charID = 0;
     private int currentIndex = 0;
@@ -191,8 +192,12 @@ public class SkillBoardHandler : MonoBehaviour {
         skillData.Add(classSkillDict);
         skillData.Add(passiveSkillDict);
         skillData.Add(applesSkillDict);
+    }
 
+
+    private void OnEnable() {
         DisplayNewTexts();
+        UpdateOrbCount();
         UpdateTiers();
     }
 
@@ -218,7 +223,7 @@ public class SkillBoardHandler : MonoBehaviour {
 
 
     private void UpdateOrbCount() {
-        
+        currentOrbCount.text = characterSheetScript.currentOrbs + "";
     }
 
 

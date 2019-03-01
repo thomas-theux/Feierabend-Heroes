@@ -25,17 +25,7 @@ public class CharClassContent : MonoBehaviour {
 		""
 	};
 
-	public string[] skillsTexts = {
-		"",
-		""
-	};
-
 	public string[] attackOneTitleTexts = {
-		"",
-		""
-	};
-
-	public string[] attackOneTexts = {
 		"",
 		""
 	};
@@ -45,27 +35,12 @@ public class CharClassContent : MonoBehaviour {
 		""
 	};
 
-	public string[] attackTwoTexts = {
+	public string[] skillTitles = {
 		"",
 		""
 	};
 
-	public string[] skillOneTitleTexts = {
-		"",
-		""
-	};
-
-	public string[] skillOneTexts = {
-		"",
-		""
-	};
-
-	public string[] skillTwoTitleTexts = {
-		"",
-		""
-	};
-
-	public string[] skillTwoTexts = {
+	public string[] passiveTitles = {
 		"",
 		""
 	};
@@ -74,8 +49,6 @@ public class CharClassContent : MonoBehaviour {
 	public Sprite[] classImages = {};
 	public Sprite[] attackOneImages = {};
 	public Sprite[] attackTwoImages = {};
-	public Sprite[] skillOneImages = {};
-	public Sprite[] skillTwoImages = {};
 
 
 	public static string[] titleTexts = {
