@@ -212,7 +212,9 @@ public class CharCardsHandler : MonoBehaviour {
 				pressToJoinGO.SetActive(false);
 				charClassGO.SetActive(false);
 				arrowNavGO.SetActive(false);
-				readyGO.SetActive(false);
+				// readyGO.SetActive(false);
+				classText.enabled = false;
+				readyGO.GetComponent<Image>().color = new Color32(235, 245, 255, 0);
 				break;
 			case 1:
 				isConnected = true;
@@ -220,7 +222,9 @@ public class CharCardsHandler : MonoBehaviour {
 				pressToJoinGO.SetActive(true);
 				charClassGO.SetActive(false);
 				arrowNavGO.SetActive(false);
-				readyGO.SetActive(false);
+				// readyGO.SetActive(false);
+				classText.enabled = false;
+				readyGO.GetComponent<Image>().color = new Color32(235, 245, 255, 0);
 				break;
 			case 2:
 				isConnected = true;
@@ -228,7 +232,9 @@ public class CharCardsHandler : MonoBehaviour {
 				pressToJoinGO.SetActive(false);
 				charClassGO.SetActive(true);
 				arrowNavGO.SetActive(true);
-				readyGO.SetActive(false);
+				// readyGO.SetActive(true);
+				classText.enabled = true;
+				readyGO.GetComponent<Image>().color = new Color32(235, 245, 255, 255);
 
 				DisplayClasses();
 				break;
@@ -238,7 +244,9 @@ public class CharCardsHandler : MonoBehaviour {
 				pressToJoinGO.SetActive(false);
 				charClassGO.SetActive(true);
 				arrowNavGO.SetActive(false);
-				readyGO.SetActive(true);
+				// readyGO.SetActive(true);
+				classText.enabled = true;
+				readyGO.GetComponent<Image>().color = new Color32(255, 109, 1, 255);
 				break;
 		}
 	}
