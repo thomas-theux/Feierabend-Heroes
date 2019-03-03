@@ -9,6 +9,7 @@ public class CharCardsHandler : MonoBehaviour {
 	public int charID = 0;
 	private int currentStatus = 0;
 	private bool isConnected = false;
+	private bool playerReady = false;
 	
 	private int currentIndex = 0;
 	private int[] charClassesArr = {0, 1};
@@ -119,7 +120,8 @@ public class CharCardsHandler : MonoBehaviour {
 			}
 			
 			if (currentStatus == 3) {
-				if (selectButton) {
+				if (selectButton && !playerReady) {
+					playerReady = true;
 					Instantiate(selectSound);
 					classText.text = "READY!";
 					SettingsHolder.playerClasses[charID] = currentIndex;
@@ -133,6 +135,7 @@ public class CharCardsHandler : MonoBehaviour {
 			if (cancelButton) {
 				Instantiate(cancelSound);
 				if (currentStatus == 3) {
+					playerReady = false;
 					SettingsHolder.playerClasses[charID] = -1;
 					SettingsHolder.registeredPlayers--;
 				}

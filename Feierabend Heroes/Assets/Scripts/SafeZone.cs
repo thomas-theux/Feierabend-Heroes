@@ -7,7 +7,7 @@ public class SafeZone : MonoBehaviour {
 	private Light safeZoneLight;
 	public CapsuleCollider safeZoneCol;
 
-	public float decreaseDuration;
+	private float decreaseDuration;
 	private float t = 0;
 
 	private float startSizeLight = 274.0f;
@@ -22,6 +22,7 @@ public class SafeZone : MonoBehaviour {
 	private void Awake() {
 		safeZoneLight = GetComponent<Light>();
 		startDecreasing = false;
+		decreaseDuration = SettingsHolder.battleTime;
 	}
 
 

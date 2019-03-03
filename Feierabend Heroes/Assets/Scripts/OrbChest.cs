@@ -41,7 +41,7 @@ public class OrbChest : MonoBehaviour {
 			CharacterMovement characterMovementScript = other.GetComponent<CharacterMovement>();
 			CharacterSheet characterSheetScript = other.GetComponent<CharacterSheet>();
 
-			if (characterMovementScript.activationBtn && !openedChest) {
+			if (characterMovementScript.interactBtn && !openedChest) {
 				openedChest = true;
 
 				Instantiate(collectOrbSound);

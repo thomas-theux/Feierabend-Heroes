@@ -20,7 +20,7 @@ public class TimeHandler : MonoBehaviour {
 
 	private float levelStartTimeDef = 3.0f;
 	private float levelStartTime;
-	private float battleStartTimeDef = 60.0f;
+	private float battleStartTimeDef;
 	private float battleStartTime;
 	private float lastSecondsTimeDef = 3.0f;
 	private float lastSecondsTime;
@@ -58,6 +58,8 @@ public class TimeHandler : MonoBehaviour {
 
 	private void Awake() {
 		levelGO = GameObject.Find("Ground");
+
+		battleStartTimeDef = SettingsHolder.exploreTime;
 
 		// Reset all bools
 		startLevel = false;

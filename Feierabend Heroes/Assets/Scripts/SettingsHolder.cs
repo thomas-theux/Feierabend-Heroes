@@ -10,6 +10,9 @@ public class SettingsHolder {
 	public static int playerCount = 0;
 	public static int registeredPlayers = 0;
 
+	public static float exploreTime = 60.0f;
+	public static float battleTime = 120.0f;
+
 	public static int appleSpawnMax = 10;
 	public static int chestSpawnMax = 10;
 

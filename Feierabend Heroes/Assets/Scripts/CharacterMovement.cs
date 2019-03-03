@@ -24,10 +24,16 @@ public class CharacterMovement : MonoBehaviour {
 
 	public bool skillboardBlocksCasting = false;
 
+	private bool isDodging = false;
+	private float dodgeDelayTime = 0.35f;
+	private float dodgeDistance = 5.0f;
+	private Vector3 dodgeDrag = new Vector3(10.0f, 10.0f, 10.0f);
+
 	// REWIRED
 	private float moveHorizontal;
 	private float moveVertical;
-	public bool activationBtn;
+	public bool interactBtn;
+	private bool dodgeBtn;
 	private bool showSkillUI;
 	private bool closeSkillUI;
 
@@ -89,11 +95,14 @@ public class CharacterMovement : MonoBehaviour {
 
 	private void GetInput() {
 		if (!lifeDeathHandlerScript.charIsDead) {
-			moveHorizontal = ReInput.players.GetPlayer(playerID).GetAxis("LS Horizontal");
-			moveVertical = ReInput.players.GetPlayer(playerID).GetAxis("LS Vertical");
+			if (!isDodging) {
+				moveHorizontal = ReInput.players.GetPlayer(playerID).GetAxis("LS Horizontal");
+				moveVertical = ReInput.players.GetPlayer(playerID).GetAxis("LS Vertical");
+			}
 		
 			if (TimeHandler.startLevel) {
-				activationBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("R1");
+				dodgeBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("R1");
+				interactBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("L1");
 
 				showSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Triangle");
 				closeSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Circle");
@@ -126,6 +135,23 @@ public class CharacterMovement : MonoBehaviour {
 			cc.Move(movement * characterSheetScript.moveSpeed * Time.deltaTime);
 		}
 
+		// Activate dodge movement
+		if (dodgeBtn && !isDodging) {
+
+			isDodging = true;
+			anim.SetBool("isDodging", true);
+			StartCoroutine(DodgeDelay());
+
+			characterSheetScript.currentHealth -= characterSheetScript.maxHealth * 0.05f;
+
+            charVelocity += Vector3.Scale(transform.forward, dodgeDistance * new Vector3(
+				(Mathf.Log(1f / (Time.deltaTime * dodgeDrag.x + 1)) / -Time.deltaTime),
+				0,
+				(Mathf.Log(1f / (Time.deltaTime * dodgeDrag.z + 1)) / -Time.deltaTime))
+			);
+
+        }
+
 		// Rotate character depending on the direction they are going
 		if (movement != Vector3.zero) {
 			transform.forward = movement;
@@ -140,6 +166,11 @@ public class CharacterMovement : MonoBehaviour {
 		if (isAttacking || !TimeHandler.startLevel || skillBoardOn) {
 			anim.SetFloat("charSpeed", 0);
 		}
+
+		// Add drag to character so that the dash doesn't go forever
+		charVelocity.x /= 1 + dodgeDrag.x * Time.deltaTime;
+		charVelocity.y /= 1 + dodgeDrag.y * Time.deltaTime;
+		charVelocity.z /= 1 + dodgeDrag.z * Time.deltaTime;
 	}
 
 
@@ -177,6 +208,13 @@ public class CharacterMovement : MonoBehaviour {
 	private IEnumerator SkillCastDelay() {
 		yield return new WaitForSeconds(0.1f);
 		skillboardBlocksCasting = false;
+	}
+
+
+	private IEnumerator DodgeDelay() {
+		yield return new WaitForSeconds(dodgeDelayTime);
+		isDodging = false;
+		anim.SetBool("isDodging", false);
 	}
 
 }
