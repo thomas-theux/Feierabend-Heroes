@@ -194,8 +194,11 @@ public class Class_Novist : MonoBehaviour {
 				castSkill = false;
 			}
 
-			AttackOne();
-			AttackTwo();
+			if (!GameManager.pauseMenuOpen) {
+				AttackOne();
+				AttackTwo();
+				CastSkill();
+			}
 
 			if (characterSheetScript.slowingTendrilsActive && !assiveSkillActivated) {
 				ActivatePassive();
@@ -204,8 +207,6 @@ public class Class_Novist : MonoBehaviour {
 			if (performAttacks) {
 				PerformAttackDelay();
 			}
-
-			CastSkill();
 
 			DelayMovement();
 		}

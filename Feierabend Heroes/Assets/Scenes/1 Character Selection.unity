@@ -1985,7 +1985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: CHOOSE YOUR HERO
+  m_Text: Choose your Hero
 --- !u!222 &1460892283
 CanvasRenderer:
   m_ObjectHideFlags: 0

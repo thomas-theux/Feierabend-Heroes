@@ -186,15 +186,16 @@ public class Class_Cloudmaster : MonoBehaviour {
 				castSkill = false;
 			}
 
-			AttackOne();
-			AttackTwo();
+			if (!GameManager.pauseMenuOpen) {
+				AttackOne();
+				AttackTwo();
+				CastSkill();
+			}
 
 			if (performAttacks) {
 				PerformAttackDelay();
 			}
 			
-			CastSkill();
-
 			DelayMovement();
 		}
 	}

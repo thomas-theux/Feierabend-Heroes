@@ -46,6 +46,22 @@ public class GameUIHandler : MonoBehaviour {
 	}
 
 
+	// Wieviele verschiedene Möglichkeiten für random names gibt es?
+	// private void Start() {		
+	// 	int titles = CharClassContent.titleTexts.Length;
+	// 	int adjectives = CharClassContent.adjectiveTexts.Length;
+	// 	int names = CharClassContent.nameTexts.Length;
+
+	// 	int optionsPartOne = titles * names;
+	// 	int optionsPartTwo = adjectives * names;
+	// 	int optionsPartThree = titles * adjectives * names;
+
+	// 	int allOptions = optionsPartOne + optionsPartTwo + optionsPartThree;
+
+	// 	print(allOptions.ToString("n0"));
+	// }
+
+
 	private void Update() {
 		if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel) {
 			if (SettingsHolder.registeredPlayers >= 2 && SettingsHolder.registeredPlayers == connectedGamepads) {

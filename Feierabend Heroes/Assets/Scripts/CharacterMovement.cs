@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour {
 	private CharacterController cc;
 	private CharacterSheet characterSheetScript;
 	private LifeDeathHandler lifeDeathHandlerScript;
+	public GameManager gameManagerScript;
 
 	private GameObject campfireTarget;
 
@@ -34,8 +35,9 @@ public class CharacterMovement : MonoBehaviour {
 	private float moveVertical;
 	public bool interactBtn;
 	private bool dodgeBtn;
-	private bool showSkillUI;
-	private bool closeSkillUI;
+	private bool pauseBtn;
+	private bool triangleBtn;
+	private bool circleBtn;
 
 
 	private void Awake() {
@@ -78,6 +80,16 @@ public class CharacterMovement : MonoBehaviour {
 			anim.SetFloat("charSpeed", 0);
 		}
 
+		if (pauseBtn) {
+			CheckPauseMenu();
+		}
+
+		if (GameManager.pauseMenuOpen) {
+			if (circleBtn && playerID == GameManager.whoPaused) {
+				gameManagerScript.QuitMatch();
+			}
+		}
+
 		// Close skillboard when it's open and the match ends
 		if (SettingsHolder.matchOver && skillBoardOn || TimeHandler.roundEnd && skillBoardOn) {
 			skillBoardOn = false;
@@ -104,8 +116,10 @@ public class CharacterMovement : MonoBehaviour {
 				dodgeBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("R1");
 				interactBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("L1");
 
-				showSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Triangle");
-				closeSkillUI = ReInput.players.GetPlayer(playerID).GetButtonDown("Circle");
+				pauseBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("Options");
+
+				triangleBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("Triangle");
+				circleBtn = ReInput.players.GetPlayer(playerID).GetButtonDown("Circle");
 			}
 		} else {
 			moveHorizontal = 0;
@@ -175,18 +189,20 @@ public class CharacterMovement : MonoBehaviour {
 
 
 	private void ToggleSkillboard() {
-		if (showSkillUI) {
-			skillBoardOn = !skillBoardOn;
-			Instantiate(openSkillboardSound);
-			ShowSkillboard();
-		}
-		if (skillBoardOn && closeSkillUI) {
-			skillBoardOn = false;
-			Instantiate(closeSkillboardSound);
-			ShowSkillboard();
-			
-			skillboardBlocksCasting = true;
-			StartCoroutine(SkillCastDelay());
+		if (!GameManager.pauseMenuOpen) {
+			if (triangleBtn) {
+				skillBoardOn = !skillBoardOn;
+				Instantiate(openSkillboardSound);
+				ShowSkillboard();
+			}
+			if (skillBoardOn && circleBtn) {
+				skillBoardOn = false;
+				Instantiate(closeSkillboardSound);
+				ShowSkillboard();
+				
+				skillboardBlocksCasting = true;
+				StartCoroutine(SkillCastDelay());
+			}
 		}
 	}
 
@@ -215,6 +231,22 @@ public class CharacterMovement : MonoBehaviour {
 		yield return new WaitForSeconds(dodgeDelayTime);
 		isDodging = false;
 		anim.SetBool("isDodging", false);
+	}
+	
+
+	private void CheckPauseMenu() {
+		if (!GameManager.pauseMenuOpen) {
+			// Open pause menu
+			GameManager.whoPaused = playerID;
+			gameManagerScript.HandlePauseMenu();
+		} else {
+			// Check if the player who pressed the options button is the player who paused the game
+			if (playerID == GameManager.whoPaused) {
+				// Close pause menu
+				gameManagerScript.HandlePauseMenu();
+				GameManager.whoPaused = -1;
+			}
+		}
 	}
 
 }

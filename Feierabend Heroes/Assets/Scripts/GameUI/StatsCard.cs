@@ -34,7 +34,7 @@ public class StatsCard : MonoBehaviour {
 
         switch (GameManager.rankingArr[resultsID]) {
             case 0:
-                rankingText.text = "Bleedsau!";
+                rankingText.text = "Looser!";
                 rankingBanner.color = new Color32(255, 255, 255, 255);
                 break;
             case 1:

@@ -80,7 +80,11 @@ public class CharClassContent : MonoBehaviour {
 		"Duke",
 		"Pope",
 		"Priest",
-		"Priestess"
+		"Priestess",
+		"Pretty",
+		"The last",
+		"One",
+		"No"
 	};
 
 	public static string[] adjectiveTexts = {
@@ -92,6 +96,9 @@ public class CharClassContent : MonoBehaviour {
 		"Blue",
 		"Dark",
 		"Pink",
+		"Purple",
+		"Self-Conscious",
+		"Concerned",
 		"Pretty",
 		"Ugly",
 		"Awesome",
@@ -143,7 +150,26 @@ public class CharClassContent : MonoBehaviour {
 		"Ridiculous",
 		"Old",
 		"Young",
-		"Racist"
+		"Racist",
+		"Tall",
+		"Wasted",
+		"Introverted",
+		"Fast",
+		"Slow",
+		"Filthy",
+		"Dramatic",
+		"Sick",
+		"Tasty",
+		"Brave",
+		"Funny",
+		"Wild",
+		"Epic",
+		"Sneaky",
+		"Fresh",
+		"Golden",
+		"Wet",
+		"Busy",
+		"New"
 	};
 
 	public static string[] nameTexts = {
@@ -176,6 +202,7 @@ public class CharClassContent : MonoBehaviour {
 		"Hamster",
 		"Raccoon",
 		"Goat",
+		"Goldfish",
 		"Pylonus",
 		"Knight",
 		"Johnny",
@@ -204,7 +231,9 @@ public class CharClassContent : MonoBehaviour {
 		"Pig",
 		"Panda",
 		"Jellyfish",
+		"Llama",
 		"Dog",
+		"Yeti",
 		"Peanut",
 		"Soul",
 		"Donut",
@@ -222,7 +251,36 @@ public class CharClassContent : MonoBehaviour {
 		"Monster",
 		"Boob",
 		"Nipple",
-		"Devil"
+		"Devil",
+		"Owl",
+		"Moustache",
+		"Bacon",
+		"Boy",
+		"Girl",
+		"Hero",
+		"Designer",
+		"Developer",
+		"Nerd",
+		"Samurai",
+		"Ninja",
+		"Mage",
+		"Warrior",
+		"Adventurer",
+		"Dwarf",
+		"Human",
+		"Elf",
+		"Orc",
+		"Drunk",
+		"Ghost",
+		"Friend",
+		"Egg",
+		"Beast",
+		"Beaver",
+		"Eagle",
+		"Fellow",
+		"Pancake",
+		"Cookie",
+		"Squid"
 	};
 
 }

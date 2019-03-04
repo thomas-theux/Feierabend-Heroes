@@ -110,50 +110,50 @@ public class SkillBoardHandler : MonoBehaviour {
         newPassiveInfo = passiveSkillInfo[characterSheetScript.charClass];
         
         // Tier ONE skills and stats
-        healthSkillDict.Add("Title", "Health");
+        healthSkillDict.Add("Title", "Improve Health");
         healthSkillDict.Add("Info", "+10%");
         healthSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         healthSkillDict.Add("Level", -1);
         healthSkillDict.Add("Cap", 5);
         
-        damageSkillDict.Add("Title", "Damage");
-        damageSkillDict.Add("Info", "+14");
+        damageSkillDict.Add("Title", "Improve Damage");
+        damageSkillDict.Add("Info", "+15%");
         damageSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         damageSkillDict.Add("Level", -1);
         damageSkillDict.Add("Cap", 5);
         
-        defenseSkillDict.Add("Title", "Defense");
+        defenseSkillDict.Add("Title", "Improve Defense");
         defenseSkillDict.Add("Info", "+20%");
         defenseSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         defenseSkillDict.Add("Level", -1);
         defenseSkillDict.Add("Cap", 5);
         
-        dodgeSkillDict.Add("Title", "Dodge");
+        dodgeSkillDict.Add("Title", "Dodge Attacks");
         dodgeSkillDict.Add("Info", "+6%");
         dodgeSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         dodgeSkillDict.Add("Level", -1);
         dodgeSkillDict.Add("Cap", 5);
         
-        critSkillDict.Add("Title", "Critical Hit");
+        critSkillDict.Add("Title", "Critical Hit (2x Damage)");
         critSkillDict.Add("Info", "+6%");
         critSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         critSkillDict.Add("Level", -1);
         critSkillDict.Add("Cap", 5);
         
         // Tier TWO skills and stats
-        ASPDSkillDict.Add("Title", "Attack Speed");
+        ASPDSkillDict.Add("Title", "Increase Attack Speed");
         ASPDSkillDict.Add("Info", "+10%");
         ASPDSkillDict.Add("Costs", new int[] {1, 2, 2, 3, 4});
         ASPDSkillDict.Add("Level", -1);
         ASPDSkillDict.Add("Cap", 5);
 
-        MSPDSkillDict.Add("Title", "Move Speed");
+        MSPDSkillDict.Add("Title", "Increase Move Speed");
         MSPDSkillDict.Add("Info", "+10%");
         MSPDSkillDict.Add("Costs", new int[] {1, 2, 2, 3, 4});
         MSPDSkillDict.Add("Level", -1);
         MSPDSkillDict.Add("Cap", 5);
 
-        doubleOrbSkillDict.Add("Title", "Double Orb");
+        doubleOrbSkillDict.Add("Title", "Increase Double Orb Chance");
         doubleOrbSkillDict.Add("Info", "+15%");
         doubleOrbSkillDict.Add("Costs", new int[] {2, 3, 4, 5, 6});
         doubleOrbSkillDict.Add("Level", -1);
@@ -269,13 +269,59 @@ public class SkillBoardHandler : MonoBehaviour {
 
 
     private void DisplayNewTexts() {
-        // Write texts for class and passive skills
-        if (currentIndex == 8) {
-            if ((int)skillData[currentIndex]["Level"] < 0) {
-                skillData[currentIndex]["Info"] = newEnableInfo;
-            } else {
-                skillData[currentIndex]["Info"] = newImproveInfo;
-            }
+        // Get current stats and write texts for skillboard
+        switch (currentIndex) {
+            // HEALTH
+            case 0:
+                skillData[currentIndex]["Info"] =
+                characterSheetScript.maxHealth.ToString("F0") +
+                " → " +
+                (characterSheetScript.maxHealth + (characterSheetScript.maxHealth * 0.1f)).ToString("F0");
+                break;
+            // DAMAGE
+            case 1:
+                float averageDmg = (characterSheetScript.attackOneDmg + characterSheetScript.attackTwoDmg) / 2;
+                skillData[currentIndex]["Info"] =
+                averageDmg.ToString("F0") +
+                " → " +
+                (averageDmg + (averageDmg * 0.15f)).ToString("F0");
+                break;
+            // DEFENSE
+            case 2:
+                skillData[currentIndex]["Info"] =
+                characterSheetScript.charDefense.ToString("F0") +
+                " → " +
+                (characterSheetScript.charDefense + (characterSheetScript.charDefense * 0.1f)).ToString("F0");
+                break;
+            // DODGE
+            case 3:
+                break;
+            // CRIT HIT
+            case 4:
+                break;
+            // ATTACK SPEED
+            case 5:
+                break;
+            // MOVE SPEED
+            case 6:
+                break;
+            // ORB FINDING
+            case 7:
+                break;
+            // CLASS SKILL
+            case 8:
+                if ((int)skillData[currentIndex]["Level"] < 0) {
+                    skillData[currentIndex]["Info"] = newEnableInfo;
+                } else {
+                    skillData[currentIndex]["Info"] = newImproveInfo;
+                }
+                break;
+            // PASSIVE SKILL
+            case 9:
+                break;
+            // FIND APPLES
+            case 10:
+                break;
         }
 
         // Show correspronding title and text for current skill
@@ -427,12 +473,12 @@ public class SkillBoardHandler : MonoBehaviour {
                     BuySkill();
                 } else {
                     // Skill not available due to not enough orbs
-                    print("Not enough orbs");
+                    // print("Not enough orbs");
                 }
 
             } else {
                 // Skill fully acivated
-                print("Skill already complete");
+                // print("Skill already complete");
             }
 		}
     }

@@ -59,7 +59,6 @@ public class CharCardsHandler : MonoBehaviour {
 
 	private void Awake() {
 		charClassContentScript = GetComponent<CharClassContent>();
-
 		RandomizeName();
 	}
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Rewired;
 
 public class GameManager : MonoBehaviour {
@@ -19,6 +20,11 @@ public class GameManager : MonoBehaviour {
 	public static int[] deathsStatsArr = {0, 0, 0, 0};
 	public static int[] orbsSpentStatsArr = {0, 0, 0, 0};
 	public static int[] rankingArr = {0, 0, 0, 0};
+
+	public GameObject pauseMenuGO;
+	// public static bool isPausing = false;
+	public static bool pauseMenuOpen = false;
+	public static int whoPaused = -1;
 
 
 	private void Awake() {
@@ -51,6 +57,7 @@ public class GameManager : MonoBehaviour {
 			newChar.transform.position = startSpawns[i].transform.position;
 
 			newChar.GetComponent<CharacterMovement>().playerID = i;
+			newChar.GetComponent<CharacterMovement>().gameManagerScript = this.gameObject.GetComponent<GameManager>();
 			newChar.name = "Character" + i;
 			newChar.tag = "Character" + i;
 			newChar.transform.GetChild(0).tag = "Character" + i;
@@ -106,12 +113,29 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-	// DEV TESTING
-	// private void AssignClasses() {
-	// 	for (int i = 0; i < SettingsHolder.playerCount; i++) {
-	// 		int rndClass = Random.Range(0, 2);
-	// 		SettingsHolder.playerClasses[i] = rndClass;
-	// 	}
-	// }
+	public void HandlePauseMenu() {
+		if (!pauseMenuOpen) {
+			pauseMenuOpen = true;
+			pauseMenuGO.SetActive(true);
+			Time.timeScale = 0.0f;
+		} else {
+			pauseMenuOpen = false;
+			pauseMenuGO.SetActive(false);
+			Time.timeScale = 1.0f;
+		}
+	}
+
+
+	public void QuitMatch() {
+		// Kill DontDestroyOnLOad game objetcts
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			Destroy(GameObject.Find("Character" + i));
+			Destroy(GameObject.Find("PlayerCamera" + i));
+        }
+        
+        SettingsHolder.matchOver = false;
+
+        SceneManager.LoadScene("1 Character Selection");
+	}
 	
 }
