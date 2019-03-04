@@ -133,11 +133,13 @@ public class LifeDeathHandler : MonoBehaviour {
 			}
 
 			// Give player who killed this character two extra orbs
-			GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs += 2;
+			GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForKills;
 
 			// Steal orb from killed character
-			if (characterSheetScript.currentOrbs > 0) {
-				characterSheetScript.currentOrbs--;
+			for (int i = 0; i < SettingsHolder.orbsForKills; i++) {
+				if (characterSheetScript.currentOrbs > 0) {
+					characterSheetScript.currentOrbs--;
+				}
 			}
 		}
 

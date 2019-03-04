@@ -78,6 +78,9 @@ public class CompanionAggro : MonoBehaviour {
 		if (!isAttacking) {
 			attackDelayTimer = attackDelayDefault;
 			CalculateDamage();
+
+			int charID = enemyChar.GetComponent<CharacterMovement>().playerID;
+			GameObject.Find("PlayerCamera" + charID).GetComponent<CameraShake>().enabled = true;
 		}
 
 		if (attackDelayTimer > 0) {
@@ -121,8 +124,7 @@ public class CompanionAggro : MonoBehaviour {
 		while (Vector3.Distance(transform.parent.position, followCaster.transform.position) <= distanceLimit) {
 			yield return null;
 		}
-
-		print("distance too high");
+		
 		enemyDetected = false;
 	}
 

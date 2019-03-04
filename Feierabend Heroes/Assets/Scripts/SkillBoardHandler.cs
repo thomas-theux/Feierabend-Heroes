@@ -15,6 +15,12 @@ public class SkillBoardHandler : MonoBehaviour {
     public Text orbsNeededTierThree;
     public Text currentOrbCount;
 
+    public AudioSource cursorMoveSound;
+	public AudioSource activateSkillSound;
+	public AudioSource skillCompleteSound;
+	public AudioSource skillLockedSound;
+    public AudioSource unlockTierSound;
+
     private int charID = 0;
     private int currentIndex = 0;
     private int spentOrbs = 0;
@@ -203,6 +209,7 @@ public class SkillBoardHandler : MonoBehaviour {
 
 
     private void BuySkill() {
+        PlayActivationSounds();
         PayWithOrbs();
         UpdateOrbCount();
         CheckTiers();
@@ -211,6 +218,15 @@ public class SkillBoardHandler : MonoBehaviour {
         UpdateSkillLevel();
         UpdateTiers();
         DisplayNewTexts();
+    }
+
+
+    private void PlayActivationSounds() {
+        if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 2) {
+            Instantiate(activateSkillSound);
+        } else {
+            Instantiate(skillCompleteSound);
+        }
     }
 
 
@@ -234,6 +250,7 @@ public class SkillBoardHandler : MonoBehaviour {
             tierTwoImage.SetActive(false);
 
             ActivateTierTwo();
+            Instantiate(unlockTierSound);
         }
 
         if (spentOrbs >= SettingsHolder.tierThreeCosts && !tierThreeActive) {
@@ -242,6 +259,7 @@ public class SkillBoardHandler : MonoBehaviour {
             tierThreeImage.SetActive(false);
 
             ActivateTierThree();
+            Instantiate(unlockTierSound);
         }
     }
 
@@ -276,7 +294,7 @@ public class SkillBoardHandler : MonoBehaviour {
                 skillData[currentIndex]["Info"] =
                 characterSheetScript.maxHealth.ToString("F0") +
                 " → " +
-                (characterSheetScript.maxHealth + (characterSheetScript.maxHealth * 0.1f)).ToString("F0");
+                (characterSheetScript.maxHealth + (characterSheetScript.maxHealth * SkillsHandler.increaseHP)).ToString("F0");
                 break;
             // DAMAGE
             case 1:
@@ -284,29 +302,46 @@ public class SkillBoardHandler : MonoBehaviour {
                 skillData[currentIndex]["Info"] =
                 averageDmg.ToString("F0") +
                 " → " +
-                (averageDmg + (averageDmg * 0.15f)).ToString("F0");
+                (averageDmg + (averageDmg * SkillsHandler.increaseDMG)).ToString("F0");
                 break;
             // DEFENSE
             case 2:
                 skillData[currentIndex]["Info"] =
                 characterSheetScript.charDefense.ToString("F0") +
                 " → " +
-                (characterSheetScript.charDefense + (characterSheetScript.charDefense * 0.1f)).ToString("F0");
+                (characterSheetScript.charDefense + (characterSheetScript.charDefense * SkillsHandler.increaseDEF)).ToString("F0");
                 break;
             // DODGE
             case 3:
+                skillData[currentIndex]["Info"] =
+                characterSheetScript.dodgeChance.ToString("F0") + "%" +
+                " → " +
+                (characterSheetScript.dodgeChance + SkillsHandler.increaseDDG).ToString("F0") + "%";
                 break;
             // CRIT HIT
             case 4:
+                skillData[currentIndex]["Info"] =
+                characterSheetScript.critChance.ToString("F0") + "%" +
+                " → " +
+                (characterSheetScript.critChance + SkillsHandler.increaseCRT).ToString("F0") + "%";
                 break;
             // ATTACK SPEED
             case 5:
+                // NOCH KEINE AHNUNG WIE ICH DEN SCHEISS ANZEIGEN SOLL :D
                 break;
             // MOVE SPEED
             case 6:
+                skillData[currentIndex]["Info"] =
+                characterSheetScript.moveSpeed.ToString("F1") +
+                " → " +
+                (characterSheetScript.moveSpeed + (characterSheetScript.moveSpeed * SkillsHandler.increaseMSPD)).ToString("F1");
                 break;
             // ORB FINDING
             case 7:
+                skillData[currentIndex]["Info"] =
+                characterSheetScript.doubleOrbChance.ToString("F0") + "%" +
+                " → " +
+                (characterSheetScript.doubleOrbChance + SkillsHandler.increaseDBLORB).ToString("F0") + "%";
                 break;
             // CLASS SKILL
             case 8:
@@ -342,6 +377,7 @@ public class SkillBoardHandler : MonoBehaviour {
     
     private void DisplayCursor() {
         cursorImage.transform.position = skillArray[currentIndex].transform.position;
+        Instantiate(cursorMoveSound);
     }
 
 
@@ -473,6 +509,7 @@ public class SkillBoardHandler : MonoBehaviour {
                     BuySkill();
                 } else {
                     // Skill not available due to not enough orbs
+                    Instantiate(skillLockedSound);
                     // print("Not enough orbs");
                 }
 

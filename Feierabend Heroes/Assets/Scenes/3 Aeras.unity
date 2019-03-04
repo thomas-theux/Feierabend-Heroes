@@ -8077,6 +8077,10 @@ MonoBehaviour:
     type: 3}
   spawnParent: {fileID: 1191772276}
   startSpawns: []
+  pauseGameSound: {fileID: 82485636391606054, guid: 21758ee1c0cba4910bea3e71f67dde88,
+    type: 3}
+  unpauseGameSound: {fileID: 82485636391606054, guid: cf502a224863b49de82add15f4aabf90,
+    type: 3}
   charColorsArr:
   - {fileID: 2100000, guid: d5094a420ecde4f9d9fea30016f6734a, type: 2}
   - {fileID: 2100000, guid: 1703193d6e2bf46639d167f9432c7f78, type: 2}
@@ -9612,6 +9616,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 500a69408457149a6837b36e5b6bc9c6, type: 3}
+--- !u!4 &734921266 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 734921265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &737853599 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1250922595661228, guid: 04116d893f2546248ac274d84a40eae9,
@@ -11789,7 +11798,7 @@ Transform:
   - {fileID: 2015528822}
   - {fileID: 861616291}
   - {fileID: 839761925}
-  - {fileID: 1695053963}
+  - {fileID: 734921266}
   - {fileID: 522905591}
   - {fileID: 1341342192}
   m_Father: {fileID: 0}
@@ -17720,12 +17729,6 @@ Transform:
   m_Father: {fileID: 1868635108}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1695053963 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4390572993156938, guid: 500a69408457149a6837b36e5b6bc9c6,
-    type: 3}
-  m_PrefabInstance: {fileID: 734921265}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1717648164
 PrefabInstance:
   m_ObjectHideFlags: 0

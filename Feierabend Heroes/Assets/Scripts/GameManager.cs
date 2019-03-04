@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> startSpawns;
 	public static List<int> activePlayers = new List<int>();
 
+	public AudioSource pauseGameSound;
+	public AudioSource unpauseGameSound;
+
 	public Material[] charColorsArr;
 
 	private List<GameObject> characterArr = new List<GameObject>();
@@ -99,7 +102,16 @@ public class GameManager : MonoBehaviour {
 			findChar.transform.position = startSpawns[j].transform.position;
 			findChar.GetComponent<LifeDeathHandler>().EnableCharRenderer();
 
+			// Reset skill cooldowns
 			findChar.GetComponent<CharacterSheet>().currentHealth = findChar.GetComponent<CharacterSheet>().maxHealth;
+			switch (findChar.GetComponent<CharacterSheet>().charClass) {
+				case 0:
+					findChar.GetComponent<Class_Cloudmaster>().skillDelayTimer = 0;
+					break;
+				case 1:
+					findChar.GetComponent<Class_Novist>().skillDelayTimer = 0;
+					break;
+			}
 
 			// Give new orbs when players play next match
 			if (SettingsHolder.nextMatch) {
@@ -117,10 +129,12 @@ public class GameManager : MonoBehaviour {
 		if (!pauseMenuOpen) {
 			pauseMenuOpen = true;
 			pauseMenuGO.SetActive(true);
+			Instantiate(pauseGameSound);
 			Time.timeScale = 0.0f;
 		} else {
 			pauseMenuOpen = false;
 			pauseMenuGO.SetActive(false);
+			Instantiate(unpauseGameSound);
 			Time.timeScale = 1.0f;
 		}
 	}

@@ -96,7 +96,7 @@ public class Class_Novist : MonoBehaviour {
 	// private float savedMultiplier;
 
 	// Skill Two – Spawn Companion
-	private float skillDelayTimer;
+	public float skillDelayTimer;
 	private bool skillDelayActive = false;
 
 	// REWIRED

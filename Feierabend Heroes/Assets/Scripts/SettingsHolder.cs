@@ -17,9 +17,10 @@ public class SettingsHolder {
 	public static int chestSpawnMax = 10;
 
 	public static int startingOrbs = 200;
+	public static int orbsToWin = 215;
 	public static int orbsEveryRound = 1;
 	public static int orbsForRoundWin = 2;
-	public static int orbsToWin = 215;
+	public static int orbsForKills = 2;
 
 	public static bool matchOver = false;
 

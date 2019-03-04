@@ -6,14 +6,14 @@ public class SkillsHandler : MonoBehaviour {
 
     private CharacterSheet characterSheetScript;
 
-    private float increaseHP = 0.15f;
-    private float increaseDMG = 0.15f;
-    private float increaseDEF = 0.20f;
-    private int increaseDDG = 6;
-    private int increaseCRT = 6;
-    private float increaseASPD = 0.1f;
-    private float increaseMSPD = 0.1f;
-    private int increaseDBLORB = 15;
+    public static float increaseHP = 0.15f;
+    public static float increaseDMG = 0.15f;
+    public static float increaseDEF = 0.20f;
+    public static int increaseDDG = 6;
+    public static int increaseCRT = 6;
+    public static float increaseASPD = 0.1f;
+    public static float increaseMSPD = 0.1f;
+    public static int increaseDBLORB = 15;
 
     // private float[] clmSkillStats = {0.3f, 20.0f, -0.05f, 4.0f};
     // private float[] novSkillStats = {26.0f, 12.0f, 3.0f, 4.0f};

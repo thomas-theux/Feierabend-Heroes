@@ -88,7 +88,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 	// private bool skillOneDelayActive = false;
 
 	// Skill Two – Turret Gun
-	private float skillDelayTimer;
+	public float skillDelayTimer;
 	private bool skillDelayActive = false;
 
 	// REWIRED
