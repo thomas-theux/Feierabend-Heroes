@@ -271,7 +271,12 @@ public class SkillBoardHandler : MonoBehaviour {
 
     private void UpdateSkillLevel() {
         // Display current skill level
-        skillArray[currentIndex].transform.GetChild(1).GetComponent<Text>().text = ((int)skillData[currentIndex]["Level"] + 1) + "/" + (int)skillData[currentIndex]["Cap"];
+        if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+            skillArray[currentIndex].transform.GetChild(1).GetComponent<Text>().text = ((int)skillData[currentIndex]["Level"] + 1) + "/" + (int)skillData[currentIndex]["Cap"];
+        } else {
+            skillArray[currentIndex].transform.GetChild(1).GetComponent<Text>().text = "";
+            skillArray[currentIndex].transform.GetChild(2).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        }
     }
 
 
@@ -291,39 +296,64 @@ public class SkillBoardHandler : MonoBehaviour {
         switch (currentIndex) {
             // HEALTH
             case 0:
-                skillData[currentIndex]["Info"] =
-                characterSheetScript.maxHealth.ToString("F0") +
-                " → " +
-                (characterSheetScript.maxHealth + (characterSheetScript.maxHealth * SkillsHandler.increaseHP)).ToString("F0");
+                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+                    skillData[currentIndex]["Info"] =
+                    characterSheetScript.maxHealth.ToString("F0") +
+                    " → " +
+                    (characterSheetScript.maxHealth + (characterSheetScript.maxHealth * SkillsHandler.increaseHP)).ToString("F0");
+                } else {
+                    skillData[currentIndex]["Title"] = "Health";
+                    skillData[currentIndex]["Info"] = characterSheetScript.maxHealth.ToString("F0");
+                }
                 break;
             // DAMAGE
             case 1:
                 float averageDmg = (characterSheetScript.attackOneDmg + characterSheetScript.attackTwoDmg) / 2;
-                skillData[currentIndex]["Info"] =
-                averageDmg.ToString("F0") +
-                " → " +
-                (averageDmg + (averageDmg * SkillsHandler.increaseDMG)).ToString("F0");
+                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+                    skillData[currentIndex]["Info"] =
+                    averageDmg.ToString("F0") +
+                    " → " +
+                    (averageDmg + (averageDmg * SkillsHandler.increaseDMG)).ToString("F0");
+                } else {
+                    skillData[currentIndex]["Title"] = "Damage";
+                    skillData[currentIndex]["Info"] = averageDmg.ToString("F0");
+                }
                 break;
             // DEFENSE
             case 2:
-                skillData[currentIndex]["Info"] =
-                characterSheetScript.charDefense.ToString("F0") +
-                " → " +
-                (characterSheetScript.charDefense + (characterSheetScript.charDefense * SkillsHandler.increaseDEF)).ToString("F0");
+                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+                    skillData[currentIndex]["Info"] =
+                    characterSheetScript.charDefense.ToString("F0") +
+                    " → " +
+                    (characterSheetScript.charDefense + (characterSheetScript.charDefense * SkillsHandler.increaseDEF)).ToString("F0");
+                } else {
+                    skillData[currentIndex]["Title"] = "Defense";
+                    skillData[currentIndex]["Info"] = characterSheetScript.charDefense.ToString("F0");
+                }
                 break;
             // DODGE
             case 3:
-                skillData[currentIndex]["Info"] =
-                characterSheetScript.dodgeChance.ToString("F0") + "%" +
-                " → " +
-                (characterSheetScript.dodgeChance + SkillsHandler.increaseDDG).ToString("F0") + "%";
+                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+                    skillData[currentIndex]["Info"] =
+                    characterSheetScript.dodgeChance.ToString("F0") + "%" +
+                    " → " +
+                    (characterSheetScript.dodgeChance + SkillsHandler.increaseDDG).ToString("F0") + "%";
+                } else {
+                    skillData[currentIndex]["Title"] = "Dodge Chance";
+                    skillData[currentIndex]["Info"] = characterSheetScript.dodgeChance.ToString("F0") + "%";
+                }
                 break;
             // CRIT HIT
             case 4:
-                skillData[currentIndex]["Info"] =
-                characterSheetScript.critChance.ToString("F0") + "%" +
-                " → " +
-                (characterSheetScript.critChance + SkillsHandler.increaseCRT).ToString("F0") + "%";
+                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+                    skillData[currentIndex]["Info"] =
+                    characterSheetScript.critChance.ToString("F0") + "%" +
+                    " → " +
+                    (characterSheetScript.critChance + SkillsHandler.increaseCRT).ToString("F0") + "%";
+                } else {
+                    skillData[currentIndex]["Title"] = "Critical Hit Chance";
+                    skillData[currentIndex]["Info"] = characterSheetScript.critChance.ToString("F0") + "%";
+                }
                 break;
             // ATTACK SPEED
             case 5:
@@ -331,17 +361,27 @@ public class SkillBoardHandler : MonoBehaviour {
                 break;
             // MOVE SPEED
             case 6:
-                skillData[currentIndex]["Info"] =
-                characterSheetScript.moveSpeed.ToString("F1") +
-                " → " +
-                (characterSheetScript.moveSpeed + (characterSheetScript.moveSpeed * SkillsHandler.increaseMSPD)).ToString("F1");
+                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+                    skillData[currentIndex]["Info"] =
+                    characterSheetScript.moveSpeed.ToString("F1") +
+                    " → " +
+                    (characterSheetScript.moveSpeed + (characterSheetScript.moveSpeed * SkillsHandler.increaseMSPD)).ToString("F1");
+                } else {
+                    skillData[currentIndex]["Title"] = "Move Speed";
+                    skillData[currentIndex]["Info"] = characterSheetScript.moveSpeed.ToString("F1");
+                }
                 break;
             // ORB FINDING
             case 7:
-                skillData[currentIndex]["Info"] =
-                characterSheetScript.doubleOrbChance.ToString("F0") + "%" +
-                " → " +
-                (characterSheetScript.doubleOrbChance + SkillsHandler.increaseDBLORB).ToString("F0") + "%";
+                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+                    skillData[currentIndex]["Info"] =
+                    characterSheetScript.doubleOrbChance.ToString("F0") + "%" +
+                    " → " +
+                    (characterSheetScript.doubleOrbChance + SkillsHandler.increaseDBLORB).ToString("F0") + "%";
+                } else {
+                    skillData[currentIndex]["Title"] = "Double Orb Chance";
+                    skillData[currentIndex]["Info"] = characterSheetScript.doubleOrbChance.ToString("F0") + "%";
+                }
                 break;
             // CLASS SKILL
             case 8:
@@ -369,7 +409,7 @@ public class SkillBoardHandler : MonoBehaviour {
             skillCostText.text = costsForSkill + "";
             orbIcon.color = new Color32(255, 255, 255, 255);
         } else {
-            skillCostText.text = "";
+            skillCostText.text = "✔";
             orbIcon.color = new Color32(255, 255, 255, 0);
         }
     }
