@@ -47,6 +47,8 @@ public class MatchResults : MonoBehaviour {
 			Destroy(GameObject.Find("Character" + i));
 			Destroy(GameObject.Find("PlayerCamera" + i));
         }
+
+        ResetStats();
         
         SettingsHolder.matchOver = false;
 
@@ -69,10 +71,23 @@ public class MatchResults : MonoBehaviour {
 			Destroy(GameObject.Find("PlayerCamera" + i));
         }
 
+        ResetStats();
+
         SettingsHolder.initialSpawn = false;
         SettingsHolder.matchOver = false;
 
         SceneManager.LoadScene("3 Aeras");
+    }
+
+
+    private void ResetStats() {
+        // Reset end of the match stats
+        for (int i = 0; i < SettingsHolder.playerCount; i++) {
+            GameManager.killsStatsArr[i] = 0;
+            GameManager.deathsStatsArr[i] = 0;
+            GameManager.orbsSpentStatsArr[i] = 0;
+            GameManager.rankingArr[i] = 0;
+        }
     }
 
 }
