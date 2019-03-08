@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> startSpawns;
 	public static List<int> activePlayers = new List<int>();
 
+	public AudioSource levelMusic;
 	public AudioSource pauseGameSound;
 	public AudioSource unpauseGameSound;
 
@@ -48,6 +49,8 @@ public class GameManager : MonoBehaviour {
 		}
 
 		AddPlayersToList();
+		
+		levelMusic.Play();
 	}
 
 
@@ -120,7 +123,7 @@ public class GameManager : MonoBehaviour {
 			}
 
 			// Give players new orbs every round
-			// findChar.GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsEveryRound;
+			findChar.GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsEveryRound;
 		}
 	}
 
