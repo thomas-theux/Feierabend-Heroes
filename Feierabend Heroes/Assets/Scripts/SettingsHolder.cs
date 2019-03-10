@@ -13,12 +13,12 @@ public class SettingsHolder {
 	public static float exploreTime = 60.0f;
 	public static float battleTime = 120.0f;
 
-	public static int appleSpawnMax = 10;
-	public static int chestSpawnMax = 10;
+	public static int appleSpawnMax = 12;
+	public static int chestSpawnMax = 12;
 
 	public static int startingOrbs = 2;
-	public static int orbsToWin = 20;
-	public static int orbsEveryRound = 0;
+	public static int orbsToWin = 15;
+	public static int orbsEveryRound = 2;
 	public static int orbsForRoundWin = 2;
 	public static int orbsForKills = 2;
 
@@ -27,7 +27,7 @@ public class SettingsHolder {
 	public static bool initialSpawn = false;
 	public static bool nextMatch = false;
 
-	public static int tierTwoCosts = 8;
-	public static int tierThreeCosts = 16;
+	public static int tierTwoCosts = 6;
+	public static int tierThreeCosts = 12;
 
 }

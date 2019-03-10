@@ -136,11 +136,11 @@ public class LifeDeathHandler : MonoBehaviour {
 			GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForKills;
 
 			// Steal orb from killed character
-			for (int i = 0; i < SettingsHolder.orbsForKills; i++) {
-				if (characterSheetScript.currentOrbs > 0) {
-					characterSheetScript.currentOrbs--;
-				}
-			}
+			// for (int i = 0; i < SettingsHolder.orbsForKills; i++) {
+			// 	if (characterSheetScript.currentOrbs > 0) {
+			// 		characterSheetScript.currentOrbs--;
+			// 	}
+			// }
 		}
 
 		// Increase stats for deaths
