@@ -173,17 +173,17 @@ public class CharCardsHandler : MonoBehaviour {
 
 
 	private void DisplayClasses() {
-		classText.text = charClassContentScript.classTexts[currentIndex];
-		charHPText.text = charClassContentScript.charHPTexts[currentIndex];
-		charDEFText.text = charClassContentScript.charDEFTexts[currentIndex];
-		charMSPDText.text = charClassContentScript.charMSPDTexts[currentIndex];
+		classText.text = CharClassContent.classTexts[currentIndex];
+		charHPText.text = CharClassContent.charHPTexts[currentIndex] + "";
+		charDEFText.text = CharClassContent.charDEFTexts[currentIndex] + "";
+		charMSPDText.text = CharClassContent.charMSPDTexts[currentIndex] + "";
 
-		attackOneTitleText.text = charClassContentScript.attackOneTitleTexts[currentIndex];
-		attackTwoTitleText.text = charClassContentScript.attackTwoTitleTexts[currentIndex];
+		attackOneTitleText.text = CharClassContent.attackOneTitleTexts[currentIndex] + "";
+		attackTwoTitleText.text = CharClassContent.attackTwoTitleTexts[currentIndex] + "";
 		attackOneImage.sprite = charClassContentScript.attackOneImages[currentIndex];
 		attackTwoImage.sprite = charClassContentScript.attackTwoImages[currentIndex];
-		skillTitle.text = charClassContentScript.skillTitles[currentIndex];
-		passiveTitle.text = charClassContentScript.passiveTitles[currentIndex];
+		skillTitle.text = CharClassContent.skillTitles[currentIndex] + "";
+		passiveTitle.text = CharClassContent.passiveTitles[currentIndex] + "";
 		classImage.sprite = charClassContentScript.classImages[currentIndex];
 	}
 

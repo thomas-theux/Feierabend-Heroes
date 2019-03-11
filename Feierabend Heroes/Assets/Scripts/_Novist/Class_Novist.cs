@@ -51,6 +51,8 @@ public class Class_Novist : MonoBehaviour {
 
 	// Initial variables and increase values for the skills
 	// private float[] skillOneStats = {2.0f, 8.0f, 0.5f, 2.0f};
+
+	// {aggro radius, lifetime, increase aggro radius, increase lifetime}
 	private float[] charSkillStats = {26.0f, 12.0f, 3.0f, 4.0f};
 
 	// Skill titles and texts for the skill board
@@ -72,9 +74,9 @@ public class Class_Novist : MonoBehaviour {
 	// private string skillOneUpgradePerk = "+0.5x HP heal\n+2s duration";
 	// private string skillUpgradePerk = "+3m radius\n+4s lifetime";
 
-	private float charHealth = 340.0f;
-	private float charDefense = 16.0f;
-	private float moveSpeed = 8.0f;
+	// private float charHealth = 380.0f;
+	// private float charDefense = 18.0f;
+	// private float moveSpeed = 8.0f;
 
 	// Movement delay when attacking
 	private float moveDelay = 0.1f;
@@ -112,6 +114,9 @@ public class Class_Novist : MonoBehaviour {
 		charactMovementScript = GetComponent<CharacterMovement>();
 		lifeDeathHandlerScript = GetComponent<LifeDeathHandler>();
 
+		// Set character class in character sheet
+		characterSheetScript.charClass = charClass;
+
 		// Set names of attacks in character sheet
 		// characterSheetScript.attackNames[0] = attackNames[0];
 		// characterSheetScript.attackNames[1] = attackNames[1];
@@ -133,9 +138,6 @@ public class Class_Novist : MonoBehaviour {
 	private void Start() {
 		// Get stats from skill script
 		uiHandlerScript = transform.GetChild(transform.childCount-1).GetComponent<UIHandler>();
-
-		// Set character class in character sheet
-		characterSheetScript.charClass = charClass;
 
 		// Get gameobjects for classes
 		attackSpawner = transform.GetChild(1).gameObject.transform;
@@ -176,11 +178,15 @@ public class Class_Novist : MonoBehaviour {
 		// characterSheetScript.skillOneUpgradePerk = skillOneUpgradePerk;
 		// characterSheetScript.skillUpgradePerk = skillUpgradePerk;
 
-		characterSheetScript.currentHealth = charHealth;
-		characterSheetScript.maxHealth = charHealth;
-		characterSheetScript.moveSpeed = moveSpeed;
-		
-		characterSheetScript.charDefense = charDefense;
+		// characterSheetScript.currentHealth = charHealth;
+		// characterSheetScript.maxHealth = charHealth;
+		// characterSheetScript.moveSpeed = moveSpeed;
+		// characterSheetScript.charDefense = charDefense;
+
+		characterSheetScript.currentHealth = CharClassContent.charHPTexts[characterSheetScript.charClass];
+		characterSheetScript.maxHealth = CharClassContent.charHPTexts[characterSheetScript.charClass];
+		characterSheetScript.moveSpeed = CharClassContent.charMSPDTexts[characterSheetScript.charClass];
+		characterSheetScript.charDefense = CharClassContent.charDEFTexts[characterSheetScript.charClass];
 	}
 
 

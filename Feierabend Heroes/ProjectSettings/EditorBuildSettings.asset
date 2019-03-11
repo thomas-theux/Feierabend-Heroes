@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3 Aeras.unity
     guid: 647e43c4a08c14ca486c2017b1567939
+  - enabled: 1
+    path: Assets/Scenes/3 Aeras [Backup].unity
+    guid: 14d02e58380b74707a6a77f62a1add23
   m_configObjects: {}

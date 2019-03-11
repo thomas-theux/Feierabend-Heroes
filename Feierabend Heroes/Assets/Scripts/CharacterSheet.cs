@@ -5,8 +5,8 @@ using UnityEngine;
 public class CharacterSheet : MonoBehaviour {
 
 	public int currentOrbs = 0;
-	public int charID = 0;
-	public int charClass = 0;
+	public int charID = -1;
+	public int charClass = -1;
 
 	// Movement
 	public float moveSpeed = 0;

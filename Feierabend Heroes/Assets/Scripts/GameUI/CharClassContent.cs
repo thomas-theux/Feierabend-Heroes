@@ -5,45 +5,82 @@ using UnityEngine.UI;
 
 public class CharClassContent : MonoBehaviour {
 
-	public string[] classTexts = {
-		"",
-		""
+	public static string[] classTexts = {
+		"CLOUD MASTER",
+		"NOVIST",
+		"SEER OF WAR",
+		"SHAPE SHIFTER"
 	};
 
-	public string[] charHPTexts = {
-		"",
-		""
+	public static float[] charHPTexts = {
+		260.0f,
+		380.0f,
+		300.0f,
+		220.0f
 	};
 
-	public string[] charDEFTexts = {
-		"",
-		""
+	public static float[] charDEFTexts = {
+		8.0f,
+		18.0f,
+		10.0f,
+		6.0f
 	};
 
-	public string[] charMSPDTexts = {
-		"",
-		""
+	public static float[] charMSPDTexts = {
+		10.0f,
+		8.0f,
+		9.0f,
+		11.0f
 	};
 
-	public string[] attackOneTitleTexts = {
-		"",
-		""
+	public static string[] attackOneTitleTexts = {
+		"Wrench Punch",
+		"Meteor Shot",
+		"Card Throw",
+		"Double Hit"
 	};
 
-	public string[] attackTwoTitleTexts = {
-		"",
-		""
+	public static string[] attackTwoTitleTexts = {
+		"Bomb Throw",
+		"Fire Block",
+		"Ground Shake",
+		"???"
 	};
 
-	public string[] skillTitles = {
-		"",
-		""
+	public static string[] skillTitles = {
+		"Turret Gun",
+		"Companion",
+		"Crystal Ball",
+		"Shapeshift"
 	};
 
-	public string[] passiveTitles = {
-		"",
-		""
+	public static string[] enableSkillTexts = {
+        "Shoots at enemies on sight (lifetime 20s)",
+        "Attacks enemies on sight (lifetime 12s)",
+        "Throw a sphere that blinds enemies",
+        "Fight faster, move quicker (duration 14s)"
+    };
+
+	public static string[] improveSkillTexts = {
+        "Attack Speed +5%, Radius +4m",
+        "Radius +3m, Lifetime +4s",
+        "Radius +2m, Blinding Duration +1s",
+        "Duration +3s, Attack Speed +10%"
+    };
+
+	public static string[] passiveTitles = {
+		"Self Repair",
+		"Slowing Tendrils",
+		"Foresight",
+		"Invisibility Cloak"
 	};
+
+	public static string[] passiveSkillTexts = {
+        "Heals your character over time",
+        "Slows down nearby enemies",
+        "See other players locations",
+        "Decreases your visibility by 50%"
+    };
 
 
 	public Sprite[] classImages = {};

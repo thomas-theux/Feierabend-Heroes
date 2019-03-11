@@ -65,40 +65,11 @@ public class SkillBoardHandler : MonoBehaviour {
     private string newPassiveInfo = "";
 
     // Character class skills
-	private string[] activeSkillTitle = new string[] {
-        "Build Turret Gun",
-        "Spawn Companion",
-        "Throw Crystal Ball",
-        "Shift Shapes",
-    };
-
-	private string[] enableSkillInfo = new string[] {
-        "Shoots at enemies on sight (lifetime 20s)",
-        "Attacks enemies on sight (lifetime 12s)",
-        "Throw a sphere that blinds enemies",
-        "Fight faster, move quicker (duration 14s)",
-    };
-
-	private string[] improveSkillInfo = new string[] {
-        "Attack Speed +5%, Radius +4m",
-        "Radius +3m, Lifetime +4s",
-        "Radius +2m, Blinding Duration +1s",
-        "Duration +3s, Attack Speed +10%",
-    };
-
-	private string[] passiveSkillTitle = new string[] {
-        "Self Repair (passive)",
-        "Slowing Tendrils (passive)",
-        "Foresight (passive)",
-        "Invisibility Cloak (passive)",
-    };
-
-	private string[] passiveSkillInfo = new string[] {
-        "Heals your character over time",
-        "Slows down nearby enemies",
-        "See other players locations",
-        "Decreases your visibility by 50%",
-    };
+	private string[] activeSkillTitle = {"", "", "", ""};
+	private string[] enableSkillInfo = {"", "", "", ""};
+	private string[] improveSkillInfo = {"", "", "", ""};
+	private string[] passiveSkillTitle = {"", "", "", ""};
+	private string[] passiveSkillInfo = {"", "", "", ""};
 
 
     // public void Start() {
@@ -106,6 +77,15 @@ public class SkillBoardHandler : MonoBehaviour {
         characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
         skillsHandlerScript = GetComponent<SkillsHandler>();
         charID = this.gameObject.transform.parent.GetComponent<CharacterMovement>().playerID;
+
+        // Get all info texts from CharClassContent script
+        for (int i = 0; i < CharClassContent.classTexts.Length; i++) {
+            activeSkillTitle[i] = CharClassContent.skillTitles[characterSheetScript.charClass];
+            passiveSkillTitle[i] = CharClassContent.passiveTitles[characterSheetScript.charClass];
+            enableSkillInfo[i] = CharClassContent.enableSkillTexts[characterSheetScript.charClass];
+            improveSkillInfo[i] = CharClassContent.improveSkillTexts[characterSheetScript.charClass];
+            passiveSkillInfo[i] = CharClassContent.passiveSkillTexts[characterSheetScript.charClass];
+        }
 
         // Get texts from character sheet script
         newSkillTitle = activeSkillTitle[characterSheetScript.charClass];

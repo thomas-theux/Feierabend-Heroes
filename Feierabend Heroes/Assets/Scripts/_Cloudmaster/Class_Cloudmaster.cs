@@ -47,7 +47,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	// Initial variables and increase values for the skills
 	// private float[] skillOneStats = {0.4f, 5.0f, 0.2f, 1.0f};
-	private float[] charSkillStats = {0.3f, 20.0f, -0.05f, 4.0f};
+
+	// {shot delay, aggro radius, decrease shot delay, increase radius}
+	private float[] charSkillStats = {0.5f, 14.0f, -0.02f, 3.0f};
 
 	// Skill titles and texts for the skill board
 	// private string classType = "CLOUD MASTER";
@@ -67,9 +69,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 	// private string skillOneUpgradePerk = "+50% HP heal\n+1s lifetime";
 	// private string skillUpgradePerk = "+16% shot speed\n+4m radius";
 
-	private float charHealth = 260.0f;
-	private float charDefense = 8.0f;
-	private float moveSpeed = 10.0f;
+	// private float charHealth = 260.0f;
+	// private float charDefense = 8.0f;
+	// private float moveSpeed = 10.0f;
 
 	// Movement delay when attacking
 	private float moveDelay = 0.1f;
@@ -104,6 +106,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 		charactMovementScript = GetComponent<CharacterMovement>();
 		lifeDeathHandlerScript = GetComponent<LifeDeathHandler>();
 
+		// Set character class in character sheet
+		characterSheetScript.charClass = charClass;
+
 		// Set names of attacks in character sheet
 		// characterSheetScript.attackNames[0] = attackNames[0];
 		// characterSheetScript.attackNames[1] = attackNames[1];
@@ -125,9 +130,6 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private void Start() {
 		// Get stats from skill script
 		uiHandlerScript = transform.GetChild(transform.childCount-1).GetComponent<UIHandler>();
-
-		// Set character class in character sheet
-		characterSheetScript.charClass = charClass;
 
 		// Get gameobjects for classes
 		attackSpawner = transform.GetChild(1).gameObject.transform;
@@ -168,11 +170,15 @@ public class Class_Cloudmaster : MonoBehaviour {
 		// characterSheetScript.skillOneUpgradePerk = skillOneUpgradePerk;
 		// characterSheetScript.skillUpgradePerk = skillUpgradePerk;
 
-		characterSheetScript.currentHealth = charHealth;
-		characterSheetScript.maxHealth = charHealth;
-		characterSheetScript.moveSpeed = moveSpeed;
+		// characterSheetScript.currentHealth = charHealth;
+		// characterSheetScript.maxHealth = charHealth;
+		// characterSheetScript.moveSpeed = moveSpeed;
+		// characterSheetScript.charDefense = charDefense;
 
-		characterSheetScript.charDefense = charDefense;
+		characterSheetScript.currentHealth = CharClassContent.charHPTexts[characterSheetScript.charClass];
+		characterSheetScript.maxHealth = CharClassContent.charHPTexts[characterSheetScript.charClass];
+		characterSheetScript.moveSpeed = CharClassContent.charMSPDTexts[characterSheetScript.charClass];
+		characterSheetScript.charDefense = CharClassContent.charDEFTexts[characterSheetScript.charClass];
 	}
 
 

@@ -82,7 +82,7 @@ public class LifeDeathHandler : MonoBehaviour {
 
 	private void LateUpdate() {
 		// Continuously increase HP if SELF HEAL skill is activated
-		if (characterSheetScript.selfRepairActive && !healthIsFull) {
+		if (characterSheetScript.selfRepairActive && !healthIsFull && !charIsDead) {
 			SelfHeal();
 		}
 

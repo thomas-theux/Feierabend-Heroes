@@ -1352,7 +1352,6 @@ MonoBehaviour:
     type: 3}
   randomizeNameSound: {fileID: 82418148799504902, guid: 823ff9f7727124d088df72a35b4026a7,
     type: 3}
-  charBackgroundImage: {fileID: 7979620405856283198}
   randomNameText: {fileID: 114748200116075204}
   classText: {fileID: 114281109466436920}
   charHPText: {fileID: 114180211260729712}
@@ -1382,10 +1381,10 @@ MonoBehaviour:
   - NOVIST
   charHPTexts:
   - 260
-  - 340
+  - 380
   charDEFTexts:
   - 08
-  - 16
+  - 18
   charMSPDTexts:
   - 10
   - 08
