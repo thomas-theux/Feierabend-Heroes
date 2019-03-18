@@ -55,10 +55,10 @@ public class CharClassContent : MonoBehaviour {
 	};
 
 	public static string[] enableSkillTexts = {
-        "Shoots at enemies on sight (lifetime 20s)",
-        "Attacks enemies on sight (lifetime 12s)",
-        "Throw a sphere that blinds enemies",
-        "Fight faster, move quicker (duration 14s)"
+        "Shoots enemies on sight",
+        "Attacks enemies on sight",
+        "Blinds nearby enemies",
+        "Fight faster, move quicker"
     };
 
 	public static string[] improveSkillTexts = {
@@ -76,10 +76,10 @@ public class CharClassContent : MonoBehaviour {
 	};
 
 	public static string[] passiveSkillTexts = {
-        "Heals your character over time",
-        "Slows down nearby enemies",
-        "See other players locations",
-        "Decreases your visibility by 50%"
+        "Auto-heal over time",
+        "Slows nearby enemies",
+        "See enemy's locations",
+        "Decreases visibility"
     };
 
 

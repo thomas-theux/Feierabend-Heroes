@@ -47,35 +47,35 @@ public class SkillsHandler : MonoBehaviour {
                 break;
 
             // Dodge
-            case 3:
-                characterSheetScript.dodgeChance += increaseDDG;
-                break;
+            // case 3:
+            //     characterSheetScript.dodgeChance += increaseDDG;
+            //     break;
 
             // Crit
-            case 4:
+            case 3:
                 characterSheetScript.critChance += increaseCRT;
                 break;
 
 
             // Attack Speed
-            case 5:
+            case 4:
                 characterSheetScript.delayAttackOne -= characterSheetScript.delayAttackOne * increaseASPD;
                 characterSheetScript.delayAttackTwo -= characterSheetScript.delayAttackTwo * increaseASPD;
                 break;
 
             // Move Speed
-            case 6:
+            case 5:
                 characterSheetScript.moveSpeed += characterSheetScript.moveSpeed * increaseMSPD;
                 break;
 
             // Double Orb
-            case 7:
-                characterSheetScript.doubleOrbChance += increaseDBLORB;
-                break;
+            // case 7:
+            //     characterSheetScript.doubleOrbChance += increaseDBLORB;
+            //     break;
 
 
             // Enable / Improve Skill
-            case 8:
+            case 6:
                 if (currentLevel < 0) {
                     // Enable Skill
                     characterSheetScript.skillActivated = true;
@@ -86,7 +86,7 @@ public class SkillsHandler : MonoBehaviour {
                 break;
 
             // Passive Skill
-            case 9:
+            case 7:
                 // Passive Skill
                 switch (characterSheetScript.charClass) {
 
@@ -112,11 +112,11 @@ public class SkillsHandler : MonoBehaviour {
                 break;
 
             // Find Apples
-            case 10:
-                // Activate APPLES layer in culling mask for the camera
-                characterSheetScript.canFindApples = true;
-                GameObject.Find("PlayerCamera" + transform.parent.GetComponent<CharacterMovement>().playerID).GetComponent<Camera>().cullingMask = ~ (1 << 7);
-                break;
+            // case 10:
+            //     // Activate APPLES layer in culling mask for the camera
+            //     characterSheetScript.canFindApples = true;
+            //     GameObject.Find("PlayerCamera" + transform.parent.GetComponent<CharacterMovement>().playerID).GetComponent<Camera>().cullingMask = ~ (1 << 7);
+            //     break;
         }
     }
 }
