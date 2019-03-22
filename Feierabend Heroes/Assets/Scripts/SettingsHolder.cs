@@ -12,7 +12,7 @@ public class SettingsHolder {
 	public static float exploreTime = 45.0f;
 	public static float battleTime = 120.0f;
 
-	public static int appleSpawnMax = 12;
+	public static int appleSpawnMax = 0;
 	public static int chestSpawnMax = 12;
 
 	public static int startingOrbs = 200;
