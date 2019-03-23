@@ -228,6 +228,14 @@ public class SkillBoardHandler : MonoBehaviour {
 
     private void DisplayDrawnCards() {
         for (int i = 0; i < maxCardDraw; i++) {
+            if (drawnSkills[i] > 5) {
+                skillArray[i].transform.GetComponent<Image>().color = new Color32(170, 120, 20, 255);
+                skillArray[i].transform.GetChild(1).GetComponent<Text>().color = new Color32(235, 245, 255, 255);
+            } else {
+                skillArray[i].transform.GetComponent<Image>().color = new Color32(31, 54, 77, 255);
+                skillArray[i].transform.GetChild(1).GetComponent<Text>().color = new Color32(255, 109, 1, 255);
+            }
+
             skillArray[i].transform.GetChild(1).GetComponent<Text>().text = (string)skillData[drawnSkills[i]]["Title"];
             skillArray[i].transform.GetChild(2).GetComponent<Text>().text = (string)skillData[drawnSkills[i]]["Info"];
             skillArray[i].transform.GetChild(3).GetComponent<Text>().text = (int)skillData[drawnSkills[i]]["Costs"] + "";
@@ -414,11 +422,11 @@ public class SkillBoardHandler : MonoBehaviour {
             // int costsForSkill = ((int[])skillData[currentIndex]["Costs"])[currentLevel+1];
             int costsForSkill = (int)skillData[currentIndex]["Costs"];
             skillCostText.text = costsForSkill + "";
-            skillCostText.alignment = TextAnchor.MiddleRight;
+            // skillCostText.alignment = TextAnchor.MiddleRight;
             orbIcon.color = new Color32(255, 255, 255, 255);
         } else {
             skillCostText.text = "✔";
-            skillCostText.alignment = TextAnchor.MiddleCenter;
+            // skillCostText.alignment = TextAnchor.MiddleCenter;
             orbIcon.color = new Color32(255, 255, 255, 0);
         }
     }
