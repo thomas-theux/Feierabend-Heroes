@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 1d34d771a8abf46288f84a88fca96ba1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - attackOneGO: {fileID: 1791714189052350, guid: e016e7384e14e489faeb0148098fa471,
+      type: 2}
+  - attackTwoGO: {fileID: 1867879130109316, guid: 4115b609ba711474e9e0e6d5a2de39e1,
+      type: 2}
+  - skillTwoGO: {fileID: 1058598508457264, guid: 5082a6b2b64c941b1af237c82d6edfae,
+      type: 2}
+  - meteorShotSound: {fileID: 1149458933727414, guid: 1cfcc9bb1b3994eb4882dd835cc956b9,
+      type: 2}
+  - fireBlockCastSound: {fileID: 1016277380169116, guid: e9ba4dd6964cb404597a51dc1c8c44e7,
+      type: 2}
+  - skillCoolDownSound: {fileID: 82647613108494042, guid: 05e2adea0560a400cb21ae8968537da6,
+      type: 2}
+  - skillNotAvailableSound: {fileID: 82240621272502822, guid: 040580a175b2349cdb219e31ffd36e99,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
