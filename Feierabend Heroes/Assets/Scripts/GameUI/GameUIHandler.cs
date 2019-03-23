@@ -34,7 +34,7 @@ public class GameUIHandler : MonoBehaviour {
 		ReInput.ControllerConnectedEvent += OnControllerConnected;
 		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
-		connectedGamepads = ReInput.controllers.joystickCount;
+		connectedGamepads = 2; //ReInput.controllers.joystickCount;
 
 		for (int i = 0; i < playerMax; i++) {
 			GameObject newCharCard = Instantiate(charCardGO);
@@ -75,7 +75,7 @@ public class GameUIHandler : MonoBehaviour {
 
 	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
 		if (connectedGamepads < playerMax) {
-			connectedGamepads = ReInput.controllers.joystickCount;
+			// connectedGamepads = ReInput.controllers.joystickCount;
 			// print("A controller was connected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
 		} else {
 			print("No more controllers allowed");
@@ -85,7 +85,7 @@ public class GameUIHandler : MonoBehaviour {
 
 	void OnControllerDisconnected(ControllerStatusChangedEventArgs args) {
 		if (connectedGamepads > 0) {
-			connectedGamepads = ReInput.controllers.joystickCount;
+			// connectedGamepads = ReInput.controllers.joystickCount;
 			// print("A controller was disconnected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
 		} else {
 			print("No more controllers to disconnect");

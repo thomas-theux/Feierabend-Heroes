@@ -7,8 +7,6 @@ public class ButtonNav : MonoBehaviour {
 
 	public int indexID;
 
-	public Image navUp;
-	public Image navDown;
 	public Image navLeft;
 	public Image navRight;
 

@@ -54,7 +54,6 @@ public class SkillBoardHandler : MonoBehaviour {
     public Text skillCostText;
     public Image orbIcon;
     public Image currentSkillIcon;
-    public Image bigLockIcon;
 
     private string newSkillTitle = "";
     private string newEnableInfo = "";
@@ -69,6 +68,14 @@ public class SkillBoardHandler : MonoBehaviour {
 	private string[] improveSkillInfo = {"", "", "", ""};
 	private string[] passiveSkillTitle = {"", "", "", ""};
 	private string[] passiveSkillInfo = {"", "", "", ""};
+
+    private List<int> drawnSkills = new List<int>();
+    private int maxCardDraw = 3;
+    private int basicSkills = 6;
+    private int specialSkills = 8;
+    private int specialSkillChance = 0;
+    private int specialSkillChanceIncrease = 2;
+    private int maxSpecialSkillChance = 20;
 
 
     // public void Start() {
@@ -176,9 +183,55 @@ public class SkillBoardHandler : MonoBehaviour {
 
 
     private void OnEnable() {
+        currentIndex = 1;
+        DisplayCursor();
+
         DisplayNewTexts();
         UpdateOrbCount();
         UpdateTiers();
+    }
+
+
+    public void DrawRandomCards() {
+        drawnSkills.Clear();
+
+        List<int> basicSkillsArr = new List<int>();
+        bool drewSpecialSkill = false;
+
+        for (int i = 0; i < basicSkills; i++) { basicSkillsArr.Add(i); }
+
+        for (int i = 0; i < maxCardDraw; i++) {
+            int skillChance = Random.Range(0, 100);
+
+            if (skillChance >= specialSkillChance || drewSpecialSkill) {
+                int rndSkill = Random.Range(0, basicSkillsArr.Count);
+                drawnSkills.Add(basicSkillsArr[rndSkill]);
+                basicSkillsArr.Remove(basicSkillsArr[rndSkill]);
+                // Increase special skill chance when buying regular skill
+                if (specialSkillChance < maxSpecialSkillChance) {
+                    specialSkillChance += specialSkillChanceIncrease;
+                }
+            } else if (skillChance < specialSkillChance && !drewSpecialSkill) {
+                drewSpecialSkill = true;
+                int rndSkill = Random.Range(basicSkills, specialSkills);
+                drawnSkills.Add(rndSkill);
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            print(drawnSkills[i]);
+        }
+
+        DisplayDrawnCards();
+    }
+
+
+    private void DisplayDrawnCards() {
+        for (int i = 0; i < maxCardDraw; i++) {
+            skillArray[i].transform.GetChild(1).GetComponent<Text>().text = (string)skillData[drawnSkills[i]]["Title"];
+            skillArray[i].transform.GetChild(2).GetComponent<Text>().text = (string)skillData[drawnSkills[i]]["Info"];
+            skillArray[i].transform.GetChild(3).GetComponent<Text>().text = (int)skillData[drawnSkills[i]]["Costs"] + "";
+        }
     }
 
 
@@ -186,11 +239,10 @@ public class SkillBoardHandler : MonoBehaviour {
         PlayActivationSounds();
         PayWithOrbs();
         UpdateOrbCount();
-        CheckTiers();
-        skillsHandlerScript.ActivateSkill(currentIndex, (int)skillData[currentIndex]["Level"]);
+        skillsHandlerScript.ActivateSkill(drawnSkills[currentIndex], (int)skillData[drawnSkills[currentIndex]]["Level"]);
         IncreaseSkillLevel();
-        UpdateSkillLevel();
-        UpdateTiers();
+        // UpdateSkillLevel();
+        DrawRandomCards();
         DisplayNewTexts();
     }
 
@@ -215,27 +267,6 @@ public class SkillBoardHandler : MonoBehaviour {
 
     private void UpdateOrbCount() {
         currentOrbCount.text = characterSheetScript.currentOrbs + "";
-    }
-
-
-    private void CheckTiers() {
-        if (spentOrbs >= SettingsHolder.tierTwoCosts && !tierTwoActive) {
-            tierTwoActive = true;
-            // tierTwoImage.enabled = false;
-            tierTwoImage.SetActive(false);
-
-            ActivateTierTwo();
-            Instantiate(unlockTierSound);
-        }
-
-        if (spentOrbs >= SettingsHolder.tierThreeCosts && !tierThreeActive) {
-            tierThreeActive = true;
-            // tierThreeImage.enabled = false;
-            tierThreeImage.SetActive(false);
-
-            ActivateTierThree();
-            Instantiate(unlockTierSound);
-        }
     }
 
 
@@ -356,8 +387,7 @@ public class SkillBoardHandler : MonoBehaviour {
             skillInfoText.text = (string)skillData[currentIndex]["Info"];
 
             currentSkillIcon.color = new Color32(255, 255, 255, 255);
-            currentSkillIcon.sprite = skillArray[currentIndex].transform.GetChild(5).GetComponent<Image>().sprite;
-            bigLockIcon.color = new Color32(255, 255, 255, 0);
+            // currentSkillIcon.sprite = skillArray[currentIndex].transform.GetChild(5).GetComponent<Image>().sprite;
         } else {
 
             // Show these if the skill is still LOCKED
@@ -377,7 +407,6 @@ public class SkillBoardHandler : MonoBehaviour {
             }
 
             currentSkillIcon.color = new Color32(255, 255, 255, 0);
-            bigLockIcon.color = new Color32(255, 255, 255, 255);
         }
 
         if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
@@ -408,82 +437,13 @@ public class SkillBoardHandler : MonoBehaviour {
     }
 
 
-    private void ActivateTierTwo() {
-        // for (int i = 1; i < 4; i++) {
-            // Assign unlocked skills to unlock navigation
-            // skillArray[i].GetComponent<ButtonNav>().navDown = skillArray[i+4].GetComponent<Image>();
-        // }
-
-        for (int j = 4; j < 6; j++) {
-            // Set skill icons transparency to 100%
-            skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-
-            // Show Skill texts
-            skillArray[j].transform.GetChild(4).GetComponent<Text>().text = (string)skillData[j]["Title"];
-            
-            // Show LevelDisplayer
-            skillArray[j].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-
-            // Show current skill level
-            // skillArray[j].transform.GetChild(1).GetComponent<Text>().text = "0/" + (int)skillData[j]["Cap"];
-            skillArray[j].transform.GetChild(1).GetComponent<Text>().text = "LV 0";
-
-            // Unlock the newly unlocked skills
-            skillData[j]["Unlocked"] = true;
-        }
-    }
-
-
-    private void ActivateTierThree() {
-        // for (int i = 4; i < 4; i++) {
-            // Assign unlocked skills to unlock navigation
-            // skillArray[i].GetComponent<ButtonNav>().navDown = skillArray[i+3].GetComponent<Image>();
-        // }
-
-        for (int j = 6; j < 8; j++) {
-            // Set skill icons transparency to 100%
-            skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-
-            // Show Skill texts
-            skillArray[j].transform.GetChild(4).GetComponent<Text>().text = (string)skillData[j]["Title"];
-            
-            // Show LevelDisplayer
-            skillArray[j].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-
-            // Show current skill level
-            // skillArray[j].transform.GetChild(1).GetComponent<Text>().text = "0/" + (int)skillData[j]["Cap"];
-            skillArray[j].transform.GetChild(1).GetComponent<Text>().text = "LV 0";
-
-            // Unlock the newly unlocked skills
-            skillData[j]["Unlocked"] = true;
-        }
-    }
-
-
     private void GetInput() {
         // UI navigation with the analog sticks
-        if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") > maxThreshold && !axisYActive) {
-            if (skillArray[currentIndex].GetComponent<ButtonNav>().navUp) {
-                axisYActive = true;
-                currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navUp.GetComponent<ButtonNav>().indexID;
-                DisplayCursor();
-                DisplayNewTexts();
-            }
-        }
-        if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") < -maxThreshold && !axisYActive) {
-            if (skillArray[currentIndex].GetComponent<ButtonNav>().navDown) {
-                axisYActive = true;
-                currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navDown.GetComponent<ButtonNav>().indexID;
-                DisplayCursor();
-                DisplayNewTexts();
-            }
-        }
         if (ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") > maxThreshold && !axisXActive) {
             if (skillArray[currentIndex].GetComponent<ButtonNav>().navRight) {
                 axisXActive = true;
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navRight.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
-                DisplayNewTexts();
             }
         }
         if (ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") < -maxThreshold && !axisXActive) {
@@ -491,44 +451,24 @@ public class SkillBoardHandler : MonoBehaviour {
                 axisXActive = true;
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navLeft.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
-                DisplayNewTexts();
             }
         }
 
-        if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") <= minThreshold && ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") >= -minThreshold) {
-            axisYActive = false;
-        }
         if (ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") <= minThreshold && ReInput.players.GetPlayer(charID).GetAxis("LS Horizontal") >= -minThreshold) {
             axisXActive = false;
         }
 
         // UI navigation with the D-Pad buttons
-        if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadUp")) {
-            if (skillArray[currentIndex].GetComponent<ButtonNav>().navUp) {
-                currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navUp.GetComponent<ButtonNav>().indexID;
-                DisplayCursor();
-                DisplayNewTexts();
-            }
-        }
-        if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadDown")) {
-            if (skillArray[currentIndex].GetComponent<ButtonNav>().navDown) {
-                currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navDown.GetComponent<ButtonNav>().indexID;
-                DisplayCursor();
-                DisplayNewTexts();
-            }
-        }
         if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadLeft")) {
             if (skillArray[currentIndex].GetComponent<ButtonNav>().navLeft) {
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navLeft.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
-                DisplayNewTexts();
             }
         }
         if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadRight")) {
             if (skillArray[currentIndex].GetComponent<ButtonNav>().navRight) {
                 currentIndex = skillArray[currentIndex].GetComponent<ButtonNav>().navRight.GetComponent<ButtonNav>().indexID;
                 DisplayCursor();
-                DisplayNewTexts();
             }
         }
 
