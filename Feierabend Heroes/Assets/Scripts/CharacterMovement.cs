@@ -221,7 +221,7 @@ public class CharacterMovement : MonoBehaviour {
 
 		// Draw new cards if board is being opened
 		if (skillBoardOn) {
-			this.gameObject.transform.GetChild(2).GetComponent<SkillBoardHandler>().DrawRandomCards();
+			// this.gameObject.transform.GetChild(2).GetComponent<SkillBoardHandler>().DrawRandomCards();
 		}
 	}
 

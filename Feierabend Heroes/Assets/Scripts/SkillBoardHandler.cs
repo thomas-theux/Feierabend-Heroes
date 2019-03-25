@@ -70,6 +70,7 @@ public class SkillBoardHandler : MonoBehaviour {
 	private string[] passiveSkillInfo = {"", "", "", ""};
 
     private List<int> drawnSkills = new List<int>();
+    private List<int> allAvailableBasicSkills = new List<int>();
     private int maxCardDraw = 3;
     private int basicSkills = 6;
     private int specialSkills = 8;
@@ -179,6 +180,11 @@ public class SkillBoardHandler : MonoBehaviour {
 
         skillData.Add(classSkillDict);
         skillData.Add(passiveSkillDict);
+
+        // Add all basic skills to the basic skills arr
+        for (int i = 0; i < basicSkills; i++) {
+            allAvailableBasicSkills.Add(i);
+        }
     }
 
 
@@ -198,7 +204,12 @@ public class SkillBoardHandler : MonoBehaviour {
         List<int> basicSkillsArr = new List<int>();
         bool drewSpecialSkill = false;
 
-        for (int i = 0; i < basicSkills; i++) { basicSkillsArr.Add(i); }
+        for (int i = 0; i < allAvailableBasicSkills.Count; i++) {
+            basicSkillsArr.Add(allAvailableBasicSkills[i]);
+        }
+
+        // print(allAvailableBasicSkills.Count);
+        // print(basicSkillsArr.Count);
 
         for (int i = 0; i < maxCardDraw; i++) {
             int skillChance = Random.Range(0, 100);
@@ -207,6 +218,7 @@ public class SkillBoardHandler : MonoBehaviour {
                 int rndSkill = Random.Range(0, basicSkillsArr.Count);
                 drawnSkills.Add(basicSkillsArr[rndSkill]);
                 basicSkillsArr.Remove(basicSkillsArr[rndSkill]);
+                
                 // Increase special skill chance when buying regular skill
                 if (specialSkillChance < maxSpecialSkillChance) {
                     specialSkillChance += specialSkillChanceIncrease;
@@ -218,9 +230,9 @@ public class SkillBoardHandler : MonoBehaviour {
             }
         }
 
-        for (int i = 0; i < 3; i++) {
-            print(drawnSkills[i]);
-        }
+        // for (int i = 0; i < 3; i++) {
+        //     print(drawnSkills[i]);
+        // }
 
         DisplayDrawnCards();
     }
@@ -428,6 +440,13 @@ public class SkillBoardHandler : MonoBehaviour {
             skillCostText.text = "✔";
             // skillCostText.alignment = TextAnchor.MiddleCenter;
             orbIcon.color = new Color32(255, 255, 255, 0);
+
+            // Remove skill from basics array
+            if (drawnSkills[currentIndex] < basicSkills) {
+                print("remove basic");
+            } else {
+                print("Remove special");
+            }
         }
     }
     
@@ -497,7 +516,7 @@ public class SkillBoardHandler : MonoBehaviour {
                 }
 
             } else {
-                print("Not unlocked yet!");
+                // print("Not unlocked yet!");
                 // Skill fully acivated
                 // print("Skill already complete");
             }

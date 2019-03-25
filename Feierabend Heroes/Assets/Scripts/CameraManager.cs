@@ -66,7 +66,8 @@ public class CameraManager : MonoBehaviour {
 			newSkillUI.transform.GetChild(0).GetComponent<Canvas>().worldCamera = GameObject.Find("PlayerCamera" + i).gameObject.GetComponent<Camera>();
 			newSkillUI.transform.GetChild(0).GetComponent<Canvas>().planeDistance = 1;
 			
-			newSkillUI.GetComponent<SkillBoardHandler>().InitializeSkillUI();
+			// newSkillUI.GetComponent<SkillBoardHandler>().InitializeSkillUI();
+			newSkillUI.GetComponent<SkillCardsHandler>().InitializeSkillUI();
 
 			// Instantiate character UI for every player
 			GameObject newCharUI = Instantiate(charUIGO);
