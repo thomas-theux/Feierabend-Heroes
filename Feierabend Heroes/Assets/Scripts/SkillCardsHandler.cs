@@ -14,6 +14,7 @@ public class SkillCardsHandler : MonoBehaviour {
     private bool cardsAlreadyDrawn = false;
 
     public GameObject[] skillCardsArray;
+    public Sprite[] skillIconsArray;
     public Image cursorImage;
     public Text currentOrbCount;
 
@@ -337,6 +338,7 @@ public class SkillCardsHandler : MonoBehaviour {
             skillCardsArray[l].transform.GetChild(1).GetComponent<Text>().text = (string)skillData[skillArrIndex]["Title"];
             skillCardsArray[l].transform.GetChild(2).GetComponent<Text>().text = skillInfoText;
             skillCardsArray[l].transform.GetChild(3).GetComponent<Text>().text = (int)skillData[skillArrIndex]["Costs"] + "";
+            skillCardsArray[l].transform.GetChild(5).GetComponent<Image>().sprite = skillIconsArray[skillArrIndex];
 
             if (drawnSkillsArr[l] < basicSkillsCount) {
                 skillCardsArray[l].GetComponent<Image>().color = new Color32(31, 54, 77, 255);
