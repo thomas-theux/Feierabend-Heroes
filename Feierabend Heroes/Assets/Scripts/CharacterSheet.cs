@@ -4,41 +4,39 @@ using UnityEngine;
 
 public class CharacterSheet : MonoBehaviour {
 
+	// BASICS
 	public int currentOrbs = 0;
 	public int charID = -1;
 	public int charClass = -1;
 
-	// Movement
-	public float moveSpeed = 0;
-
-	// Attack
+	// STATS
+	public float currentHealth;
+	public float maxHealth;
 	public float attackOneDmg;
 	public float attackTwoDmg;
+	public float charDefense;
+	public int critChance = 0;
+	public int critDMG = 2;
 	public float delayAttackOne;
 	public float delayAttackTwo;
+	public float moveSpeed = 0;
+
+	// ATTACK
 	public float delaySkill = 0;
 	public float skillDmg = 0;
 	public float[] charSkillStats = {0, 0, 0, 0};
 	public bool skillActivated = false;
 
-	// Health
-	public float currentHealth;
-	public float maxHealth;
-	public int respawnChance = 0;
-
-	// Defense
-	public float charDefense;
-	public int critChance = 0;
-	public int critDMG = 2;
-	public int dodgeChance = 0;
-
 	// Passive Skills
-	public bool canFindApples = false;
 	public float healPercentage = 0.2f;
-	public int doubleOrbChance = 0;
-
 	public bool selfRepairActive = false;
 	public bool slowingTendrilsActive = false;
+
+	// KICKED
+	public int respawnChance = 0;
+	public int dodgeChance = 0;
+	public bool canFindApples = false;
+	public int doubleOrbChance = 0;
 
 	// public bool passiveActivated = false;
 	

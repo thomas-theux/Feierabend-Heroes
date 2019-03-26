@@ -62,7 +62,7 @@ public class CharClassContent : MonoBehaviour {
     };
 
 	public static string[] improveSkillTexts = {
-        "Shot Speed +5%, Radius +4m",
+        "Fire Rate +5%, Radius +4m",
         "Radius +3m, Lifetime +4s",
         "Radius +2m, Duration +1s",
         "Duration +3s, Attack Speed +10%"

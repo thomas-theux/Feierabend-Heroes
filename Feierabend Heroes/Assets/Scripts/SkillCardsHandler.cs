@@ -15,8 +15,15 @@ public class SkillCardsHandler : MonoBehaviour {
 
     public GameObject[] skillCardsArray;
     public Sprite[] skillIconsArray;
+    public GameObject[] levelDisplayerParent;
+    public GameObject skillLevelDisplayer;
     public Image cursorImage;
     public Text currentOrbCount;
+
+    public AudioSource cursorMoveSound;
+	public AudioSource activateSkillSound;
+	public AudioSource skillCompleteSound;
+	public AudioSource skillLockedSound;
 
     private float minThreshold = 0.5f;
 	private float maxThreshold = 0.5f;
@@ -50,6 +57,7 @@ public class SkillCardsHandler : MonoBehaviour {
     private List<int> currentBasicsArr = new List<int>();
     private List<int> currentSpecialsArr = new List<int>();
     private List<int> drawnSkillsArr = new List<int>();
+
     private int basicSkillsCount = 6;
     private int specialSkillsCount = 2;
     private int maxCardDraw = 3;
@@ -57,6 +65,13 @@ public class SkillCardsHandler : MonoBehaviour {
     private int specialSkillChanceIncrease = 2;
     private int maxSpecialSkillChance = 20;
     private bool specialCardDrawn = false;
+
+    private int minLevel;
+    private int maxLevel;
+    private float levelDisplayerDistance = 26.0f;
+
+    private Color32 blue40 = new Color32(64, 96, 128, 255);
+    private Color32 gold50 = new Color32(230, 175, 47, 255);
     
 
     public void InitializeSkillUI() {
@@ -82,48 +97,48 @@ public class SkillCardsHandler : MonoBehaviour {
         
         // Tier ONE skills and stats
         healthSkillDict.Add("Title", "Health");
-        healthSkillDict.Add("Info", "+10%");
+        healthSkillDict.Add("Info", "+12%");
         healthSkillDict.Add("Costs", 1);
         healthSkillDict.Add("Level", 0);
-        healthSkillDict.Add("Cap", 10);
+        healthSkillDict.Add("Cap", 9);
         
         damageSkillDict.Add("Title", "Damage");
-        damageSkillDict.Add("Info", "+15%");
+        damageSkillDict.Add("Info", "+12%");
         damageSkillDict.Add("Costs", 1);
         damageSkillDict.Add("Level", 0);
-        damageSkillDict.Add("Cap", 10);
+        damageSkillDict.Add("Cap", 9);
         
         defenseSkillDict.Add("Title", "Defense");
-        defenseSkillDict.Add("Info", "+20%");
+        defenseSkillDict.Add("Info", "+16%");
         defenseSkillDict.Add("Costs", 1);
         defenseSkillDict.Add("Level", 0);
-        defenseSkillDict.Add("Cap", 10);
+        defenseSkillDict.Add("Cap", 9);
         
         critSkillDict.Add("Title", "Critical Hit");
-        critSkillDict.Add("Info", "+6%");
+        critSkillDict.Add("Info", "+5%");
         critSkillDict.Add("Costs", 1);
         critSkillDict.Add("Level", 0);
-        critSkillDict.Add("Cap", 10);
+        critSkillDict.Add("Cap", 9);
         
         // Tier TWO skills and stats
         ASPDSkillDict.Add("Title", "Attack Speed");
-        ASPDSkillDict.Add("Info", "+10%");
+        ASPDSkillDict.Add("Info", "+8%");
         ASPDSkillDict.Add("Costs", 1);
         ASPDSkillDict.Add("Level", 0);
-        ASPDSkillDict.Add("Cap", 10);
+        ASPDSkillDict.Add("Cap", 9);
 
         MSPDSkillDict.Add("Title", "Move Speed");
-        MSPDSkillDict.Add("Info", "+10%");
+        MSPDSkillDict.Add("Info", "+5%");
         MSPDSkillDict.Add("Costs", 1);
         MSPDSkillDict.Add("Level", 0);
-        MSPDSkillDict.Add("Cap", 10);
+        MSPDSkillDict.Add("Cap", 9);
         
         // Tier THREE skills and stats
         classSkillDict.Add("Title", newSkillTitle);
         classSkillDict.Add("Info", "???");
         classSkillDict.Add("Costs", 3);
         classSkillDict.Add("Level", 0);
-        classSkillDict.Add("Cap", 6);
+        classSkillDict.Add("Cap", 5);
 
         passiveSkillDict.Add("Title", newPassiveTitle);
         passiveSkillDict.Add("Info", newPassiveInfo);
@@ -209,8 +224,8 @@ public class SkillCardsHandler : MonoBehaviour {
             if (characterSheetScript.currentOrbs >= (int)skillData[skillArrIndex]["Costs"]) {
                 PurchaseSkill();
             } else {
-                print("not enough orbs");
-                // Not enough orbs to purchase skill
+                // print("not enough orbs");
+                Instantiate(skillLockedSound);
             }
         }
     }
@@ -250,24 +265,6 @@ public class SkillCardsHandler : MonoBehaviour {
 
                 drawnSkillsArr.Add(drawnSkill);
                 currentBasicsArr.Remove(drawnSkill);
-            }
-        }
-    }
-
-
-    private void DisplayCardsOld() {
-        for (int l = 0; l < drawnSkillsArr.Count; l++) {
-            int skillArrIndex = drawnSkillsArr[l];
-            skillCardsArray[l].transform.GetChild(1).GetComponent<Text>().text = (string)skillData[skillArrIndex]["Title"];
-            skillCardsArray[l].transform.GetChild(2).GetComponent<Text>().text = (string)skillData[skillArrIndex]["Info"];
-            skillCardsArray[l].transform.GetChild(3).GetComponent<Text>().text = (int)skillData[skillArrIndex]["Costs"] + "";
-
-            if (drawnSkillsArr[l] < basicSkillsCount) {
-                skillCardsArray[l].GetComponent<Image>().color = new Color32(31, 54, 77, 255);
-                skillCardsArray[l].transform.GetChild(1).GetComponent<Text>().color = new Color32(255, 109, 1, 255);
-            } else {
-                skillCardsArray[l].GetComponent<Image>().color = new Color32(170, 120, 20, 255);
-                skillCardsArray[l].transform.GetChild(1).GetComponent<Text>().color = new Color32(235, 245, 255, 255);
             }
         }
     }
@@ -340,6 +337,8 @@ public class SkillCardsHandler : MonoBehaviour {
             skillCardsArray[l].transform.GetChild(3).GetComponent<Text>().text = (int)skillData[skillArrIndex]["Costs"] + "";
             skillCardsArray[l].transform.GetChild(5).GetComponent<Image>().sprite = skillIconsArray[skillArrIndex];
 
+            DisplayLevel(l);
+
             if (drawnSkillsArr[l] < basicSkillsCount) {
                 skillCardsArray[l].GetComponent<Image>().color = new Color32(31, 54, 77, 255);
                 skillCardsArray[l].transform.GetChild(1).GetComponent<Text>().color = new Color32(255, 109, 1, 255);
@@ -351,9 +350,52 @@ public class SkillCardsHandler : MonoBehaviour {
     }
 
 
+    private void DisplayLevel(int cardIndex) {
+        GameObject levelDisplayParent = skillCardsArray[cardIndex].transform.GetChild(6).gameObject;
+        int currentCount = 0;
+
+        foreach (Transform child in levelDisplayParent.transform) {
+            Destroy(child.gameObject);
+        }
+
+        if (drawnSkillsArr[cardIndex] < basicSkillsCount) {
+            minLevel = 0;
+            maxLevel = 9;
+        } else if (drawnSkillsArr[cardIndex] == basicSkillsCount) {
+            minLevel = 2;
+            maxLevel = 7;
+        } else if (drawnSkillsArr[cardIndex] > basicSkillsCount) {
+            minLevel = 4;
+            maxLevel = 5;
+        }
+
+        for (int n = minLevel; n < maxLevel; n++) {
+            GameObject newLevelDisplayer = Instantiate(skillLevelDisplayer);
+            newLevelDisplayer.transform.SetParent(levelDisplayParent.transform);
+
+            newLevelDisplayer.transform.localPosition = new Vector3(-104 + levelDisplayerDistance * n, 0, 0);
+            newLevelDisplayer.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            newLevelDisplayer.transform.localScale = new Vector3(1, 1, 1);
+
+            if (currentCount >= (int)skillData[drawnSkillsArr[cardIndex]]["Level"] + 1) {
+                newLevelDisplayer.GetComponent<Image>().color = new Color32(0, 0, 0, 100);
+            } else {
+                if (drawnSkillsArr[cardIndex] < basicSkillsCount) {
+                    newLevelDisplayer.GetComponent<Image>().color = blue40;
+                } else {
+                    newLevelDisplayer.GetComponent<Image>().color = gold50;
+                }
+            }
+
+            currentCount++;
+        }
+    }
+
+
     private void DisplayCursor() {
         // cursorImage.transform.position = skillCardsArray[currentIndex].transform.position;
         cursorImage.transform.localPosition = skillCardsArray[currentIndex].transform.localPosition + new Vector3(0, -268, 0);
+        Instantiate(cursorMoveSound);
     }
 
 
@@ -363,6 +405,7 @@ public class SkillCardsHandler : MonoBehaviour {
 
 
     private void PurchaseSkill() {
+        PlayActivationSounds();
         PayWithOrbs();
         UpdateOrbCount();
         skillsHandlerScript.ActivateSkill(drawnSkillsArr[currentIndex], (int)skillData[drawnSkillsArr[currentIndex]]["Level"]);
@@ -370,6 +413,16 @@ public class SkillCardsHandler : MonoBehaviour {
         IncreaseSpecialSkillChance();
         DrawCards();
         DisplayCards();
+    }
+
+
+    private void PlayActivationSounds() {
+        int skillArrIndex = drawnSkillsArr[currentIndex];
+        if ((int)skillData[skillArrIndex]["Level"] < (int)skillData[skillArrIndex]["Cap"] - 1) {
+            Instantiate(activateSkillSound);
+        } else {
+            Instantiate(skillCompleteSound);
+        }
     }
 
 
