@@ -62,15 +62,17 @@ public class SkillCardsHandler : MonoBehaviour {
     private int specialSkillsCount = 2;
     private int maxCardDraw = 3;
     private int currentSpecialSkillChance = 0;
-    private int specialSkillChanceIncrease = 2;
-    private int maxSpecialSkillChance = 20;
+    private int specialSkillChanceIncrease = 1;
+    private int maxSpecialSkillChance = 10;
     private bool specialCardDrawn = false;
 
     private int minLevel;
     private int maxLevel;
     private float levelDisplayerDistance = 26.0f;
 
-    private float moveInDuration = 8.0f;
+    private bool canPickCard = false;
+    private bool initialDrawAnimation = false;
+    private float moveInDuration = 1.5f;
 	private float t = 0;
     
 
@@ -171,15 +173,26 @@ public class SkillCardsHandler : MonoBehaviour {
     private void OnEnable() {
         currentIndex = 1;
         DrawCards();
+        CheckForLiquidity();
         DisplayCards();
         DisplayCursor();
         UpdateOrbCount();
+
+        if (!initialDrawAnimation) {
+            initialDrawAnimation = true;
+
+            for (int p = 0; p < maxCardDraw; p++) {
+                StartCoroutine(AnimateCards(p));
+            }
+        }
     }
 
 
     private void Update() {
         if (this.gameObject.transform.parent.GetComponent<CharacterMovement>().skillBoardOn) {
-            GetInput();
+            if (canPickCard) {
+                GetInput();
+            }
         }
     }
 
@@ -350,6 +363,19 @@ public class SkillCardsHandler : MonoBehaviour {
     }
 
 
+    private void CheckForLiquidity() {
+        for (int r = 0; r < drawnSkillsArr.Count; r++) {
+            int skillArrIndex = drawnSkillsArr[r];
+
+            if (characterSheetScript.currentOrbs >= (int)skillData[skillArrIndex]["Costs"]) {
+                skillCardsArray[r].transform.GetChild(7).GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+            } else {
+                skillCardsArray[r].transform.GetChild(7).GetComponent<Image>().color = new Color32(255, 255, 255, 180);
+            }
+        }
+    }
+
+
     private void DisplayLevel(int cardIndex) {
         GameObject levelDisplayParent = skillCardsArray[cardIndex].transform.GetChild(6).gameObject;
         int currentCount = 0;
@@ -425,8 +451,12 @@ public class SkillCardsHandler : MonoBehaviour {
         IncreaseSkillLevel();
         IncreaseSpecialSkillChance();
         DrawCards();
-        StartCoroutine(AnimateCards());
+        CheckForLiquidity();
         DisplayCards();
+
+        for (int p = 0; p < maxCardDraw; p++) {
+            StartCoroutine(AnimateCards(p));
+        }
     }
 
 
@@ -475,31 +505,42 @@ public class SkillCardsHandler : MonoBehaviour {
     }
 
 
-    private IEnumerator AnimateCards() {
+    private IEnumerator AnimateCards(int p) {
 
-        skillCardsArray[0].transform.localPosition = new Vector3(
-            skillCardsArray[0].transform.localPosition.x,
-            1000.0f,
-            skillCardsArray[0].transform.localPosition.z
-        );
+        canPickCard = false;
 
+        // Reset all position values
         float desiredPos = 0.0f;
         float smoothedPos = 0.0f;
         t = 0;
 
-        while (t < moveInDuration) {
-			t += Time.deltaTime;
-			smoothedPos = Mathf.Lerp(skillCardsArray[0].transform.localPosition.y, desiredPos, t / moveInDuration);
-            skillCardsArray[0].transform.localPosition = new Vector3(
-                skillCardsArray[0].transform.localPosition.x,
+        // Set all cards outside the viewport
+        skillCardsArray[p].transform.localPosition = new Vector3(
+            skillCardsArray[p].transform.localPosition.x,
+            1000.0f + p * 1000.0f,
+            skillCardsArray[p].transform.localPosition.z
+        );
+
+        // LERP ANIMATION
+        while (t < (moveInDuration + p * 1.0f)) {
+            t += Time.deltaTime;
+            smoothedPos = Mathf.Lerp(skillCardsArray[p].transform.localPosition.y, desiredPos, t / (moveInDuration + p * 0.2f));
+            skillCardsArray[p].transform.localPosition = new Vector3(
+                skillCardsArray[p].transform.localPosition.x,
                 smoothedPos,
-                skillCardsArray[0].transform.localPosition.z
+                skillCardsArray[p].transform.localPosition.z
             );
 
-			yield return null;
-		}
+            yield return null;
+        }
 
-        print("Done");
+        StopAllCoroutines();
+        canPickCard = true;
+
+        // Set all cards to their destined position
+        for (int q = 0; q < maxCardDraw; q++) {
+            skillCardsArray[q].transform.localPosition = new Vector3(skillCardsArray[q].transform.localPosition.x, 0, skillCardsArray[p].transform.localPosition.z);
+        }
 
     }
 
