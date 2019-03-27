@@ -70,8 +70,8 @@ public class SkillCardsHandler : MonoBehaviour {
     private int maxLevel;
     private float levelDisplayerDistance = 26.0f;
 
-    private Color32 blue40 = new Color32(64, 96, 128, 255);
-    private Color32 gold50 = new Color32(230, 175, 47, 255);
+    private float moveInDuration = 8.0f;
+	private float t = 0;
     
 
     public void InitializeSkillUI() {
@@ -340,11 +340,11 @@ public class SkillCardsHandler : MonoBehaviour {
             DisplayLevel(l);
 
             if (drawnSkillsArr[l] < basicSkillsCount) {
-                skillCardsArray[l].GetComponent<Image>().color = new Color32(31, 54, 77, 255);
-                skillCardsArray[l].transform.GetChild(1).GetComponent<Text>().color = new Color32(255, 109, 1, 255);
+                skillCardsArray[l].GetComponent<Image>().color = Colors.blue20;
+                skillCardsArray[l].transform.GetChild(1).GetComponent<Text>().color = Colors.keyOrange30;
             } else {
-                skillCardsArray[l].GetComponent<Image>().color = new Color32(170, 120, 20, 255);
-                skillCardsArray[l].transform.GetChild(1).GetComponent<Text>().color = new Color32(235, 245, 255, 255);
+                skillCardsArray[l].GetComponent<Image>().color = Colors.keyGold30;
+                skillCardsArray[l].transform.GetChild(1).GetComponent<Text>().color = Colors.white50;
             }
         }
     }
@@ -377,13 +377,26 @@ public class SkillCardsHandler : MonoBehaviour {
             newLevelDisplayer.transform.localRotation = Quaternion.Euler(0, 0, 0);
             newLevelDisplayer.transform.localScale = new Vector3(1, 1, 1);
 
-            if (currentCount >= (int)skillData[drawnSkillsArr[cardIndex]]["Level"] + 1) {
-                newLevelDisplayer.GetComponent<Image>().color = new Color32(0, 0, 0, 100);
-            } else {
+            // HIGHLIGHT LevelDisplayer
+            if (currentCount == (int)skillData[drawnSkillsArr[cardIndex]]["Level"]) {
                 if (drawnSkillsArr[cardIndex] < basicSkillsCount) {
-                    newLevelDisplayer.GetComponent<Image>().color = blue40;
+                    newLevelDisplayer.GetComponent<Image>().color = new Color32(Colors.blue50.r, Colors.blue50.g, Colors.blue50.b, 100);
                 } else {
-                    newLevelDisplayer.GetComponent<Image>().color = gold50;
+                    newLevelDisplayer.GetComponent<Image>().color = new Color32(Colors.keyGold60.r, Colors.keyGold60.g, Colors.keyGold60.b, 100);
+                }
+            }
+
+            // DEACTIVATE LevelDisplayer
+            if (currentCount > (int)skillData[drawnSkillsArr[cardIndex]]["Level"]) {
+                newLevelDisplayer.GetComponent<Image>().color = Colors.black40p;
+            }
+            
+            // ACTIVATE LevelDisplayer
+            if (currentCount < (int)skillData[drawnSkillsArr[cardIndex]]["Level"]) {
+                if (drawnSkillsArr[cardIndex] < basicSkillsCount) {
+                    newLevelDisplayer.GetComponent<Image>().color = Colors.blue50;
+                } else {
+                    newLevelDisplayer.GetComponent<Image>().color = Colors.keyGold60;
                 }
             }
 
@@ -412,6 +425,7 @@ public class SkillCardsHandler : MonoBehaviour {
         IncreaseSkillLevel();
         IncreaseSpecialSkillChance();
         DrawCards();
+        StartCoroutine(AnimateCards());
         DisplayCards();
     }
 
@@ -458,6 +472,35 @@ public class SkillCardsHandler : MonoBehaviour {
                 currentSpecialSkillChance = maxSpecialSkillChance;
             }
         }
+    }
+
+
+    private IEnumerator AnimateCards() {
+
+        skillCardsArray[0].transform.localPosition = new Vector3(
+            skillCardsArray[0].transform.localPosition.x,
+            1000.0f,
+            skillCardsArray[0].transform.localPosition.z
+        );
+
+        float desiredPos = 0.0f;
+        float smoothedPos = 0.0f;
+        t = 0;
+
+        while (t < moveInDuration) {
+			t += Time.deltaTime;
+			smoothedPos = Mathf.Lerp(skillCardsArray[0].transform.localPosition.y, desiredPos, t / moveInDuration);
+            skillCardsArray[0].transform.localPosition = new Vector3(
+                skillCardsArray[0].transform.localPosition.x,
+                smoothedPos,
+                skillCardsArray[0].transform.localPosition.z
+            );
+
+			yield return null;
+		}
+
+        print("Done");
+
     }
 
 }
