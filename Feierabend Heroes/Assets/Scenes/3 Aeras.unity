@@ -431,7 +431,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22666
+  m_Name: pb_Mesh22736
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -4443,7 +4443,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23448
+  m_Name: pb_Mesh23524
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -5686,7 +5686,7 @@ MeshCollider:
   m_GameObject: {fileID: 357855698}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
@@ -19993,7 +19993,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1284412465784686, guid: b99ce17d2a62f164698110549e49b762, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4228211876280308, guid: b99ce17d2a62f164698110549e49b762, type: 3}
       propertyPath: m_LocalPosition.x

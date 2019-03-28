@@ -24,6 +24,7 @@ public class CharacterMovement : MonoBehaviour {
 	private Vector3 charVelocity;
 
 	public bool skillboardBlocksCasting = false;
+	public bool toggleSkillsDisabled = false;
 
 	private bool isDodging = false;
 	private float dodgeDelayTime = 0.35f;
@@ -189,7 +190,7 @@ public class CharacterMovement : MonoBehaviour {
 
 
 	private void ToggleSkillboard() {
-		if (!GameManager.pauseMenuOpen) {
+		if (!GameManager.pauseMenuOpen && !toggleSkillsDisabled) {
 			if (triangleBtn) {
 				skillBoardOn = !skillBoardOn;
 				Instantiate(openSkillboardSound);

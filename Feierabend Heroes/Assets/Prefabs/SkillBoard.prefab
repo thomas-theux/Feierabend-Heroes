@@ -1870,7 +1870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.92156863, g: 0.9607843, b: 1, a: 1}
   m_EffectDistance: {x: 8, y: 8}
-  m_UseGraphicAlpha: 1
+  m_UseGraphicAlpha: 0
 --- !u!1 &2053369038533335317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,7 +2600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.92156863, g: 0.9607843, b: 1, a: 1}
   m_EffectDistance: {x: 8, y: 8}
-  m_UseGraphicAlpha: 1
+  m_UseGraphicAlpha: 0
 --- !u!1 &3841188822419742532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2714,7 +2714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.92156863, g: 0.9607843, b: 1, a: 1}
   m_EffectDistance: {x: 8, y: 8}
-  m_UseGraphicAlpha: 1
+  m_UseGraphicAlpha: 0
 --- !u!1 &4190411810440079012
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,10 +13,10 @@ public class SettingsHolder {
 	public static float battleTime = 120.0f;
 
 	public static int appleSpawnMax = 0;
-	public static int chestSpawnMax = 12;
+	public static int orbSpawnMax = 12;
 
-	public static int startingOrbs = 101;
-	public static int orbsToWin = 115;
+	public static int startingOrbs = 2;
+	public static int orbsToWin = 20;
 	public static int orbsEveryRound = 2;
 	public static int orbsForRoundWin = 2;
 	public static int orbsForKills = 2;

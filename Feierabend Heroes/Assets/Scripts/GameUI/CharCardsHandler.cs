@@ -28,7 +28,7 @@ public class CharCardsHandler : MonoBehaviour {
 
 	private Color[] charColors = {
 		new Color32(23, 155, 194, 255),
-		new Color32(194, 66, 64, 255),
+		new Color32(231, 86, 84, 255),
 		new Color32(35, 194, 112, 255),
 		new Color32(182, 194, 35, 255)
 	};

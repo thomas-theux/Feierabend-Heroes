@@ -7,6 +7,7 @@ using Rewired;
 public class SkillCardsHandler : MonoBehaviour {
 
     private CharacterSheet characterSheetScript;
+    private CharacterMovement characterMovementScript;
     private SkillsHandler skillsHandlerScript;
 
     private int charID = 0;
@@ -79,6 +80,7 @@ public class SkillCardsHandler : MonoBehaviour {
 
     public void InitializeSkillUI() {
         characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
+        characterMovementScript = this.gameObject.transform.parent.GetComponent<CharacterMovement>();
         skillsHandlerScript = GetComponent<SkillsHandler>();
         charID = this.gameObject.transform.parent.GetComponent<CharacterMovement>().playerID;
 
@@ -482,6 +484,8 @@ public class SkillCardsHandler : MonoBehaviour {
 
 
     private void PurchaseSkill() {
+        characterMovementScript.toggleSkillsDisabled = true;
+
         PlayActivationSounds();
         PayWithOrbs();
         UpdateOrbCount();
@@ -565,6 +569,7 @@ public class SkillCardsHandler : MonoBehaviour {
 
         StopAllCoroutines();
         canPickCard = true;
+        characterMovementScript.toggleSkillsDisabled = false;
 
         // Set all cards to their destined position
         for (int q = 0; q < maxCardDraw; q++) {

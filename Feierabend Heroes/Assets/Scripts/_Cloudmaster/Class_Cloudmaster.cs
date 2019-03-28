@@ -41,7 +41,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float attackTwoDelay;
 
 	private float attackOneDmg = 16.0f;
-	private float attackTwoDmg = 36.0f;
+	private float attackTwoDmg = 24.0f;
 	// private float skillOneDmg = 0.0f;
 	private float skillDmg = 3.0f;
 
