@@ -115,11 +115,10 @@ public class CharClassContent : MonoBehaviour {
 		"A",
 		"Kaiser",
 		"Duke",
-		"Pope",
 		"Priest",
 		"Priestess",
 		"Pretty",
-		"The last",
+		"The Last",
 		"One",
 		"No"
 	};

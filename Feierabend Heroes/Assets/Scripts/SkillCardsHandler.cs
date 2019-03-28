@@ -24,6 +24,7 @@ public class SkillCardsHandler : MonoBehaviour {
 	public AudioSource activateSkillSound;
 	public AudioSource skillCompleteSound;
 	public AudioSource skillLockedSound;
+	public AudioSource drawCardsSound;
 
     private float minThreshold = 0.5f;
 	private float maxThreshold = 0.5f;
@@ -172,7 +173,11 @@ public class SkillCardsHandler : MonoBehaviour {
 
     private void OnEnable() {
         currentIndex = 1;
-        DrawCards();
+
+        if (!cardsAlreadyDrawn) {
+            ResetCardsPos();
+            DrawCards();
+        }
         CheckForLiquidity();
         DisplayCards();
         DisplayCursor();
@@ -183,6 +188,7 @@ public class SkillCardsHandler : MonoBehaviour {
 
             for (int p = 0; p < maxCardDraw; p++) {
                 StartCoroutine(AnimateCards(p));
+                StartCoroutine(DrawCardSound(p));
             }
         }
     }
@@ -190,9 +196,7 @@ public class SkillCardsHandler : MonoBehaviour {
 
     private void Update() {
         if (this.gameObject.transform.parent.GetComponent<CharacterMovement>().skillBoardOn) {
-            if (canPickCard) {
-                GetInput();
-            }
+            GetInput();
         }
     }
 
@@ -232,53 +236,83 @@ public class SkillCardsHandler : MonoBehaviour {
         }
 
         // Purchase skill
-        if (ReInput.players.GetPlayer(charID).GetButtonDown("X")) {
-            int skillArrIndex = drawnSkillsArr[currentIndex];
-            if (characterSheetScript.currentOrbs >= (int)skillData[skillArrIndex]["Costs"]) {
-                PurchaseSkill();
-            } else {
-                // print("not enough orbs");
-                Instantiate(skillLockedSound);
+        if (canPickCard) {
+            if (ReInput.players.GetPlayer(charID).GetButtonDown("X")) {
+                int skillArrIndex = drawnSkillsArr[currentIndex];
+                if (characterSheetScript.currentOrbs >= (int)skillData[skillArrIndex]["Costs"]) {
+                    PurchaseSkill();
+                } else {
+                    // print("not enough orbs");
+                    Instantiate(skillLockedSound);
+                }
             }
         }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    private IEnumerator CardHighlightDelay() {
+        yield return new WaitForSeconds(0.4f);
+
+        ResetCardsPos();
+        DrawCards();
+        CheckForLiquidity();
+        DisplayCards();
+
+        for (int p = 0; p < maxCardDraw; p++) {
+            StartCoroutine(AnimateCards(p));
+            StartCoroutine(DrawCardSound(p));
+        }
+    }
+
+
+    // Set all cards outside the viewport
+    private void ResetCardsPos() {
+        for (int s = 0; s < maxCardDraw; s++) {
+            // Disable outline from selected Card
+            skillCardsArray[s].GetComponent<Outline>().enabled = false;
+
+            skillCardsArray[s].transform.localPosition = new Vector3(
+                skillCardsArray[s].transform.localPosition.x,
+                1500.0f + s * 1000.0f,
+                skillCardsArray[s].transform.localPosition.z
+            );
+        }
+    }
+
+
     private void DrawCards() {
-        if (!cardsAlreadyDrawn) {
-            // Cards have been drawn and need to be purchased before new cards will be drawn
-            cardsAlreadyDrawn = true;
-            specialCardDrawn = false;
+        // Cards have been drawn and need to be purchased before new cards will be drawn
+        cardsAlreadyDrawn = true;
+        specialCardDrawn = false;
 
-            // Clear basics array and drawn cards array and add skills from overall basics array
-            currentBasicsArr.Clear();
-            currentBasicsArr.AddRange(allAvailableBasicsArr);
+        // Clear basics array and drawn cards array and add skills from overall basics array
+        currentBasicsArr.Clear();
+        currentBasicsArr.AddRange(allAvailableBasicsArr);
 
-            currentSpecialsArr.Clear();
-            currentSpecialsArr.AddRange(allAvailableSpecialsArr);
+        currentSpecialsArr.Clear();
+        currentSpecialsArr.AddRange(allAvailableSpecialsArr);
 
-            drawnSkillsArr.Clear();
+        drawnSkillsArr.Clear();
 
-            // Draw random number, add to drawn cards and remove that number from the basics/specials array
-            for (int j = 0; j < maxCardDraw; j++) {
-                // Draw a random number to see if a special skill will be drawn
-                int specialSkillChance = Random.Range(0, 100);
+        // Draw random number, add to drawn cards and remove that number from the basics/specials array
+        for (int j = 0; j < maxCardDraw; j++) {
+            // Draw a random number to see if a special skill will be drawn
+            int specialSkillChance = Random.Range(0, 100);
 
-                int drawnSkill = -1;
+            int drawnSkill = -1;
 
-                if (specialSkillChance < currentSpecialSkillChance && !specialCardDrawn && currentSpecialsArr.Count > 0) {
-                    specialCardDrawn = true;
-                    int randomSkill = Random.Range(0, currentSpecialsArr.Count);
-                    drawnSkill = currentSpecialsArr[randomSkill];
-                } else if (specialSkillChance >= currentSpecialSkillChance || specialCardDrawn || currentSpecialsArr.Count <= 0) {
-                    int randomSkill = Random.Range(0, currentBasicsArr.Count);
-                    drawnSkill = currentBasicsArr[randomSkill];
-                }
-
-                drawnSkillsArr.Add(drawnSkill);
-                currentBasicsArr.Remove(drawnSkill);
+            if (specialSkillChance < currentSpecialSkillChance && !specialCardDrawn && currentSpecialsArr.Count > 0) {
+                specialCardDrawn = true;
+                int randomSkill = Random.Range(0, currentSpecialsArr.Count);
+                drawnSkill = currentSpecialsArr[randomSkill];
+            } else if (specialSkillChance >= currentSpecialSkillChance || specialCardDrawn || currentSpecialsArr.Count <= 0) {
+                int randomSkill = Random.Range(0, currentBasicsArr.Count);
+                drawnSkill = currentBasicsArr[randomSkill];
             }
+
+            drawnSkillsArr.Add(drawnSkill);
+            currentBasicsArr.Remove(drawnSkill);
         }
     }
 
@@ -432,8 +466,12 @@ public class SkillCardsHandler : MonoBehaviour {
 
 
     private void DisplayCursor() {
-        // cursorImage.transform.position = skillCardsArray[currentIndex].transform.position;
-        cursorImage.transform.localPosition = skillCardsArray[currentIndex].transform.localPosition + new Vector3(0, -268, 0);
+        // cursorImage.transform.localPosition = skillCardsArray[currentIndex].transform.localPosition + new Vector3(0, -268, 0);
+        cursorImage.transform.localPosition = new Vector3(
+            skillCardsArray[currentIndex].transform.localPosition.x,
+            -268,
+            skillCardsArray[currentIndex].transform.localPosition.z
+        );
         Instantiate(cursorMoveSound);
     }
 
@@ -450,13 +488,8 @@ public class SkillCardsHandler : MonoBehaviour {
         skillsHandlerScript.ActivateSkill(drawnSkillsArr[currentIndex], (int)skillData[drawnSkillsArr[currentIndex]]["Level"]);
         IncreaseSkillLevel();
         IncreaseSpecialSkillChance();
-        DrawCards();
-        CheckForLiquidity();
-        DisplayCards();
 
-        for (int p = 0; p < maxCardDraw; p++) {
-            StartCoroutine(AnimateCards(p));
-        }
+        StartCoroutine(CardHighlightDelay());
     }
 
 
@@ -467,6 +500,9 @@ public class SkillCardsHandler : MonoBehaviour {
         } else {
             Instantiate(skillCompleteSound);
         }
+
+        // Enable outline of selected Card
+        skillCardsArray[currentIndex].GetComponent<Outline>().enabled = true;
     }
 
 
@@ -514,13 +550,6 @@ public class SkillCardsHandler : MonoBehaviour {
         float smoothedPos = 0.0f;
         t = 0;
 
-        // Set all cards outside the viewport
-        skillCardsArray[p].transform.localPosition = new Vector3(
-            skillCardsArray[p].transform.localPosition.x,
-            1000.0f + p * 1000.0f,
-            skillCardsArray[p].transform.localPosition.z
-        );
-
         // LERP ANIMATION
         while (t < (moveInDuration + p * 1.0f)) {
             t += Time.deltaTime;
@@ -542,6 +571,11 @@ public class SkillCardsHandler : MonoBehaviour {
             skillCardsArray[q].transform.localPosition = new Vector3(skillCardsArray[q].transform.localPosition.x, 0, skillCardsArray[p].transform.localPosition.z);
         }
 
+    }
+
+    private IEnumerator DrawCardSound(int p) {
+        yield return new WaitForSeconds(p * 0.1f);
+        Instantiate(drawCardsSound);
     }
 
 }

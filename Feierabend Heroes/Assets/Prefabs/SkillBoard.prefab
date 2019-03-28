@@ -594,7 +594,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2053369037149898691
 MonoBehaviour:
@@ -835,6 +835,8 @@ MonoBehaviour:
   skillCompleteSound: {fileID: 82679573944502906, guid: 6f2b8dc03056a4e24a555ba72442977b,
     type: 3}
   skillLockedSound: {fileID: 82240621272502822, guid: 040580a175b2349cdb219e31ffd36e99,
+    type: 3}
+  drawCardsSound: {fileID: 82638912745022070, guid: c7c2a734298234181b833e777177f6c9,
     type: 3}
 --- !u!1 &2053369037430668851
 GameObject:
@@ -1767,6 +1769,7 @@ GameObject:
   - component: {fileID: 2053369038376495951}
   - component: {fileID: 2053369038376495950}
   - component: {fileID: 8506617851025946260}
+  - component: {fileID: 7095256011985350441}
   m_Layer: 5
   m_Name: Card01
   m_TagString: Untagged
@@ -1853,6 +1856,21 @@ MonoBehaviour:
   indexID: 0
   navLeft: {fileID: 3533639445656949545}
   navRight: {fileID: 7025071612791951093}
+--- !u!114 &7095256011985350441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053369038376495952}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.92156863, g: 0.9607843, b: 1, a: 1}
+  m_EffectDistance: {x: 8, y: 8}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2053369038533335317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2481,6 +2499,7 @@ GameObject:
   - component: {fileID: 6261105087477890894}
   - component: {fileID: 3533639445656949545}
   - component: {fileID: 6581373453511168162}
+  - component: {fileID: 6268266523551385824}
   m_Layer: 5
   m_Name: Card03
   m_TagString: Untagged
@@ -2567,6 +2586,21 @@ MonoBehaviour:
   indexID: 2
   navLeft: {fileID: 7025071612791951093}
   navRight: {fileID: 2053369038376495950}
+--- !u!114 &6268266523551385824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815988121723149214}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.92156863, g: 0.9607843, b: 1, a: 1}
+  m_EffectDistance: {x: 8, y: 8}
+  m_UseGraphicAlpha: 1
 --- !u!1 &3841188822419742532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2579,6 +2613,7 @@ GameObject:
   - component: {fileID: 7069501614472639739}
   - component: {fileID: 7025071612791951093}
   - component: {fileID: 8021402421600930045}
+  - component: {fileID: 406405939854121579}
   m_Layer: 5
   m_Name: Card02
   m_TagString: Untagged
@@ -2665,6 +2700,21 @@ MonoBehaviour:
   indexID: 1
   navLeft: {fileID: 2053369038376495950}
   navRight: {fileID: 3533639445656949545}
+--- !u!114 &406405939854121579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841188822419742532}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.92156863, g: 0.9607843, b: 1, a: 1}
+  m_EffectDistance: {x: 8, y: 8}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4190411810440079012
 GameObject:
   m_ObjectHideFlags: 0
