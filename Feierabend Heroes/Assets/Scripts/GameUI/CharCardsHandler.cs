@@ -57,13 +57,10 @@ public class CharCardsHandler : MonoBehaviour {
 	private bool dPadRight;
 
 
-	private void Awake() {
+	private void Start() {
 		charClassContentScript = GetComponent<CharClassContent>();
 		RandomizeName();
-	}
-
-
-	private void Start() {
+		
 		randomNameText.color = charColors[charID];
 		DisplayCurrentStatus();
 	}
@@ -139,7 +136,7 @@ public class CharCardsHandler : MonoBehaviour {
 					SettingsHolder.registeredPlayers--;
 				}
 				if (currentStatus == 2) {
-					SettingsHolder.charNames[charID] = "";
+					// SettingsHolder.charNames[charID] = "";
 				}
 
 				currentStatus--;

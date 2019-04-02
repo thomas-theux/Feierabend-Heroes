@@ -65,7 +65,6 @@ public class GameUIHandler : MonoBehaviour {
 	private void Update() {
 		if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel) {
 			if (SettingsHolder.registeredPlayers >= 2 && SettingsHolder.registeredPlayers == connectedGamepads) {
-
 				startedLevel = true;
 				StartCoroutine(StartLevel());
 			}
@@ -100,7 +99,6 @@ public class GameUIHandler : MonoBehaviour {
 		yield return new WaitForSeconds(0.1f);
 
 		SceneManager.LoadScene("3 Aeras");
-		// SceneManager.LoadScene("3 Aeras [Backup]");
 	}
 	
 }
