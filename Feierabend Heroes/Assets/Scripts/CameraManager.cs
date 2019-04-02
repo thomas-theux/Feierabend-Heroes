@@ -5,7 +5,9 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour {
 
 	public Camera playerCamera;
-	public GameObject skillUIGO;
+	public GameObject listSkills;
+	public GameObject cardSkills;
+	private GameObject skillUIGO;
 	public GameObject charUIGO;
 
 	private float camWidth = 0.5f;
@@ -58,6 +60,8 @@ public class CameraManager : MonoBehaviour {
 			newCam.rect = new Rect(camPosX, camPosY, camWidth, camHeight);
 			newCam.GetComponent<CameraFollow>().target = GameObject.Find("Character" + i).transform;
 
+			SetSkillMode();
+
 			// Instantiate skill UI for every player
 			GameObject newSkillUI = Instantiate(skillUIGO);
 			// SettingsHolder.skillUIArr.Add(newSkillUI);
@@ -66,8 +70,11 @@ public class CameraManager : MonoBehaviour {
 			newSkillUI.transform.GetChild(0).GetComponent<Canvas>().worldCamera = GameObject.Find("PlayerCamera" + i).gameObject.GetComponent<Camera>();
 			newSkillUI.transform.GetChild(0).GetComponent<Canvas>().planeDistance = 1;
 			
-			// newSkillUI.GetComponent<SkillBoardHandler>().InitializeSkillUI();
-			newSkillUI.GetComponent<SkillCardsHandler>().InitializeSkillUI();
+			if (SettingsHolder.skillMode == 0) {
+				newSkillUI.GetComponent<SkillBoardHandler>().InitializeSkillUI();
+			} else {
+				newSkillUI.GetComponent<SkillCardsHandler>().InitializeSkillUI();
+			}
 
 			// Instantiate character UI for every player
 			GameObject newCharUI = Instantiate(charUIGO);
@@ -85,6 +92,15 @@ public class CameraManager : MonoBehaviour {
 				newCharUI.GetComponent<UnityEngine.UI.CanvasScaler>().referenceResolution = new Vector2(1440, 900);
 			}
 
+		}
+	}
+
+
+	private void SetSkillMode() {
+		if (SettingsHolder.skillMode == 0) {
+			skillUIGO = listSkills;
+		} else {
+			skillUIGO = cardSkills;
 		}
 	}
 

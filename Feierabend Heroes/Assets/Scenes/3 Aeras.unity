@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4468766, g: 0.49675792, b: 0.5749926, a: 1}
+  m_IndirectSpecularColor: {r: 0.4468761, g: 0.4967577, b: 0.574992, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7817,7 +7817,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 20807133836630830, guid: 726da9c4810c741bda044c14ea5c334e,
     type: 3}
-  skillUIGO: {fileID: 2053369037366099208, guid: c26212c3c930d4fb98c694534f37671f,
+  listSkills: {fileID: 2053369037366099208, guid: 21dff941bd7a64a2ab9aa9096fb60e32,
+    type: 3}
+  cardSkills: {fileID: 2053369037366099208, guid: c26212c3c930d4fb98c694534f37671f,
     type: 3}
   charUIGO: {fileID: 1863164778189858, guid: 94aab2f64524a48629afa925a8657f0c, type: 3}
 --- !u!114 &546525272

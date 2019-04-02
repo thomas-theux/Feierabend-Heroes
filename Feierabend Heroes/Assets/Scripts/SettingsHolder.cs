@@ -9,11 +9,14 @@ public class SettingsHolder {
 	public static int playerCount = 0;
 	public static int registeredPlayers = 0;
 
+	// 0 = List ; 1 = Cards
+	public static int skillMode = 0;
+
 	public static float exploreTime = 45.0f;
 	public static float battleTime = 120.0f;
 
 	public static int appleSpawnMax = 0;
-	public static int orbSpawnMax = 12;
+	public static int orbSpawnMax = 15;
 
 	public static int startingOrbs = 2;
 	public static int orbsToWin = 20;
