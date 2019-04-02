@@ -83,6 +83,10 @@ public class TimeHandler : MonoBehaviour {
 	private IEnumerator StartTimer() {
 		yield return new WaitForSeconds(0.8f);
 
+		levelStartTimerText.text = "Round " + (SettingsHolder.currentRound + 1);
+
+		yield return new WaitForSeconds(1.4f);
+
 		levelStartTimerActive = true;
 		isTicking = true;
 
@@ -170,10 +174,17 @@ public class TimeHandler : MonoBehaviour {
 		showExplorationTimer = true;
 
 		if (roundEnd) {
-			yield return new WaitForSeconds(1.5f);
-
-			SceneManager.LoadScene("3 Aeras");
+			StartCoroutine(ShowLeaderboard());
 		}
+	}
+
+
+	private IEnumerator ShowLeaderboard() {
+		yield return new WaitForSeconds(1.0f);
+
+		// CODE FOR SHOW LEADER BOARD GOES HERE
+
+		SceneManager.LoadScene("3 Aeras");
 	}
 
 
@@ -193,24 +204,34 @@ public class TimeHandler : MonoBehaviour {
 
 			Instantiate(roundEndSound);
 
-			levelStartTimerText.text = "Round Over!";
-			startLevel = false;
-			startBattle = false;
-
-			roundEnd = true;
-
 			// Give round winner 2 orbs
 			if (GameManager.activePlayers.Count > 0) {
 				GameObject.Find("Character" + GameManager.activePlayers[0]).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForRoundWin;
 				GameObject.Find("Character" + GameManager.activePlayers[0]).GetComponent<CharacterMovement>().anim.SetBool("charWins", true);
 			}
 
-			StartCoroutine(WaitTwoSecs());
+			startLevel = false;
+			startBattle = false;
+
+			SettingsHolder.currentRound++;
+
+			if (SettingsHolder.currentRound >= SettingsHolder.amountOfRounds) {
+				if (!SettingsHolder.matchOver) {
+					SettingsHolder.matchOver = true;
+				}
+			} else {
+				levelStartTimerText.text = "Round Over!";
+				roundEnd = true;
+				StartCoroutine(WaitTwoSecs());
+			}
 		}
 	}
 
 
 	private IEnumerator MatchOver() {
+		levelStartTimerText.text = "";
+		yield return new WaitForSeconds(2.0f);
+
 		startLevel = false;
 		startBattle = false;
 		battleStartTimerActive = false;

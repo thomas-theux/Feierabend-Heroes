@@ -8,15 +8,19 @@ public class SlowingTendrils : MonoBehaviour {
 
 
     private void OnTriggerEnter(Collider other) {
-        if (other.tag.Contains("Character") && other.tag != this.gameObject.transform.parent.tag) {
-            other.GetComponent<CharacterSheet>().moveSpeed /= slowDownSpeed;
+        if (TimeHandler.startBattle) {
+            if (other.tag.Contains("Character") && other.tag != this.gameObject.transform.parent.tag) {
+                other.GetComponent<CharacterSheet>().moveSpeed /= slowDownSpeed;
+            }
         }
     }
 
 
     private void OnTriggerExit(Collider other) {
-        if (other.tag.Contains("Character") && other.tag != this.gameObject.transform.parent.tag) {
-            other.GetComponent<CharacterSheet>().moveSpeed *= slowDownSpeed;
+        if (TimeHandler.startBattle) {
+            if (other.tag.Contains("Character") && other.tag != this.gameObject.transform.parent.tag) {
+                other.GetComponent<CharacterSheet>().moveSpeed *= slowDownSpeed;
+            }
         }
     }
 

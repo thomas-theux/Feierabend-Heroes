@@ -169,7 +169,6 @@ public class CharClassContent : MonoBehaviour {
 		"Crazy",
 		"Lazy",
 		"Dancing",
-		"Proper",
 		"Creative",
 		"Fat",
 		"Chubby",

@@ -39,7 +39,7 @@ public class Class_Novist : MonoBehaviour {
 	private float performTimeDef = 0.2f;
 	private float performTime = 0;
 
-	private bool assiveSkillActivated = false;
+	private bool passiveSkillActivated = false;
 
 	private float attackOneDelay;
 	private float attackTwoDelay;
@@ -206,7 +206,7 @@ public class Class_Novist : MonoBehaviour {
 				CastSkill();
 			}
 
-			if (characterSheetScript.slowingTendrilsActive && !assiveSkillActivated) {
+			if (characterSheetScript.slowingTendrilsActive && !passiveSkillActivated) {
 				ActivatePassive();
 			}
 
@@ -370,7 +370,7 @@ public class Class_Novist : MonoBehaviour {
 
 
 	private void ActivatePassive() {
-		assiveSkillActivated = true;
+		passiveSkillActivated = true;
 		GameObject newTendrils = Instantiate(passiveSkillGO);
 		newTendrils.transform.parent = this.gameObject.transform;
 		newTendrils.transform.localPosition = new Vector3(0, 0, 0);

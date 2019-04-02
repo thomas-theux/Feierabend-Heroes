@@ -77,11 +77,11 @@ public class CharacterSheet : MonoBehaviour {
 	}
 
 
-	private void Update() {
-		// Check if this player has enough orbs to win the match
-		if (currentOrbs >= SettingsHolder.orbsToWin && !SettingsHolder.matchOver) {
-			SettingsHolder.matchOver = true;
-		}
-	}
+	// private void Update() {
+	// 	// Check if this player has enough orbs to win the match
+	// 	if (currentOrbs >= SettingsHolder.orbsToWin && !SettingsHolder.matchOver) {
+	// 		SettingsHolder.matchOver = true;
+	// 	}
+	// }
 
 }
