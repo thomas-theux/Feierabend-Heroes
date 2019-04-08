@@ -15,14 +15,19 @@ public class Bomb : MonoBehaviour {
 	private Rigidbody rb;
 	public GameObject bombRadius;
 
-	public float gravityScale = 2.0f;
+	private float moveSpeed = 18.0f;
+	private float gravityScale = 2.0f;
     private float globalGravity = -9.81f;
 
-	// These variables can be improved by advancing on the skill tree
-	public float moveSpeed = 12.0f;
+	private GameManager gameManagerScript;
 
 
 	void Awake () {
+		// ACTIVATE FOR TESTING BOMB RANGE
+		// gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
+		// moveSpeed = gameManagerScript.moveSpeed;
+		// gravityScale = gameManagerScript.gravityScale;
+
 		rb = GetComponent<Rigidbody>();
 		rb.velocity = transform.forward * moveSpeed;
 	}

@@ -106,7 +106,9 @@ public class CompanionAggro : MonoBehaviour {
 
 		// Check if enemy dodges attack
 		if (dodgeChance > enemyDodge) {
-			dealDamage = casterDamage - ((enemyDefense / 100) * casterDamage);
+			// dealDamage = casterDamage - ((enemyDefense / 100) * casterDamage);	// my old formula – heals player if def > 100
+			// dealDamage = casterDamage * casterDamage / (casterDamage + enemyDefense);
+			dealDamage = casterDamage * (100 / (100 + enemyDefense));
 
 			// If character lands a critical strike then multiply damage
 			if (casterCritChance <= critChance) {
