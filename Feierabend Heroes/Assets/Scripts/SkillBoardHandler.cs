@@ -71,7 +71,6 @@ public class SkillBoardHandler : MonoBehaviour {
 	private string[] passiveSkillInfo = {"", "", "", ""};
 
 
-    // public void Start() {
     public void InitializeSkillUI() {
         characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
         skillsHandlerScript = GetComponent<SkillsHandler>();
@@ -119,13 +118,13 @@ public class SkillBoardHandler : MonoBehaviour {
         defenseSkillDict.Add("Cap", 10);
         defenseSkillDict.Add("Unlocked", true);
         
-        critSkillDict.Add("Title", "Critical Hit");
+        critSkillDict.Add("Title", "Secondary Attack");
         critSkillDict.Add("Info", "+6%");
         // critSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
-        critSkillDict.Add("Costs", 1);
+        critSkillDict.Add("Costs", 2);
         critSkillDict.Add("Level", -1);
         critSkillDict.Add("Cap", 10);
-        critSkillDict.Add("Unlocked", true);
+        critSkillDict.Add("Unlocked", false);
         
         // Tier TWO skills and stats
         ASPDSkillDict.Add("Title", "Attack Speed");
@@ -375,7 +374,7 @@ public class SkillBoardHandler : MonoBehaviour {
 
             // Show these if the skill is still LOCKED
             skillTitleText.text = "Locked";
-            if (currentIndex == 4 || currentIndex == 5) {
+            if (currentIndex == 3 || currentIndex == 4 || currentIndex == 5) {
                 if (SettingsHolder.tierTwoCosts - spentOrbs > 1) {
                     skillInfoText.text = "Spend " + (SettingsHolder.tierTwoCosts - spentOrbs) + " more orbs to unlock";
                 } else {
@@ -422,16 +421,12 @@ public class SkillBoardHandler : MonoBehaviour {
 
 
     private void ActivateTierTwo() {
-        // for (int i = 1; i < 4; i++) {
-            // Assign unlocked skills to unlock navigation
-            // skillArray[i].GetComponent<ButtonNavList>().navDown = skillArray[i+4].GetComponent<Image>();
-        // }
-
-        for (int j = 4; j < 6; j++) {
+        for (int j = 3; j < 6; j++) {
             // Set skill icons transparency to 100%
-            skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            // skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
-            // Show Skill texts
+            // Show Skill texts and icons
+            skillArray[j].transform.GetChild(2).GetComponent<Text>().text = "";
             skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = (string)skillData[j]["Title"];
             
             // Show LevelDisplayer
@@ -448,17 +443,12 @@ public class SkillBoardHandler : MonoBehaviour {
 
 
     private void ActivateTierThree() {
-        // for (int i = 4; i < 4; i++) {
-            // Assign unlocked skills to unlock navigation
-            // skillArray[i].GetComponent<ButtonNavList>().navDown = skillArray[i+3].GetComponent<Image>();
-        // }
-
         for (int j = 6; j < 8; j++) {
             // Set skill icons transparency to 100%
-            skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            // skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             // Show Skill texts
-            skillArray[j].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = (string)skillData[j]["Title"];
+            skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = (string)skillData[j]["Title"];
             
             // Show LevelDisplayer
             // skillArray[j].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);

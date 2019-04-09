@@ -62,7 +62,7 @@ public class CharClassContent : MonoBehaviour {
 	};
 
 	public static string[] enableSkillTexts = {
-        "Shoots enemies on sight",
+        "Shoots at enemies on sight",
         "Attacks enemies on sight",
         "Blinds nearby enemies",
         "Fight faster, move quicker"
