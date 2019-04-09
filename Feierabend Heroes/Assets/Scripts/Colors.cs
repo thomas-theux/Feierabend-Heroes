@@ -22,4 +22,14 @@ public class Colors : MonoBehaviour {
 
     public static Color32 keyOrange30 = new Color32(255, 109, 1, 255);
 
+    public static Color32[] keyPlayers = {
+        new Color32(61, 132, 153, 255),
+        new Color32(153, 62, 61, 255),
+        new Color32(61, 153, 105, 255),
+        new Color32(153, 144, 61, 255)
+    };
+
+    public static Color32 keyPaper = new Color32(235, 213, 171, 255);
+    
+
 }

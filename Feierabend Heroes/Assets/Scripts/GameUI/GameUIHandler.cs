@@ -12,7 +12,13 @@ public class GameUIHandler : MonoBehaviour {
 
 	public AudioSource startMatchSound;
 
-	private float startPosX = 283;
+	// private float startPosX = 283;
+	private Vector2[] positionsArr = {
+		new Vector2(0, 0),
+		new Vector2(705, 0),
+		new Vector2(0, -370),
+		new Vector2(705, -370)
+	};
 
 	public static int connectedGamepads;
 	private int playerMax = 4;
@@ -37,9 +43,10 @@ public class GameUIHandler : MonoBehaviour {
 		connectedGamepads = 2; // ReInput.controllers.joystickCount;
 
 		for (int i = 0; i < playerMax; i++) {
-			GameObject newCharCard = Instantiate(charCardGO);
-			newCharCard.transform.SetParent(cardsParent.transform, false);
-			newCharCard.transform.localPosition = new Vector3(startPosX * i, 0, 0);
+			GameObject newCharCard = Instantiate(charCardGO, cardsParent.transform, false);
+			// newCharCard.transform.SetParent(cardsParent.transform, false);
+			// newCharCard.transform.localPosition = new Vector3(startPosX * i, 0, 0);
+			newCharCard.transform.localPosition = positionsArr[i];
 
 			newCharCard.GetComponent<CharCardsHandler>().charID = i;
 		}

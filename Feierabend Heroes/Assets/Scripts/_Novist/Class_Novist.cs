@@ -183,10 +183,10 @@ public class Class_Novist : MonoBehaviour {
 		// characterSheetScript.moveSpeed = moveSpeed;
 		// characterSheetScript.charDefense = charDefense;
 
-		characterSheetScript.currentHealth = CharClassContent.charHPTexts[characterSheetScript.charClass];
-		characterSheetScript.maxHealth = CharClassContent.charHPTexts[characterSheetScript.charClass];
-		characterSheetScript.moveSpeed = CharClassContent.charMSPDTexts[characterSheetScript.charClass];
-		characterSheetScript.charDefense = CharClassContent.charDEFTexts[characterSheetScript.charClass];
+		characterSheetScript.currentHealth = CharClassContent.charHPStats[characterSheetScript.charClass];
+		characterSheetScript.maxHealth = CharClassContent.charHPStats[characterSheetScript.charClass];
+		characterSheetScript.moveSpeed = CharClassContent.charMSPDStats[characterSheetScript.charClass];
+		characterSheetScript.charDefense = CharClassContent.charDEFStats[characterSheetScript.charClass];
 	}
 
 

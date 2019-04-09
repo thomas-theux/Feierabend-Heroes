@@ -12,21 +12,28 @@ public class CharClassContent : MonoBehaviour {
 		"SHAPE SHIFTER"
 	};
 
-	public static float[] charHPTexts = {
+	public static string[] classDescriptions = {
+		"Short-ranged Machinist",
+		"Long-ranged Tank Mage",
+		"Medium-ranged Warrior",
+		"Short-ranged Assassin"
+	};
+
+	public static float[] charHPStats = {
 		260.0f,
 		380.0f,
 		300.0f,
 		220.0f
 	};
 
-	public static float[] charDEFTexts = {
+	public static float[] charDEFStats = {
 		8.0f,
 		18.0f,
 		10.0f,
 		6.0f
 	};
 
-	public static float[] charMSPDTexts = {
+	public static float[] charMSPDStats = {
 		10.0f,
 		8.0f,
 		9.0f,

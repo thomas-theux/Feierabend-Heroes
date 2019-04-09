@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Rewired;
 
 public class CharCardsHandler : MonoBehaviour {
@@ -14,11 +15,18 @@ public class CharCardsHandler : MonoBehaviour {
 	private int currentIndex = 0;
 	private int[] charClassesArr = {0, 1};
 
+	private float cursorBase = -10;
+	private float cursorDistance = -46;
+
 	public Image gamepadIcon;
 	public GameObject pressToJoinGO;
 	public GameObject charClassGO;
-	public GameObject arrowNavGO;
-	public GameObject readyGO;
+	public Image selectionCursor;
+	// public GameObject arrowNavGO;
+	// public GameObject readyGO;
+	public GameObject readyStampGO;
+	public GameObject oneColumn;
+	public GameObject twoColumns;
 
 	public AudioSource selectSound;
 	public AudioSource navigateSound;
@@ -26,42 +34,45 @@ public class CharCardsHandler : MonoBehaviour {
 	public AudioSource toggleSound;
 	public AudioSource randomizeNameSound;
 
-	private Color[] charColors = {
-		new Color32(23, 155, 194, 255),
-		new Color32(231, 86, 84, 255),
-		new Color32(35, 194, 112, 255),
-		new Color32(182, 194, 35, 255)
-	};
+	// private Color[] charColors = {
+	// 	new Color32(23, 155, 194, 255),
+	// 	new Color32(231, 86, 84, 255),
+	// 	new Color32(35, 194, 112, 255),
+	// 	new Color32(182, 194, 35, 255)
+	// };
 
 	private CharClassContent charClassContentScript;
 
-	public Text randomNameText;
-	public Text classText;
-	public Text charHPText;
-	public Text charDEFText;
-	public Text charMSPDText;
+	// public Text randomNameText;
+	public TMP_Text randomNameText;
+	// public TMP_Text classText;
+	public TMP_Text[] classTexts;
+	public TMP_Text charHPStat;
+	public TMP_Text charDEFStat;
+	public TMP_Text charMSPDStat;
+	public TMP_Text charClassDesc;
 	public Image classImage;
 
-	public Image attackOneImage;
-	public Text attackOneTitleText;
-	public Image attackTwoImage;
-	public Text attackTwoTitleText;
-	public Text skillTitle;
-	public Text passiveTitle;
+	// public Image attackOneImage;
+	// public Text attackOneTitleText;
+	// public Image attackTwoImage;
+	// public Text attackTwoTitleText;
+	// public Text skillTitle;
+	// public Text passiveTitle;
 
 	// REWIRED
 	private bool selectButton;
 	private bool cancelButton;
 	private bool randomizeNameButton;
-	private bool dPadLeft;
-	private bool dPadRight;
+	private bool dPadUp;
+	private bool dPadDown;
 
 
 	private void Start() {
 		charClassContentScript = GetComponent<CharClassContent>();
 		RandomizeName();
 		
-		randomNameText.color = charColors[charID];
+		// randomNameText.color = charColors[charID];
 		DisplayCurrentStatus();
 	}
 
@@ -82,8 +93,8 @@ public class CharCardsHandler : MonoBehaviour {
 		cancelButton = ReInput.players.GetPlayer(charID).GetButtonDown("Circle");
 		randomizeNameButton = ReInput.players.GetPlayer(charID).GetButtonDown("Square");
 
-		dPadLeft = ReInput.players.GetPlayer(charID).GetButtonDown("DPadLeft");
-		dPadRight = ReInput.players.GetPlayer(charID).GetButtonDown("DPadRight");
+		dPadUp = ReInput.players.GetPlayer(charID).GetButtonDown("DPadUp");
+		dPadDown = ReInput.players.GetPlayer(charID).GetButtonDown("DPadDown");
 	}
 
 
@@ -119,7 +130,7 @@ public class CharCardsHandler : MonoBehaviour {
 				if (selectButton && !playerReady) {
 					playerReady = true;
 					Instantiate(selectSound);
-					classText.text = "READY!";
+					// classText.text = "READY!";
 					SettingsHolder.playerClasses[charID] = currentIndex;
 					SettingsHolder.registeredPlayers++;
 				}
@@ -147,40 +158,49 @@ public class CharCardsHandler : MonoBehaviour {
 
 
 	private void ClassNavigation() {
-		if (dPadLeft) {
-			Instantiate(navigateSound);
-			if (currentIndex == 0) {
-				currentIndex = charClassesArr.Length-1;
-			} else {
+		if (dPadUp) {
+			if (currentIndex > 0) {
+				Instantiate(navigateSound);
 				currentIndex--;
+				DisplayClasses();
 			}
-			DisplayClasses();
 		}
 
-		if (dPadRight) {
-			Instantiate(navigateSound);
-			if (currentIndex == charClassesArr.Length-1) {
-				currentIndex = 0;
-			} else {
+		if (dPadDown) {
+			if (currentIndex < charClassesArr.Length - 1) {
+				Instantiate(navigateSound);
 				currentIndex++;
+				DisplayClasses();
 			}
-			DisplayClasses();
 		}
 	}
 
 
 	private void DisplayClasses() {
-		classText.text = CharClassContent.classTexts[currentIndex];
-		charHPText.text = CharClassContent.charHPTexts[currentIndex] + "";
-		charDEFText.text = CharClassContent.charDEFTexts[currentIndex] + "";
-		charMSPDText.text = CharClassContent.charMSPDTexts[currentIndex] + "";
+		// Display cursor
+		selectionCursor.transform.localPosition = new Vector2(
+			selectionCursor.transform.localPosition.x,
+			cursorBase + cursorDistance * currentIndex
+		);
 
-		attackOneTitleText.text = CharClassContent.attackOneTitleTexts[currentIndex] + "";
-		attackTwoTitleText.text = CharClassContent.attackTwoTitleTexts[currentIndex] + "";
-		attackOneImage.sprite = charClassContentScript.attackOneImages[currentIndex];
-		attackTwoImage.sprite = charClassContentScript.attackTwoImages[currentIndex];
-		skillTitle.text = CharClassContent.skillTitles[currentIndex] + "";
-		passiveTitle.text = CharClassContent.passiveTitles[currentIndex] + "";
+		// Color class texts depending on highlight
+		for (int i = 0; i < classTexts.Length; i++) {
+			classTexts[i].color = Colors.blue20;
+			classTexts[currentIndex].color = Colors.keyPaper;
+		}
+
+		// classText.text = CharClassContent.classTexts[currentIndex];
+		charHPStat.text = CharClassContent.charHPStats[currentIndex] + "";
+		charDEFStat.text = CharClassContent.charDEFStats[currentIndex] + "";
+		charMSPDStat.text = CharClassContent.charMSPDStats[currentIndex] + "";
+		charClassDesc.text = CharClassContent.classDescriptions[currentIndex] + "";
+
+		// attackOneTitleText.text = CharClassContent.attackOneTitleTexts[currentIndex] + "";
+		// attackTwoTitleText.text = CharClassContent.attackTwoTitleTexts[currentIndex] + "";
+		// attackOneImage.sprite = charClassContentScript.attackOneImages[currentIndex];
+		// attackTwoImage.sprite = charClassContentScript.attackTwoImages[currentIndex];
+		// skillTitle.text = CharClassContent.skillTitles[currentIndex] + "";
+		// passiveTitle.text = CharClassContent.passiveTitles[currentIndex] + "";
 		classImage.sprite = charClassContentScript.classImages[currentIndex];
 	}
 
@@ -189,45 +209,41 @@ public class CharCardsHandler : MonoBehaviour {
 		switch(currentStatus) {
 			case 0:
 				isConnected = false;
-				gamepadIcon.color = new Color32(255, 255, 255, 50);
+				oneColumn.SetActive(true);
+				twoColumns.SetActive(false);
+				gamepadIcon.color = new Color32(0, 0, 0, 0);
 				pressToJoinGO.SetActive(false);
 				charClassGO.SetActive(false);
-				arrowNavGO.SetActive(false);
-				// readyGO.SetActive(false);
-				classText.enabled = false;
-				readyGO.GetComponent<Image>().color = new Color32(235, 245, 255, 0);
+				readyStampGO.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
 				break;
 			case 1:
 				isConnected = true;
-				gamepadIcon.color = new Color32(255, 255, 255, 255);
+				oneColumn.SetActive(true);
+				twoColumns.SetActive(false);
+				gamepadIcon.color = Colors.keyPlayers[charID];
 				pressToJoinGO.SetActive(true);
 				charClassGO.SetActive(false);
-				arrowNavGO.SetActive(false);
-				// readyGO.SetActive(false);
-				classText.enabled = false;
-				readyGO.GetComponent<Image>().color = new Color32(235, 245, 255, 0);
+				readyStampGO.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
 				break;
 			case 2:
 				isConnected = true;
-				gamepadIcon.color = new Color32(255, 255, 255, 0);
+				oneColumn.SetActive(false);
+				twoColumns.SetActive(true);
+				gamepadIcon.color = Colors.keyPlayers[charID];
 				pressToJoinGO.SetActive(false);
 				charClassGO.SetActive(true);
-				arrowNavGO.SetActive(true);
-				// readyGO.SetActive(true);
-				classText.enabled = true;
-				readyGO.GetComponent<Image>().color = new Color32(235, 245, 255, 255);
+				readyStampGO.GetComponent<Image>().color = new Color32(0, 0, 0, 0);
 
 				DisplayClasses();
 				break;
 			case 3:
 				isConnected = true;
-				gamepadIcon.color = new Color32(255, 255, 255, 0);
+				oneColumn.SetActive(false);
+				twoColumns.SetActive(true);
+				gamepadIcon.color = Colors.keyPlayers[charID];
 				pressToJoinGO.SetActive(false);
 				charClassGO.SetActive(true);
-				arrowNavGO.SetActive(false);
-				// readyGO.SetActive(true);
-				classText.enabled = true;
-				readyGO.GetComponent<Image>().color = new Color32(255, 109, 1, 255);
+				readyStampGO.GetComponent<Image>().color = Colors.keyPlayers[charID];
 				break;
 		}
 	}
