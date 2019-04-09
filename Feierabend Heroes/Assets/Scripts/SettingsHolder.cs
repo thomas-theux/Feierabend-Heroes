@@ -21,8 +21,8 @@ public class SettingsHolder {
 	public static int appleSpawnMax = 0;
 	public static int orbSpawnMax = 15;
 
-	public static int startingOrbs = 2;
-	public static int orbsToWin = 20;
+	public static int startingOrbs = 99;
+	public static int orbsToWin = 200;
 	public static int orbsEveryRound = 2;
 	public static int orbsForRoundWin = 2;
 	public static int orbsForKills = 2;

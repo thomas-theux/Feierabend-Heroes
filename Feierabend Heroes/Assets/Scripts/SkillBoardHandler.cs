@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Rewired;
 
 public class SkillBoardHandler : MonoBehaviour {
@@ -13,7 +14,7 @@ public class SkillBoardHandler : MonoBehaviour {
     public GameObject tierThreeImage;
     public Text orbsNeededTierTwo;
     public Text orbsNeededTierThree;
-    public Text currentOrbCount;
+    public TMP_Text currentOrbCount;
 
     public AudioSource cursorMoveSound;
 	public AudioSource activateSkillSound;
@@ -48,9 +49,9 @@ public class SkillBoardHandler : MonoBehaviour {
     private bool tierTwoActive = false;
     private bool tierThreeActive = false;
 
-    public Text skillTitleText;
-    public Text skillInfoText;
-    public Text skillCostText;
+    public TMP_Text skillTitleText;
+    public TMP_Text skillInfoText;
+    public TMP_Text skillCostText;
     public Image orbIcon;
     public Image currentSkillIcon;
     public Image bigLockIcon;
@@ -247,9 +248,9 @@ public class SkillBoardHandler : MonoBehaviour {
         // Display current skill level
         if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
             // skillArray[currentIndex].transform.GetChild(1).GetComponent<Text>().text = ((int)skillData[currentIndex]["Level"] + 1) + "/" + (int)skillData[currentIndex]["Cap"];
-            skillArray[currentIndex].transform.GetChild(1).GetComponent<Text>().text = "LV " + ((int)skillData[currentIndex]["Level"] + 1);
+            skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV " + ((int)skillData[currentIndex]["Level"] + 1);
         } else {
-            skillArray[currentIndex].transform.GetChild(1).GetComponent<Text>().text = "LV " + ((int)skillData[currentIndex]["Level"] + 1);
+            skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV " + ((int)skillData[currentIndex]["Level"] + 1);
             // skillArray[currentIndex].transform.GetChild(2).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         }
     }
@@ -267,6 +268,19 @@ public class SkillBoardHandler : MonoBehaviour {
 
 
     private void DisplayNewTexts() {
+        // Color texts depending if they're highlighted, locked, or regular
+        for (int i = 0; i < skillArray.Count; i++) {
+            if (i == currentIndex) {
+                skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Colors.keyPaper;
+                skillArray[currentIndex].transform.GetChild(2).GetComponent<Text>().color = Colors.keyPaper;
+                skillArray[currentIndex].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.keyPaper;
+            } else {
+                skillArray[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Colors.blue20;
+                skillArray[i].transform.GetChild(2).GetComponent<Text>().color = Colors.blue20;
+                skillArray[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.blue20;
+            }
+        }
+
         // Get current stats and write texts for skillboard
         switch (currentIndex) {
             // HEALTH
@@ -355,7 +369,7 @@ public class SkillBoardHandler : MonoBehaviour {
             skillInfoText.text = (string)skillData[currentIndex]["Info"];
 
             currentSkillIcon.color = new Color32(255, 255, 255, 255);
-            currentSkillIcon.sprite = skillArray[currentIndex].transform.GetChild(5).GetComponent<Image>().sprite;
+            currentSkillIcon.sprite = skillArray[currentIndex].transform.GetChild(4).GetComponent<Image>().sprite;
             bigLockIcon.color = new Color32(255, 255, 255, 0);
         } else {
 
@@ -384,11 +398,11 @@ public class SkillBoardHandler : MonoBehaviour {
             // int costsForSkill = ((int[])skillData[currentIndex]["Costs"])[currentLevel+1];
             int costsForSkill = (int)skillData[currentIndex]["Costs"];
             skillCostText.text = costsForSkill + "";
-            skillCostText.alignment = TextAnchor.MiddleRight;
+            // skillCostText.alignment = TextAnchor.MiddleRight;
             orbIcon.color = new Color32(255, 255, 255, 255);
         } else {
             skillCostText.text = "✔";
-            skillCostText.alignment = TextAnchor.MiddleCenter;
+            // skillCostText.alignment = TextAnchor.MiddleCenter;
             orbIcon.color = new Color32(255, 255, 255, 0);
         }
     }
@@ -418,14 +432,14 @@ public class SkillBoardHandler : MonoBehaviour {
             skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             // Show Skill texts
-            skillArray[j].transform.GetChild(4).GetComponent<Text>().text = (string)skillData[j]["Title"];
+            skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = (string)skillData[j]["Title"];
             
             // Show LevelDisplayer
-            skillArray[j].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            // skillArray[j].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             // Show current skill level
             // skillArray[j].transform.GetChild(1).GetComponent<Text>().text = "0/" + (int)skillData[j]["Cap"];
-            skillArray[j].transform.GetChild(1).GetComponent<Text>().text = "LV 0";
+            skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV 0";
 
             // Unlock the newly unlocked skills
             skillData[j]["Unlocked"] = true;
@@ -444,14 +458,14 @@ public class SkillBoardHandler : MonoBehaviour {
             skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             // Show Skill texts
-            skillArray[j].transform.GetChild(4).GetComponent<Text>().text = (string)skillData[j]["Title"];
+            skillArray[j].transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = (string)skillData[j]["Title"];
             
             // Show LevelDisplayer
-            skillArray[j].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            // skillArray[j].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             // Show current skill level
             // skillArray[j].transform.GetChild(1).GetComponent<Text>().text = "0/" + (int)skillData[j]["Cap"];
-            skillArray[j].transform.GetChild(1).GetComponent<Text>().text = "LV 0";
+            skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV 0";
 
             // Unlock the newly unlocked skills
             skillData[j]["Unlocked"] = true;
