@@ -12,28 +12,30 @@ public class SettingsHolder {
 	// 0 = List ; 1 = Cards
 	public static int skillMode = 0;
 
-	public static int amountOfRounds = 2;
 	public static int currentRound = 0;
+	public static int amountOfRounds = 2;
 
-	public static float exploreTime = 5.0f;
+	public static float exploreTime = 15.0f;
 	public static float battleTime = 520.0f;
 
 	public static int appleSpawnMax = 0;
 	public static int orbSpawnMax = 15;
 
-	public static int startingOrbs = 99;
-	public static int orbsToWin = 200;
-	public static int orbsEveryRound = 2;
-	public static int orbsForRoundWin = 2;
-	public static int orbsForKills = 2;
+	public static int startingOrbs = 1110;
+	public static int orbsToWin = 9999;
+
+	public static int orbsEveryRound = 15;
+	public static int orbsForRoundWin = 15;
+	public static int orbsForKills = 20;
+	public static int orbsFromChests = 10;
 
 	public static bool matchOver = false;
 
 	public static bool initialSpawn = false;
 	public static bool nextMatch = false;
 
-	public static int tierTwoCosts = 6;
-	public static int tierThreeCosts = 12;
+	public static int tierTwoCosts = 60;
+	public static int tierThreeCosts = 180;
 
 	// Stats for character classes – Health, Defense, Move Speed
 	// public static float[] classHP = {260.0f, 380.0f, 300.0f, 220.0f};

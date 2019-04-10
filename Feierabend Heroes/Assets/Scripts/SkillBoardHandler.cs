@@ -12,9 +12,26 @@ public class SkillBoardHandler : MonoBehaviour {
 
     public GameObject tierTwoImage;
     public GameObject tierThreeImage;
+    public TMP_Text currentOrbCount;
     public Text orbsNeededTierTwo;
     public Text orbsNeededTierThree;
-    public TMP_Text currentOrbCount;
+
+    private Color32 opaqueSkills = new Color32(
+        Colors.blue20.r,
+        Colors.blue20.g,
+        Colors.blue20.b,
+        128
+    );
+
+    // Icons from IcoFont for when unlocking skills in the list
+    private string[] statIconsArr = {
+        "",
+        "",
+        "",
+
+        "",
+        ""
+    };
 
     public AudioSource cursorMoveSound;
 	public AudioSource activateSkillSound;
@@ -56,6 +73,9 @@ public class SkillBoardHandler : MonoBehaviour {
     public Image currentSkillIcon;
     public Image bigLockIcon;
 
+    private string secondaryEnableInfo = "";
+    private string secondaryImproveInfo = "";
+
     private string newSkillTitle = "";
     private string newEnableInfo = "";
     private string newImproveInfo = "";
@@ -64,6 +84,9 @@ public class SkillBoardHandler : MonoBehaviour {
     private string newPassiveInfo = "";
 
     // Character class skills
+	private string[] enableSecondaryInfo = {"", "", "", ""};
+	private string[] improveSecondaryInfo = {"", "", "", ""};
+
 	private string[] activeSkillTitle = {"", "", "", ""};
 	private string[] enableSkillInfo = {"", "", "", ""};
 	private string[] improveSkillInfo = {"", "", "", ""};
@@ -78,6 +101,9 @@ public class SkillBoardHandler : MonoBehaviour {
 
         // Get all info texts from CharClassContent script
         for (int i = 0; i < CharClassContent.classTexts.Length; i++) {
+            enableSecondaryInfo[i] = CharClassContent.enableSecondaryTexts[characterSheetScript.charClass];
+            improveSecondaryInfo[i] = CharClassContent.improveSecondaryTexts[characterSheetScript.charClass];
+
             activeSkillTitle[i] = CharClassContent.skillTitles[characterSheetScript.charClass];
             passiveSkillTitle[i] = CharClassContent.passiveTitles[characterSheetScript.charClass];
             enableSkillInfo[i] = CharClassContent.enableSkillTexts[characterSheetScript.charClass];
@@ -86,6 +112,9 @@ public class SkillBoardHandler : MonoBehaviour {
         }
 
         // Get texts from character sheet script
+        secondaryEnableInfo = enableSecondaryInfo[characterSheetScript.charClass];
+        secondaryImproveInfo = improveSecondaryInfo[characterSheetScript.charClass];
+
         newSkillTitle = activeSkillTitle[characterSheetScript.charClass];
         newEnableInfo = enableSkillInfo[characterSheetScript.charClass];
         newImproveInfo = improveSkillInfo[characterSheetScript.charClass];
@@ -97,15 +126,15 @@ public class SkillBoardHandler : MonoBehaviour {
         healthSkillDict.Add("Title", "Health");
         healthSkillDict.Add("Info", "+10%");
         // healthSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
-        healthSkillDict.Add("Costs", 1);
+        healthSkillDict.Add("Costs", 10);
         healthSkillDict.Add("Level", -1);
         healthSkillDict.Add("Cap", 10);
         healthSkillDict.Add("Unlocked", true);
         
-        damageSkillDict.Add("Title", "Damage");
+        damageSkillDict.Add("Title", "Basic Attack");
         damageSkillDict.Add("Info", "+15%");
         // damageSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
-        damageSkillDict.Add("Costs", 1);
+        damageSkillDict.Add("Costs", 10);
         damageSkillDict.Add("Level", -1);
         damageSkillDict.Add("Cap", 10);
         damageSkillDict.Add("Unlocked", true);
@@ -113,15 +142,15 @@ public class SkillBoardHandler : MonoBehaviour {
         defenseSkillDict.Add("Title", "Defense");
         defenseSkillDict.Add("Info", "+20%");
         // defenseSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
-        defenseSkillDict.Add("Costs", 1);
+        defenseSkillDict.Add("Costs", 10);
         defenseSkillDict.Add("Level", -1);
         defenseSkillDict.Add("Cap", 10);
         defenseSkillDict.Add("Unlocked", true);
         
-        critSkillDict.Add("Title", "Secondary Attack");
+        critSkillDict.Add("Title", "Advanced Attack");
         critSkillDict.Add("Info", "+6%");
         // critSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
-        critSkillDict.Add("Costs", 2);
+        critSkillDict.Add("Costs", 20);
         critSkillDict.Add("Level", -1);
         critSkillDict.Add("Cap", 10);
         critSkillDict.Add("Unlocked", false);
@@ -130,7 +159,7 @@ public class SkillBoardHandler : MonoBehaviour {
         ASPDSkillDict.Add("Title", "Attack Speed");
         ASPDSkillDict.Add("Info", "+10%");
         // ASPDSkillDict.Add("Costs", new int[] {1, 2, 2, 3, 4});
-        ASPDSkillDict.Add("Costs", 2);
+        ASPDSkillDict.Add("Costs", 20);
         ASPDSkillDict.Add("Level", -1);
         ASPDSkillDict.Add("Cap", 10);
         ASPDSkillDict.Add("Unlocked", false);
@@ -138,7 +167,7 @@ public class SkillBoardHandler : MonoBehaviour {
         MSPDSkillDict.Add("Title", "Move Speed");
         MSPDSkillDict.Add("Info", "+10%");
         // MSPDSkillDict.Add("Costs", new int[] {1, 2, 2, 3, 4});
-        MSPDSkillDict.Add("Costs", 2);
+        MSPDSkillDict.Add("Costs", 20);
         MSPDSkillDict.Add("Level", -1);
         MSPDSkillDict.Add("Cap", 10);
         MSPDSkillDict.Add("Unlocked", false);
@@ -147,15 +176,15 @@ public class SkillBoardHandler : MonoBehaviour {
         classSkillDict.Add("Title", newSkillTitle);
         classSkillDict.Add("Info", "???");
         // classSkillDict.Add("Costs", new int[] {3, 1, 2, 3, 4, 5});
-        classSkillDict.Add("Costs", 3);
+        classSkillDict.Add("Costs", 30);
         classSkillDict.Add("Level", -1);
-        classSkillDict.Add("Cap", 10);
+        classSkillDict.Add("Cap", 6);
         classSkillDict.Add("Unlocked", false);
 
         passiveSkillDict.Add("Title", newPassiveTitle);
         passiveSkillDict.Add("Info", newPassiveInfo);
         // passiveSkillDict.Add("Costs", new int[] {5});
-        passiveSkillDict.Add("Costs", 3);
+        passiveSkillDict.Add("Costs", 30);
         passiveSkillDict.Add("Level", -1);
         passiveSkillDict.Add("Cap", 1);
         passiveSkillDict.Add("Unlocked", false);
@@ -177,6 +206,7 @@ public class SkillBoardHandler : MonoBehaviour {
     private void OnEnable() {
         DisplayNewTexts();
         UpdateOrbCount();
+        ShowCurrentLevels();
         UpdateTiers();
     }
 
@@ -246,11 +276,24 @@ public class SkillBoardHandler : MonoBehaviour {
     private void UpdateSkillLevel() {
         // Display current skill level
         if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
-            // skillArray[currentIndex].transform.GetChild(1).GetComponent<Text>().text = ((int)skillData[currentIndex]["Level"] + 1) + "/" + (int)skillData[currentIndex]["Cap"];
-            skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV " + ((int)skillData[currentIndex]["Level"] + 1);
+            skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ((int)skillData[currentIndex]["Level"] + 1) + " / " + (int)skillData[currentIndex]["Cap"];
+            // skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV " + ((int)skillData[currentIndex]["Level"] + 1);
         } else {
-            skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV " + ((int)skillData[currentIndex]["Level"] + 1);
+            skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "YES!";
+            // skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV " + ((int)skillData[currentIndex]["Level"] + 1);
             // skillArray[currentIndex].transform.GetChild(2).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        }
+    }
+
+
+    private void ShowCurrentLevels() {
+        // Display all current levels
+        for (int i = 0; i < skillArray.Count; i++) {
+            if ((int)skillData[i]["Level"] < (int)skillData[i]["Cap"] - 1) {
+                skillArray[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ((int)skillData[i]["Level"] + 1) + " / " + (int)skillData[i]["Cap"];
+            } else {
+                skillArray[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "YES!";
+            }
         }
     }
 
@@ -274,61 +317,63 @@ public class SkillBoardHandler : MonoBehaviour {
                 skillArray[currentIndex].transform.GetChild(2).GetComponent<Text>().color = Colors.keyPaper;
                 skillArray[currentIndex].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.keyPaper;
             } else {
-                skillArray[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Colors.blue20;
-                skillArray[i].transform.GetChild(2).GetComponent<Text>().color = Colors.blue20;
-                skillArray[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.blue20;
+                if ((bool)skillData[i]["Unlocked"]) {
+                    skillArray[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Colors.blue20;
+                    skillArray[i].transform.GetChild(2).GetComponent<Text>().color = Colors.blue20;
+                    skillArray[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.blue20;
+                } else {
+                    skillArray[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = opaqueSkills;
+                    skillArray[i].transform.GetChild(2).GetComponent<Text>().color = opaqueSkills;
+                    skillArray[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = opaqueSkills;
+                }
             }
         }
 
         // Get current stats and write texts for skillboard
         switch (currentIndex) {
             // HEALTH
-            case 0:
-                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
-                    skillData[currentIndex]["Info"] =
-                    characterSheetScript.maxHealth.ToString("F0") +
-                    " → " +
-                    (characterSheetScript.maxHealth + (characterSheetScript.maxHealth * SkillsHandler.increaseHP)).ToString("F0");
-                } else {
-                    skillData[currentIndex]["Title"] = "Health";
-                    skillData[currentIndex]["Info"] = characterSheetScript.maxHealth.ToString("F0");
-                }
-                break;
-            // DAMAGE
-            case 1:
-                float averageDmg = (characterSheetScript.attackOneDmg + characterSheetScript.attackTwoDmg) / 2;
-                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
-                    skillData[currentIndex]["Info"] =
-                    averageDmg.ToString("F0") +
-                    " → " +
-                    (averageDmg + (averageDmg * SkillsHandler.increaseDMG)).ToString("F0");
-                } else {
-                    skillData[currentIndex]["Title"] = "Damage";
-                    skillData[currentIndex]["Info"] = averageDmg.ToString("F0");
-                }
-                break;
-            // DEFENSE
-            case 2:
-                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
-                    skillData[currentIndex]["Info"] =
-                    characterSheetScript.charDefense.ToString("F0") +
-                    " → " +
-                    (characterSheetScript.charDefense + (characterSheetScript.charDefense * SkillsHandler.increaseDEF)).ToString("F0");
-                } else {
-                    skillData[currentIndex]["Title"] = "Defense";
-                    skillData[currentIndex]["Info"] = characterSheetScript.charDefense.ToString("F0");
-                }
-                break;
-            // CRIT HIT
+            // case 0:
+            //     if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+            //         skillData[currentIndex]["Info"] =
+            //         characterSheetScript.maxHealth.ToString("F0") +
+            //         " → " +
+            //         (characterSheetScript.maxHealth + (characterSheetScript.maxHealth * SkillsHandler.increaseHP)).ToString("F0");
+            //     } else {
+            //         skillData[currentIndex]["Title"] = "Health";
+            //         skillData[currentIndex]["Info"] = characterSheetScript.maxHealth.ToString("F0");
+            //     }
+            //     break;
+            // // DAMAGE
+            // case 1:
+            //     float averageDmg = (characterSheetScript.attackOneDmg + characterSheetScript.attackTwoDmg) / 2;
+            //     if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+            //         skillData[currentIndex]["Info"] =
+            //         averageDmg.ToString("F0") +
+            //         " → " +
+            //         (averageDmg + (averageDmg * SkillsHandler.increaseDMG)).ToString("F0");
+            //     } else {
+            //         skillData[currentIndex]["Title"] = "Damage";
+            //         skillData[currentIndex]["Info"] = averageDmg.ToString("F0");
+            //     }
+            //     break;
+            // // DEFENSE
+            // case 2:
+            //     if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+            //         skillData[currentIndex]["Info"] =
+            //         characterSheetScript.charDefense.ToString("F0") +
+            //         " → " +
+            //         (characterSheetScript.charDefense + (characterSheetScript.charDefense * SkillsHandler.increaseDEF)).ToString("F0");
+            //     } else {
+            //         skillData[currentIndex]["Title"] = "Defense";
+            //         skillData[currentIndex]["Info"] = characterSheetScript.charDefense.ToString("F0");
+            //     }
+            //     break;
+            // Secondary Attack
             case 3:
-                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
-                    skillData[currentIndex]["Info"] =
-                    characterSheetScript.critChance.ToString("F0") + "%" +
-                    " → " +
-                    (characterSheetScript.critChance + SkillsHandler.increaseCRT).ToString("F0") + "%";
+                if ((int)skillData[currentIndex]["Level"] < 0) {
+                    skillData[currentIndex]["Info"] = secondaryEnableInfo;
                 } else {
-                    skillData[currentIndex]["Title"] = "Critical Hit";
-                    skillData[currentIndex]["Info"] = characterSheetScript.critChance.ToString("F0") + "%";
+                    skillData[currentIndex]["Info"] = secondaryImproveInfo;
                 }
                 break;
             // ATTACK SPEED
@@ -336,17 +381,17 @@ public class SkillBoardHandler : MonoBehaviour {
                 // NOCH KEINE AHNUNG WIE ICH DEN SCHEISS ANZEIGEN SOLL :D
                 break;
             // MOVE SPEED
-            case 5:
-                if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
-                    skillData[currentIndex]["Info"] =
-                    characterSheetScript.moveSpeed.ToString("F1") +
-                    " → " +
-                    (characterSheetScript.moveSpeed + (characterSheetScript.moveSpeed * SkillsHandler.increaseMSPD)).ToString("F1");
-                } else {
-                    skillData[currentIndex]["Title"] = "Move Speed";
-                    skillData[currentIndex]["Info"] = characterSheetScript.moveSpeed.ToString("F1");
-                }
-                break;
+            // case 5:
+            //     if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
+            //         skillData[currentIndex]["Info"] =
+            //         characterSheetScript.moveSpeed.ToString("F1") +
+            //         " → " +
+            //         (characterSheetScript.moveSpeed + (characterSheetScript.moveSpeed * SkillsHandler.increaseMSPD)).ToString("F1");
+            //     } else {
+            //         skillData[currentIndex]["Title"] = "Move Speed";
+            //         skillData[currentIndex]["Info"] = characterSheetScript.moveSpeed.ToString("F1");
+            //     }
+            //     break;
             // CLASS SKILL
             case 6:
                 if ((int)skillData[currentIndex]["Level"] < 0) {
@@ -400,7 +445,7 @@ public class SkillBoardHandler : MonoBehaviour {
             // skillCostText.alignment = TextAnchor.MiddleRight;
             orbIcon.color = new Color32(255, 255, 255, 255);
         } else {
-            skillCostText.text = "✔";
+            skillCostText.text = "";
             // skillCostText.alignment = TextAnchor.MiddleCenter;
             orbIcon.color = new Color32(255, 255, 255, 0);
         }
@@ -426,15 +471,21 @@ public class SkillBoardHandler : MonoBehaviour {
             // skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             // Show Skill texts and icons
-            skillArray[j].transform.GetChild(2).GetComponent<Text>().text = "";
+            // Color iconColor = skillArray[j].transform.GetChild(2).GetComponent<Text>().color;
+            // iconColor.a = 255;
+
+            // skillArray[j].transform.GetChild(2).GetComponent<Text>().color = iconColor;
+            // skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = iconColor;
+
+            // skillArray[j].transform.GetChild(2).GetComponent<Text>().color = Colors.keyGold50;
+            // skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.keyGold50;
+
+            skillArray[j].transform.GetChild(2).GetComponent<Text>().text = statIconsArr[j-3];
             skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = (string)skillData[j]["Title"];
-            
-            // Show LevelDisplayer
-            // skillArray[j].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             // Show current skill level
-            // skillArray[j].transform.GetChild(1).GetComponent<Text>().text = "0/" + (int)skillData[j]["Cap"];
-            skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV 0";
+            skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "0 / " + (int)skillData[j]["Cap"];
+            // skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV 0";
 
             // Unlock the newly unlocked skills
             skillData[j]["Unlocked"] = true;
@@ -447,15 +498,13 @@ public class SkillBoardHandler : MonoBehaviour {
             // Set skill icons transparency to 100%
             // skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
-            // Show Skill texts
+            // Show Skill texts and icons
+            skillArray[j].transform.GetChild(2).GetComponent<Text>().text = statIconsArr[j-3];
             skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = (string)skillData[j]["Title"];
-            
-            // Show LevelDisplayer
-            // skillArray[j].transform.GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             // Show current skill level
-            // skillArray[j].transform.GetChild(1).GetComponent<Text>().text = "0/" + (int)skillData[j]["Cap"];
-            skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV 0";
+            skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "0 / " + (int)skillData[j]["Cap"];
+            // skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV 0";
 
             // Unlock the newly unlocked skills
             skillData[j]["Unlocked"] = true;
@@ -520,7 +569,7 @@ public class SkillBoardHandler : MonoBehaviour {
 
             } else {
                 print("Not unlocked yet!");
-                // Skill fully acivated
+                Instantiate(skillLockedSound);
                 // print("Skill already complete");
             }
 		}

@@ -50,9 +50,23 @@ public class CharClassContent : MonoBehaviour {
 	public static string[] attackTwoTitleTexts = {
 		"Bomb Throw",
 		"Fire Block",
-		"Ground Shake",
+		"Ground Quake",
 		"???"
 	};
+
+	public static string[] enableSecondaryTexts = {
+        "Start throwing Bombs at your enemies!",
+		"Fortify yourself behind a fiery wall!",
+		"Get rid of your enemies with this quake!",
+		"???"
+    };
+
+	public static string[] improveSecondaryTexts = {
+		"Bomb Damage +15%",
+		"Fire Damage +15%",
+		"Quake Damage +15%",
+		"???"
+    };
 
 	public static string[] skillTitles = {
 		"Turret Gun",

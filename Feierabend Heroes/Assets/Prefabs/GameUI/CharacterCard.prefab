@@ -2408,8 +2408,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Mr. Sneaky Bear
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 099c3c592bbbe450f8d63026c2106390, type: 2}
-  m_sharedMaterial: {fileID: 21711356009615048, guid: 099c3c592bbbe450f8d63026c2106390,
+  m_fontAsset: {fileID: 11400000, guid: 57e7a933bf1e24f63b2fe7d2a3702689, type: 2}
+  m_sharedMaterial: {fileID: 21582533814209890, guid: 57e7a933bf1e24f63b2fe7d2a3702689,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

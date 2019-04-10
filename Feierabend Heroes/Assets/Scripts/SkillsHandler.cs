@@ -36,10 +36,9 @@ public class SkillsHandler : MonoBehaviour {
                 characterSheetScript.maxHealth += characterSheetScript.maxHealth * increaseHP;
                 break;
 
-            // Damage
+            // Basic Attack Damage
             case 1:
                 characterSheetScript.attackOneDmg += characterSheetScript.attackOneDmg * increaseDMG;
-                characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
                 break;
 
             // Defense
@@ -52,9 +51,16 @@ public class SkillsHandler : MonoBehaviour {
             //     characterSheetScript.dodgeChance += increaseDDG;
             //     break;
 
-            // Crit
+            // Secondary Attack
             case 3:
-                characterSheetScript.critChance += increaseCRT;
+                // characterSheetScript.critChance += increaseCRT;
+                if (currentLevel < 0) {
+                    // Enable Secondary
+                    characterSheetScript.secondaryActivated = true;
+                } else {
+                    // Improve Secondary
+                    characterSheetScript.attackTwoDmg += characterSheetScript.attackTwoDmg * increaseDMG;
+                }
                 break;
 
 

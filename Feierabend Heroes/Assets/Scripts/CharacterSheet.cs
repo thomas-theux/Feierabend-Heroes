@@ -26,6 +26,7 @@ public class CharacterSheet : MonoBehaviour {
 	public float skillDmg = 0;
 	public float[] charSkillStats = {0, 0, 0, 0};
 	public bool skillActivated = false;
+	public bool secondaryActivated = false;
 
 	// Passive Skills
 	public float healPercentage = 0.2f;
@@ -36,7 +37,7 @@ public class CharacterSheet : MonoBehaviour {
 	public int respawnChance = 0;
 	public int dodgeChance = 0;
 	public bool canFindApples = false;
-	public int doubleOrbChance = 0;
+	// public int doubleOrbChance = 0;
 
 	// public bool passiveActivated = false;
 	

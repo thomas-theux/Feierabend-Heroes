@@ -874,7 +874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 20807133836630830, guid: 726da9c4810c741bda044c14ea5c334e,
     type: 3}
-  skillUIGO: {fileID: 1024090547248734, guid: e8c792ab2b0174bf5a0059388239251e, type: 3}
+  listSkills: {fileID: 0}
+  cardSkills: {fileID: 0}
   charUIGO: {fileID: 1863164778189858, guid: 94aab2f64524a48629afa925a8657f0c, type: 3}
 --- !u!114 &546525272
 MonoBehaviour:
@@ -892,7 +893,11 @@ MonoBehaviour:
     type: 3}
   spawnParent: {fileID: 775127492}
   startSpawns: []
+  levelMusic: {fileID: 0}
+  pauseGameSound: {fileID: 0}
+  unpauseGameSound: {fileID: 0}
   charColorsArr: []
+  pauseMenuGO: {fileID: 0}
 --- !u!4 &546525273
 Transform:
   m_ObjectHideFlags: 0

@@ -185,8 +185,11 @@ public class CharCardsHandler : MonoBehaviour {
 
 		// Color class texts depending on highlight
 		for (int i = 0; i < classTexts.Length; i++) {
-			classTexts[i].color = Colors.blue20;
-			classTexts[currentIndex].color = Colors.keyPaper;
+			if (i == currentIndex) {
+				classTexts[currentIndex].color = Colors.keyPaper;
+			} else {
+				classTexts[i].color = Colors.blue20;
+			}
 		}
 
 		// classText.text = CharClassContent.classTexts[currentIndex];

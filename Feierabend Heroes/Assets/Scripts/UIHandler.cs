@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIHandler : MonoBehaviour {
 
 	private CharacterSheet characterSheetScript;
 
-	public Text currentOrbText;
+	public TMP_Text currentOrbText;
 
 	public Image healthBarImage;
 	public Image currentHealthImage;

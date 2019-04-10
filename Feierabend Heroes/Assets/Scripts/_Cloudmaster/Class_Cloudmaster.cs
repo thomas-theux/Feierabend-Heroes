@@ -209,7 +209,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private void GetInput() {
 		performAttackOne = player.GetButton("X");
-		performAttackTwo = player.GetButton("Square");
+		if (characterSheetScript.secondaryActivated) {
+			performAttackTwo = player.GetButton("Square");
+		}
 
 		if (!charactMovementScript.skillboardBlocksCasting) {
 			castSkill = player.GetButtonDown("Circle");

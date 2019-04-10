@@ -70,18 +70,21 @@ public class GameUIHandler : MonoBehaviour {
 
 
 	private void Update() {
-		if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel) {
+		if (!startedLevel) {
 			if (SettingsHolder.registeredPlayers >= 2 && SettingsHolder.registeredPlayers == connectedGamepads) {
 				startedLevel = true;
 				StartCoroutine(StartLevel());
 			}
 		}
+
+		// if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel) {
+		// }
 	}
 
 
 	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
 		if (connectedGamepads < playerMax) {
-			connectedGamepads = ReInput.controllers.joystickCount;
+			// connectedGamepads = ReInput.controllers.joystickCount;
 			// print("A controller was connected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
 		} else {
 			print("No more controllers allowed");
@@ -91,7 +94,7 @@ public class GameUIHandler : MonoBehaviour {
 
 	void OnControllerDisconnected(ControllerStatusChangedEventArgs args) {
 		if (connectedGamepads > 0) {
-			connectedGamepads = ReInput.controllers.joystickCount;
+			// connectedGamepads = ReInput.controllers.joystickCount;
 			// print("A controller was disconnected! Name = " + args.name + " Id = " + args.controllerId + " Type = " + args.controllerType);
 		} else {
 			print("No more controllers to disconnect");
@@ -100,6 +103,8 @@ public class GameUIHandler : MonoBehaviour {
 
 
 	private IEnumerator StartLevel() {
+		yield return new WaitForSeconds(0.5f);
+
 		SettingsHolder.playerCount = connectedGamepads;
 		Instantiate(startMatchSound);
 

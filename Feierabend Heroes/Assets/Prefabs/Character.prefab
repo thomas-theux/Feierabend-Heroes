@@ -867,6 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 0
+  gameManagerScript: {fileID: 0}
   anim: {fileID: 95659020114554010}
   openSkillboardSound: {fileID: 82396164751504712, guid: 665661341058f43119520d2fbdb0df5e,
     type: 3}
@@ -875,13 +876,8 @@ MonoBehaviour:
   isAttacking: 0
   skillBoardOn: 0
   skillboardBlocksCasting: 0
-  mutliplyDodge: 1
-  dodgeDelayTime: 0.5
-  dodgeAnimDelay: 0.5
-  dodgeDistance: 5
-  dodgeDrag: {x: 5, y: 10, z: 10}
+  toggleSkillsDisabled: 0
   interactBtn: 0
-  dodgeBtn: 0
 --- !u!114 &114583881753239530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,11 +893,16 @@ MonoBehaviour:
   currentOrbs: 0
   charID: 0
   charClass: 0
-  moveSpeed: 10
+  currentHealth: 1
+  maxHealth: 1
   attackOneDmg: 0
   attackTwoDmg: 0
+  charDefense: 10
+  critChance: 0
+  critDMG: 2
   delayAttackOne: 1
   delayAttackTwo: 1
+  moveSpeed: 10
   delaySkill: 0
   skillDmg: 0
   charSkillStats:
@@ -910,18 +911,14 @@ MonoBehaviour:
   - 0
   - 0
   skillActivated: 0
-  currentHealth: 1
-  maxHealth: 1
-  respawnChance: 0
-  charDefense: 10
-  critChance: 0
-  critDMG: 2
-  dodgeChance: 0
-  canFindApples: 0
+  secondaryActivated: 0
   healPercentage: 0.2
-  doubleOrbChance: 0
   selfRepairActive: 0
   slowingTendrilsActive: 0
+  respawnChance: 0
+  dodgeChance: 0
+  canFindApples: 0
+  doubleOrbChance: 0
 --- !u!1 &1889728687534798
 GameObject:
   m_ObjectHideFlags: 0

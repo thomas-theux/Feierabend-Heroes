@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using TMPro;
 
 public class TimeHandler : MonoBehaviour {
 	
@@ -15,8 +16,8 @@ public class TimeHandler : MonoBehaviour {
 	public AudioSource roundEndSound;
 	public AudioSource timerTickingSound;
 
-	public Text levelStartTimerText;
-	public Text explorationTimerText;
+	public TMP_Text levelStartTimerText;
+	public TMP_Text explorationTimerText;
 
 	private float levelStartTimeDef = 3.0f;
 	private float levelStartTime;
@@ -83,7 +84,7 @@ public class TimeHandler : MonoBehaviour {
 	private IEnumerator StartTimer() {
 		yield return new WaitForSeconds(0.8f);
 
-		levelStartTimerText.text = "Round " + (SettingsHolder.currentRound + 1);
+		levelStartTimerText.text = "Round " + (SettingsHolder.currentRound + 1) + "/" + SettingsHolder.amountOfRounds;
 
 		yield return new WaitForSeconds(1.4f);
 
