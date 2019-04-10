@@ -60,7 +60,8 @@ public class MatchResults : MonoBehaviour {
         SettingsHolder.nextMatch = true;
         SettingsHolder.matchOver = false;
 
-        SceneManager.LoadScene("3 Aeras");
+        // SceneManager.LoadScene("3 Aeras");
+		SceneManager.LoadScene("4 Hunted");
     }
 
 
@@ -76,7 +77,8 @@ public class MatchResults : MonoBehaviour {
         SettingsHolder.initialSpawn = false;
         SettingsHolder.matchOver = false;
 
-        SceneManager.LoadScene("3 Aeras");
+        // SceneManager.LoadScene("3 Aeras");
+		SceneManager.LoadScene("4 Hunted");
     }
 
 

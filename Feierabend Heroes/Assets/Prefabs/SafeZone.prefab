@@ -47,7 +47,7 @@ Light:
   m_Intensity: 1
   m_Range: 200
   m_SpotAngle: 140
-  m_CookieSize: 274
+  m_CookieSize: 320
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
@@ -84,7 +84,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   safeZoneCol: {fileID: 136438466751568588}
-  decreaseDuration: 120
 --- !u!1 &1477932658653448
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,10 +126,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 110
+  m_Radius: 128
   m_Height: 100
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 35}
+  m_Center: {x: 0, y: 0, z: 45}
 --- !u!114 &114425629825986218
 MonoBehaviour:
   m_ObjectHideFlags: 0

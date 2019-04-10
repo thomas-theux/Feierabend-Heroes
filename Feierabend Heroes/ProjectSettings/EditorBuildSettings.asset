@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3 Aeras.unity
     guid: 647e43c4a08c14ca486c2017b1567939
+  - enabled: 1
+    path: Assets/Scenes/4 Hunted.unity
+    guid: e1fa473e264084b9284034b15a3d7f2e
+  - enabled: 1
+    path: Assets/Scenes/99 Test Area.unity
+    guid: 9f130e7a5e1684952a53ee04c5502d44
   m_configObjects: {}

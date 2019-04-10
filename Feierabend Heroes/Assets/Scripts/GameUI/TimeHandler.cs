@@ -185,7 +185,8 @@ public class TimeHandler : MonoBehaviour {
 
 		// CODE FOR SHOW LEADER BOARD GOES HERE
 
-		SceneManager.LoadScene("3 Aeras");
+		// SceneManager.LoadScene("3 Aeras");
+		SceneManager.LoadScene("4 Hunted");
 	}
 
 

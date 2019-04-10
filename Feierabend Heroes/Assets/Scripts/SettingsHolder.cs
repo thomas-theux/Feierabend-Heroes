@@ -16,7 +16,7 @@ public class SettingsHolder {
 	public static int amountOfRounds = 2;
 
 	public static float exploreTime = 15.0f;
-	public static float battleTime = 520.0f;
+	public static float battleTime = 120.0f;
 
 	public static int appleSpawnMax = 0;
 	public static int orbSpawnMax = 15;

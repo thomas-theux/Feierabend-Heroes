@@ -110,7 +110,9 @@ public class GameUIHandler : MonoBehaviour {
 
 		yield return new WaitForSeconds(0.1f);
 
-		SceneManager.LoadScene("3 Aeras");
+		// SceneManager.LoadScene("3 Aeras");
+		SceneManager.LoadScene("4 Hunted");
+		// SceneManager.LoadScene("99 Test Area");
 	}
 	
 }

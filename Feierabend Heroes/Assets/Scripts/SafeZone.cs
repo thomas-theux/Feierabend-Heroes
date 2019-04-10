@@ -10,10 +10,10 @@ public class SafeZone : MonoBehaviour {
 	private float decreaseDuration;
 	private float t = 0;
 
-	private float startSizeLight = 274.0f;
+	private float startSizeLight = 320.0f;
 	private float endSizeLight = 18.0f;
 
-	private float startSizeCol = 110.0f;
+	private float startSizeCol = 128.0f;
 	private float endSizeCol = 7.0f;
 
 	private bool startDecreasing = false;
