@@ -284,7 +284,7 @@ public class CharCardsHandler : MonoBehaviour {
 		randomNameText.text = addTitle + addAdjective + addName;
 
 		// Write name in SettingsHolder array
-		SettingsHolder.charNames[charID] = randomNameText.text;
+		SettingsHolder.heroNames[charID] = randomNameText.text;
 	}
 
 }

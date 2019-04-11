@@ -25,7 +25,7 @@ public class StatsCard : MonoBehaviour {
 
 
     private void Start() {
-        charNameText.text = SettingsHolder.charNames[resultsID];
+        charNameText.text = SettingsHolder.heroNames[resultsID];
         orbsCountStatText.text = GameManager.orbsCountStatsArr[resultsID] + "";
         killsStatText.text = GameManager.killsStatsArr[resultsID] + "";
         deathsStatText.text = GameManager.deathsStatsArr[resultsID] + "";

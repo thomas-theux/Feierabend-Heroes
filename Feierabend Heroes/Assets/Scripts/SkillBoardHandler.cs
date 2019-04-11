@@ -16,6 +16,9 @@ public class SkillBoardHandler : MonoBehaviour {
     public Text orbsNeededTierTwo;
     public Text orbsNeededTierThree;
 
+    public Image gamepadIcon;
+    public TMP_Text heroName;
+
     private Color32 opaqueSkills = new Color32(
         Colors.blue20.r,
         Colors.blue20.g,
@@ -98,6 +101,10 @@ public class SkillBoardHandler : MonoBehaviour {
         characterSheetScript = this.gameObject.transform.parent.GetComponent<CharacterSheet>();
         skillsHandlerScript = GetComponent<SkillsHandler>();
         charID = this.gameObject.transform.parent.GetComponent<CharacterMovement>().playerID;
+
+        // Personalize UI with colored gamepad and hero name
+        gamepadIcon.color = Colors.keyPlayers[charID];
+        heroName.text = SettingsHolder.heroNames[charID];
 
         // Get all info texts from CharClassContent script
         for (int i = 0; i < CharClassContent.classTexts.Length; i++) {

@@ -30,7 +30,7 @@ public class GameUIHandler : MonoBehaviour {
 		// Reset all stats
 		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 			SettingsHolder.playerClasses[i] = -1;
-			SettingsHolder.charNames[i] = "";
+			SettingsHolder.heroNames[i] = "";
 			SettingsHolder.playerCount = 0;
 			SettingsHolder.registeredPlayers = 0;
 			SettingsHolder.matchOver = false;

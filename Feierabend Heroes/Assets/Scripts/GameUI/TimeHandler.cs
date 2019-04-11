@@ -47,6 +47,10 @@ public class TimeHandler : MonoBehaviour {
 	private bool showResults = false;
 	public static bool roundEnd = false;
 
+	public GameObject leaderBoardGO;
+	public GameObject rankingsParentGO;
+	public GameObject rankingEntryGO;
+
 	private List<int> orbCountArr = new List<int>();
 	// private List<int> killsStatsArr = new List<int>();
 	// private List<int> deathsStatsArr = new List<int>();
@@ -183,7 +187,36 @@ public class TimeHandler : MonoBehaviour {
 	private IEnumerator ShowLeaderboard() {
 		yield return new WaitForSeconds(1.0f);
 
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 		// CODE FOR SHOW LEADER BOARD GOES HERE
+		float overallKills = 0;
+		List<float> killRatiosArr = new List<float>();
+		List<float> sortedKillsArr = new List<float>();
+
+		leaderBoardGO.SetActive(true);
+
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			GameObject newRankingEntry = Instantiate(rankingEntryGO, rankingsParentGO.transform);
+			newRankingEntry.transform.localPosition = new Vector2(25, -95 - (100 * i));
+			
+			overallKills += GameManager.killsStatsArr[i];
+		}
+
+		for (int j = 0; j < SettingsHolder.playerCount; j++) {
+			float killRatio = GameManager.killsStatsArr[j] / overallKills;
+			killRatiosArr.Add(killRatio);
+		}
+
+		sortedKillsArr = killRatiosArr;
+		sortedKillsArr.Sort((a, b) => (int)(b - a));
+
+
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// Show leader board for 5 seconds
+		yield return new WaitForSeconds(5.0f);
 
 		// SceneManager.LoadScene("3 Aeras");
 		SceneManager.LoadScene("4 Hunted");

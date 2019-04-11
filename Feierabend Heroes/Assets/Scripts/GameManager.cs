@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 using Rewired;
 
 public class GameManager : MonoBehaviour {
-
-	// public float moveSpeed = 12.0f;
-	// public float gravityScale = 2.0f;
-
 	public GameObject characterGO;
 	public GameObject spawnParent;
 	public List<GameObject> startSpawns;
