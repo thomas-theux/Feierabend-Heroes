@@ -190,27 +190,75 @@ public class TimeHandler : MonoBehaviour {
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-		// CODE FOR SHOW LEADER BOARD GOES HERE
-		float overallKills = 0;
-		List<float> killRatiosArr = new List<float>();
-		List<float> sortedKillsArr = new List<float>();
+		// Calculate all player ratios
 
+		// Save current orbs count in stats
+		for (int k = 0; k < SettingsHolder.playerCount; k++) {
+			GameManager.orbsCountStatsArr[k] = GameObject.Find("Character" + k).GetComponent<CharacterSheet>().currentOrbs;
+		}
+
+		float overallKills = 0;
+		float overallDeaths = 0;
+		float overallOrbs = 0;
+
+		// Defining the overall stats
+		for (int j = 0; j < SettingsHolder.playerCount; j++) {
+			overallKills += GameManager.killsStatsArr[j];
+			overallDeaths += GameManager.killsStatsArr[j];
+			overallOrbs += GameManager.orbsCountStatsArr[j];
+		}
+
+		List<float> allPlayersRatioArr = new List<float>();
+
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			// Calculate kills, deaths, and orbs ratio
+			float killsRatio = GameManager.killsStatsArr[i] / overallKills;
+			float deathsRatio = GameManager.deathsStatsArr[i] / overallDeaths;
+			float orbsRatio = GameManager.orbsCountStatsArr[i] / overallOrbs;
+
+			// Formula for calculating the final value
+			float deathsDelta = 1 - deathsRatio;
+			float multipliedKills = (killsRatio + deathsDelta) * 2;
+			float finalPlayerValue = multipliedKills + orbsRatio;
+
+			// HIER ABFRAGEN OB ES DEN WERT IM ARRAY SCHON GIBT
+
+			// Adding the calculated value to the overall values array
+			allPlayersRatioArr.Add(finalPlayerValue);
+		}
+
+		List<float> sortedKillsArr = new List<float>();
+		for (int k = 0; k < SettingsHolder.playerCount; k++) {
+			sortedKillsArr.Add(allPlayersRatioArr[k]);
+		}
+
+		sortedKillsArr.Sort();
+        sortedKillsArr.Reverse();
+
+		GameManager.rankingsArr.Clear();
+
+		// Add every player to the ranking array sorted first to last place
+		for (int l = 0; l < SettingsHolder.playerCount; l++) {
+			int playerIndex = allPlayersRatioArr.IndexOf(sortedKillsArr[l]);
+			GameManager.rankingsArr.Add(playerIndex);
+		}
+
+		// Display the ranking
 		leaderBoardGO.SetActive(true);
 
 		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 			GameObject newRankingEntry = Instantiate(rankingEntryGO, rankingsParentGO.transform);
 			newRankingEntry.transform.localPosition = new Vector2(25, -95 - (100 * i));
-			
-			overallKills += GameManager.killsStatsArr[i];
-		}
 
-		for (int j = 0; j < SettingsHolder.playerCount; j++) {
-			float killRatio = GameManager.killsStatsArr[j] / overallKills;
-			killRatiosArr.Add(killRatio);
-		}
+			int rankingIndex = GameManager.rankingsArr[i];
 
-		sortedKillsArr = killRatiosArr;
-		sortedKillsArr.Sort((a, b) => (int)(b - a));
+			newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = (i + 1) + ".";
+			newRankingEntry.transform.GetChild(1).GetComponent<TMP_Text>().text = SettingsHolder.heroNames[rankingIndex];
+			newRankingEntry.transform.GetChild(1).GetComponent<TMP_Text>().color = Colors.keyPlayers[rankingIndex];
+			newRankingEntry.transform.GetChild(2).GetComponent<TMP_Text>().text = GameManager.killsStatsArr[rankingIndex] + "";
+			newRankingEntry.transform.GetChild(3).GetComponent<TMP_Text>().text = GameManager.deathsStatsArr[rankingIndex] + "";
+			newRankingEntry.transform.GetChild(4).GetComponent<TMP_Text>().text = GameManager.orbsCountStatsArr[rankingIndex] + "";
+		}
 
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -218,8 +266,7 @@ public class TimeHandler : MonoBehaviour {
 		// Show leader board for 5 seconds
 		yield return new WaitForSeconds(5.0f);
 
-		// SceneManager.LoadScene("3 Aeras");
-		SceneManager.LoadScene("4 Hunted");
+		SceneManager.LoadScene(SettingsHolder.selectedMap);
 	}
 
 
@@ -333,7 +380,7 @@ public class TimeHandler : MonoBehaviour {
 		int highestOrbIndex = orbCountArr.IndexOf(highestValue);
 
 		// Set first place in the rankings array to the player with the most orbs
-		GameManager.rankingArr[highestOrbIndex] = 1;
+		GameManager.rankingsArr[highestOrbIndex] = 1;
 	}
 
 }

@@ -12,6 +12,9 @@ public class SettingsHolder {
 	// 0 = List ; 1 = Cards
 	public static int skillMode = 0;
 
+	// "3 Aeras" ; "4 Hunted"
+	public static string selectedMap = "4 Hunted";
+
 	public static int currentRound = 0;
 	public static int amountOfRounds = 10;
 
@@ -21,7 +24,7 @@ public class SettingsHolder {
 	public static int appleSpawnMax = 0;
 	public static int orbSpawnMax = 15;
 
-	public static int startingOrbs = 1110;
+	public static int startingOrbs = 200;
 	public static int orbsToWin = 9999;
 
 	public static int orbsEveryRound = 15;

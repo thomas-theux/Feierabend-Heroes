@@ -60,8 +60,7 @@ public class MatchResults : MonoBehaviour {
         SettingsHolder.nextMatch = true;
         SettingsHolder.matchOver = false;
 
-        // SceneManager.LoadScene("3 Aeras");
-		SceneManager.LoadScene("4 Hunted");
+		SceneManager.LoadScene(SettingsHolder.selectedMap);
     }
 
 
@@ -77,8 +76,7 @@ public class MatchResults : MonoBehaviour {
         SettingsHolder.initialSpawn = false;
         SettingsHolder.matchOver = false;
 
-        // SceneManager.LoadScene("3 Aeras");
-		SceneManager.LoadScene("4 Hunted");
+		SceneManager.LoadScene(SettingsHolder.selectedMap);
     }
 
 
@@ -88,7 +86,7 @@ public class MatchResults : MonoBehaviour {
             GameManager.killsStatsArr[i] = 0;
             GameManager.deathsStatsArr[i] = 0;
             GameManager.orbsSpentStatsArr[i] = 0;
-            GameManager.rankingArr[i] = 0;
+            GameManager.rankingsArr[i] = 0;
         }
     }
 

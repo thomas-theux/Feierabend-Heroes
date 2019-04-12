@@ -32,7 +32,7 @@ public class StatsCard : MonoBehaviour {
 
         charBackgroundImage.color = charColors[resultsID];
 
-        switch (GameManager.rankingArr[resultsID]) {
+        switch (GameManager.rankingsArr[resultsID]) {
             case 0:
                 rankingText.text = "Looser!";
                 rankingBanner.color = new Color32(255, 255, 255, 255);

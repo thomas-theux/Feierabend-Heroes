@@ -139,6 +139,7 @@ public class CharClassContent : MonoBehaviour {
 		"Priest",
 		"Priestess",
 		"Pretty",
+		"The First",
 		"The Last",
 		"One",
 		"No"
@@ -225,7 +226,10 @@ public class CharClassContent : MonoBehaviour {
 		"Golden",
 		"Wet",
 		"Busy",
-		"New"
+		"New",
+		"First",
+		"Second",
+		"Last"
 	};
 
 	public static string[] nameTexts = {

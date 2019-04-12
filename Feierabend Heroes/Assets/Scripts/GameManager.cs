@@ -22,7 +22,8 @@ public class GameManager : MonoBehaviour {
 	public static int[] killsStatsArr = {0, 0, 0, 0};
 	public static int[] deathsStatsArr = {0, 0, 0, 0};
 	public static int[] orbsSpentStatsArr = {0, 0, 0, 0};
-	public static int[] rankingArr = {0, 0, 0, 0};
+	// public static int[] rankingArr = {0, 0, 0, 0};
+	public static List<int> rankingsArr = new List<int>();
 
 	public GameObject pauseMenuGO;
 	// public static bool isPausing = false;
