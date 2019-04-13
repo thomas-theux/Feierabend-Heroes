@@ -209,6 +209,7 @@ public class TimeHandler : MonoBehaviour {
 		}
 
 		List<float> allPlayersRatioArr = new List<float>();
+		List<int> duplicateValuesArr = new List<int>();
 
 		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 			// Calculate kills, deaths, and orbs ratio
@@ -222,6 +223,19 @@ public class TimeHandler : MonoBehaviour {
 			float finalPlayerValue = multipliedKills + orbsRatio;
 
 			// HIER ABFRAGEN OB ES DEN WERT IM ARRAY SCHON GIBT
+			if (allPlayersRatioArr.IndexOf(finalPlayerValue) != -1) {
+				// Duplikate vorhanden
+				// print("Player " + (allPlayersRatioArr.IndexOf(finalPlayerValue) + 1) + " has the same value as Player " + (i + 1) + ".");
+
+				// Add player id with duplicate value to array if it doesn't exist already in this array
+				if (duplicateValuesArr.IndexOf(allPlayersRatioArr.IndexOf(finalPlayerValue)) == -1) {
+					duplicateValuesArr.Add(allPlayersRatioArr.IndexOf(finalPlayerValue));
+				}
+				duplicateValuesArr.Add(i);
+
+			} else {
+				// Keine Duplikate, allet supa
+			}
 
 			// Adding the calculated value to the overall values array
 			allPlayersRatioArr.Add(finalPlayerValue);
@@ -243,6 +257,12 @@ public class TimeHandler : MonoBehaviour {
 			GameManager.rankingsArr.Add(playerIndex);
 		}
 
+
+		// Show player ids that have duplicates
+		for (int i = 0; i < duplicateValuesArr.Count; i++) {
+			print(duplicateValuesArr[i]);
+		}
+
 		// Display the ranking
 		leaderBoardGO.SetActive(true);
 
@@ -252,7 +272,12 @@ public class TimeHandler : MonoBehaviour {
 
 			int rankingIndex = GameManager.rankingsArr[i];
 
-			newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = (i + 1) + ".";
+			if (duplicateValuesArr.IndexOf(i) == -1) {
+				newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = (i + 1) + ".";
+			} else {
+				newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = "–";
+			}
+
 			newRankingEntry.transform.GetChild(1).GetComponent<TMP_Text>().text = SettingsHolder.heroNames[rankingIndex];
 			newRankingEntry.transform.GetChild(1).GetComponent<TMP_Text>().color = Colors.keyPlayers[rankingIndex];
 			newRankingEntry.transform.GetChild(2).GetComponent<TMP_Text>().text = GameManager.killsStatsArr[rankingIndex] + "";
