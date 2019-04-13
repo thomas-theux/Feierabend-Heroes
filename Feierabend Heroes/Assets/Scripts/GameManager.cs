@@ -54,10 +54,24 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-	private void SpawnCharacter() {
-		for (int i = 0; i < SettingsHolder.playerCount; i++) {
-			startSpawns.Add(spawnParent.transform.GetChild(i).gameObject);
+	private void ShuffleSpawnList() {
+		startSpawns.Clear();
 
+		List<int> randomizedArray = new List<int>(){0, 1, 2, 3};
+
+		// Fill start positions list with randomly picked positions
+		for (int i = 0; i < spawnParent.transform.childCount; i++) {
+			int randomIndex = Random.Range(0, randomizedArray.Count);
+			startSpawns.Add(spawnParent.transform.GetChild(randomizedArray[randomIndex]).gameObject);
+			randomizedArray.Remove(randomizedArray[randomIndex]);
+		}
+	}
+
+
+	private void SpawnCharacter() {
+		ShuffleSpawnList();
+
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 			GameObject newChar = Instantiate(characterGO);
 			characterArr.Add(newChar);
 			newChar.transform.position = startSpawns[i].transform.position;
@@ -98,8 +112,9 @@ public class GameManager : MonoBehaviour {
 
 
 	private void ResetCharacters() {
+		ShuffleSpawnList();
+		
 		for (int j = 0; j < SettingsHolder.playerCount; j++) {
-			startSpawns.Add(spawnParent.transform.GetChild(j).gameObject);
 			GameObject findChar = GameObject.Find("Character" + j);
 
 			findChar.transform.position = startSpawns[j].transform.position;

@@ -78,7 +78,10 @@ public class CharCardsHandler : MonoBehaviour {
 
 
 	private void Update() {
-		GetInput();
+		if (!GameUIHandler.selectionComplete) {
+			GetInput();
+		}
+
 		CheckForGamepad();
 		CheckForInput();
 

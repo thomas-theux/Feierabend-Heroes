@@ -21,12 +21,15 @@ public class GameUIHandler : MonoBehaviour {
 	};
 
 	public static int connectedGamepads;
+	public static bool selectionComplete = false;
 	private int playerMax = 4;
 
 	private bool startedLevel = false;
 
 
 	private void Awake() {
+		selectionComplete = false;
+
 		// Reset all stats
 		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 			SettingsHolder.playerClasses[i] = -1;
@@ -40,7 +43,7 @@ public class GameUIHandler : MonoBehaviour {
 		ReInput.ControllerConnectedEvent += OnControllerConnected;
 		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
-		connectedGamepads = 4; // ReInput.controllers.joystickCount;
+		connectedGamepads = 2; // ReInput.controllers.joystickCount;
 
 		for (int i = 0; i < playerMax; i++) {
 			GameObject newCharCard = Instantiate(charCardGO, cardsParent.transform, false);
@@ -103,6 +106,8 @@ public class GameUIHandler : MonoBehaviour {
 
 
 	private IEnumerator StartLevel() {
+		selectionComplete = true;
+
 		yield return new WaitForSeconds(0.5f);
 
 		SettingsHolder.playerCount = connectedGamepads;

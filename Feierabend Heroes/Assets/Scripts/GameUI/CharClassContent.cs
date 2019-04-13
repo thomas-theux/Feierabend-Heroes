@@ -34,10 +34,10 @@ public class CharClassContent : MonoBehaviour {
 	};
 
 	public static float[] charMSPDStats = {
+		12.0f,
 		10.0f,
-		8.0f,
-		9.0f,
-		11.0f
+		11.0f,
+		13.0f
 	};
 
 	public static string[] attackOneTitleTexts = {

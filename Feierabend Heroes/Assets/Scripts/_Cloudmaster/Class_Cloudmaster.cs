@@ -202,7 +202,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 				PerformAttackDelay();
 			}
 			
-			DelayMovement();
+			if (SettingsHolder.delayMovement) {
+				DelayMovement();
+			}
 		}
 	}
 

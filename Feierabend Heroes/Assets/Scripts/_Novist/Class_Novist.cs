@@ -213,8 +213,10 @@ public class Class_Novist : MonoBehaviour {
 			if (performAttacks) {
 				PerformAttackDelay();
 			}
-
-			DelayMovement();
+			
+			if (SettingsHolder.delayMovement) {
+				DelayMovement();
+			}
 		}
 	}
 

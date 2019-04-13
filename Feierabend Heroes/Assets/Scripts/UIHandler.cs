@@ -18,6 +18,9 @@ public class UIHandler : MonoBehaviour {
 	public Image skillImage;
 	public Image[] coolDownImage;
 
+	private bool advancedActivated;
+	private bool skillActivated;
+
 	public float attackOneDelayTimer;
 	public float attackTwoDelayTimer;
 	// public float skillOneDelayTimer;
@@ -31,16 +34,44 @@ public class UIHandler : MonoBehaviour {
 	public void InitializeCharUI() {
 		characterSheetScript = transform.root.GetComponent<CharacterSheet>();
 
+		// Get class images
+		switch (characterSheetScript.charClass) {
+
+			// Cloud Master
+			case 0:
+				attackOneImage.sprite = Resources.Load<Sprite>("Images/Attacks_Wrench-Punch");
+				attackTwoImage.sprite = Resources.Load<Sprite>("Images/Attacks_Bomb-Throw");
+				skillImage.sprite = Resources.Load<Sprite>("Images/Skills_Turret-Gun");
+				break;
+
+			// Novist
+			case 1:
+			attackOneImage.sprite = Resources.Load<Sprite>("Images/Attacks_Meteor-Shot");
+			attackTwoImage.sprite = Resources.Load<Sprite>("Images/Attacks_Fire-Block");
+			skillImage.sprite = Resources.Load<Sprite>("Images/Skills_Companion");
+				break;
+		}
+
 		smoothSpeed = 8.0f;
 	}
 
 
 	private void Update() {
 		DisplayCoolDown();
-
 		DisplayCurrentHP();
-
 		DisplayOrbCount();
+
+		// Display advanced attack if purchased
+		if (characterSheetScript.secondaryActivated && !advancedActivated) {
+			advancedActivated = true;
+			attackTwoImage.color = new Color32(255, 255, 255, 255);
+		}
+
+		// Display skill attack if purchased
+		if (characterSheetScript.skillActivated && !skillActivated) {
+			skillActivated = true;
+			skillImage.color = new Color32(255, 255, 255, 255);
+		}
 	}
 
 
