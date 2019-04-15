@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrbChestDestroy : MonoBehaviour {
 
-    public GameObject orbChestSpawnerGO;
+    // public GameObject orbChestSpawnerGO;
 
 
     private void OnTriggerStay(Collider other) {

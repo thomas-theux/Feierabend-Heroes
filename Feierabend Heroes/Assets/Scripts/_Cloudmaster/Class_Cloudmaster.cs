@@ -115,7 +115,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		// Attach attack GameObjects to script
 		attackOneGO = Resources.Load<GameObject>("Attacks/WrenchPunch");
-		attackTwoGO = Resources.Load<GameObject>("Attacks/Bomb");
+		attackTwoGO = Resources.Load<GameObject>("Attacks/UndergroundMine");
 		// skillOneGO = Resources.Load<GameObject>("Attacks/HealingBeacon");
 		skillGO = Resources.Load<GameObject>("Attacks/TurretGun");
 
@@ -298,15 +298,15 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 			Instantiate(bombThrowSound);
 			
-			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-35, 0, 0);
+			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-25, 0, 0);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
-			newAttackTwo.GetComponent<Bomb>().casterTag = "Character" + charID;
-			newAttackTwo.GetComponent<Bomb>().damagerID = charID;
+			newAttackTwo.GetComponent<UndergroundMine>().casterTag = "Character" + charID;
+			newAttackTwo.GetComponent<UndergroundMine>().damagerID = charID;
 			newAttackTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newAttackTwo.tag = "Attack";
-			newAttackTwo.transform.GetComponent<Bomb>().casterDamage = characterSheetScript.attackTwoDmg;
-			newAttackTwo.GetComponent<Bomb>().casterCritChance = characterSheetScript.critChance;
-			newAttackTwo.GetComponent<Bomb>().casterCritDMG = characterSheetScript.critDMG;
+			newAttackTwo.transform.GetComponent<UndergroundMine>().casterDamage = characterSheetScript.attackTwoDmg;
+			newAttackTwo.GetComponent<UndergroundMine>().casterCritChance = characterSheetScript.critChance;
+			newAttackTwo.GetComponent<UndergroundMine>().casterCritDMG = characterSheetScript.critDMG;
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 0);
 		}
 

@@ -16,7 +16,7 @@ public class SettingsHolder {
 	public static bool delayMovement = true;
 
 	// "3 Aeras" ; "4 Hunted"
-	public static string selectedMap = "3 Aeras";
+	public static string selectedMap = "4 Hunted";
 
 	public static int currentRound = 0;
 	public static int amountOfRounds = 10;

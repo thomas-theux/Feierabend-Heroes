@@ -122,7 +122,9 @@
      <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\Bomb.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\BombRadius.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\HealingBeacon.cs" />
+     <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\MineRadius.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\TurretGun.cs" />
+     <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\UndergroundMine.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\_Attacks\WrenchPunch.cs" />
      <Compile Include="Assets\Scripts\_Cloudmaster\Class_Cloudmaster.cs" />
      <Compile Include="Assets\Scripts\_Novist\_Attacks\BasicShot.cs" />
