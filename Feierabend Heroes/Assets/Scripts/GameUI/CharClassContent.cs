@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class CharClassContent : MonoBehaviour {
 
 	public static string[] classTexts = {
-		"CLOUD MASTER",
-		"NOVIST",
-		"SEER OF WAR",
-		"SHAPE SHIFTER"
+		"Master Crafter",
+		"Mythical Guard",
+		"Seer of War",
+		"Shape Shifter"
 	};
 
 	public static string[] classDescriptions = {
 		"Short-ranged Machinist",
-		"Long-ranged Tank Mage",
+		"Long-ranged Mage Tank",
 		"Medium-ranged Warrior",
 		"Short-ranged Assassin"
 	};

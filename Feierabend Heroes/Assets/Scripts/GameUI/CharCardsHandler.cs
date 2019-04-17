@@ -74,6 +74,10 @@ public class CharCardsHandler : MonoBehaviour {
 		
 		// randomNameText.color = charColors[charID];
 		DisplayCurrentStatus();
+
+		for (int i = 0; i < classTexts.Length; i++) {
+			classTexts[i].text = CharClassContent.classTexts[i];
+		}
 	}
 
 
