@@ -51,11 +51,10 @@ public class TimeHandler : MonoBehaviour {
 	public GameObject rankingsParentGO;
 	public GameObject rankingEntryGO;
 
-	private List<int> orbCountArr = new List<int>();
-	// private List<int> killsStatsArr = new List<int>();
-	// private List<int> deathsStatsArr = new List<int>();
+	private int sameRank = 0;
+	private bool foundDuplicates = false;
 
-	// private List<int> medianValues = new List<int>();
+	private List<int> orbCountArr = new List<int>();
 
 	public AudioSource matchEndSound;
 	public GameObject matchResultsGO;
@@ -230,7 +229,6 @@ public class TimeHandler : MonoBehaviour {
 			// HIER ABFRAGEN OB ES DEN WERT IM ARRAY SCHON GIBT
 			if (allPlayersRatioArr.IndexOf(finalPlayerValue) != -1) {
 				// Duplikate vorhanden
-				// print("Player " + (allPlayersRatioArr.IndexOf(finalPlayerValue) + 1) + " has the same value as Player " + (i + 1) + ".");
 
 				// Add player id with duplicate value to array if it doesn't exist already in this array
 				if (duplicateValuesArr.IndexOf(allPlayersRatioArr.IndexOf(finalPlayerValue)) == -1) {
@@ -256,10 +254,10 @@ public class TimeHandler : MonoBehaviour {
 		}
 
 
-		// Show player ids that have duplicates
-		for (int i = 0; i < duplicateValuesArr.Count; i++) {
-			print(duplicateValuesArr[i]);
-		}
+		// // Show player ids that have duplicates
+		// for (int i = 0; i < duplicateValuesArr.Count; i++) {
+		// 	print(duplicateValuesArr[i]);
+		// }
 
 		// Display the ranking
 		leaderBoardGO.SetActive(true);
@@ -270,18 +268,16 @@ public class TimeHandler : MonoBehaviour {
 
 			int rankingIndex = GameManager.rankingsArr[i];
 
-
 			if (duplicateValuesArr.IndexOf(rankingIndex) > -1) {
-				newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = "–";
+				// newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = "–";
+				if (!foundDuplicates) {
+					sameRank = i + 1;
+					foundDuplicates = true;
+				}
+				newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = sameRank + ".";
 			} else {
 				newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = (i + 1) + ".";
 			}
-
-			// if (duplicateValuesArr.IndexOf(i) == -1) {
-			// 	newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = (i + 1) + ".";
-			// } else {
-			// 	newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = "–";
-			// }
 
 			newRankingEntry.transform.GetChild(1).GetComponent<TMP_Text>().text = SettingsHolder.heroNames[rankingIndex];
 			newRankingEntry.transform.GetChild(1).GetComponent<TMP_Text>().color = Colors.keyPlayers[rankingIndex];
@@ -289,6 +285,8 @@ public class TimeHandler : MonoBehaviour {
 			newRankingEntry.transform.GetChild(3).GetComponent<TMP_Text>().text = GameManager.deathsStatsArr[rankingIndex] + "";
 			newRankingEntry.transform.GetChild(4).GetComponent<TMP_Text>().text = GameManager.orbsCountStatsArr[rankingIndex] + "";
 		}
+
+		foundDuplicates = false;
 
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
