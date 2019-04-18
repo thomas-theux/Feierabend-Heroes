@@ -224,7 +224,6 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private void DelayMovement() {
 		if (performAttackOne || performAttackTwo && !attackTwoDelayActive) {
-			print("Geht rein");
 			moveDelayTimer = moveDelay;
 		}
 

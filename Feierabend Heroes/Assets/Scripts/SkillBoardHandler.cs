@@ -284,11 +284,8 @@ public class SkillBoardHandler : MonoBehaviour {
         // Display current skill level
         if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
             skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = ((int)skillData[currentIndex]["Level"] + 1) + " / " + (int)skillData[currentIndex]["Cap"];
-            // skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV " + ((int)skillData[currentIndex]["Level"] + 1);
         } else {
             skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "YES!";
-            // skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV " + ((int)skillData[currentIndex]["Level"] + 1);
-            // skillArray[currentIndex].transform.GetChild(2).GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         }
     }
 
@@ -309,9 +306,17 @@ public class SkillBoardHandler : MonoBehaviour {
         // Update orbs needed to unlock tier TWO
         if (!tierTwoActive) {
             orbsNeededTierTwo.text = (SettingsHolder.tierTwoCosts - spentOrbs) + "";
+
+            for (int i = 3; i < 6; i++) {
+                skillArray[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "    " + (SettingsHolder.tierTwoCosts - spentOrbs);
+            }
         }
          if (!tierThreeActive) {
             orbsNeededTierThree.text = (SettingsHolder.tierThreeCosts - spentOrbs) + "";
+
+            for (int i = 6; i < 8; i++) {
+                skillArray[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "    " + (SettingsHolder.tierThreeCosts - spentOrbs);
+            }
         }
     }
 
@@ -474,25 +479,13 @@ public class SkillBoardHandler : MonoBehaviour {
 
     private void ActivateTierTwo() {
         for (int j = 3; j < 6; j++) {
-            // Set skill icons transparency to 100%
-            // skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-
             // Show Skill texts and icons
-            // Color iconColor = skillArray[j].transform.GetChild(2).GetComponent<Text>().color;
-            // iconColor.a = 255;
-
-            // skillArray[j].transform.GetChild(2).GetComponent<Text>().color = iconColor;
-            // skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = iconColor;
-
-            // skillArray[j].transform.GetChild(2).GetComponent<Text>().color = Colors.keyGold50;
-            // skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.keyGold50;
-
             skillArray[j].transform.GetChild(2).GetComponent<Text>().text = statIconsArr[j-3];
             skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = (string)skillData[j]["Title"];
 
             // Show current skill level
+            skillArray[j].transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
             skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "0 / " + (int)skillData[j]["Cap"];
-            // skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV 0";
 
             // Unlock the newly unlocked skills
             skillData[j]["Unlocked"] = true;
@@ -502,16 +495,13 @@ public class SkillBoardHandler : MonoBehaviour {
 
     private void ActivateTierThree() {
         for (int j = 6; j < 8; j++) {
-            // Set skill icons transparency to 100%
-            // skillArray[j].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-
             // Show Skill texts and icons
             skillArray[j].transform.GetChild(2).GetComponent<Text>().text = statIconsArr[j-3];
             skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = (string)skillData[j]["Title"];
 
             // Show current skill level
+            skillArray[j].transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
             skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "0 / " + (int)skillData[j]["Cap"];
-            // skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "LV 0";
 
             // Unlock the newly unlocked skills
             skillData[j]["Unlocked"] = true;

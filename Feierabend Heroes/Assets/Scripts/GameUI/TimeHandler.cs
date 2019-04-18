@@ -208,6 +208,8 @@ public class TimeHandler : MonoBehaviour {
 			overallOrbs += GameManager.orbsCountStatsArr[j];
 		}
 
+
+		Dictionary<int, float> playersValuesDict = new Dictionary<int, float>();
 		List<float> allPlayersRatioArr = new List<float>();
 		List<int> duplicateValuesArr = new List<int>();
 
@@ -221,6 +223,9 @@ public class TimeHandler : MonoBehaviour {
 			float deathsDelta = 1 - deathsRatio;
 			float multipliedKills = (killsRatio + deathsDelta) * 2;
 			float finalPlayerValue = multipliedKills + orbsRatio;
+
+			// Adding the calculated value to the overall values array
+			playersValuesDict.Add(i, finalPlayerValue);
 
 			// HIER ABFRAGEN OB ES DEN WERT IM ARRAY SCHON GIBT
 			if (allPlayersRatioArr.IndexOf(finalPlayerValue) != -1) {
@@ -241,20 +246,13 @@ public class TimeHandler : MonoBehaviour {
 			allPlayersRatioArr.Add(finalPlayerValue);
 		}
 
-		List<float> sortedKillsArr = new List<float>();
-		for (int k = 0; k < SettingsHolder.playerCount; k++) {
-			sortedKillsArr.Add(allPlayersRatioArr[k]);
-		}
-
-		sortedKillsArr.Sort();
-        sortedKillsArr.Reverse();
+		// Sort the dictionary
+		playersValuesDict = playersValuesDict.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
 		GameManager.rankingsArr.Clear();
 
-		// Add every player to the ranking array sorted first to last place
-		for (int l = 0; l < SettingsHolder.playerCount; l++) {
-			int playerIndex = allPlayersRatioArr.IndexOf(sortedKillsArr[l]);
-			GameManager.rankingsArr.Add(playerIndex);
+		foreach (var dictKey in playersValuesDict) {
+			GameManager.rankingsArr.Add(dictKey.Key);
 		}
 
 
@@ -272,11 +270,18 @@ public class TimeHandler : MonoBehaviour {
 
 			int rankingIndex = GameManager.rankingsArr[i];
 
-			if (duplicateValuesArr.IndexOf(i) == -1) {
-				newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = (i + 1) + ".";
-			} else {
+
+			if (duplicateValuesArr.IndexOf(rankingIndex) > -1) {
 				newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = "–";
+			} else {
+				newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = (i + 1) + ".";
 			}
+
+			// if (duplicateValuesArr.IndexOf(i) == -1) {
+			// 	newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = (i + 1) + ".";
+			// } else {
+			// 	newRankingEntry.transform.GetChild(0).GetComponent<TMP_Text>().text = "–";
+			// }
 
 			newRankingEntry.transform.GetChild(1).GetComponent<TMP_Text>().text = SettingsHolder.heroNames[rankingIndex];
 			newRankingEntry.transform.GetChild(1).GetComponent<TMP_Text>().color = Colors.keyPlayers[rankingIndex];
