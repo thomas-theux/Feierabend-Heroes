@@ -16,7 +16,7 @@ public class CharCardsHandler : MonoBehaviour {
 	private int[] charClassesArr = {0, 1};
 
 	private float cursorBase = -10;
-	private float cursorDistance = -46;
+	private float cursorDistance = -56;
 
 	public Image gamepadIcon;
 	public GameObject pressToJoinGO;

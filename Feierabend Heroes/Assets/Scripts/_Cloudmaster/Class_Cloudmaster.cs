@@ -29,7 +29,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	// These variables can be improved by advancing on the skill tree
 	private float delayAttackOne = 0.4f;
-	private float delayAttackTwo = 1.0f;
+	private float delayAttackTwo = 3.0f;
 	// private float skillOne = 15.0f;
 	private float delaySkill = 30.0f;
 
@@ -41,7 +41,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float attackTwoDelay;
 
 	private float attackOneDmg = 16.0f;
-	private float attackTwoDmg = 24.0f;
+	private float attackTwoDmg = 10.0f;
 	// private float skillOneDmg = 0.0f;
 	private float skillDmg = 3.0f;
 
@@ -211,8 +211,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private void GetInput() {
 		performAttackOne = player.GetButton("X");
+
 		if (characterSheetScript.secondaryActivated) {
-			performAttackTwo = player.GetButton("Square");
+			performAttackTwo = player.GetButtonDown("Square");
 		}
 
 		if (!charactMovementScript.skillboardBlocksCasting) {
@@ -222,7 +223,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 
 	private void DelayMovement() {
-		if (performAttackOne || performAttackTwo) {
+		if (performAttackOne || performAttackTwo && !attackTwoDelayActive) {
+			print("Geht rein");
 			moveDelayTimer = moveDelay;
 		}
 
@@ -308,12 +310,15 @@ public class Class_Cloudmaster : MonoBehaviour {
 			newAttackTwo.GetComponent<UndergroundMine>().casterCritChance = characterSheetScript.critChance;
 			newAttackTwo.GetComponent<UndergroundMine>().casterCritDMG = characterSheetScript.critDMG;
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 0);
+		} else if (performAttackTwo && attackTwoDelayActive) {
+			Instantiate(skillNotAvailableSound);
 		}
 
 		if (attackTwoDelayActive) {
 			attackTwoDelayTimer -= Time.deltaTime;
 			uiHandlerScript.attackTwoDelayTimer = attackTwoDelayTimer;
 			if (attackTwoDelayTimer <= 0) {
+				Instantiate(skillCoolDownSound);
 				attackTwoDelayActive = false;
 			}
 		}

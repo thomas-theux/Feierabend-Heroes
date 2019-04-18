@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CharClassContent : MonoBehaviour {
 
 	public static string[] classTexts = {
-		"Master Crafter",
+		"Master-Crafter",
 		"Mythical Guard",
 		"Seer of War",
 		"Shape Shifter"
@@ -48,15 +48,15 @@ public class CharClassContent : MonoBehaviour {
 	};
 
 	public static string[] attackTwoTitleTexts = {
-		"Bomb Throw",
-		"Fire Block",
+		"Underground Mine",
+		"Fiery Wall",
 		"Ground Quake",
 		"???"
 	};
 
 	public static string[] enableSecondaryTexts = {
-        "Start throwing Bombs at your enemies!",
-		"Fortify yourself behind a fiery wall!",
+        "Place mines that destroy your enemies!",
+		"Fortify yourself behind this fiery wall!",
 		"Get rid of your enemies with this quake!",
 		"???"
     };

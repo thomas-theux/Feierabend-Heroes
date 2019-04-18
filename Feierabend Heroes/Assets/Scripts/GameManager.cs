@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour {
 	public static bool pauseMenuOpen = false;
 	public static int whoPaused = -1;
 
+	
+
+	public float moveSpeed = 10.0f;
+	public float gravityScale = 4.0f;
+
 
 	private void Awake() {
 		// AssignClasses();

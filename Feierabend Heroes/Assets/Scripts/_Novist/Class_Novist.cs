@@ -223,8 +223,9 @@ public class Class_Novist : MonoBehaviour {
 
 	private void GetInput() {
 		performAttackOne = player.GetButton("X");
+
 		if (characterSheetScript.secondaryActivated) {
-			performAttackTwo = player.GetButton("Square");
+			performAttackTwo = player.GetButtonDown("Square");
 		}
 
 		if (!charactMovementScript.skillboardBlocksCasting) {
@@ -234,7 +235,7 @@ public class Class_Novist : MonoBehaviour {
 
 
 	private void DelayMovement() {
-		if (performAttackOne || performAttackTwo) {
+		if (performAttackOne || performAttackTwo && characterSheetScript.secondaryActivated) {
 			moveDelayTimer = moveDelay;
 		}
 
@@ -317,12 +318,15 @@ public class Class_Novist : MonoBehaviour {
 			newAttackTwo.GetComponent<FireBlock>().casterCritChance = characterSheetScript.critChance;
 			newAttackTwo.GetComponent<FireBlock>().casterCritDMG = characterSheetScript.critDMG;
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 2);
+		} else if (performAttackTwo && attackTwoDelayActive) {
+			Instantiate(skillNotAvailableSound);
 		}
 
 		if (attackTwoDelayActive) {
 			attackTwoDelayTimer -= Time.deltaTime;
 			uiHandlerScript.attackTwoDelayTimer = attackTwoDelayTimer;
 			if (attackTwoDelayTimer <= 0) {
+				Instantiate(skillCoolDownSound);
 				attackTwoDelayActive = false;
 			}
 		}

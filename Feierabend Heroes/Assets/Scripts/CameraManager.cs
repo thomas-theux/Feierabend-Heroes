@@ -57,6 +57,7 @@ public class CameraManager : MonoBehaviour {
 			}
 
 			newCam.name = "PlayerCamera" + i;
+			newCam.GetComponent<Camera>().cullingMask ^= (1 << 10+i); // (to toggle layer 10+i)
 			newCam.rect = new Rect(camPosX, camPosY, camWidth, camHeight);
 			newCam.GetComponent<CameraFollow>().target = GameObject.Find("Character" + i).transform;
 
