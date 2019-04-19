@@ -21,13 +21,13 @@ public class SettingsHolder {
 	public static int currentRound = 0;
 	public static int amountOfRounds = 10;
 
-	public static float exploreTime = 5.0f;
+	public static float exploreTime = 45.0f;
 	public static float battleTime = 120.0f;
 
 	public static int appleSpawnMax = 0;
 	public static int orbSpawnMax = 15;
 
-	public static int startingOrbs = 200;
+	public static int startingOrbs = 20;
 	public static int orbsToWin = 9999;
 
 	public static int orbsEveryRound = 15;

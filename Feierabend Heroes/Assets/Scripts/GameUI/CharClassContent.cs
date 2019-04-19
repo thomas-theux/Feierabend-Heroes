@@ -20,7 +20,7 @@ public class CharClassContent : MonoBehaviour {
 	};
 
 	public static float[] charHPStats = {
-		26.0f,
+		260.0f,
 		380.0f,
 		300.0f,
 		220.0f
