@@ -31,9 +31,10 @@ public class GameManager : MonoBehaviour {
 	public static int whoPaused = -1;
 
 	
-
-	public float moveSpeed = 10.0f;
-	public float gravityScale = 4.0f;
+	// ACTIVATE FOR TESTING BOMB RANGE
+	// public float moveSpeed = 22.0f;
+	// public float gravityScale = 2.2f;
+	// public float bombAngle = -36.0f;
 
 
 	private void Awake() {

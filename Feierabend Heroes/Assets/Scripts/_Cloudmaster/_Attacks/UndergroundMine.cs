@@ -27,9 +27,9 @@ public class UndergroundMine : MonoBehaviour {
 
 	private void Awake () {
 		// ACTIVATE FOR TESTING BOMB RANGE
-		gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
-		moveSpeed = gameManagerScript.moveSpeed;
-		gravityScale = gameManagerScript.gravityScale;
+		// gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
+		// moveSpeed = gameManagerScript.moveSpeed;
+		// gravityScale = gameManagerScript.gravityScale;
 
 		rb = GetComponent<Rigidbody>();
 		rb.velocity = transform.forward * moveSpeed;

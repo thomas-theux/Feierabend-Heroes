@@ -43,8 +43,8 @@ public class GameUIHandler : MonoBehaviour {
 		ReInput.ControllerConnectedEvent += OnControllerConnected;
 		ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
-		connectedGamepads = ReInput.controllers.joystickCount;
-		// connectedGamepads = 4;
+		// connectedGamepads = ReInput.controllers.joystickCount;
+		connectedGamepads = 4;
 
 		for (int i = 0; i < playerMax; i++) {
 			GameObject newCharCard = Instantiate(charCardGO, cardsParent.transform, false);

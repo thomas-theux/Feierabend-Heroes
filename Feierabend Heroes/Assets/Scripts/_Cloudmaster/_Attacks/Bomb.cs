@@ -15,8 +15,8 @@ public class Bomb : MonoBehaviour {
 	private Rigidbody rb;
 	public GameObject bombRadius;
 
-	private float moveSpeed = 16.0f;
-	private float gravityScale = 2.0f;
+	private float moveSpeed = 20.0f;
+	private float gravityScale = 2.4f;
     private float globalGravity = -9.81f;
 
 	private GameManager gameManagerScript;

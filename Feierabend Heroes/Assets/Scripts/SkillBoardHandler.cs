@@ -25,6 +25,12 @@ public class SkillBoardHandler : MonoBehaviour {
         Colors.blue20.b,
         128
     );
+    private Color32 opaquePapers = new Color32(
+        Colors.keyPaper.r,
+        Colors.keyPaper.g,
+        Colors.keyPaper.b,
+        128
+    );
 
     // Icons from IcoFont for when unlocking skills in the list
     private string[] statIconsArr = {
@@ -41,6 +47,11 @@ public class SkillBoardHandler : MonoBehaviour {
 	public AudioSource skillCompleteSound;
 	public AudioSource skillLockedSound;
     public AudioSource unlockTierSound;
+
+    private int costsForSkill = 0;
+    private int costIncreaseOne = 10;
+    private int costIncreaseTwo = 15;
+    private int costIncreaseThree = 20;
 
     private int charID = 0;
     private int currentIndex = 0;
@@ -134,6 +145,7 @@ public class SkillBoardHandler : MonoBehaviour {
         healthSkillDict.Add("Info", "+10%");
         // healthSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         healthSkillDict.Add("Costs", 10);
+        healthSkillDict.Add("CostIncrease", costIncreaseOne);
         healthSkillDict.Add("Level", -1);
         healthSkillDict.Add("Cap", 10);
         healthSkillDict.Add("Unlocked", true);
@@ -142,6 +154,7 @@ public class SkillBoardHandler : MonoBehaviour {
         damageSkillDict.Add("Info", "+15%");
         // damageSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         damageSkillDict.Add("Costs", 10);
+        damageSkillDict.Add("CostIncrease", costIncreaseOne);
         damageSkillDict.Add("Level", -1);
         damageSkillDict.Add("Cap", 10);
         damageSkillDict.Add("Unlocked", true);
@@ -150,6 +163,7 @@ public class SkillBoardHandler : MonoBehaviour {
         defenseSkillDict.Add("Info", "+20%");
         // defenseSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         defenseSkillDict.Add("Costs", 10);
+        defenseSkillDict.Add("CostIncrease", costIncreaseOne);
         defenseSkillDict.Add("Level", -1);
         defenseSkillDict.Add("Cap", 10);
         defenseSkillDict.Add("Unlocked", true);
@@ -158,6 +172,7 @@ public class SkillBoardHandler : MonoBehaviour {
         critSkillDict.Add("Info", "+6%");
         // critSkillDict.Add("Costs", new int[] {1, 1, 2, 2, 3});
         critSkillDict.Add("Costs", 20);
+        critSkillDict.Add("CostIncrease", costIncreaseTwo);
         critSkillDict.Add("Level", -1);
         critSkillDict.Add("Cap", 10);
         critSkillDict.Add("Unlocked", false);
@@ -167,6 +182,7 @@ public class SkillBoardHandler : MonoBehaviour {
         ASPDSkillDict.Add("Info", "+10%");
         // ASPDSkillDict.Add("Costs", new int[] {1, 2, 2, 3, 4});
         ASPDSkillDict.Add("Costs", 20);
+        ASPDSkillDict.Add("CostIncrease", costIncreaseTwo);
         ASPDSkillDict.Add("Level", -1);
         ASPDSkillDict.Add("Cap", 10);
         ASPDSkillDict.Add("Unlocked", false);
@@ -175,6 +191,7 @@ public class SkillBoardHandler : MonoBehaviour {
         MSPDSkillDict.Add("Info", "+10%");
         // MSPDSkillDict.Add("Costs", new int[] {1, 2, 2, 3, 4});
         MSPDSkillDict.Add("Costs", 20);
+        MSPDSkillDict.Add("CostIncrease", costIncreaseTwo);
         MSPDSkillDict.Add("Level", -1);
         MSPDSkillDict.Add("Cap", 10);
         MSPDSkillDict.Add("Unlocked", false);
@@ -184,6 +201,7 @@ public class SkillBoardHandler : MonoBehaviour {
         classSkillDict.Add("Info", "???");
         // classSkillDict.Add("Costs", new int[] {3, 1, 2, 3, 4, 5});
         classSkillDict.Add("Costs", 30);
+        classSkillDict.Add("CostIncrease", costIncreaseThree);
         classSkillDict.Add("Level", -1);
         classSkillDict.Add("Cap", 6);
         classSkillDict.Add("Unlocked", false);
@@ -192,6 +210,7 @@ public class SkillBoardHandler : MonoBehaviour {
         passiveSkillDict.Add("Info", newPassiveInfo);
         // passiveSkillDict.Add("Costs", new int[] {5});
         passiveSkillDict.Add("Costs", 30);
+        passiveSkillDict.Add("CostIncrease", costIncreaseThree);
         passiveSkillDict.Add("Level", -1);
         passiveSkillDict.Add("Cap", 1);
         passiveSkillDict.Add("Unlocked", false);
@@ -243,7 +262,7 @@ public class SkillBoardHandler : MonoBehaviour {
     private void PayWithOrbs() {
         // int currentLevel = (int)skillData[currentIndex]["Level"];
         // int costsForSkill = ((int[])skillData[currentIndex]["Costs"])[currentLevel+1];
-        int costsForSkill = (int)skillData[currentIndex]["Costs"];
+        costsForSkill = (int)skillData[currentIndex]["Costs"] + ((int)skillData[currentIndex]["Level"] + 1) * (int)skillData[currentIndex]["CostIncrease"];
         characterSheetScript.currentOrbs -= costsForSkill;
         spentOrbs += costsForSkill;
     }
@@ -323,63 +342,41 @@ public class SkillBoardHandler : MonoBehaviour {
 
     private void DisplayNewTexts() {
         // Color texts depending if they're highlighted, locked, or regular
-        for (int i = 0; i < skillArray.Count; i++) {
-            if (i == currentIndex) {
-                skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Colors.keyPaper;
-                skillArray[currentIndex].transform.GetChild(2).GetComponent<Text>().color = Colors.keyPaper;
-                skillArray[currentIndex].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.keyPaper;
-            } else {
-                if ((bool)skillData[i]["Unlocked"]) {
-                    skillArray[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Colors.blue20;
-                    skillArray[i].transform.GetChild(2).GetComponent<Text>().color = Colors.blue20;
-                    skillArray[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.blue20;
+        for (int j = 0; j < skillArray.Count; j++) {
+            int skillCosts = (int)skillData[j]["Costs"] + ((int)skillData[j]["Level"] + 1) * (int)skillData[j]["CostIncrease"];
+
+            bool isUnlocked = (bool)skillData[j]["Unlocked"];
+            bool enoughOrbs = characterSheetScript.currentOrbs >= skillCosts;
+
+            if (j == currentIndex) {
+                if (!isUnlocked || !enoughOrbs) {
+                    // Transparent paper
+                    skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = opaquePapers;
+                    skillArray[j].transform.GetChild(2).GetComponent<Text>().color = opaquePapers;
+                    skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = opaquePapers;
                 } else {
-                    skillArray[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = opaqueSkills;
-                    skillArray[i].transform.GetChild(2).GetComponent<Text>().color = opaqueSkills;
-                    skillArray[i].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = opaqueSkills;
+                    // Paper
+                    skillArray[currentIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Colors.keyPaper;
+                    skillArray[currentIndex].transform.GetChild(2).GetComponent<Text>().color = Colors.keyPaper;
+                    skillArray[currentIndex].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.keyPaper;
+                }
+            } else {
+                if (!isUnlocked || !enoughOrbs) {
+                    // Transparent blue
+                    skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = opaqueSkills;
+                    skillArray[j].transform.GetChild(2).GetComponent<Text>().color = opaqueSkills;
+                    skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = opaqueSkills;
+                } else {
+                    // Blue
+                    skillArray[j].transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Colors.blue20;
+                    skillArray[j].transform.GetChild(2).GetComponent<Text>().color = Colors.blue20;
+                    skillArray[j].transform.GetChild(3).GetComponent<TextMeshProUGUI>().color = Colors.blue20;
                 }
             }
         }
 
         // Get current stats and write texts for skillboard
         switch (currentIndex) {
-            // HEALTH
-            // case 0:
-            //     if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
-            //         skillData[currentIndex]["Info"] =
-            //         characterSheetScript.maxHealth.ToString("F0") +
-            //         " → " +
-            //         (characterSheetScript.maxHealth + (characterSheetScript.maxHealth * SkillsHandler.increaseHP)).ToString("F0");
-            //     } else {
-            //         skillData[currentIndex]["Title"] = "Health";
-            //         skillData[currentIndex]["Info"] = characterSheetScript.maxHealth.ToString("F0");
-            //     }
-            //     break;
-            // // DAMAGE
-            // case 1:
-            //     float averageDmg = (characterSheetScript.attackOneDmg + characterSheetScript.attackTwoDmg) / 2;
-            //     if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
-            //         skillData[currentIndex]["Info"] =
-            //         averageDmg.ToString("F0") +
-            //         " → " +
-            //         (averageDmg + (averageDmg * SkillsHandler.increaseDMG)).ToString("F0");
-            //     } else {
-            //         skillData[currentIndex]["Title"] = "Damage";
-            //         skillData[currentIndex]["Info"] = averageDmg.ToString("F0");
-            //     }
-            //     break;
-            // // DEFENSE
-            // case 2:
-            //     if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
-            //         skillData[currentIndex]["Info"] =
-            //         characterSheetScript.charDefense.ToString("F0") +
-            //         " → " +
-            //         (characterSheetScript.charDefense + (characterSheetScript.charDefense * SkillsHandler.increaseDEF)).ToString("F0");
-            //     } else {
-            //         skillData[currentIndex]["Title"] = "Defense";
-            //         skillData[currentIndex]["Info"] = characterSheetScript.charDefense.ToString("F0");
-            //     }
-            //     break;
             // Secondary Attack
             case 3:
                 if ((int)skillData[currentIndex]["Level"] < 0) {
@@ -388,22 +385,6 @@ public class SkillBoardHandler : MonoBehaviour {
                     skillData[currentIndex]["Info"] = secondaryImproveInfo;
                 }
                 break;
-            // ATTACK SPEED
-            case 4:
-                // NOCH KEINE AHNUNG WIE ICH DEN SCHEISS ANZEIGEN SOLL :D
-                break;
-            // MOVE SPEED
-            // case 5:
-            //     if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
-            //         skillData[currentIndex]["Info"] =
-            //         characterSheetScript.moveSpeed.ToString("F1") +
-            //         " → " +
-            //         (characterSheetScript.moveSpeed + (characterSheetScript.moveSpeed * SkillsHandler.increaseMSPD)).ToString("F1");
-            //     } else {
-            //         skillData[currentIndex]["Title"] = "Move Speed";
-            //         skillData[currentIndex]["Info"] = characterSheetScript.moveSpeed.ToString("F1");
-            //     }
-            //     break;
             // CLASS SKILL
             case 6:
                 if ((int)skillData[currentIndex]["Level"] < 0) {
@@ -411,9 +392,6 @@ public class SkillBoardHandler : MonoBehaviour {
                 } else {
                     skillData[currentIndex]["Info"] = newImproveInfo;
                 }
-                break;
-            // PASSIVE SKILL
-            case 7:
                 break;
         }
 
@@ -452,7 +430,8 @@ public class SkillBoardHandler : MonoBehaviour {
         if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1) {
             // int currentLevel = (int)skillData[currentIndex]["Level"];
             // int costsForSkill = ((int[])skillData[currentIndex]["Costs"])[currentLevel+1];
-            int costsForSkill = (int)skillData[currentIndex]["Costs"];
+            // int costsForSkill = (int)skillData[currentIndex]["Costs"] + (int)skillData[currentIndex]["Level"] * (int)skillData[currentIndex]["CostIncrease"];
+            costsForSkill = (int)skillData[currentIndex]["Costs"] + ((int)skillData[currentIndex]["Level"] + 1) * (int)skillData[currentIndex]["CostIncrease"];
             skillCostText.text = costsForSkill + "";
             // skillCostText.alignment = TextAnchor.MiddleRight;
             orbIcon.color = new Color32(255, 255, 255, 255);
@@ -551,9 +530,7 @@ public class SkillBoardHandler : MonoBehaviour {
         if (ReInput.players.GetPlayer(charID).GetButtonDown("X")) {
             if ((int)skillData[currentIndex]["Level"] < (int)skillData[currentIndex]["Cap"] - 1 && (bool)skillData[currentIndex]["Unlocked"]) {
 
-                // int nextLevel = (int)skillData[currentIndex]["Level"] + 1;
-                // int nextLevelCosts = ((int[])skillData[currentIndex]["Costs"])[nextLevel];
-                int nextLevelCosts = (int)skillData[currentIndex]["Costs"];
+                int nextLevelCosts = (int)skillData[currentIndex]["Costs"] + ((int)skillData[currentIndex]["Level"] + 1) * (int)skillData[currentIndex]["CostIncrease"];
 
                 if (nextLevelCosts <= characterSheetScript.currentOrbs) {
                     // Activate skill

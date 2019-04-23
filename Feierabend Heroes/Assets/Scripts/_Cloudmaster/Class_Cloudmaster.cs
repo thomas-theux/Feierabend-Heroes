@@ -29,7 +29,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	// These variables can be improved by advancing on the skill tree
 	private float delayAttackOne = 0.4f;
-	private float delayAttackTwo = 3.0f;
+	private float delayAttackTwo = 1.0f;
 	// private float skillOne = 15.0f;
 	private float delaySkill = 30.0f;
 
@@ -41,7 +41,7 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float attackTwoDelay;
 
 	private float attackOneDmg = 16.0f;
-	private float attackTwoDmg = 10.0f;
+	private float attackTwoDmg = 12.0f;
 	// private float skillOneDmg = 0.0f;
 	private float skillDmg = 3.0f;
 
@@ -115,7 +115,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		// Attach attack GameObjects to script
 		attackOneGO = Resources.Load<GameObject>("Attacks/WrenchPunch");
-		attackTwoGO = Resources.Load<GameObject>("Attacks/UndergroundMine");
+		// attackTwoGO = Resources.Load<GameObject>("Attacks/UndergroundMine");
+		attackTwoGO = Resources.Load<GameObject>("Attacks/Bomb");
 		// skillOneGO = Resources.Load<GameObject>("Attacks/HealingBeacon");
 		skillGO = Resources.Load<GameObject>("Attacks/TurretGun");
 
@@ -299,15 +300,16 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 			Instantiate(bombThrowSound);
 			
-			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-25, 0, 0);
+			// attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(GameObject.Find("GameManager").GetComponent<GameManager>().bombAngle, 0, 0);
+			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-36, 0, 0);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
-			newAttackTwo.GetComponent<UndergroundMine>().casterTag = "Character" + charID;
-			newAttackTwo.GetComponent<UndergroundMine>().damagerID = charID;
+			newAttackTwo.GetComponent<Bomb>().casterTag = "Character" + charID;
+			newAttackTwo.GetComponent<Bomb>().damagerID = charID;
 			newAttackTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newAttackTwo.tag = "Attack";
-			newAttackTwo.transform.GetComponent<UndergroundMine>().casterDamage = characterSheetScript.attackTwoDmg;
-			newAttackTwo.GetComponent<UndergroundMine>().casterCritChance = characterSheetScript.critChance;
-			newAttackTwo.GetComponent<UndergroundMine>().casterCritDMG = characterSheetScript.critDMG;
+			newAttackTwo.transform.GetComponent<Bomb>().casterDamage = characterSheetScript.attackTwoDmg;
+			newAttackTwo.GetComponent<Bomb>().casterCritChance = characterSheetScript.critChance;
+			newAttackTwo.GetComponent<Bomb>().casterCritDMG = characterSheetScript.critDMG;
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 0);
 		} else if (performAttackTwo && attackTwoDelayActive) {
 			Instantiate(skillNotAvailableSound);

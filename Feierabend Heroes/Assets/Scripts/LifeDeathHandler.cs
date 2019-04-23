@@ -33,6 +33,7 @@ public class LifeDeathHandler : MonoBehaviour {
 	private bool isResettingID = false;
 	private float safeZoneDamage = 60.0f;
 
+	private bool oneTimeLoad = false;
 	public Image redFlash;
 	public bool gotHit = false;
 
@@ -62,9 +63,15 @@ public class LifeDeathHandler : MonoBehaviour {
 
 		lastDamagerID = -1;
 
-		GameObject firstChild = transform.GetChild(transform.childCount-1).gameObject;
-		GameObject secondChild = firstChild.transform.GetChild(transform.GetChild(transform.childCount-1).transform.childCount-1).gameObject;
-		redFlash = secondChild.GetComponent<Image>();
+		EnableCharRenderer();
+
+		if (!oneTimeLoad) {
+			GameObject firstChild = transform.GetChild(transform.childCount-1).gameObject;
+			GameObject secondChild = firstChild.transform.GetChild(transform.GetChild(transform.childCount-1).transform.childCount-1).gameObject;
+			redFlash = secondChild.GetComponent<Image>();
+
+			oneTimeLoad = true;
+		}
 	}
 
 
@@ -148,7 +155,7 @@ public class LifeDeathHandler : MonoBehaviour {
 		
 		// dudeHeadGO.GetComponent<Renderer>().enabled = false;
 		// dudeBodyGO.GetComponent<Renderer>().enabled = false;
-		// gameObject.GetComponent<CapsuleCollider>().enabled = false;
+		gameObject.GetComponent<CapsuleCollider>().enabled = false;
 
 		yield return new WaitForSeconds(2.0f);
 
