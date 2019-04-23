@@ -16,16 +16,17 @@ public class SettingsHolder {
 	public static bool delayMovement = true;
 
 	// "3 Aeras" ; "4 Hunted"
-	public static string selectedMap = "4 Hunted";
+	public static string selectedMap = "3 Aeras";
+	// public static string selectedMap = "4 Hunted";
 
 	public static int currentRound = 0;
 	public static int amountOfRounds = 10;
 
-	public static float exploreTime = 5.0f;
+	public static float exploreTime = 15.0f;
 	public static float battleTime = 120.0f;
 
 	public static int appleSpawnMax = 0;
-	public static int orbSpawnMax = 15;
+	public static int orbSpawnMax = 17;
 
 	public static int startingOrbs = 80;
 	public static int orbsToWin = 9999;

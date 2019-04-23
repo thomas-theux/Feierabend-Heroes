@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CameraManager : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class CameraManager : MonoBehaviour {
 	public GameObject cardSkills;
 	private GameObject skillUIGO;
 	public GameObject charUIGO;
+	public GameObject timerUIGO;
 
 	private float camWidth = 0.5f;
 	private float camHeight = 0.5f;
@@ -65,10 +67,9 @@ public class CameraManager : MonoBehaviour {
 
 			// Instantiate skill UI for every player
 			GameObject newSkillUI = Instantiate(skillUIGO);
-			// SettingsHolder.skillUIArr.Add(newSkillUI);
 			newSkillUI.name = "SkillUI" + i;
-			newSkillUI.transform.parent = GameObject.Find("Character" + i).transform;
-			newSkillUI.transform.GetChild(0).GetComponent<Canvas>().worldCamera = GameObject.Find("PlayerCamera" + i).gameObject.GetComponent<Camera>();
+			newSkillUI.transform.SetParent(GameObject.Find("Character" + i).transform);
+			newSkillUI.transform.GetChild(0).GetComponent<Canvas>().worldCamera = newCam;
 			newSkillUI.transform.GetChild(0).GetComponent<Canvas>().planeDistance = 1;
 			
 			if (SettingsHolder.skillMode == 0) {
@@ -79,10 +80,9 @@ public class CameraManager : MonoBehaviour {
 
 			// Instantiate character UI for every player
 			GameObject newCharUI = Instantiate(charUIGO);
-			// SettingsHolder.charUIArr.Add(newCharUI);
 			newCharUI.name = "CharUI" + i;
 			newCharUI.transform.SetParent(GameObject.Find("Character" + i).transform);
-			newCharUI.GetComponent<Canvas>().worldCamera = GameObject.Find("PlayerCamera" + i).gameObject.GetComponent<Camera>();
+			newCharUI.GetComponent<Canvas>().worldCamera = newCam;
 			newCharUI.GetComponent<Canvas>().planeDistance = 1;
 			newCharUI.GetComponent<UIHandler>().InitializeCharUI();
 
@@ -93,6 +93,21 @@ public class CameraManager : MonoBehaviour {
 				newCharUI.GetComponent<UnityEngine.UI.CanvasScaler>().referenceResolution = new Vector2(1440, 900);
 			}
 
+		}
+	}
+
+
+	public void SpawnUITimer() {
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			Camera playerCam = GameObject.Find("PlayerCamera" + i).GetComponent<Camera>();
+
+			// Instantiate timer UI for every player
+			GameObject newTimerUI = Instantiate(timerUIGO);
+			newTimerUI.name = "TimerUI" + i;
+			// newTimerUI.transform.SetParent(playerCam.transform);
+			newTimerUI.GetComponent<Canvas>().worldCamera = playerCam;
+			newTimerUI.GetComponent<Canvas>().planeDistance = 1;
+			GetComponent<TimeHandler>().levelStartTimerText.Add(newTimerUI.transform.GetChild(0).GetComponent<TMP_Text>());
 		}
 	}
 

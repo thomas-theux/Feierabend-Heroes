@@ -16,7 +16,7 @@ public class TimeHandler : MonoBehaviour {
 	public AudioSource roundEndSound;
 	public AudioSource timerTickingSound;
 
-	public TMP_Text levelStartTimerText;
+	public List<TMP_Text> levelStartTimerText = new List<TMP_Text>();
 	public TMP_Text explorationTimerText;
 
 	private float levelStartTimeDef = 3.0f;
@@ -79,15 +79,17 @@ public class TimeHandler : MonoBehaviour {
 		battleStartTime = battleStartTimeDef;
 		lastSecondsTime = lastSecondsTimeDef;
 
-		StartCoroutine(StartTimer());
 		SpawnSafeZone();
+		StartCoroutine(StartTimer());
 	}
 
 
 	private IEnumerator StartTimer() {
 		yield return new WaitForSeconds(0.8f);
 
-		levelStartTimerText.text = "Round " + (SettingsHolder.currentRound + 1) + "/" + SettingsHolder.amountOfRounds;
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			levelStartTimerText[i].text = "Round " + (SettingsHolder.currentRound + 1) + "/" + SettingsHolder.amountOfRounds;
+		}
 
 		yield return new WaitForSeconds(1.4f);
 
@@ -122,15 +124,22 @@ public class TimeHandler : MonoBehaviour {
 	private void LevelStartTimer() {
 		if (levelStartTime > 0.1f) {
 			levelStartTime -= Time.deltaTime;
-			levelStartTimerText.text = Mathf.Ceil(levelStartTime) + "";
+
+			for (int i = 0; i < SettingsHolder.playerCount; i++) {
+				levelStartTimerText[i].text = Mathf.Ceil(levelStartTime) + "";
+			}
+
 		} else {
 			startLevel = true;
 			isTicking = false;
 
 			Instantiate(startExploringSound);
 
-			levelStartTimerText.text = "Explore!";
-			StartCoroutine(WaitTwoSecs());
+			for (int i = 0; i < SettingsHolder.playerCount; i++) {
+				levelStartTimerText[i].text = "Explore!";
+			}
+
+			StartCoroutine(WaitOneSec());
 			
 			battleStartTimerActive = true;
 			levelStartTimerActive = false;
@@ -155,7 +164,9 @@ public class TimeHandler : MonoBehaviour {
 					StartCoroutine(TimeTicking());
 				}
 
-				levelStartTimerText.text = Mathf.Ceil(battleStartTime) + "";
+				for (int i = 0; i < SettingsHolder.playerCount; i++) {
+					levelStartTimerText[i].text = Mathf.Ceil(battleStartTime) + "";
+				}
 			}
 
 		} else {
@@ -163,18 +174,25 @@ public class TimeHandler : MonoBehaviour {
 			isTicking = false;
 
 			Instantiate(startBattleSound);
-			levelStartTimerText.text = "Battle!";
 
-			StartCoroutine(WaitTwoSecs());
+			for (int i = 0; i < SettingsHolder.playerCount; i++) {
+				levelStartTimerText[i].text = "Battle!";
+			}
+
+			StartCoroutine(WaitOneSec());
 
 			battleStartTimerActive = false;
 		}
 	}
 
 
-	private IEnumerator WaitTwoSecs() {
-		yield return new WaitForSeconds(2.0f);
-		levelStartTimerText.text = "";
+	private IEnumerator WaitOneSec() {
+		yield return new WaitForSeconds(1.0f);
+
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			levelStartTimerText[i].text = "";
+		}
+
 		showExplorationTimer = true;
 
 		if (roundEnd) {
@@ -307,7 +325,10 @@ public class TimeHandler : MonoBehaviour {
 				StartCoroutine(TimeTicking());
 			}
 
-			levelStartTimerText.text = Mathf.Ceil(lastSecondsTime) + "";
+			for (int i = 0; i < SettingsHolder.playerCount; i++) {
+				levelStartTimerText[i].text = Mathf.Ceil(lastSecondsTime) + "";
+			}
+
 		} else {
 			lastSeconds = false;
 			isTicking = false;
@@ -330,16 +351,22 @@ public class TimeHandler : MonoBehaviour {
 					SettingsHolder.matchOver = true;
 				}
 			} else {
-				levelStartTimerText.text = "Round Over!";
+				for (int i = 0; i < SettingsHolder.playerCount; i++) {
+					levelStartTimerText[i].text = "Round Over!";
+				}
+
 				roundEnd = true;
-				StartCoroutine(WaitTwoSecs());
+				StartCoroutine(WaitOneSec());
 			}
 		}
 	}
 
 
 	private IEnumerator MatchOver() {
-		levelStartTimerText.text = "";
+		for (int i = 0; i < SettingsHolder.playerCount; i++) {
+			levelStartTimerText[i].text = "";
+		}
+
 		yield return new WaitForSeconds(2.0f);
 
 		startLevel = false;

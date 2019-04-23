@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour {
 			ResetCharacters();
 		}
 
+		GetComponent<CameraManager>().SpawnUITimer();
+
 		AddPlayersToList();
 		
 		levelMusic.Play();
