@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: a58e304aa32a445b89e57d5e8886472c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Blackside
+  fontNames:
+  - Blackside
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 97400d62bf54f4fb997a8ab94268d744, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
