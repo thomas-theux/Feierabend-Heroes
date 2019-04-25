@@ -31,6 +31,8 @@ public class CharacterMovement : MonoBehaviour {
 	private float dodgeDistance = 5.0f;
 	private Vector3 dodgeDrag = new Vector3(10.0f, 10.0f, 10.0f);
 
+	private float charMoveSpeed;
+
 	// REWIRED
 	private float moveHorizontal;
 	private float moveVertical;
@@ -69,6 +71,21 @@ public class CharacterMovement : MonoBehaviour {
 
 		campfireTarget = GameObject.Find("CampfireTarget");
 		transform.LookAt(campfireTarget.transform);
+
+		// Check if player is public enemy and transform their size
+		if (SettingsHolder.publicEnemy == playerID) {
+			transform.GetChild(0).transform.localScale = new Vector3(SettingsHolder.sizeIncrease, SettingsHolder.sizeIncrease, SettingsHolder.sizeIncrease);
+			GetComponent<CapsuleCollider>().radius = SettingsHolder.sizeIncrease;
+			GetComponent<CapsuleCollider>().height = GetComponent<CapsuleCollider>().height * SettingsHolder.sizeIncrease;
+			GetComponent<CapsuleCollider>().center = new Vector3(0, 2.2f, 0);
+			charMoveSpeed = characterSheetScript.moveSpeed * SettingsHolder.speedDecrease;
+		} else {
+			transform.GetChild(0).transform.localScale = new Vector3(1, 1, 1);
+			GetComponent<CapsuleCollider>().radius = 1.0f;
+			GetComponent<CapsuleCollider>().height = 3.6f;
+			GetComponent<CapsuleCollider>().center = new Vector3(0, 0.8f, 0);
+			charMoveSpeed = characterSheetScript.moveSpeed;
+		}
 	}
 
 
@@ -147,7 +164,7 @@ public class CharacterMovement : MonoBehaviour {
 		movement = Vector3.ClampMagnitude(movement, 1);
 
 		if (!isAttacking && TimeHandler.startLevel) {
-			cc.Move(movement * characterSheetScript.moveSpeed * Time.deltaTime);
+			cc.Move(movement * charMoveSpeed * Time.deltaTime);
 		}
 
 		// Activate dodge movement

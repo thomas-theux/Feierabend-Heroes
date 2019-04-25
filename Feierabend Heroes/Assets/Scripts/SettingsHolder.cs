@@ -9,6 +9,10 @@ public class SettingsHolder {
 	public static int playerCount = 0;
 	public static int registeredPlayers = 0;
 
+	public static int publicEnemy = -1;
+	public static float sizeIncrease = 2.0f;
+	public static float speedDecrease = 0.8f;
+
 	// 0 = List ; 1 = Cards
 	public static int skillMode = 0;
 
@@ -16,19 +20,20 @@ public class SettingsHolder {
 	public static bool delayMovement = true;
 
 	// "3 Aeras" ; "4 Hunted"
-	public static string selectedMap = "3 Aeras";
-	// public static string selectedMap = "4 Hunted";
+	// public static string selectedMap = "3 Aeras";
+	public static string selectedMap = "4 Hunted";
 
 	public static int currentRound = 0;
 	public static int amountOfRounds = 10;
 
-	public static float exploreTime = 15.0f;
+	public static float exploreTime = 5.0f;
 	public static float battleTime = 120.0f;
 
 	public static int appleSpawnMax = 0;
 	public static int orbSpawnMax = 17;
 
-	public static int startingOrbs = 80;
+	// Need 4785 orbs to complete full skillset
+	public static int startingOrbs = 4785;
 	public static int orbsToWin = 9999;
 
 	public static int orbsEveryRound = 15;
@@ -41,7 +46,9 @@ public class SettingsHolder {
 	public static bool initialSpawn = false;
 	public static bool nextMatch = false;
 
-	public static int tierTwoCosts = 40;
-	public static int tierThreeCosts = 60;
+	public static int tierTwoCosts = 150;
+	public static int tierThreeCosts = 300;
+
+	public static int orbsForBounty = 50;
 
 }

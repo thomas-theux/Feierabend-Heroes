@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Oriya MN SDF Bold Outlined
   m_EditorClassIdentifier: 
-  hashCode: -1494708197
+  hashCode: 875597599
   material: {fileID: 21582533814209890}
   materialHashCode: 960087984
   fontAssetType: 1

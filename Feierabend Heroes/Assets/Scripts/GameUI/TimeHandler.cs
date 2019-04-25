@@ -56,6 +56,8 @@ public class TimeHandler : MonoBehaviour {
 
 	private List<int> orbCountArr = new List<int>();
 
+	public GameObject bountyOverlayGO;
+
 	public AudioSource matchEndSound;
 	public GameObject matchResultsGO;
 
@@ -309,8 +311,20 @@ public class TimeHandler : MonoBehaviour {
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Show leader board for 5 seconds
-		yield return new WaitForSeconds(5.0f);
+		// Show leader board for 4 seconds
+		yield return new WaitForSeconds(4.0f);
+
+		// Push public enemy data and display bounty
+		SettingsHolder.publicEnemy = GameManager.rankingsArr[0];
+
+		bountyOverlayGO.GetComponent<BountyDisplayer>().heroName.text = SettingsHolder.heroNames[GameManager.rankingsArr[0]];
+		bountyOverlayGO.GetComponent<BountyDisplayer>().heroName.color = Colors.keyPlayers[GameManager.rankingsArr[0]];
+		// bountyOverlayGO.GetComponent<BountyDisplayer>().publicEnemyText = SettingsHolder.heroNames[GameManager.rankingsArr[0]];
+		// bountyOverlayGO.GetComponent<BountyDisplayer>().publicEnemyColor = Colors.keyPlayers[GameManager.rankingsArr[0]];
+		bountyOverlayGO.SetActive(true);
+
+		// Show bounty for 3 seconds
+		yield return new WaitForSeconds(3.0f);
 
 		SceneManager.LoadScene(SettingsHolder.selectedMap);
 	}
@@ -354,6 +368,9 @@ public class TimeHandler : MonoBehaviour {
 				for (int i = 0; i < SettingsHolder.playerCount; i++) {
 					levelStartTimerText[i].text = "Round Over!";
 				}
+
+				// Reset bounty
+				SettingsHolder.publicEnemy = -1;
 
 				roundEnd = true;
 				StartCoroutine(WaitOneSec());

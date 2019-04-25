@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Oriya MN SDF Outlined
   m_EditorClassIdentifier: 
-  hashCode: 1282922398
+  hashCode: 2047193594
   material: {fileID: 21711356009615048}
   materialHashCode: 797189461
   fontAssetType: 1

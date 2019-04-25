@@ -139,6 +139,7 @@
      <Compile Include="Assets\Scripts\_Novist\Class_Novist.cs" />
      <Compile Include="Assets\Scripts\AppleHeal.cs" />
      <Compile Include="Assets\Scripts\AppleSpawner.cs" />
+     <Compile Include="Assets\Scripts\BountyDisplayer.cs" />
      <Compile Include="Assets\Scripts\ButtonNav.cs" />
      <Compile Include="Assets\Scripts\ButtonNavList.cs" />
      <Compile Include="Assets\Scripts\CameraFirstPerson.cs" />

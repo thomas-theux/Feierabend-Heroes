@@ -140,7 +140,18 @@ public class LifeDeathHandler : MonoBehaviour {
 			}
 
 			// Give player who killed this character two extra orbs
-			GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForKills;
+			if (SettingsHolder.publicEnemy == characterSheetScript.charID) {
+				GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForBounty;
+
+				// Decrease orbs from killed character when being bounty
+				if (characterSheetScript.currentOrbs >= SettingsHolder.orbsForKills) {
+					characterSheetScript.currentOrbs -= SettingsHolder.orbsForKills;
+				} else {
+					characterSheetScript.currentOrbs = 0;
+				}
+			} else {
+				GameObject.Find("Character" + lastDamagerID).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForKills;
+			}
 
 			// Steal orb from killed character
 			// for (int i = 0; i < SettingsHolder.orbsForKills; i++) {
@@ -185,8 +196,6 @@ public class LifeDeathHandler : MonoBehaviour {
 
 				isWaiting = false;
 				charIsDead = false;
-
-				// EnableCharRenderer();
 			}
 		} else {
 			RemoveFromList();
