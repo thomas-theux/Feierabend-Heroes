@@ -234,8 +234,8 @@ public class CharacterMovement : MonoBehaviour {
 
 
 	private void ShowSkillboard() {
-		this.gameObject.transform.GetChild(3).gameObject.SetActive(skillBoardOn);
-		this.gameObject.transform.GetChild(4).gameObject.SetActive(!skillBoardOn);
+		this.gameObject.transform.GetChild(4).gameObject.SetActive(skillBoardOn);
+		this.gameObject.transform.GetChild(5).gameObject.SetActive(!skillBoardOn);
 
 		// Draw new cards if board is being opened
 		if (skillBoardOn) {

@@ -133,6 +133,10 @@ public class LifeDeathHandler : MonoBehaviour {
 
 		Instantiate(characterDiesSound);
 
+		// Disable shadow and direction indicator
+		transform.GetChild(2).gameObject.SetActive(false);
+		transform.GetChild(3).gameObject.SetActive(false);
+
 		if (lastDamagerID > -1) {
 			// Increase stats for kills
 			if (GameManager.killsStatsArr[lastDamagerID] > -1) {
@@ -217,6 +221,10 @@ public class LifeDeathHandler : MonoBehaviour {
 		dudeHeadGO.GetComponent<Renderer>().enabled = true;
 		dudeBodyGO.GetComponent<Renderer>().enabled = true;
 		gameObject.GetComponent<CapsuleCollider>().enabled = true;
+
+		// Disable shadow and direction indicator
+		transform.GetChild(2).gameObject.SetActive(true);
+		transform.GetChild(3).gameObject.SetActive(true);
 	}
 
 
