@@ -29,6 +29,13 @@ public class Colors : MonoBehaviour {
         new Color32(153, 144, 61, 255)
     };
 
+    public static Color32[] keyIndicators = {
+        new Color32(77, 214, 255, 128),
+        new Color32(255, 78, 77, 128),
+        new Color32(77, 255, 162, 128),
+        new Color32(255, 238, 77, 128)
+    };
+
     public static Color32 keyPaper = new Color32(235, 213, 171, 255);
     
 

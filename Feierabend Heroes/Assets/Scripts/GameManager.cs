@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Rewired;
 
@@ -104,6 +105,10 @@ public class GameManager : MonoBehaviour {
 					newChar.AddComponent<Class_Novist>();
 					break;
 			}
+
+			// Color the indicator underneath the hero
+			newChar.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().color = Colors.keyIndicators[i];
+
 		}
 		
 		// Tell the SettingsHolder that the characters have been spawned once and don't need to be spawned again
