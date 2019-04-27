@@ -8,7 +8,7 @@ public class CompanionAggro : MonoBehaviour {
 	public GameObject followCaster;
 	private Transform enemyChar;
 	private float followSpeed = 3.0f;
-	private float approachEnemySpeed = 2.0f;
+	private float approachEnemySpeed = 3.0f;
 
 	// private float lifeTime = 8.0f;
 
