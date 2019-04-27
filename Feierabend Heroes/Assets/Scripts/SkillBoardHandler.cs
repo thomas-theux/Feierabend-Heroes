@@ -49,9 +49,9 @@ public class SkillBoardHandler : MonoBehaviour {
     public AudioSource unlockTierSound;
 
     private int costsForSkill = 0;
-    private int costIncreaseOne = 10;
-    private int costIncreaseTwo = 15;
-    private int costIncreaseThree = 20;
+    private int costIncreaseOne = 5;
+    private int costIncreaseTwo = 10;
+    private int costIncreaseThree = 15;
 
     private int charID = 0;
     private int currentIndex = 0;

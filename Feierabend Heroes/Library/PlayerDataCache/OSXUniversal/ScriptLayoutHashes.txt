@@ -1,9 +1,10 @@
 OSXUniversal
 PlayerPath?
-/Users/thomas_ge/Desktop/🤓 Clean me/Feierabend Heroes/Feierabend Heroes v0.5.1.app
+/Users/thomas_ge/Desktop/🤓 Clean me/Feierabend Heroes/Feierabend Heroes v0.6.0.app
 SceneListBegin?
 Assets/Scenes/0 Main Screen.unity
-Assets/Scenes/1 Character Selection.unity
+Assets/Scenes/1 Match Settings.unity
+Assets/Scenes/2 Character Selection.unity
 Assets/Scenes/2 TestLevel.unity
 Assets/Scenes/3 Aeras.unity
 Assets/Scenes/4 Hunted.unity
@@ -30,7 +31,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.P
 0e3b112741a73a26aa88ad856d3a8066 Assembly-CSharp.dll:.AppleHeal
 9c7c87712e298256d276eb96e02a57b1 Unity.ProBuilder.dll:UnityEngine.ProBuilder.PreferenceDictionary
 97b91af1e339ab9fda8937683f620b4d Assembly-CSharp.dll:Rewired.Data.UserDataStore_PlayerPrefs
-4c28ff87a3a39e0fcdcc00374e40bbac Assembly-CSharp.dll:.GameManager
+1010e9ab25e900465bd597fa17c589bb Assembly-CSharp.dll:.GameManager
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.LoadSceneTest
 71f7f12b8d0f4fd73590db8bcb6d453c Unity.Postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.Bloom
 e7a73f5f78ba6445195ec23b74a1ce2d Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
@@ -224,7 +225,7 @@ d6fc8d3165070298511ec776ea575626 Unity.Postprocessing.Runtime.dll:UnityEngine.Re
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 4ce15e99c635d2567873d27549d1f16f Assembly-CSharp.dll:Rewired.Demos.PlayerPointerEventHandlerExample
 a53651ee3996fbba20dfe0fce02f0b23 Unity.Postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.AutoExposure
-992075bbb553504f42e0b156176261f9 Assembly-CSharp.dll:.CameraManager
+c13e253add5fb973e2fd4839334d53e8 Assembly-CSharp.dll:.CameraManager
 8354a3cac8b89bb5ad2352c2519cc8df Assembly-CSharp.dll:.AmplifyColorRenderMask
 e8a3c0892d1d9038da31c4402b70a376 Assembly-CSharp.dll:.FireBlock
 50c443b12ccc0b475183318b5088bcc5 Unity.Postprocessing.Runtime.dll:UnityEngine.Rendering.PostProcessing.PostProcessDebug
@@ -234,7 +235,7 @@ a64ff9bd94fcf5bc659cc698b1332e43 Assembly-CSharp.dll:.AmplifyColorVolume
 5f41fccf6be994295655fbe7bf1ecbca Assembly-CSharp.dll:.BombRadius
 0436459776203c153febba549ce423b9 Assembly-CSharp.dll:Rewired.UI.ControlMapper.UISliderControl
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:Rewired.Demos.ControlRemappingDemo1
-551156a794d1af638a4ec6aefd1269b0 Assembly-CSharp.dll:.TimeHandler
+276097a40cfd2478d59e12e376d24d4a Assembly-CSharp.dll:.TimeHandler
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -263,6 +264,7 @@ aa82b3ce4c0c9b227036c0337315c5d3 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 e51c09a4cc447f11db225afcd8e3e490 Unity.TextMeshPro.dll:TMPro.TMP_Settings
 dc7ee6d36af0e907ca4af13ed0e63d8c Assembly-CSharp.dll:.LifeDeathHandler
 7c4d61ba679beaa5d71821c8c9d31078 Assembly-CSharp.dll:.CameraFollow
+676cf7c2eecd9db610799b13b5503117 Assembly-CSharp.dll:.BountyDisplayer
 1d6b868e1a6306be732176acf7d56e10 Assembly-CSharp.dll:Rewired.UI.ControlMapper.CustomSlider
 cf96e5f7b3d069bab453925bd41be04e UnityEngine.TestRunner.dll:UnityEngine.TestTools.EnumerableSetUpTearDownCommandState
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
@@ -325,3 +327,4 @@ f4b352f127266e8f47030f62ffd294fe Assembly-CSharp.dll:.SafeZone
 6d863c8a17acb295615f90bd0cbd55fe Assembly-CSharp.dll:.FPSDisplay
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DestroyAfterPlay
 2e6f92767b5626887fe742cc15da58b8 Assembly-CSharp.dll:Rewired.UI.ControlMapper.CanvasScalerFitter
+8d6fff5399eee1404ca22fac86b5ad55 Assembly-CSharp.dll:.MatchSettingsHandler

@@ -57,6 +57,7 @@ public class TimeHandler : MonoBehaviour {
 	private List<int> orbCountArr = new List<int>();
 
 	public GameObject bountyOverlayGO;
+	public static int currentBounty = -1;
 
 	public AudioSource matchEndSound;
 	public GameObject matchResultsGO;
@@ -80,7 +81,7 @@ public class TimeHandler : MonoBehaviour {
 		levelStartTime = levelStartTimeDef;
 		battleStartTime = battleStartTimeDef;
 		lastSecondsTime = lastSecondsTimeDef;
-
+		
 		SpawnSafeZone();
 		StartCoroutine(StartTimer());
 	}
@@ -314,17 +315,28 @@ public class TimeHandler : MonoBehaviour {
 		// Show leader board for 4 seconds
 		yield return new WaitForSeconds(4.0f);
 
-		// Push public enemy data and display bounty
-		SettingsHolder.publicEnemy = GameManager.rankingsArr[0];
+		// Check which bounty type was selected in the match settings
+		if (SettingsHolder.bountyType == 0) {
+			// Push public enemy data and display bounty
+			SettingsHolder.publicEnemy = GameManager.rankingsArr[0];
 
-		bountyOverlayGO.GetComponent<BountyDisplayer>().heroName.text = SettingsHolder.heroNames[GameManager.rankingsArr[0]];
-		bountyOverlayGO.GetComponent<BountyDisplayer>().heroName.color = Colors.keyPlayers[GameManager.rankingsArr[0]];
-		// bountyOverlayGO.GetComponent<BountyDisplayer>().publicEnemyText = SettingsHolder.heroNames[GameManager.rankingsArr[0]];
-		// bountyOverlayGO.GetComponent<BountyDisplayer>().publicEnemyColor = Colors.keyPlayers[GameManager.rankingsArr[0]];
-		bountyOverlayGO.SetActive(true);
+			// Check if this player already had a bounty in the previous round
+			if (currentBounty == GameManager.rankingsArr[0]) {
+				SettingsHolder.orbsForBounty += SettingsHolder.increaseBountyBy;
+			} else {
+				SettingsHolder.orbsForBounty = SettingsHolder.orbsForBountyDef;
+			}
 
-		// Show bounty for 3 seconds
-		yield return new WaitForSeconds(3.0f);
+			bountyOverlayGO.GetComponent<BountyDisplayer>().heroName.text = SettingsHolder.heroNames[GameManager.rankingsArr[0]];
+			bountyOverlayGO.GetComponent<BountyDisplayer>().heroName.color = Colors.keyPlayers[GameManager.rankingsArr[0]];
+			bountyOverlayGO.GetComponent<BountyDisplayer>().orbReward.text = SettingsHolder.orbsForBounty + " Reward";
+			bountyOverlayGO.SetActive(true);
+
+			currentBounty = GameManager.rankingsArr[0];
+
+			// Show bounty for 3 seconds
+			yield return new WaitForSeconds(3.0f);
+		}
 
 		SceneManager.LoadScene(SettingsHolder.selectedMap);
 	}

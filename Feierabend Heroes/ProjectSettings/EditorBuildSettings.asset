@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/0 Main Screen.unity
     guid: 0080482b1f83847608cd8fc43b57d11f
   - enabled: 1
-    path: Assets/Scenes/1 Character Selection.unity
+    path: Assets/Scenes/1 Match Settings.unity
+    guid: fcc82ab9502e042a3b5bd23447c21fb5
+  - enabled: 1
+    path: Assets/Scenes/2 Character Selection.unity
     guid: 12bfc39adaf6c41c5818a826eb11a076
   - enabled: 1
     path: Assets/Scenes/2 TestLevel.unity

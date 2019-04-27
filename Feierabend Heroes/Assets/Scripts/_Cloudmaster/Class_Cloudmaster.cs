@@ -25,12 +25,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 	private int charID;
 
-	// private string[] attackNames = {"Wrench Punch (DPS)", "Bomb Throw (DPS)"};
-
 	// These variables can be improved by advancing on the skill tree
 	private float delayAttackOne = 0.4f;
-	private float delayAttackTwo = 1.0f;
-	// private float skillOne = 15.0f;
+	private float delayAttackTwo = 0.8f;
 	private float delaySkill = 30.0f;
 
 	private bool performAttacks = false;
@@ -41,37 +38,11 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float attackTwoDelay;
 
 	private float attackOneDmg = 16.0f;
-	private float attackTwoDmg = 12.0f;
-	// private float skillOneDmg = 0.0f;
+	private float attackTwoDmg = 10.0f;
 	private float skillDmg = 3.0f;
-
-	// Initial variables and increase values for the skills
-	// private float[] skillOneStats = {0.4f, 5.0f, 0.2f, 1.0f};
 
 	// {shot delay, aggro radius, decrease shot delay, increase radius}
 	private float[] charSkillStats = {0.5f, 14.0f, -0.02f, 3.0f};
-
-	// Skill titles and texts for the skill board
-	// private string classType = "CLOUD MASTER";
-	// private string classText = "An Engineer that uses Cloud technology to defeat enemies.";
-	// private string classPerk = "• Wrench Punch\n• Bomb Throw";
-	
-	// private string skillOneTitle = "HEALING BEACON";
-	// private string skillTitle = "TURRET GUN";
-	// private string skillOneText = "Place a Healing Beacon that gives back health over time.";
-	// private string skillText = "Spawn a immobile Turret Gun that shoots enemies on sight.";
-	// private string skillOnePerk = "• 0.4 HP\n• lasts 5 seconds";
-	// private string skillPerk = "• 0.3 Damage\n• lasts 24 seconds";
-	// private string skillOneStat = "HP";
-	// private string skillStat = "Damage";
-	// private string skillOneUpgradeText = "Improves the Beacon's healing speed and lifetime.";
-	// private string skillUpgradeText = "Improves the Gun's attack speed and increases the radius.";
-	// private string skillOneUpgradePerk = "+50% HP heal\n+1s lifetime";
-	// private string skillUpgradePerk = "+16% shot speed\n+4m radius";
-
-	// private float charHealth = 260.0f;
-	// private float charDefense = 8.0f;
-	// private float moveSpeed = 10.0f;
 
 	// Movement delay when attacking
 	private float moveDelay = 0.1f;
@@ -84,10 +55,6 @@ public class Class_Cloudmaster : MonoBehaviour {
 	// Attack Two – Bombs
 	private float attackTwoDelayTimer;
 	private bool attackTwoDelayActive = false;
-
-	// Skill One – Healing Beacon
-	// private float skillOneDelayTimer;
-	// private bool skillOneDelayActive = false;
 
 	// Skill Two – Turret Gun
 	public float skillDelayTimer;
@@ -108,10 +75,6 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		// Set character class in character sheet
 		characterSheetScript.charClass = charClass;
-
-		// Set names of attacks in character sheet
-		// characterSheetScript.attackNames[0] = attackNames[0];
-		// characterSheetScript.attackNames[1] = attackNames[1];
 
 		// Attach attack GameObjects to script
 		attackOneGO = Resources.Load<GameObject>("Attacks/WrenchPunch");
@@ -137,44 +100,19 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 		charID = charactMovementScript.playerID;
 		player = ReInput.players.GetPlayer(charID);
-		
-		// characterSheetScript.classType = classType;
-		// characterSheetScript.classText = classText;
-		// characterSheetScript.classPerk = classPerk;
 
 		// Set stats in skill script
 		characterSheetScript.delayAttackOne = delayAttackOne;
 		characterSheetScript.delayAttackTwo = delayAttackTwo;
-		// characterSheetScript.delaySkillOne = skillOne;
 		characterSheetScript.delaySkill = delaySkill;
 
 		characterSheetScript.attackOneDmg = attackOneDmg;
 		characterSheetScript.attackTwoDmg = attackTwoDmg;
-		// characterSheetScript.skillOneDmg = skillOneDmg;
 		characterSheetScript.skillDmg = skillDmg;
 
 		for (int i = 0; i < 4; i++) {
-			// characterSheetScript.skillOneStats[i] = skillOneStats[i];
 			characterSheetScript.charSkillStats[i] = charSkillStats[i];
 		}
-
-		// characterSheetScript.skillOneTitle = skillOneTitle;
-		// characterSheetScript.skillTitle = skillTitle;
-		// characterSheetScript.skillOneText = skillOneText;
-		// characterSheetScript.skillText = skillText;
-		// characterSheetScript.skillOnePerk = skillOnePerk;
-		// characterSheetScript.skillPerk = skillPerk;
-		// characterSheetScript.skillOneStat = skillOneStat;
-		// characterSheetScript.skillStat = skillStat;
-		// characterSheetScript.skillOneUpgradeText = skillOneUpgradeText;
-		// characterSheetScript.skillUpgradeText = skillUpgradeText;
-		// characterSheetScript.skillOneUpgradePerk = skillOneUpgradePerk;
-		// characterSheetScript.skillUpgradePerk = skillUpgradePerk;
-
-		// characterSheetScript.currentHealth = charHealth;
-		// characterSheetScript.maxHealth = charHealth;
-		// characterSheetScript.moveSpeed = moveSpeed;
-		// characterSheetScript.charDefense = charDefense;
 
 		characterSheetScript.currentHealth = CharClassContent.charHPStats[characterSheetScript.charClass];
 		characterSheetScript.maxHealth = CharClassContent.charHPStats[characterSheetScript.charClass];

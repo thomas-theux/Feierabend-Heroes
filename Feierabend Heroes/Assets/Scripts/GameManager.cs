@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject spawnParent;
 	public List<GameObject> startSpawns;
 	public static List<int> activePlayers = new List<int>();
+	
+	public static List<float> spawnWaits = new List<float>();
 
 	public AudioSource levelMusic;
 	public AudioSource pauseGameSound;
@@ -180,7 +182,7 @@ public class GameManager : MonoBehaviour {
         
         SettingsHolder.matchOver = false;
 
-        SceneManager.LoadScene("1 Character Selection");
+        SceneManager.LoadScene("2 Character Selection");
 	}
 	
 }

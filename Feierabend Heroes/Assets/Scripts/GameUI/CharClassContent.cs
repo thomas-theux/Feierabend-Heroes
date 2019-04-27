@@ -35,7 +35,7 @@ public class CharClassContent : MonoBehaviour {
 
 	public static float[] charMSPDStats = {
 		12.0f,
-		8.0f,
+		7.5f,
 		10.0f,
 		13.0f
 	};

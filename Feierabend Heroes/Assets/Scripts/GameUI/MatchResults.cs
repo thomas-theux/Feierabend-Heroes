@@ -52,7 +52,7 @@ public class MatchResults : MonoBehaviour {
         
         SettingsHolder.matchOver = false;
 
-        SceneManager.LoadScene("1 Character Selection");
+        SceneManager.LoadScene("2 Character Selection");
     }
 
 

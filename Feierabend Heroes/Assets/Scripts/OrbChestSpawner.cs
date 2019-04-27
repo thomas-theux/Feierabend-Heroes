@@ -7,6 +7,8 @@ public class OrbChestSpawner : MonoBehaviour {
 	public GameObject orbChestGO;
 	public GameObject levelGO;
 
+	private float currentSpawnDelay = 0;
+
 	private float minPosX;
 	private float minPosZ;
 	private float maxPosX;
@@ -16,18 +18,26 @@ public class OrbChestSpawner : MonoBehaviour {
 
 	private float levelPadding = 3.0f;
 
-	private float waitingTime = 0.4f;
-	private float timeMultiplier = 1.7f;
+	// private float waitingTime = 0.4f;
+	// private float timeMultiplier = 1.7f;
 	public static int currentChestCount = 0;
 
 
 	private void Awake() {
+		// timeMultiplier = SettingsHolder.timeMultiplier;
+
+		// waitingTime = SettingsHolder.spawnDelayTime;
 		StartCoroutine(WaitToSpawn());
 	}
 
 
-	private IEnumerator WaitToSpawn() {
-		yield return new WaitForSeconds(waitingTime);
+	public IEnumerator WaitToSpawn() {
+		// yield return new WaitForSeconds(waitingTime);
+		
+		if (currentSpawnDelay != GameManager.spawnWaits[0]) {
+			yield return new WaitForSeconds(GameManager.spawnWaits[0]);
+			currentSpawnDelay = GameManager.spawnWaits[0];
+		}
 		SpawnChest();
 	}
 
@@ -54,7 +64,8 @@ public class OrbChestSpawner : MonoBehaviour {
 		currentChestCount++;
 
 		if (currentChestCount < SettingsHolder.orbSpawnMax) {
-			waitingTime *= timeMultiplier;
+			// waitingTime *= 2;
+			// waitingTime *= timeMultiplier;
 			StartCoroutine(WaitToSpawn());
 		}
 	}

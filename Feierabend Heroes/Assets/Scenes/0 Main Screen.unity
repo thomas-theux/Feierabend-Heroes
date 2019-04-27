@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 856171207}
   - component: {fileID: 856171208}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameStarter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -500,6 +500,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8b19ee3b3a4437c96b791bbea4192d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnAmount: 3
+  overallSec: 42
+  initialWait: 2
+  multiplier: 4
 --- !u!1001 &959256188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -743,6 +747,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 829196640798444501, guid: 4a1e4b79f68d14ad893733275b7a9a06,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241010711672709625, guid: 4a1e4b79f68d14ad893733275b7a9a06,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241010711672709625, guid: 4a1e4b79f68d14ad893733275b7a9a06,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1

@@ -39,6 +39,7 @@ public class OrbChest : MonoBehaviour {
 		yield return new WaitForSeconds(0.2f);
 
 		Instantiate(spawnOrbSound);
+		GameManager.spawnWaits.Remove(0);
 	}
 
 }

@@ -10,7 +10,8 @@ public class StartGame : MonoBehaviour {
         // Cursor.visible = false;
         // Cursor.lockState = CursorLockMode.Locked;
 
-        SceneManager.LoadScene("1 Character Selection");
+        SceneManager.LoadScene("1 Match Settings");
+
     }
 
 }

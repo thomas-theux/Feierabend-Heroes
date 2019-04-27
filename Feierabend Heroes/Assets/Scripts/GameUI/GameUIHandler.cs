@@ -88,7 +88,7 @@ public class GameUIHandler : MonoBehaviour {
 
 	void OnControllerConnected(ControllerStatusChangedEventArgs args) {
 		if (connectedGamepads < playerMax) {
-			connectedGamepads = ReInput.controllers.joystickCount;
+			// connectedGamepads = ReInput.controllers.joystickCount;
 		} else {
 			print("No more controllers allowed");
 		}
@@ -97,7 +97,7 @@ public class GameUIHandler : MonoBehaviour {
 
 	void OnControllerDisconnected(ControllerStatusChangedEventArgs args) {
 		if (connectedGamepads > 0) {
-			connectedGamepads = ReInput.controllers.joystickCount;
+			// connectedGamepads = ReInput.controllers.joystickCount;
 		} else {
 			print("No more controllers to disconnect");
 		}

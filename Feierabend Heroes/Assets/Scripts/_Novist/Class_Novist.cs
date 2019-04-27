@@ -44,7 +44,7 @@ public class Class_Novist : MonoBehaviour {
 	private float attackOneDelay;
 	private float attackTwoDelay;
 
-	private float attackOneDmg = 20.0f;
+	private float attackOneDmg = 16.0f;
 	private float attackTwoDmg = 0.08f;
 	// private float skillOneDmg = 0.0f;
 	private float skillDmg = 6.0f;
