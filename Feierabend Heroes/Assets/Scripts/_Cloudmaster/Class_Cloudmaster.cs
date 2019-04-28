@@ -26,8 +26,8 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private int charID;
 
 	// These variables can be improved by advancing on the skill tree
-	private float delayAttackOne = 0.4f;
-	private float delayAttackTwo = 0.8f;
+	private float delayAttackOne = 0.3f;
+	private float delayAttackTwo = 0.6f;
 	private float delaySkill = 30.0f;
 
 	private bool performAttacks = false;
@@ -37,9 +37,9 @@ public class Class_Cloudmaster : MonoBehaviour {
 	private float attackOneDelay;
 	private float attackTwoDelay;
 
-	private float attackOneDmg = 16.0f;
+	private float attackOneDmg = 15.0f;
 	private float attackTwoDmg = 10.0f;
-	private float skillDmg = 3.0f;
+	private float skillDmg = 8.0f;
 
 	// {shot delay, aggro radius, decrease shot delay, increase radius}
 	private float[] charSkillStats = {0.5f, 14.0f, -0.02f, 3.0f};

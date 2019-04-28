@@ -6,6 +6,7 @@ public class SettingsHolder {
 
 	public static int[] playerClasses = {-1, -1, -1, -1};
 	public static string[] heroNames = {"", "", "", ""};
+	public static float[] rankingBonus = {0f, 0.05f, 0.1f, 0.2f};
 	public static int playerCount = 0;
 	public static int registeredPlayers = 0;
 
@@ -31,7 +32,7 @@ public class SettingsHolder {
 	public static int amountOfRounds = 10;
 
 	public static float exploreTime = 5.0f;
-	public static float battleTime = 120.0f;
+	public static float battleTime = 1200.0f;
 
 	public static int appleSpawnMax = 0;
 	public static int orbSpawnMax = 17;
@@ -39,7 +40,7 @@ public class SettingsHolder {
 	public static float spawnDelayTime = 0;
 
 	// Need 4785 orbs to complete full skillset
-	public static int startingOrbs = 4785;
+	public static int startingOrbs = 0;
 	public static int orbsToWin = 9999;
 
 	public static int orbsEveryRound = 15;
@@ -50,6 +51,7 @@ public class SettingsHolder {
 	public static bool matchOver = false;
 
 	public static bool initialSpawn = false;
+	public static bool playedFirstRound = false;
 	public static bool nextMatch = false;
 
 	public static int tierTwoCosts = 100;

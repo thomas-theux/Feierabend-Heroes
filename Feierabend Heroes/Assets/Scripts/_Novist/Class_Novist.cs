@@ -28,8 +28,8 @@ public class Class_Novist : MonoBehaviour {
 	private int charID;
 
 	// These variables can be improved by advancing on the skill tree
-	private float delayAttackOne = 0.5f;
-	private float delayAttackTwo = 10.0f;
+	private float delayAttackOne = 0.3f;
+	private float delayAttackTwo = 9.0f;
 	private float delaySkill = 32.0f;
 
 	private bool performAttacks = false;
@@ -41,7 +41,7 @@ public class Class_Novist : MonoBehaviour {
 	private float attackOneDelay;
 	private float attackTwoDelay;
 
-	private float attackOneDmg = 16.0f;
+	private float attackOneDmg = 14.0f;
 	private float attackTwoDmg = 0.08f;
 	private float skillDmg = 8.0f;
 

@@ -104,11 +104,25 @@ public class CompanionAggro : MonoBehaviour {
 		int dodgeChance = Random.Range(1, 101);
 		int critChance = Random.Range(1, 101);
 
+		// Adding a bonus to attack and defense depending on the player's ranking
+		int bonusIndexSelf = 0;
+		int bonusIndexEnemy = 0;
+		float attackBonus = 0;
+		float defenseBonus = 0;
+
+		if (SettingsHolder.playedFirstRound) {
+			bonusIndexSelf = GameManager.rankingsArr.IndexOf(damagerID);
+			bonusIndexEnemy = GameManager.rankingsArr.IndexOf(characterSheetScript.charID);
+
+			attackBonus = casterDamage * SettingsHolder.rankingBonus[bonusIndexSelf];
+			defenseBonus = enemyDefense * SettingsHolder.rankingBonus[bonusIndexEnemy];
+		}
+
 		// Check if enemy dodges attack
 		if (dodgeChance > enemyDodge) {
 			// dealDamage = casterDamage - ((enemyDefense / 100) * casterDamage);	// my old formula – heals player if def > 100
 			// dealDamage = casterDamage * casterDamage / (casterDamage + enemyDefense);
-			dealDamage = casterDamage * (100 / (100 + enemyDefense));
+			dealDamage = (casterDamage + attackBonus) * (100 / (100 + enemyDefense + defenseBonus));
 
 			// If character lands a critical strike then multiply damage
 			if (casterCritChance <= critChance) {

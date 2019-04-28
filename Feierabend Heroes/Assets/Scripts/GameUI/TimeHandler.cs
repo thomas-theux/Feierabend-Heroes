@@ -51,6 +51,8 @@ public class TimeHandler : MonoBehaviour {
 	public GameObject rankingsParentGO;
 	public GameObject rankingEntryGO;
 
+	List<int> duplicateValuesArr = new List<int>();
+
 	private int sameRank = 0;
 	private bool foundDuplicates = false;
 
@@ -209,7 +211,97 @@ public class TimeHandler : MonoBehaviour {
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
+		CalculateRankings();
+		DisplayRanking();
 
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		// Show leader board for 4 seconds
+		yield return new WaitForSeconds(4.0f);
+
+		// Check which bounty type was selected in the match settings
+		if (SettingsHolder.bountyType == 0) {
+			// Push public enemy data and display bounty
+			SettingsHolder.publicEnemy = GameManager.rankingsArr[0];
+
+			// Check if this player already had a bounty in the previous round
+			if (currentBounty == GameManager.rankingsArr[0]) {
+				SettingsHolder.orbsForBounty += SettingsHolder.increaseBountyBy;
+			} else {
+				SettingsHolder.orbsForBounty = SettingsHolder.orbsForBountyDef;
+			}
+
+			bountyOverlayGO.GetComponent<BountyDisplayer>().heroName.text = SettingsHolder.heroNames[GameManager.rankingsArr[0]];
+			bountyOverlayGO.GetComponent<BountyDisplayer>().heroName.color = Colors.keyPlayers[GameManager.rankingsArr[0]];
+			bountyOverlayGO.GetComponent<BountyDisplayer>().orbReward.text = SettingsHolder.orbsForBounty + " Reward";
+			bountyOverlayGO.SetActive(true);
+
+			currentBounty = GameManager.rankingsArr[0];
+
+			// Show bounty for 3 seconds
+			yield return new WaitForSeconds(3.0f);
+		}
+
+		// Activate bonuses after first round
+		if (!SettingsHolder.playedFirstRound) {
+			SettingsHolder.playedFirstRound = true;
+		}
+
+		SceneManager.LoadScene(SettingsHolder.selectedMap);
+	}
+
+
+	private void LastSecondsTimer() {
+		if (lastSecondsTime > 0.1f) {
+			lastSecondsTime -= Time.deltaTime;
+
+			if (!isTicking) {
+				isTicking = true;
+				StartCoroutine(TimeTicking());
+			}
+
+			for (int i = 0; i < SettingsHolder.playerCount; i++) {
+				levelStartTimerText[i].text = Mathf.Ceil(lastSecondsTime) + "";
+			}
+
+		} else {
+			lastSeconds = false;
+			isTicking = false;
+
+			Instantiate(roundEndSound);
+
+			// Give round winner 2 orbs
+			if (GameManager.activePlayers.Count > 0) {
+				GameObject.Find("Character" + GameManager.activePlayers[0]).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForRoundWin;
+				GameObject.Find("Character" + GameManager.activePlayers[0]).GetComponent<CharacterMovement>().anim.SetBool("charWins", true);
+			}
+
+			startLevel = false;
+			startBattle = false;
+
+			SettingsHolder.currentRound++;
+
+			if (SettingsHolder.currentRound >= SettingsHolder.amountOfRounds) {
+				if (!SettingsHolder.matchOver) {
+					Instantiate(matchEndSound);
+					SettingsHolder.matchOver = true;
+				}
+			} else {
+				for (int i = 0; i < SettingsHolder.playerCount; i++) {
+					levelStartTimerText[i].text = "Round Over!";
+				}
+
+				// Reset bounty
+				SettingsHolder.publicEnemy = -1;
+
+				roundEnd = true;
+				StartCoroutine(WaitOneSec());
+			}
+		}
+	}
+
+
+	private void CalculateRankings() {
 		// Calculate all player ratios
 
 		// Save current orbs count in stats
@@ -231,7 +323,6 @@ public class TimeHandler : MonoBehaviour {
 
 		Dictionary<int, float> playersValuesDict = new Dictionary<int, float>();
 		List<float> allPlayersRatioArr = new List<float>();
-		List<int> duplicateValuesArr = new List<int>();
 
 		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 			// Calculate kills, deaths, and orbs ratio
@@ -274,12 +365,14 @@ public class TimeHandler : MonoBehaviour {
 			GameManager.rankingsArr.Add(dictKey.Key);
 		}
 
-
 		// // Show player ids that have duplicates
 		// for (int i = 0; i < duplicateValuesArr.Count; i++) {
 		// 	print(duplicateValuesArr[i]);
 		// }
+	}
 
+
+	private void DisplayRanking() {
 		// Display the ranking
 		leaderBoardGO.SetActive(true);
 
@@ -308,86 +401,6 @@ public class TimeHandler : MonoBehaviour {
 		}
 
 		foundDuplicates = false;
-
-
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-		// Show leader board for 4 seconds
-		yield return new WaitForSeconds(4.0f);
-
-		// Check which bounty type was selected in the match settings
-		if (SettingsHolder.bountyType == 0) {
-			// Push public enemy data and display bounty
-			SettingsHolder.publicEnemy = GameManager.rankingsArr[0];
-
-			// Check if this player already had a bounty in the previous round
-			if (currentBounty == GameManager.rankingsArr[0]) {
-				SettingsHolder.orbsForBounty += SettingsHolder.increaseBountyBy;
-			} else {
-				SettingsHolder.orbsForBounty = SettingsHolder.orbsForBountyDef;
-			}
-
-			bountyOverlayGO.GetComponent<BountyDisplayer>().heroName.text = SettingsHolder.heroNames[GameManager.rankingsArr[0]];
-			bountyOverlayGO.GetComponent<BountyDisplayer>().heroName.color = Colors.keyPlayers[GameManager.rankingsArr[0]];
-			bountyOverlayGO.GetComponent<BountyDisplayer>().orbReward.text = SettingsHolder.orbsForBounty + " Reward";
-			bountyOverlayGO.SetActive(true);
-
-			currentBounty = GameManager.rankingsArr[0];
-
-			// Show bounty for 3 seconds
-			yield return new WaitForSeconds(3.0f);
-		}
-
-		SceneManager.LoadScene(SettingsHolder.selectedMap);
-	}
-
-
-	private void LastSecondsTimer() {
-		if (lastSecondsTime > 0.1f) {
-			lastSecondsTime -= Time.deltaTime;
-
-			if (!isTicking) {
-				isTicking = true;
-				StartCoroutine(TimeTicking());
-			}
-
-			for (int i = 0; i < SettingsHolder.playerCount; i++) {
-				levelStartTimerText[i].text = Mathf.Ceil(lastSecondsTime) + "";
-			}
-
-		} else {
-			lastSeconds = false;
-			isTicking = false;
-
-			Instantiate(roundEndSound);
-
-			// Give round winner 2 orbs
-			if (GameManager.activePlayers.Count > 0) {
-				GameObject.Find("Character" + GameManager.activePlayers[0]).GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.orbsForRoundWin;
-				GameObject.Find("Character" + GameManager.activePlayers[0]).GetComponent<CharacterMovement>().anim.SetBool("charWins", true);
-			}
-
-			startLevel = false;
-			startBattle = false;
-
-			SettingsHolder.currentRound++;
-
-			if (SettingsHolder.currentRound >= SettingsHolder.amountOfRounds) {
-				if (!SettingsHolder.matchOver) {
-					SettingsHolder.matchOver = true;
-				}
-			} else {
-				for (int i = 0; i < SettingsHolder.playerCount; i++) {
-					levelStartTimerText[i].text = "Round Over!";
-				}
-
-				// Reset bounty
-				SettingsHolder.publicEnemy = -1;
-
-				roundEnd = true;
-				StartCoroutine(WaitOneSec());
-			}
-		}
 	}
 
 
@@ -395,6 +408,9 @@ public class TimeHandler : MonoBehaviour {
 		for (int i = 0; i < SettingsHolder.playerCount; i++) {
 			levelStartTimerText[i].text = "";
 		}
+
+		CalculateRankings();
+		StartCoroutine(ShowWinnerCam());
 
 		yield return new WaitForSeconds(2.0f);
 
@@ -407,11 +423,9 @@ public class TimeHandler : MonoBehaviour {
 
 		showResults = true;
 
-		Instantiate(matchEndSound);
+		// CalculateWinner();
 
-		CalculateWinner();
-
-		yield return new WaitForSeconds(0.3f);
+		// yield return new WaitForSeconds(0.3f);
 
 		startLevel = false;
 		startBattle = false;
@@ -419,11 +433,12 @@ public class TimeHandler : MonoBehaviour {
 		yield return new WaitForSeconds(1.0f);
 
 		// Save current orbs count in stats
-		for (int i = 0; i < SettingsHolder.playerCount; i++) {
-			GameManager.orbsCountStatsArr[i] = GameObject.Find("Character" + i).GetComponent<CharacterSheet>().currentOrbs;
-		}
+		// for (int i = 0; i < SettingsHolder.playerCount; i++) {
+		// 	GameManager.orbsCountStatsArr[i] = GameObject.Find("Character" + i).GetComponent<CharacterSheet>().currentOrbs;
+		// }
 
-		Instantiate(matchResultsGO);
+		DisplayRanking();
+		// Instantiate(matchResultsGO);
 	}
 
 
@@ -448,6 +463,32 @@ public class TimeHandler : MonoBehaviour {
 				yield return new WaitForSeconds(1.0f);
 			}
 		}
+	}
+
+
+	private IEnumerator ShowWinnerCam() {
+		int winnerID = GameManager.rankingsArr[0];
+
+		Camera winnerCam = GameObject.Find("PlayerCamera" + winnerID).GetComponent<Camera>();
+
+		winnerCam.depth = 1;
+
+        float smoothedPosX = winnerCam.rect.x;
+		float smoothedPosY = winnerCam.rect.y;
+		float smoothedSize = 0.5f;
+
+		float moveInDuration = 50.0f;
+        float t = 0;
+
+		while (t < moveInDuration) {
+            t += Time.deltaTime;
+            smoothedPosX = Mathf.Lerp(winnerCam.rect.x, 0, t / moveInDuration);
+			smoothedPosY = Mathf.Lerp(winnerCam.rect.y, 0, t / moveInDuration);
+			smoothedSize = Mathf.Lerp(winnerCam.rect.width, 1, t / moveInDuration);
+            winnerCam.rect = new Rect(smoothedPosX, smoothedPosY, smoothedSize, smoothedSize);
+
+            yield return null;
+        }
 	}
 
 

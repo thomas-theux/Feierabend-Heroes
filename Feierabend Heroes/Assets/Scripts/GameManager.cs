@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour {
 
 		// Check if characters have already been spawned
 		if (!SettingsHolder.initialSpawn) {
+			SettingsHolder.playedFirstRound = false;
+			
 			SpawnCharacter();
 			GetComponent<CameraManager>().InstantiateCams();
 		} else {

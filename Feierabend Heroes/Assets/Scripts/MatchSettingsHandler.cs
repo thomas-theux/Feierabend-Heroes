@@ -49,13 +49,13 @@ public class MatchSettingsHandler : MonoBehaviour {
 
     private int[] modeAmounts = {
         5,
-        10,
+        1,
         20
     };
 
     private int[] startingOrbs = {
         0,
-        30,
+        3000,
         60
     };
 
