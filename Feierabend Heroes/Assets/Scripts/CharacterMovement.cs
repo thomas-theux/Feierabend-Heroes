@@ -12,6 +12,11 @@ public class CharacterMovement : MonoBehaviour {
 	private LifeDeathHandler lifeDeathHandlerScript;
 	public GameManager gameManagerScript;
 
+	private Vector3 movement;
+	public Transform tpTarget;
+	public GameObject playerModel;
+	public float turnSpeed;
+
 	private GameObject campfireTarget;
 
 	public Animator anim;
@@ -159,12 +164,25 @@ public class CharacterMovement : MonoBehaviour {
 
 	private void PlayerMovement() {
 		// Movement of the character
-		Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-		// movement = movement.normalized;
+		if (SettingsHolder.perspectiveMode == 0) {
+			movement = new Vector3(moveHorizontal, 0, moveVertical);
+		} else {
+			movement = (transform.forward * moveVertical) + (transform.right * moveHorizontal);
+			// movement = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+		}
+
 		movement = Vector3.ClampMagnitude(movement, 1);
 
 		if (!isAttacking && TimeHandler.startLevel) {
 			cc.Move(movement * charMoveSpeed * Time.deltaTime);
+
+			if (SettingsHolder.perspectiveMode == 1) {
+				if (moveHorizontal != 0 || moveVertical != 0) {
+					transform.rotation = Quaternion.Euler(0f, tpTarget.rotation.eulerAngles.y, 0f);
+					Quaternion newRotation = Quaternion.LookRotation(new Vector3(movement.x, 0f, movement.z));
+					playerModel.transform.rotation = Quaternion.Slerp(playerModel.transform.rotation, newRotation, turnSpeed * Time.deltaTime);
+				}
+			}
 		}
 
 		// Activate dodge movement
@@ -185,8 +203,10 @@ public class CharacterMovement : MonoBehaviour {
         }
 
 		// Rotate character depending on the direction they are going
-		if (movement != Vector3.zero) {
-			transform.forward = movement;
+		if (SettingsHolder.perspectiveMode == 0) {
+			if (movement != Vector3.zero) {
+				transform.forward = movement;
+			}
 		}
 		
 		// Add gravity

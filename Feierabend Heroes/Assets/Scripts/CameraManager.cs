@@ -59,9 +59,13 @@ public class CameraManager : MonoBehaviour {
 			}
 
 			newCam.name = "PlayerCamera" + i;
+			newCam.GetComponent<CameraFollow>().cameraID = i;
 			newCam.GetComponent<Camera>().cullingMask ^= (1 << 10+i); // (to toggle layer 10+i)
 			newCam.rect = new Rect(camPosX, camPosY, camWidth, camHeight);
+
+			// Set transforms for the lookAt target cameras | isometric and 3rd person
 			newCam.GetComponent<CameraFollow>().target = GameObject.Find("Character" + i).transform;
+			newCam.GetComponent<CameraFollow>().tpTarget = GameObject.Find("Character" + i).transform.GetChild(4).transform;
 
 			SetSkillMode();
 

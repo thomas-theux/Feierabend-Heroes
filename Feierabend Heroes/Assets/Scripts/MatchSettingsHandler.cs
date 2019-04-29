@@ -49,7 +49,7 @@ public class MatchSettingsHandler : MonoBehaviour {
 
     private int[] modeAmounts = {
         5,
-        1,
+        10,
         20
     };
 
@@ -286,8 +286,8 @@ public class MatchSettingsHandler : MonoBehaviour {
         }
 
         if (ReInput.players.GetPlayer(0).GetButtonDown("X")) {
-            // Set map to Hunted
-            SettingsHolder.selectedMap = "4 Hunted";
+            // Set map to Aeras
+            SettingsHolder.selectedMap = "3 Aeras";
 
             Instantiate(selectSound);
 
@@ -295,8 +295,8 @@ public class MatchSettingsHandler : MonoBehaviour {
         }
 
         if (ReInput.players.GetPlayer(0).GetButtonDown("Triangle")) {
-            // Set map to Aeras
-            SettingsHolder.selectedMap = "3 Aeras";
+            // Set map to Hunted
+            SettingsHolder.selectedMap = "4 Hunted";
 
             Instantiate(selectSound);
 

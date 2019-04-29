@@ -167,6 +167,7 @@
      <Compile Include="Assets\Scripts\OrbChestDestroy.cs" />
      <Compile Include="Assets\Scripts\OrbChestSpawner.cs" />
      <Compile Include="Assets\Scripts\ParticleDamage.cs" />
+     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\SafeZone.cs" />
      <Compile Include="Assets\Scripts\SafeZoneDamage.cs" />
      <Compile Include="Assets\Scripts\SettingsHolder.cs" />
