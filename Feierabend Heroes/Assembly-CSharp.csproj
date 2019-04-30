@@ -162,6 +162,7 @@
      <Compile Include="Assets\Scripts\LevelLoader.cs" />
      <Compile Include="Assets\Scripts\LifeDeathHandler.cs" />
      <Compile Include="Assets\Scripts\LoadSceneTest.cs" />
+     <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MatchSettingsHandler.cs" />
      <Compile Include="Assets\Scripts\OrbChest.cs" />
      <Compile Include="Assets\Scripts\OrbChestDestroy.cs" />
