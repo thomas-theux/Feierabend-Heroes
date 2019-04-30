@@ -341,6 +341,11 @@ MonoBehaviour:
   randomizeNameSound: {fileID: 82418148799504902, guid: 823ff9f7727124d088df72a35b4026a7,
     type: 3}
   randomNameText: {fileID: 5681875115140162221}
+  classNamesArr:
+  - {fileID: 5133313934294535000}
+  - {fileID: 877873551632441515}
+  - {fileID: 5841187228233556131}
+  - {fileID: 3021669052790621727}
   classTexts:
   - {fileID: 5133313934294535000}
   - {fileID: 877873551632441515}
@@ -1423,7 +1428,7 @@ GameObject:
   - component: {fileID: 763661652905903703}
   - component: {fileID: 877873551632441515}
   m_Layer: 5
-  m_Name: Mythical Guard
+  m_Name: Novist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2759,7 +2764,7 @@ GameObject:
   - component: {fileID: 7733851375028722303}
   - component: {fileID: 5133313934294535000}
   m_Layer: 5
-  m_Name: Master-Crafter
+  m_Name: Cloud Master
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

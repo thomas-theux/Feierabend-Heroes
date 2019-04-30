@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class CharClassContent : MonoBehaviour {
 
 	public static string[] classTexts = {
-		"Master-Crafter",
-		"Mythical Guard",
-		"Seer of War",
+		"Gungineer",
+		"Pyro Mage",
+		"Battle Witch",
 		"Shape Shifter"
 	};
 

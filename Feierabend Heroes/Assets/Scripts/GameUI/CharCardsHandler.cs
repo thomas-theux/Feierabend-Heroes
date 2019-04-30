@@ -15,6 +15,7 @@ public class CharCardsHandler : MonoBehaviour {
 	private int currentIndex = 0;
 	private int[] charClassesArr = {0, 1};
 
+
 	private float cursorBase = -10;
 	private float cursorDistance = -56;
 
@@ -43,9 +44,8 @@ public class CharCardsHandler : MonoBehaviour {
 
 	private CharClassContent charClassContentScript;
 
-	// public Text randomNameText;
 	public TMP_Text randomNameText;
-	// public TMP_Text classText;
+	public TMP_Text[] classNamesArr;
 	public TMP_Text[] classTexts;
 	public TMP_Text charHPStat;
 	public TMP_Text charDEFStat;
@@ -77,6 +77,10 @@ public class CharCardsHandler : MonoBehaviour {
 
 		for (int i = 0; i < classTexts.Length; i++) {
 			classTexts[i].text = CharClassContent.classTexts[i];
+		}
+
+		for (int j = 0; j < classNamesArr.Length; j++) {
+			classNamesArr[j].text = CharClassContent.classTexts[j];
 		}
 	}
 
