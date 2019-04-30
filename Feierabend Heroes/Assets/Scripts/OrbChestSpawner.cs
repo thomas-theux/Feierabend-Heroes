@@ -7,67 +7,80 @@ public class OrbChestSpawner : MonoBehaviour {
 	public GameObject orbChestGO;
 	public GameObject levelGO;
 
-	private float currentSpawnDelay = 0;
-
 	private float minPosX;
 	private float minPosZ;
 	private float maxPosX;
 	private float maxPosZ;
-
-	private float spawnHeight = 10.0f;
-
+	private float spawnHeight = 3.0f;
 	private float levelPadding = 3.0f;
 
-	// private float waitingTime = 0.4f;
-	// private float timeMultiplier = 1.7f;
-	public static int currentChestCount = 0;
+	private float spawnDelayTime = 0;
+	private float spawnMin;
+	private float spawnMax;
+
+	public int currentOrbCount = 0;
+	private int orbID = 0;
+	private bool initialOrbSpawns = false;
 
 
-	private void Awake() {
-		// timeMultiplier = SettingsHolder.timeMultiplier;
+	private void Start() {
+		spawnMin = 30.0f;
+		spawnMax = 60.0f;
 
-		// waitingTime = SettingsHolder.spawnDelayTime;
-		StartCoroutine(WaitToSpawn());
+		spawnMin /= SettingsHolder.orbSpawnMax;
+		spawnMax /= SettingsHolder.orbSpawnMax;
+
+		InitialSpawns();
 	}
 
 
-	public IEnumerator WaitToSpawn() {
-		// yield return new WaitForSeconds(waitingTime);
-		
-		if (currentSpawnDelay != GameManager.spawnWaits[0]) {
-			yield return new WaitForSeconds(GameManager.spawnWaits[0]);
-			currentSpawnDelay = GameManager.spawnWaits[0];
+	private void Update() {
+		if (TimeHandler.startLevel && !initialOrbSpawns) {
+			initialOrbSpawns = true;
 		}
-		SpawnChest();
 	}
 
 
-	public void SpawnChest() {
+	private void InitialSpawns() {
+		for (int i = 0; i < SettingsHolder.orbSpawnMax; i++) {
+			SpawnOrb();
+		}
+	}
+
+
+	public void RespawnOrb() {
+		StartCoroutine(SpawnDelay());
+	}
+
+
+	public IEnumerator SpawnDelay() {
+		if (initialOrbSpawns) {
+			spawnDelayTime = Random.Range(spawnMin, spawnMax);
+		}
+
+		yield return new WaitForSeconds(spawnDelayTime);
+
+		SpawnOrb();
+	}
+
+
+	public void SpawnOrb() {
 		// Set limit positions for orb chests
 		minPosX = 0 - levelGO.transform.localScale.x / 2 + levelPadding;
 		minPosZ = 0 - levelGO.transform.localScale.z / 2 + levelPadding;
 		maxPosX = levelGO.transform.localScale.x / 2 - levelPadding;
 		maxPosZ = levelGO.transform.localScale.z / 2 - levelPadding;
 
-		GameObject newChest = Instantiate(orbChestGO);
-
-		// DEV STUFF – Collect data on how many times an attack has been used
-		int orbsSpawned = PlayerPrefs.GetInt("Orbs Spawned");
-		orbsSpawned++;
-		PlayerPrefs.SetInt("Orbs Spawned", orbsSpawned);
-
 		float rndPosX = Random.Range(minPosX, maxPosX);
 		float rndPosZ = Random.Range(minPosZ, maxPosZ);
 
-		newChest.transform.position = new Vector3(rndPosX, spawnHeight, rndPosZ);
+		GameObject newOrb = Instantiate(orbChestGO);
+		newOrb.name = "Orb " + orbID;
+		newOrb.GetComponent<OrbChest>().orbChestSpawnerScript = GetComponent<OrbChestSpawner>();
+		newOrb.transform.position = new Vector3(rndPosX, spawnHeight, rndPosZ);
 
-		currentChestCount++;
-
-		if (currentChestCount < SettingsHolder.orbSpawnMax) {
-			// waitingTime *= 2;
-			// waitingTime *= timeMultiplier;
-			StartCoroutine(WaitToSpawn());
-		}
+		currentOrbCount++;
+		orbID++;
 	}
 
 }

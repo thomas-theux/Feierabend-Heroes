@@ -72,12 +72,12 @@ public class MatchSettingsHandler : MonoBehaviour {
     };
 
     private int[] orbSpawnMax = {
-        10,
-        40,
-        120
+        5,
+        15,
+        30
     };
 
-    private float overallSec = 150.0f;
+    // private float overallSec = 150.0f;
 
     // DESCRIPTIONS FOR THE VARIOUS MODES
     private string[] battleTypeDesc = {
@@ -209,21 +209,21 @@ public class MatchSettingsHandler : MonoBehaviour {
         // Set orb spawn
         SettingsHolder.orbSpawnMax = orbSpawnMax[modeIndexes[4]];
 
-        int doubledVal = 1;
-        int calcVal = 0;
+        // int doubledVal = 1;
+        // int calcVal = 0;
 
-        for (int i = 0; i < orbSpawnMax[modeIndexes[4]]; i++) {
-            calcVal += doubledVal;
-            doubledVal *= 2;
-        }
+        // for (int i = 0; i < orbSpawnMax[modeIndexes[4]]; i++) {
+        //     calcVal += doubledVal;
+        //     doubledVal *= 2;
+        // }
 
-        // SettingsHolder.spawnDelayTime = overallSec / calcVal;
-        float initialWait = overallSec / calcVal;
+        // // SettingsHolder.spawnDelayTime = overallSec / calcVal;
+        // float initialWait = overallSec / calcVal;
 
-        for (int j = 0; j < orbSpawnMax[modeIndexes[4]]; j++) {
-            GameManager.spawnWaits.Add(initialWait);
-            initialWait *= 2.0f;
-        }
+        // for (int j = 0; j < orbSpawnMax[modeIndexes[4]]; j++) {
+        //     GameManager.spawnWaits.Add(initialWait);
+        //     initialWait *= 2.0f;
+        // }
 
         // Set bounty type
         SettingsHolder.bountyType = modeIndexes[5];
@@ -287,7 +287,7 @@ public class MatchSettingsHandler : MonoBehaviour {
 
         if (ReInput.players.GetPlayer(0).GetButtonDown("X")) {
             // Set map to Aeras
-            SettingsHolder.selectedMap = "3 Aeras";
+            // SettingsHolder.selectedMap = "3 Aeras";
 
             Instantiate(selectSound);
 
@@ -296,7 +296,7 @@ public class MatchSettingsHandler : MonoBehaviour {
 
         if (ReInput.players.GetPlayer(0).GetButtonDown("Triangle")) {
             // Set map to Hunted
-            SettingsHolder.selectedMap = "4 Hunted";
+            // SettingsHolder.selectedMap = "4 Hunted";
 
             Instantiate(selectSound);
 

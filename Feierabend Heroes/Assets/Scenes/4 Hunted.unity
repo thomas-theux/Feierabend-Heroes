@@ -124,8 +124,8 @@ GameObject:
   - component: {fileID: 3483402}
   - component: {fileID: 3483405}
   - component: {fileID: 3483404}
-  - component: {fileID: 3483406}
   - component: {fileID: 3483403}
+  - component: {fileID: 3483406}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Attack
@@ -2947,8 +2947,8 @@ GameObject:
   - component: {fileID: 178093943}
   - component: {fileID: 178093946}
   - component: {fileID: 178093945}
-  - component: {fileID: 178093947}
   - component: {fileID: 178093944}
+  - component: {fileID: 178093947}
   m_Layer: 0
   m_Name: Capsule (1)
   m_TagString: Attack
@@ -3776,8 +3776,8 @@ GameObject:
   - component: {fileID: 310553462}
   - component: {fileID: 310553465}
   - component: {fileID: 310553464}
-  - component: {fileID: 310553466}
   - component: {fileID: 310553463}
+  - component: {fileID: 310553466}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Attack
@@ -5763,8 +5763,8 @@ GameObject:
   - component: {fileID: 504928425}
   - component: {fileID: 504928428}
   - component: {fileID: 504928427}
-  - component: {fileID: 504928429}
   - component: {fileID: 504928426}
+  - component: {fileID: 504928429}
   m_Layer: 0
   m_Name: Capsule (8)
   m_TagString: Attack
@@ -6770,8 +6770,8 @@ GameObject:
   - component: {fileID: 618032924}
   - component: {fileID: 618032927}
   - component: {fileID: 618032926}
-  - component: {fileID: 618032928}
   - component: {fileID: 618032925}
+  - component: {fileID: 618032928}
   m_Layer: 0
   m_Name: Capsule (5)
   m_TagString: Attack
@@ -7318,8 +7318,8 @@ GameObject:
   - component: {fileID: 643708561}
   - component: {fileID: 643708564}
   - component: {fileID: 643708563}
-  - component: {fileID: 643708565}
   - component: {fileID: 643708562}
+  - component: {fileID: 643708565}
   m_Layer: 0
   m_Name: Capsule (7)
   m_TagString: Attack
@@ -7513,8 +7513,8 @@ GameObject:
   - component: {fileID: 658670602}
   - component: {fileID: 658670605}
   - component: {fileID: 658670604}
-  - component: {fileID: 658670606}
   - component: {fileID: 658670603}
+  - component: {fileID: 658670606}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Attack
@@ -13951,8 +13951,8 @@ GameObject:
   - component: {fileID: 1125896460}
   - component: {fileID: 1125896463}
   - component: {fileID: 1125896462}
-  - component: {fileID: 1125896464}
   - component: {fileID: 1125896461}
+  - component: {fileID: 1125896464}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Attack
@@ -14741,8 +14741,8 @@ GameObject:
   - component: {fileID: 1185078497}
   - component: {fileID: 1185078500}
   - component: {fileID: 1185078499}
-  - component: {fileID: 1185078501}
   - component: {fileID: 1185078498}
+  - component: {fileID: 1185078501}
   m_Layer: 0
   m_Name: Capsule (4)
   m_TagString: Attack
@@ -15240,8 +15240,8 @@ GameObject:
   - component: {fileID: 1248357021}
   - component: {fileID: 1248357024}
   - component: {fileID: 1248357023}
-  - component: {fileID: 1248357025}
   - component: {fileID: 1248357022}
+  - component: {fileID: 1248357025}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Attack
@@ -17508,8 +17508,8 @@ GameObject:
   - component: {fileID: 1432002379}
   - component: {fileID: 1432002382}
   - component: {fileID: 1432002381}
-  - component: {fileID: 1432002383}
   - component: {fileID: 1432002380}
+  - component: {fileID: 1432002383}
   m_Layer: 0
   m_Name: Capsule (2)
   m_TagString: Attack
@@ -19009,8 +19009,8 @@ GameObject:
   - component: {fileID: 1521153507}
   - component: {fileID: 1521153510}
   - component: {fileID: 1521153509}
-  - component: {fileID: 1521153511}
   - component: {fileID: 1521153508}
+  - component: {fileID: 1521153511}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: Attack
@@ -19875,8 +19875,8 @@ GameObject:
   - component: {fileID: 1623145490}
   - component: {fileID: 1623145493}
   - component: {fileID: 1623145492}
-  - component: {fileID: 1623145494}
   - component: {fileID: 1623145491}
+  - component: {fileID: 1623145494}
   m_Layer: 0
   m_Name: Capsule (6)
   m_TagString: Attack
@@ -20144,8 +20144,8 @@ GameObject:
   - component: {fileID: 1629410618}
   - component: {fileID: 1629410621}
   - component: {fileID: 1629410620}
-  - component: {fileID: 1629410622}
   - component: {fileID: 1629410619}
+  - component: {fileID: 1629410622}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Attack
@@ -24949,8 +24949,8 @@ GameObject:
   - component: {fileID: 2066808053}
   - component: {fileID: 2066808056}
   - component: {fileID: 2066808055}
-  - component: {fileID: 2066808057}
   - component: {fileID: 2066808054}
+  - component: {fileID: 2066808057}
   m_Layer: 0
   m_Name: Capsule (3)
   m_TagString: Attack

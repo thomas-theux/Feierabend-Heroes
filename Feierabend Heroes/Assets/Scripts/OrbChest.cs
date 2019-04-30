@@ -5,14 +5,16 @@ using UnityEngine.UI;
 
 public class OrbChest : MonoBehaviour {
 
+	public OrbChestSpawner orbChestSpawnerScript;
+
+	public int orbID = 0;
+
 	public AudioSource spawnOrbSound;
 	public AudioSource collectOrbSound;
 
 
-	private void Awake() {
-		if (TimeHandler.startBattle) {
-			StartCoroutine(SpawnSound());
-		}
+	private void OnEnable() {
+		StartCoroutine(SoundDelay());
 	}
 
 
@@ -35,11 +37,18 @@ public class OrbChest : MonoBehaviour {
 	}
 
 
-	private IEnumerator SpawnSound() {
-		yield return new WaitForSeconds(0.2f);
+	private void OnDestroy() {
+		orbChestSpawnerScript.currentOrbCount--;
+		orbChestSpawnerScript.RespawnOrb();
+	}
 
-		Instantiate(spawnOrbSound);
-		GameManager.spawnWaits.Remove(0);
+
+	private IEnumerator SoundDelay() {
+		yield return new WaitForSeconds(0.01f);
+
+		if (TimeHandler.startLevel) {
+			Instantiate(spawnOrbSound);
+		}
 	}
 
 }

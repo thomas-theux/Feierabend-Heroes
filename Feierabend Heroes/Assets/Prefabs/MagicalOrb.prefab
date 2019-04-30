@@ -9360,7 +9360,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -14065,6 +14065,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1511644e5be87469bb36b910d871aed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orbChestSpawnerScript: {fileID: 0}
+  orbID: 0
   spawnOrbSound: {fileID: 6464427375189394100, guid: 30cd4b705510d47c5acf1fed308a569b,
     type: 3}
   collectOrbSound: {fileID: 6464427375189394100, guid: 1694a668904ee4711a1201bcc2dcb885,
