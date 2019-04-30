@@ -236,8 +236,8 @@ public class MatchSettingsHandler : MonoBehaviour {
         // print(SettingsHolder.orbSpawnMax);
         // print(SettingsHolder.bountyType);
 
-        // Load character selection screen
-        SceneManager.LoadScene("2 Character Selection");
+        // Load map selection screen
+        SceneManager.LoadScene("2 Map Selection");
     }
 
 
@@ -287,7 +287,7 @@ public class MatchSettingsHandler : MonoBehaviour {
 
         if (ReInput.players.GetPlayer(0).GetButtonDown("X")) {
             // Set map to Aeras
-            // SettingsHolder.selectedMap = "3 Aeras";
+            // SettingsHolder.selectedMap = "4 Aeras";
 
             Instantiate(selectSound);
 
@@ -296,7 +296,7 @@ public class MatchSettingsHandler : MonoBehaviour {
 
         if (ReInput.players.GetPlayer(0).GetButtonDown("Triangle")) {
             // Set map to Hunted
-            // SettingsHolder.selectedMap = "4 Hunted";
+            // SettingsHolder.selectedMap = "5 Hunted";
 
             Instantiate(selectSound);
 
