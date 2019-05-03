@@ -16,6 +16,7 @@ public class MatchSettingsHandler : MonoBehaviour {
     public TMP_Text modeDescription;
 
     public AudioSource selectSound;
+    public AudioSource cancelSound;
 	public AudioSource navigateSound;
 
     public GameObject navigationParent;
@@ -26,28 +27,41 @@ public class MatchSettingsHandler : MonoBehaviour {
 
     private int currentIndex = 0;
 
+    // private int[] modeIndexes = {
+    //     0,  // Battle Type
+    //     0,  // Game Type
+    //     1,  // Amounts
+    //     2,  // Starting Orbs
+    //     1,  // Spawning Orbs
+    //     0   // Bounty
+    // };
+
+    // This array is only for DEF STUFF
     private int[] modeIndexes = {
-        0,
-        0,
-        1,
-        1,
-        1,
-        0
+        0,  // Battle Type
+        0,  // Game Type
+        0,  // Amounts
+        3,  // Starting Orbs
+        0,  // Spawning Orbs
+        1   // Bounty
     };
+
+    private List<int> maxIndexes = new List<int>();
 
     private string[] battleTypes = {
         "Free-for-all",
-        "2 vs 2",
-        "1 vs 3"
+        // "2 vs 2",
+        // "1 vs 3"
     };
 
     private string[] gameTypes = {
         "Rounds",
-        "Kills",
-        "Orbs"
+        // "Kills",
+        // "Orbs"
     };
 
     private int[] modeAmounts = {
+        1,
         5,
         10,
         20
@@ -55,26 +69,30 @@ public class MatchSettingsHandler : MonoBehaviour {
 
     private int[] startingOrbs = {
         0,
-        3000,
-        60
+        30,
+        60,
+        4785
     };
 
     private string[] orbSpawn = {
+        "None",
         "Few",
         "Normal",
+        "More",
         "Lots"
+    };
+    private int[] orbSpawnMax = {
+        0,
+        5,
+        15,
+        30,
+        90
     };
 
     private string[] bountyTypes = {
         "Leader",
-        "Democratic",
+        // "Democratic",
         "No Bounty"
-    };
-
-    private int[] orbSpawnMax = {
-        5,
-        15,
-        30
     };
 
     // private float overallSec = 150.0f;
@@ -93,8 +111,9 @@ public class MatchSettingsHandler : MonoBehaviour {
     };
 
     private string[] bountyTypeDesc = {
-        "A bounty is automatically placed on the leader.",
-        "Vote democratically after every round.",
+        "Killing the hero in first place is being rewarded.",
+        // "A bounty is automatically placed on the leader.",
+        // "Vote democratically after every round.",
         "Turn off the bounty system."
     };
 
@@ -105,6 +124,14 @@ public class MatchSettingsHandler : MonoBehaviour {
             navigationElementsArr.Add(navigationParent.transform.GetChild(i).gameObject);
             settingsTextsArr.Add(navigationParent.transform.GetChild(i).transform.GetChild(1).GetComponent<TMP_Text>());
         }
+
+        // Populate the max indexes array
+        maxIndexes.Add(battleTypes.Length);
+        maxIndexes.Add(gameTypes.Length);
+        maxIndexes.Add(modeAmounts.Length);
+        maxIndexes.Add(startingOrbs.Length);
+        maxIndexes.Add(orbSpawn.Length);
+        maxIndexes.Add(bountyTypes.Length);
 
         DisplayCursor();
         DisplayTitles();
@@ -126,7 +153,7 @@ public class MatchSettingsHandler : MonoBehaviour {
         if (modeIndexes[currentIndex] == 0) {
             arrowNavLeft.color = new Color32(Colors.keyPaper.r, Colors.keyPaper.g, Colors.keyPaper.b, 128);
             arrowNavRight.color = Colors.keyPaper;
-        } else if (modeIndexes[currentIndex] == 2) {
+        } else if (modeIndexes[currentIndex] == maxIndexes[currentIndex] - 1) {
             arrowNavLeft.color = Colors.keyPaper;
             arrowNavRight.color = new Color32(Colors.keyPaper.r, Colors.keyPaper.g, Colors.keyPaper.b, 128);
         } else {
@@ -276,7 +303,7 @@ public class MatchSettingsHandler : MonoBehaviour {
             }
         }
         if (ReInput.players.GetPlayer(0).GetButtonDown("DPadRight")) {
-            if (modeIndexes[currentIndex] < 2) {
+            if (modeIndexes[currentIndex] < maxIndexes[currentIndex] - 1) {
                 modeIndexes[currentIndex]++;
 
                 DisplayCursor();
@@ -292,6 +319,11 @@ public class MatchSettingsHandler : MonoBehaviour {
             Instantiate(selectSound);
 
             SaveMatchSettings();
+        }
+
+        if (ReInput.players.GetPlayer(0).GetButtonDown("Circle")) {
+            Instantiate(cancelSound);
+            SceneManager.LoadScene("0 Main Screen");
         }
 
         if (ReInput.players.GetPlayer(0).GetButtonDown("Triangle")) {

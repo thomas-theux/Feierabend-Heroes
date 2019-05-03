@@ -542,7 +542,7 @@ public class SkillBoardHandler : MonoBehaviour {
                 }
 
             } else {
-                print("Not unlocked yet!");
+                // print("Not unlocked yet!");
                 Instantiate(skillLockedSound);
                 // print("Skill already complete");
             }

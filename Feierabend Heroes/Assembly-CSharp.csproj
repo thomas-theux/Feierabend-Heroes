@@ -150,12 +150,15 @@
      <Compile Include="Assets\Scripts\CharacterSheet.cs" />
      <Compile Include="Assets\Scripts\Colors.cs" />
      <Compile Include="Assets\Scripts\DestroyAfterPlay.cs" />
+     <Compile Include="Assets\Scripts\DontDestroyGO.cs" />
      <Compile Include="Assets\Scripts\DontDestroyOnLoad.cs" />
+     <Compile Include="Assets\Scripts\DontDestroyOnLoadManager.cs" />
      <Compile Include="Assets\Scripts\FPSDisplay.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameUI\CharCardsHandler.cs" />
      <Compile Include="Assets\Scripts\GameUI\CharClassContent.cs" />
      <Compile Include="Assets\Scripts\GameUI\GameUIHandler.cs" />
+     <Compile Include="Assets\Scripts\GameUI\MatchEnd.cs" />
      <Compile Include="Assets\Scripts\GameUI\MatchResults.cs" />
      <Compile Include="Assets\Scripts\GameUI\StatsCard.cs" />
      <Compile Include="Assets\Scripts\GameUI\TimeHandler.cs" />

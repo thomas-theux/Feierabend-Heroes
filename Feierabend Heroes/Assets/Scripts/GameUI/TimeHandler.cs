@@ -470,6 +470,9 @@ public class TimeHandler : MonoBehaviour {
 		int winnerID = GameManager.rankingsArr[0];
 
 		Camera winnerCam = GameObject.Find("PlayerCamera" + winnerID).GetComponent<Camera>();
+		
+		leaderBoardGO.GetComponent<MatchEnd>().winnerCam = winnerCam;
+		leaderBoardGO.GetComponent<MatchEnd>().winnerID = winnerID;
 
 		winnerCam.depth = 1;
 

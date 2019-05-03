@@ -14,6 +14,7 @@ public class MapSelection : MonoBehaviour {
     public Image selectedMapImage;
 
 	public AudioSource navigateSound;
+    public AudioSource cancelSound;
 	public AudioSource selectSound;
 
     private List<GameObject> mapListArr = new List<GameObject>();
@@ -95,6 +96,11 @@ public class MapSelection : MonoBehaviour {
             Instantiate(selectSound);
             SettingsHolder.selectedMap = mapNamesArr[currentIndex];
             SceneManager.LoadScene("3 Character Selection");
+        }
+
+        if (ReInput.players.GetPlayer(0).GetButtonDown("Circle")) {
+            Instantiate(cancelSound);
+            SceneManager.LoadScene("1 Match Settings");
         }
     }
 

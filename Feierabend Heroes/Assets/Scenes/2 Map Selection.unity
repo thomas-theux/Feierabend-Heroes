@@ -1416,6 +1416,8 @@ MonoBehaviour:
   selectedMapImage: {fileID: 363464655}
   navigateSound: {fileID: 82418148799504902, guid: 28c478e901c6743d5a8624be11e55034,
     type: 3}
+  cancelSound: {fileID: 82418148799504902, guid: 2ec4e77403c994b0ca4d2e77819c7dfa,
+    type: 3}
   selectSound: {fileID: 82822903586413262, guid: 212425bfcf8384988abf87d673d89343,
     type: 3}
   mapNamesArr: []

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Rewired;
 
 public class GameManager : MonoBehaviour {
+
 	public GameObject characterGO;
 	public GameObject spawnParent;
 	public List<GameObject> startSpawns;
@@ -23,11 +24,9 @@ public class GameManager : MonoBehaviour {
 	public static int[] killsStatsArr = {0, 0, 0, 0};
 	public static int[] deathsStatsArr = {0, 0, 0, 0};
 	public static int[] orbsSpentStatsArr = {0, 0, 0, 0};
-	// public static int[] rankingArr = {0, 0, 0, 0};
 	public static List<int> rankingsArr = new List<int>();
 
 	public GameObject pauseMenuGO;
-	// public static bool isPausing = false;
 	public static bool pauseMenuOpen = false;
 	public static int whoPaused = -1;
 

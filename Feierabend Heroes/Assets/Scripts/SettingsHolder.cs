@@ -40,8 +40,8 @@ public class SettingsHolder {
 
 	public static int appleSpawnMax = 0;
 	public static int orbSpawnMax = 17;
-	public static float timeMultiplier = 0;
-	public static float spawnDelayTime = 0;
+	// public static float timeMultiplier = 0;
+	// public static float spawnDelayTime = 0;
 
 	// Need 4785 orbs to complete full skillset
 	public static int startingOrbs = 0;

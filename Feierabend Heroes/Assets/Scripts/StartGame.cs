@@ -10,7 +10,7 @@ public class StartGame : MonoBehaviour {
         // Cursor.visible = false;
         // Cursor.lockState = CursorLockMode.Locked;
 
-        SceneManager.LoadScene("1 Match Settings");
+        SceneManager.LoadScene("0 Main Screen");
 
     }
 

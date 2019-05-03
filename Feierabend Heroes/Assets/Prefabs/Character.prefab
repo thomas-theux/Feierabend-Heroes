@@ -732,6 +732,7 @@ GameObject:
   - component: {fileID: 114000317615226034}
   - component: {fileID: 114984178142480010}
   - component: {fileID: 114583881753239530}
+  - component: {fileID: 4038170339360436868}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -924,6 +925,18 @@ MonoBehaviour:
   respawnChance: 0
   dodgeChance: 0
   canFindApples: 0
+--- !u!114 &4038170339360436868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877961924020008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63594db8c97954171a869f06c96c66a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1889728687534798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,6 +1434,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7285507628616948545}
+  - component: {fileID: 7755381622081977163}
   m_Layer: 0
   m_Name: ThirdPersonTarget
   m_TagString: Untagged
@@ -1442,6 +1456,18 @@ Transform:
   m_Father: {fileID: 4430464225084870}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7755381622081977163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135869519475630531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63594db8c97954171a869f06c96c66a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8703556550755320134
 GameObject:
   m_ObjectHideFlags: 0

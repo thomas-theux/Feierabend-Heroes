@@ -38,8 +38,10 @@ public class OrbChest : MonoBehaviour {
 
 
 	private void OnDestroy() {
-		orbChestSpawnerScript.currentOrbCount--;
-		orbChestSpawnerScript.RespawnOrb();
+		if (!SettingsHolder.matchOver) {
+			orbChestSpawnerScript.currentOrbCount--;
+			orbChestSpawnerScript.RespawnOrb();
+		}
 	}
 
 
