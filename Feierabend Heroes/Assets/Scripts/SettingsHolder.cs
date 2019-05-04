@@ -11,7 +11,7 @@ public class SettingsHolder {
 	public static int registeredPlayers = 0;
 
 	// 0 = isometric camera ; 1 = 3rd person camera
-	public static int perspectiveMode = 0;
+	public static int perspectiveMode = 1;
 
 	public static int publicEnemy = -1;
 	public static float sizeIncrease = 2.0f;
@@ -43,7 +43,7 @@ public class SettingsHolder {
 	// public static float timeMultiplier = 0;
 	// public static float spawnDelayTime = 0;
 
-	// Need 4785 orbs to complete full skillset
+	// Need 3360 orbs to complete full skillset
 	public static int startingOrbs = 0;
 	public static int orbsToWin = 9999;
 

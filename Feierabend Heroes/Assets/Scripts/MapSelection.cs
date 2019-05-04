@@ -17,6 +17,10 @@ public class MapSelection : MonoBehaviour {
     public AudioSource cancelSound;
 	public AudioSource selectSound;
 
+	private float minThreshold = 0.5f;
+	private float maxThreshold = 0.5f;
+	private bool axisYActive;
+
     private List<GameObject> mapListArr = new List<GameObject>();
     public List<string> mapNamesArr = new List<string>();
 
@@ -34,7 +38,7 @@ public class MapSelection : MonoBehaviour {
         //     mapNamesArr.Add(j + " " + mapListArr[j].GetComponent<TMP_Text>().text);
         // }
 
-        DisplayCursor();
+        // DisplayCursor();
         DisplayTexts();
         DisplayMapImage();
     }
@@ -90,6 +94,36 @@ public class MapSelection : MonoBehaviour {
                 DisplayTexts();
                 DisplayMapImage();
             }
+        }
+
+        // UI navigation with the analog sticks
+        // UP
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") > maxThreshold && !axisYActive) {
+            axisYActive = true;
+
+            if (currentIndex > 0) {
+                currentIndex--;
+
+                DisplayCursor();
+                DisplayTexts();
+                DisplayMapImage();
+            }
+        }
+        // DOWN
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") < -maxThreshold && !axisYActive) {
+            axisYActive = true;
+
+            if (currentIndex < mapListArr.Count - 1) {
+                currentIndex++;
+
+                DisplayCursor();
+                DisplayTexts();
+                DisplayMapImage();
+            }
+        }
+
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") <= minThreshold && ReInput.players.GetPlayer(0).GetAxis("LS Vertical") >= -minThreshold) {
+            axisYActive = false;
         }
 
         if (ReInput.players.GetPlayer(0).GetButtonDown("X")) {

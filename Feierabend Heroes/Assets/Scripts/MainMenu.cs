@@ -16,6 +16,10 @@ public class MainMenu : MonoBehaviour {
 	public AudioSource selectSound;
 	public AudioSource unavailableSound;
 
+	private float minThreshold = 0.5f;
+	private float maxThreshold = 0.5f;
+	private bool axisYActive;
+
     private int currentIndex = 0;
 
     private Color32 transparentBlue = new Color32(
@@ -33,7 +37,7 @@ public class MainMenu : MonoBehaviour {
 
 
     private void Awake() {
-        DisplayCursor();
+        // DisplayCursor();
         DisplayTexts();
     }
 
@@ -100,6 +104,34 @@ public class MainMenu : MonoBehaviour {
                 DisplayCursor();
                 DisplayTexts();
             }
+        }
+
+        // UI navigation with the analog sticks
+        // UP
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") > maxThreshold && !axisYActive) {
+            axisYActive = true;
+
+            if (currentIndex > 0) {
+                currentIndex--;
+
+                DisplayCursor();
+                DisplayTexts();
+            }
+        }
+        // DOWN
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") < -maxThreshold && !axisYActive) {
+            axisYActive = true;
+
+            if (currentIndex < menuItemsArr.Length - 1) {
+                currentIndex++;
+
+                DisplayCursor();
+                DisplayTexts();
+            }
+        }
+
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") <= minThreshold && ReInput.players.GetPlayer(0).GetAxis("LS Vertical") >= -minThreshold) {
+            axisYActive = false;
         }
 
         if (ReInput.players.GetPlayer(0).GetButtonDown("X")) {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using Rewired;
 
@@ -35,6 +36,10 @@ public class CharCardsHandler : MonoBehaviour {
 	public AudioSource toggleSound;
 	public AudioSource randomizeNameSound;
 
+	private float minThreshold = 0.5f;
+	private float maxThreshold = 0.5f;
+	private bool axisYActive;
+
 	// private Color[] charColors = {
 	// 	new Color32(23, 155, 194, 255),
 	// 	new Color32(231, 86, 84, 255),
@@ -64,8 +69,8 @@ public class CharCardsHandler : MonoBehaviour {
 	private bool selectButton;
 	private bool cancelButton;
 	private bool randomizeNameButton;
-	private bool dPadUp;
-	private bool dPadDown;
+	// private bool dPadUp;
+	// private bool dPadDown;
 
 
 	private void Start() {
@@ -104,8 +109,8 @@ public class CharCardsHandler : MonoBehaviour {
 		cancelButton = ReInput.players.GetPlayer(charID).GetButtonDown("Circle");
 		randomizeNameButton = ReInput.players.GetPlayer(charID).GetButtonDown("Square");
 
-		dPadUp = ReInput.players.GetPlayer(charID).GetButtonDown("DPadUp");
-		dPadDown = ReInput.players.GetPlayer(charID).GetButtonDown("DPadDown");
+		// dPadUp = ReInput.players.GetPlayer(charID).GetButtonDown("DPadUp");
+		// dPadDown = ReInput.players.GetPlayer(charID).GetButtonDown("DPadDown");
 	}
 
 
@@ -126,6 +131,12 @@ public class CharCardsHandler : MonoBehaviour {
 				Instantiate(selectSound);
 				currentStatus++;
 				DisplayCurrentStatus();
+			}
+			if (currentStatus == 1) {
+				if (charID == 0 && cancelButton) {
+					Instantiate(cancelSound);
+					SceneManager.LoadScene("2 Map Selection");
+				}
 			}
 		}
 
@@ -169,21 +180,49 @@ public class CharCardsHandler : MonoBehaviour {
 
 
 	private void ClassNavigation() {
-		if (dPadUp) {
+		// UI navigation with the D-Pad buttons
+		// UP
+		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadUp")) {
 			if (currentIndex > 0) {
 				Instantiate(navigateSound);
 				currentIndex--;
 				DisplayClasses();
 			}
 		}
-
-		if (dPadDown) {
+		// DOWN
+		if (ReInput.players.GetPlayer(charID).GetButtonDown("DPadDown")) {
 			if (currentIndex < charClassesArr.Length - 1) {
 				Instantiate(navigateSound);
 				currentIndex++;
 				DisplayClasses();
 			}
 		}
+
+        // UI navigation with the analog sticks
+        // UP
+        if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") > maxThreshold && !axisYActive) {
+            axisYActive = true;
+
+			if (currentIndex > 0) {
+				Instantiate(navigateSound);
+				currentIndex--;
+				DisplayClasses();
+			}
+        }
+        // DOWN
+        if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") < -maxThreshold && !axisYActive) {
+            axisYActive = true;
+
+			if (currentIndex < charClassesArr.Length - 1) {
+				Instantiate(navigateSound);
+				currentIndex++;
+				DisplayClasses();
+			}
+        }
+
+        if (ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") <= minThreshold && ReInput.players.GetPlayer(charID).GetAxis("LS Vertical") >= -minThreshold) {
+            axisYActive = false;
+        }
 	}
 
 
@@ -203,18 +242,11 @@ public class CharCardsHandler : MonoBehaviour {
 			}
 		}
 
-		// classText.text = CharClassContent.classTexts[currentIndex];
 		charHPStat.text = CharClassContent.charHPStats[currentIndex] + "";
 		charDEFStat.text = CharClassContent.charDEFStats[currentIndex] + "";
 		charMSPDStat.text = CharClassContent.charMSPDStats[currentIndex] + "";
 		charClassDesc.text = CharClassContent.classDescriptions[currentIndex] + "";
 
-		// attackOneTitleText.text = CharClassContent.attackOneTitleTexts[currentIndex] + "";
-		// attackTwoTitleText.text = CharClassContent.attackTwoTitleTexts[currentIndex] + "";
-		// attackOneImage.sprite = charClassContentScript.attackOneImages[currentIndex];
-		// attackTwoImage.sprite = charClassContentScript.attackTwoImages[currentIndex];
-		// skillTitle.text = CharClassContent.skillTitles[currentIndex] + "";
-		// passiveTitle.text = CharClassContent.passiveTitles[currentIndex] + "";
 		classImage.sprite = charClassContentScript.classImages[currentIndex];
 	}
 

@@ -733,6 +733,7 @@ GameObject:
   - component: {fileID: 114984178142480010}
   - component: {fileID: 114583881753239530}
   - component: {fileID: 4038170339360436868}
+  - component: {fileID: 5505957730060638391}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -937,6 +938,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63594db8c97954171a869f06c96c66a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &5505957730060638391
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877961924020008}
+  m_Enabled: 0
 --- !u!1 &1889728687534798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,6 +1017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4854129743095374}
   - component: {fileID: 95659020114554010}
+  - component: {fileID: 9090105984724407547}
   m_Layer: 0
   m_Name: Dude
   m_TagString: Untagged
@@ -1051,6 +1061,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9090105984724407547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970985306401732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fdef82dbc83945c5b4849213d6ff1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstepWalk: {fileID: 6902582059520205005, guid: e2d3da567a17345989a5ab6ea7e0495a,
+    type: 3}
+  footstepRun: {fileID: 6902582059520205005, guid: e2d3da567a17345989a5ab6ea7e0495a,
+    type: 3}
 --- !u!1 &1980775479521444
 GameObject:
   m_ObjectHideFlags: 0

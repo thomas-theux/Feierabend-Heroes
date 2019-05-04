@@ -3035,7 +3035,7 @@ MonoBehaviour:
   arrowNavRight: {fileID: 2141069022}
   modeTitle: {fileID: 2078615802}
   modeDescription: {fileID: 8325643}
-  selectSound: {fileID: 82822903586413262, guid: 212425bfcf8384988abf87d673d89343,
+  selectSound: {fileID: 82638912745022070, guid: f90494be1ffc34110bccea68797d4637,
     type: 3}
   cancelSound: {fileID: 82418148799504902, guid: 2ec4e77403c994b0ca4d2e77819c7dfa,
     type: 3}

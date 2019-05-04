@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/2 Map Selection.unity
+- path: Assets/Scenes/0 Initializer.unity
   isLoaded: 1
   isActive: 1

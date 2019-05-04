@@ -19,6 +19,11 @@ public class MatchSettingsHandler : MonoBehaviour {
     public AudioSource cancelSound;
 	public AudioSource navigateSound;
 
+	private float minThreshold = 0.5f;
+	private float maxThreshold = 0.5f;
+	private bool axisXActive;
+	private bool axisYActive;
+
     public GameObject navigationParent;
     private List<GameObject> navigationElementsArr = new List<GameObject>();
 
@@ -71,7 +76,7 @@ public class MatchSettingsHandler : MonoBehaviour {
         0,
         30,
         60,
-        4785
+        3360
     };
 
     private string[] orbSpawn = {
@@ -133,7 +138,7 @@ public class MatchSettingsHandler : MonoBehaviour {
         maxIndexes.Add(orbSpawn.Length);
         maxIndexes.Add(bountyTypes.Length);
 
-        DisplayCursor();
+        // DisplayCursor();
         DisplayTitles();
         InitialTexts();
         // DisplayTexts();
@@ -310,6 +315,63 @@ public class MatchSettingsHandler : MonoBehaviour {
                 DisplayTitles();
                 DisplayTexts();
             }
+        }
+
+        // UI navigation with the analog sticks
+        // LEFT
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Horizontal") < -maxThreshold && !axisXActive) {
+            axisXActive = true;
+
+            if (modeIndexes[currentIndex] > 0) {
+                modeIndexes[currentIndex]--;
+
+                DisplayCursor();
+                DisplayTitles();
+                DisplayTexts();
+            }
+        }
+        // RIGHT
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Horizontal") > maxThreshold && !axisXActive) {
+            axisXActive = true;
+
+            if (modeIndexes[currentIndex] < maxIndexes[currentIndex] - 1) {
+                modeIndexes[currentIndex]++;
+
+                DisplayCursor();
+                DisplayTitles();
+                DisplayTexts();
+            }
+        }
+        // UP
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") > maxThreshold && !axisYActive) {
+            axisYActive = true;
+
+            if (currentIndex > 0) {
+                currentIndex--;
+
+                DisplayCursor();
+                DisplayTitles();
+                DisplayTexts();
+            }
+        }
+        // DOWN
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") < -maxThreshold && !axisYActive) {
+            axisYActive = true;
+
+            if (currentIndex < modeIndexes.Length - 1) {
+                currentIndex++;
+
+                DisplayCursor();
+                DisplayTitles();
+                DisplayTexts();
+            }
+        }
+
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Horizontal") <= minThreshold && ReInput.players.GetPlayer(0).GetAxis("LS Horizontal") >= -minThreshold) {
+            axisXActive = false;
+        }
+        if (ReInput.players.GetPlayer(0).GetAxis("LS Vertical") <= minThreshold && ReInput.players.GetPlayer(0).GetAxis("LS Vertical") >= -minThreshold) {
+            axisYActive = false;
         }
 
         if (ReInput.players.GetPlayer(0).GetButtonDown("X")) {

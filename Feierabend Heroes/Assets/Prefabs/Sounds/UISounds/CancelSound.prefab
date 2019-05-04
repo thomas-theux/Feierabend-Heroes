@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4398849292256464}
   - component: {fileID: 82418148799504902}
+  - component: {fileID: 2922298407826786828}
   - component: {fileID: 114988813835569052}
   m_Layer: 0
   m_Name: CancelSound
@@ -44,7 +45,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fc9c28e7957f340468e836f25d3b2b0d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -128,6 +129,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2922298407826786828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208041140743034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01b3a4d12e6c41d3a0029ea23381664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114988813835569052
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -85,10 +85,10 @@ public class GameUIHandler : MonoBehaviour {
 		// if (ReInput.players.GetPlayer(0).GetButtonDown("Options") && !startedLevel) {
 		// }
 
-        if (ReInput.players.GetPlayer(0).GetButtonDown("Circle")) {
-            Instantiate(cancelSound);
-            SceneManager.LoadScene("2 Map Selection");
-        }
+        // if (ReInput.players.GetPlayer(0).GetButtonDown("Circle")) {
+        //     Instantiate(cancelSound);
+        //     SceneManager.LoadScene("2 Map Selection");
+        // }
 	}
 
 
