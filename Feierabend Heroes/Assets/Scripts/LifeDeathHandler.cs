@@ -8,8 +8,10 @@ public class LifeDeathHandler : MonoBehaviour {
 
 	private CharacterSheet characterSheetScript;
 
-	public GameObject dudeHeadGO;
-	public GameObject dudeBodyGO;
+	// public GameObject dudeHeadGO;
+	// public GameObject dudeBodyGO;
+
+	public GameObject characterGO;
 
 	public AudioSource characterDiesSound;
 
@@ -218,8 +220,9 @@ public class LifeDeathHandler : MonoBehaviour {
 
 
 	public void EnableCharRenderer() {
-		dudeHeadGO.GetComponent<Renderer>().enabled = true;
-		dudeBodyGO.GetComponent<Renderer>().enabled = true;
+		characterGO.SetActive(true);
+		// dudeHeadGO.GetComponent<Renderer>().enabled = true;
+		// dudeBodyGO.GetComponent<Renderer>().enabled = true;
 		gameObject.GetComponent<CapsuleCollider>().enabled = true;
 
 		// Disable shadow and direction indicator

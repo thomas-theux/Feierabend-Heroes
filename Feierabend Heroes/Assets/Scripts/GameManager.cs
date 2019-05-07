@@ -95,8 +95,8 @@ public class GameManager : MonoBehaviour {
 			newChar.GetComponent<CharacterSheet>().currentOrbs += SettingsHolder.startingOrbs;
 
 			// Color characters
-			newChar.transform.GetChild(0).transform.GetChild(1).GetComponent<Renderer>().material = charColorsArr[i];
-			newChar.transform.GetChild(0).transform.GetChild(2).GetComponent<Renderer>().material = charColorsArr[i];
+			// newChar.transform.GetChild(0).transform.GetChild(1).GetComponent<Renderer>().material = charColorsArr[i];
+			// newChar.transform.GetChild(0).transform.GetChild(2).GetComponent<Renderer>().material = charColorsArr[i];
 
 			switch(SettingsHolder.playerClasses[i]) {
 				case 0:

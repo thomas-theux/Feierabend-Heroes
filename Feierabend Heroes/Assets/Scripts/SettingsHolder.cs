@@ -11,7 +11,7 @@ public class SettingsHolder {
 	public static int registeredPlayers = 0;
 
 	// 0 = isometric camera ; 1 = 3rd person camera
-	public static int perspectiveMode = 1;
+	public static int perspectiveMode = 0;
 
 	public static int publicEnemy = -1;
 	public static float sizeIncrease = 2.0f;

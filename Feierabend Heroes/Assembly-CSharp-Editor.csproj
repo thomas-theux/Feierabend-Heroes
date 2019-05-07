@@ -53,9 +53,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AmplifyColor\Plugins\Editor\AmplifyColorEffectEditor.cs" />
-     <Compile Include="Assets\AmplifyColor\Plugins\Editor\AmplifyColorRenderMaskEditor.cs" />
-     <Compile Include="Assets\AmplifyColor\Plugins\Editor\AmplifyColorVolumeEditor.cs" />
+     <Compile Include="Assets\Asset Store\AmplifyColor\Plugins\Editor\AmplifyColorEffectEditor.cs" />
+     <Compile Include="Assets\Asset Store\AmplifyColor\Plugins\Editor\AmplifyColorRenderMaskEditor.cs" />
+     <Compile Include="Assets\Asset Store\AmplifyColor\Plugins\Editor\AmplifyColorVolumeEditor.cs" />
+     <Compile Include="Assets\Asset Store\Ultimate VFX\Editor Extensions\_Common\Editor\ParticleEditorUtility.cs" />
+     <Compile Include="Assets\Asset Store\Ultimate VFX\Editor Extensions\Utilities\Multi-Asset Renamer\Editor\MultiAssetRenamer.cs" />
+     <Compile Include="Assets\Asset Store\Ultimate VFX\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlayback.cs" />
+     <Compile Include="Assets\Asset Store\Ultimate VFX\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackEditorWindow.cs" />
+     <Compile Include="Assets\Asset Store\Ultimate VFX\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackExtensions.cs" />
+     <Compile Include="Assets\Asset Store\Ultimate VFX\Editor Extensions\Utilities\Particle Scaler\Editor\ParticleScalerEditorWindow.cs" />
+     <Compile Include="Assets\Asset Store\Ultimate VFX\Editor Extensions\Utilities\Particle Scaler\Editor\ParticleScalerExtensions.cs" />
      <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\ControlMapperInspector.cs" />
      <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomButtonInspector.cs" />
      <Compile Include="Assets\Rewired\Extras\ControlMapper\Scripts\Editor\CustomSliderInspector.cs" />
@@ -324,10 +331,10 @@
  <HintPath>/Applications/Unity/Hub/Editor/2018.3.5f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="AmplifyColor">
- <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Assets/AmplifyColor/Plugins/AmplifyColor.dll</HintPath>
+ <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Assets/Asset Store/AmplifyColor/Plugins/AmplifyColor.dll</HintPath>
  </Reference>
  <Reference Include="AmplifyColorEditor">
- <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Assets/AmplifyColor/Plugins/Editor/AmplifyColorEditor.dll</HintPath>
+ <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Assets/Asset Store/AmplifyColor/Plugins/Editor/AmplifyColorEditor.dll</HintPath>
  </Reference>
  <Reference Include="Rewired_Core">
  <HintPath>/Users/thomas_ge/Design/Feierabend Crew/Feierabend-Heroes/Feierabend Heroes/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll</HintPath>
