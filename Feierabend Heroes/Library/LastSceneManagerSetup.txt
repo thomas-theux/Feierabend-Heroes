@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/0 Initializer.unity
+- path: Assets/Scenes/Gungineer.unity
   isLoaded: 1
   isActive: 1

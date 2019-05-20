@@ -8,6 +8,8 @@ using Rewired;
 public class GameManager : MonoBehaviour {
 
 	public GameObject characterGO;
+	public RuntimeAnimatorController[] classAnimations;
+
 	public GameObject spawnParent;
 	public List<GameObject> startSpawns;
 	public static List<int> activePlayers = new List<int>();
@@ -106,6 +108,8 @@ public class GameManager : MonoBehaviour {
 					newChar.AddComponent<Class_Novist>();
 					break;
 			}
+
+			newChar.transform.GetChild(0).GetComponent<Animator>().runtimeAnimatorController = classAnimations[SettingsHolder.playerClasses[i]];
 
 			// Color the indicator underneath the hero
 			newChar.transform.GetChild(2).transform.GetChild(0).GetComponent<Image>().color = Colors.keyIndicators[i];
