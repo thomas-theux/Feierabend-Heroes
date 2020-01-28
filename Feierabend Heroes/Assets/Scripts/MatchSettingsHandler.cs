@@ -32,24 +32,25 @@ public class MatchSettingsHandler : MonoBehaviour {
 
     private int currentIndex = 0;
 
-    // private int[] modeIndexes = {
-    //     0,  // Battle Type
-    //     0,  // Game Type
-    //     1,  // Amounts
-    //     2,  // Starting Orbs
-    //     1,  // Spawning Orbs
-    //     0   // Bounty
-    // };
-
-    // This array is only for DEF STUFF
+    // DEFAULT SETTINGS
     private int[] modeIndexes = {
         0,  // Battle Type
         0,  // Game Type
-        0,  // Amounts
-        3,  // Starting Orbs
-        0,  // Spawning Orbs
-        1   // Bounty
+        1,  // Amounts
+        2,  // Starting Orbs
+        1,  // Spawning Orbs
+        0   // Bounty
     };
+
+    // DEV SETTINGS
+    // private int[] modeIndexes = {
+    //     0,  // Battle Type
+    //     0,  // Game Type
+    //     0,  // Amounts
+    //     3,  // Starting Orbs
+    //     0,  // Spawning Orbs
+    //     1   // Bounty
+    // };
 
     private List<int> maxIndexes = new List<int>();
 
@@ -104,7 +105,7 @@ public class MatchSettingsHandler : MonoBehaviour {
 
     // DESCRIPTIONS FOR THE VARIOUS MODES
     private string[] battleTypeDesc = {
-        "Everyone is at war with each other!",
+        "Everyone is at war with everyone!",
         "Build teams and fight each other!",
         "3 Davids fight 1 Goliath. Easy right?"
     };

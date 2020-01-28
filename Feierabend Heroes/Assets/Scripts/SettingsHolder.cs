@@ -29,14 +29,14 @@ public class SettingsHolder {
 
 	// "4 Aeras" ; "5 Hunted"
 	public static string selectedMap;
-	// public static string selectedMap = "4 Aeras";
-	// public static string selectedMap = "5 Hunted";
+	// public static string selectedMap = "1 The Island";
+	// public static string selectedMap = "2 Being Hunted";
 
 	public static int currentRound = 0;
 	public static int amountOfRounds = 10;
 
-	public static float exploreTime = 5.0f;
-	public static float battleTime = 1200.0f;
+	public static float exploreTime = 45.0f;
+	public static float battleTime = 120.0f;
 
 	public static int appleSpawnMax = 0;
 	public static int orbSpawnMax = 17;

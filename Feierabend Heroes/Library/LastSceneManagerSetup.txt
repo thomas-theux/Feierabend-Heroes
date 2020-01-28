@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Maps/1 The Island.unity
+- path: Assets/Scenes/0 Initializer.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
