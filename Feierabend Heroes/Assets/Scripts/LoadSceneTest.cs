@@ -13,7 +13,7 @@ public class LoadSceneTest : MonoBehaviour {
         this.gameObject.transform.position += new Vector3(0, 0, 0.1f);
 
         testValue++;
-        print(testValue);
+        // print(testValue);
 
         if (this.gameObject.transform.position.z > 10.0f && !isReloading) {
             isReloading = true;

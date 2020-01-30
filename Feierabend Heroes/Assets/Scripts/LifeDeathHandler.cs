@@ -49,7 +49,7 @@ public class LifeDeathHandler : MonoBehaviour {
 	void OnEnable() {
 		SceneManager.sceneLoaded += OnLevelFinishedLoading;
 	}
-         
+
 	void OnDisable() {
 		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
 	}
@@ -169,7 +169,7 @@ public class LifeDeathHandler : MonoBehaviour {
 
 		// Increase stats for deaths
 		GameManager.deathsStatsArr[characterSheetScript.charID]++;
-		
+
 		// dudeHeadGO.GetComponent<Renderer>().enabled = false;
 		// dudeBodyGO.GetComponent<Renderer>().enabled = false;
 		gameObject.GetComponent<CapsuleCollider>().enabled = false;

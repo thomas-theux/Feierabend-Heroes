@@ -59,7 +59,7 @@ public class GameUIHandler : MonoBehaviour {
 
 
 	// Wieviele verschiedene Möglichkeiten für random names gibt es?
-	// private void Start() {		
+	// private void Start() {
 	// 	int titles = CharClassContent.titleTexts.Length;
 	// 	int adjectives = CharClassContent.adjectiveTexts.Length;
 	// 	int names = CharClassContent.nameTexts.Length;
@@ -96,7 +96,7 @@ public class GameUIHandler : MonoBehaviour {
 		if (connectedGamepads < playerMax) {
 			// connectedGamepads = ReInput.controllers.joystickCount;
 		} else {
-			print("No more controllers allowed");
+			// print("No more controllers allowed");
 		}
 	}
 
@@ -105,7 +105,7 @@ public class GameUIHandler : MonoBehaviour {
 		if (connectedGamepads > 0) {
 			// connectedGamepads = ReInput.controllers.joystickCount;
 		} else {
-			print("No more controllers to disconnect");
+			// print("No more controllers to disconnect");
 		}
 	}
 
@@ -122,5 +122,5 @@ public class GameUIHandler : MonoBehaviour {
 
 		SceneManager.LoadScene(SettingsHolder.selectedMap);
 	}
-	
+
 }
