@@ -11,7 +11,6 @@ public class StartGame : MonoBehaviour {
         // Cursor.lockState = CursorLockMode.Locked;
 
         SceneManager.LoadScene("0 Main Screen");
-
     }
 
 }
