@@ -74,11 +74,13 @@ public class UndergroundMine : MonoBehaviour {
 			if (other.tag != "Attack" && other.tag != transform.GetChild(0).tag && other.tag != "Environment" && other.tag != "Orb") {
 
 				GameObject newMineRadius = Instantiate(mineRadius, transform.position, transform.rotation);
+				MineRadius newMineRadiusScript = newMineRadius.GetComponent<MineRadius>();
+
 				newMineRadius.transform.GetChild(0).gameObject.tag = casterTag;
-				newMineRadius.GetComponent<MineRadius>().casterDamage = casterDamage;
-				newMineRadius.GetComponent<MineRadius>().casterCritChance = casterCritChance;
-				newMineRadius.GetComponent<MineRadius>().casterCritDMG = casterCritDMG;
-				newMineRadius.GetComponent<MineRadius>().damagerID = damagerID;
+				newMineRadiusScript.casterDamage = casterDamage;
+				newMineRadiusScript.casterCritChance = casterCritChance;
+				newMineRadiusScript.casterCritDMG = casterCritDMG;
+				newMineRadiusScript.damagerID = damagerID;
 
 				Instantiate(mineThrowSound);
 
@@ -93,11 +95,13 @@ public class UndergroundMine : MonoBehaviour {
 			if (other.tag != "Attack" && other.tag != transform.GetChild(0).tag && other.tag != "Environment" && other.tag != "Orb") {
 
 				GameObject newMineRadius = Instantiate(mineRadius, transform.position, transform.rotation);
+				MineRadius newMineRadiusScript = newMineRadius.GetComponent<MineRadius>();
+
 				newMineRadius.transform.GetChild(0).gameObject.tag = casterTag;
-				newMineRadius.GetComponent<MineRadius>().casterDamage = casterDamage;
-				newMineRadius.GetComponent<MineRadius>().casterCritChance = casterCritChance;
-				newMineRadius.GetComponent<MineRadius>().casterCritDMG = casterCritDMG;
-				newMineRadius.GetComponent<MineRadius>().damagerID = damagerID;
+				newMineRadiusScript.casterDamage = casterDamage;
+				newMineRadiusScript.casterCritChance = casterCritChance;
+				newMineRadiusScript.casterCritDMG = casterCritDMG;
+				newMineRadiusScript.damagerID = damagerID;
 
 				Instantiate(mineThrowSound);
 

@@ -202,13 +202,15 @@ public class Class_Cloudmaster : MonoBehaviour {
 
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 1);
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
+			WrenchPunch newWrenchPunchScript = newAttackOne.GetComponent<WrenchPunch>();
+
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newAttackOne.GetComponent<WrenchPunch>().damagerID = charID;
+			newWrenchPunchScript.damagerID = charID;
 			newAttackOne.tag = "Attack";
 			newAttackOne.transform.parent = gameObject.transform;
-			newAttackOne.GetComponent<WrenchPunch>().casterDamage = characterSheetScript.attackOneDmg;
-			newAttackOne.GetComponent<WrenchPunch>().casterCritChance = characterSheetScript.critChance;
-			newAttackOne.GetComponent<WrenchPunch>().casterCritDMG = characterSheetScript.critDMG;
+			newWrenchPunchScript.casterDamage = characterSheetScript.attackOneDmg;
+			newWrenchPunchScript.casterCritChance = characterSheetScript.critChance;
+			newWrenchPunchScript.casterCritDMG = characterSheetScript.critDMG;
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition + new Vector3(0, 0, 1);
 		}
 
@@ -241,13 +243,15 @@ public class Class_Cloudmaster : MonoBehaviour {
 			// attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(GameObject.Find("GameManager").GetComponent<GameManager>().bombAngle, 0, 0);
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(-36, 0, 0);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
-			newAttackTwo.GetComponent<Bomb>().casterTag = "Character" + charID;
-			newAttackTwo.GetComponent<Bomb>().damagerID = charID;
+			Bomb newBombScript = newAttackTwo.GetComponent<Bomb>();
+
+			newBombScript.casterTag = "Character" + charID;
+			newBombScript.damagerID = charID;
 			newAttackTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
 			newAttackTwo.tag = "Attack";
-			newAttackTwo.transform.GetComponent<Bomb>().casterDamage = characterSheetScript.attackTwoDmg;
-			newAttackTwo.GetComponent<Bomb>().casterCritChance = characterSheetScript.critChance;
-			newAttackTwo.GetComponent<Bomb>().casterCritDMG = characterSheetScript.critDMG;
+			newBombScript.casterDamage = characterSheetScript.attackTwoDmg;
+			newBombScript.casterCritChance = characterSheetScript.critChance;
+			newBombScript.casterCritDMG = characterSheetScript.critDMG;
 			attackSpawner.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 0);
 		} else if (performAttackTwo && attackTwoDelayActive) {
 			Instantiate(skillNotAvailableSound);
@@ -282,21 +286,23 @@ public class Class_Cloudmaster : MonoBehaviour {
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition + new Vector3(0, 0, 2);
 
 			GameObject newSkill = Instantiate(skillGO, attackSpawner.position, attackSpawner.rotation);
+			TurretGun newTurretGunScript = newSkill.transform.GetChild(4).GetComponent<TurretGun>();
+
 			newSkill.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newSkill.transform.GetChild(4).GetComponent<TurretGun>().damagerID = charID;
+			newTurretGunScript.damagerID = charID;
 			for (int i = 1; i < 5; i++) {
 				newSkill.transform.GetChild(i).gameObject.tag = "Attack";
 			}
 			newSkill.tag = "Attack";
 
 			// Set shoot speed and radius of turret gun from skillboard
-			newSkill.transform.GetChild(4).GetComponent<TurretGun>().shotDelayDefault = characterSheetScript.charSkillStats[0];
+			newTurretGunScript.shotDelayDefault = characterSheetScript.charSkillStats[0];
 			newSkill.transform.GetChild(4).transform.localScale = new Vector3(characterSheetScript.charSkillStats[1], characterSheetScript.charSkillStats[1] * 2, characterSheetScript.charSkillStats[1]);
 
-			newSkill.transform.GetChild(4).GetComponent<TurretGun>().casterDamage = characterSheetScript.skillDmg;
-			newSkill.transform.GetChild(4).GetComponent<TurretGun>().casterCritChance = characterSheetScript.critChance;
-			newSkill.transform.GetChild(4).GetComponent<TurretGun>().casterCritDMG = characterSheetScript.critDMG;
-			newSkill.transform.GetChild(4).GetComponent<TurretGun>().charID = charID;
+			newTurretGunScript.casterDamage = characterSheetScript.skillDmg;
+			newTurretGunScript.casterCritChance = characterSheetScript.critChance;
+			newTurretGunScript.casterCritDMG = characterSheetScript.critDMG;
+			newTurretGunScript.charID = charID;
 
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 2);
 		} else if (castSkill && skillDelayActive) {

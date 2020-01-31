@@ -36,12 +36,14 @@ public class TurretGun : MonoBehaviour {
 				}
 			} else {
 				GameObject newProjectile = Instantiate(projectileGO, projectileSpawner.position, projectileSpawner.rotation);
+				MeteorShot newMeteorShotScript = newProjectile.GetComponent<MeteorShot>();
+
 				newProjectile.transform.GetChild(0).gameObject.tag = "Character" + charID;
-				newProjectile.GetComponent<MeteorShot>().damagerID = charID;
+				newMeteorShotScript.damagerID = charID;
 				newProjectile.tag = "Attack";
-				newProjectile.transform.GetComponent<MeteorShot>().casterDamage = casterDamage;
-				newProjectile.GetComponent<MeteorShot>().casterCritChance = casterCritChance;
-				newProjectile.GetComponent<MeteorShot>().casterCritDMG = casterCritDMG;
+				newMeteorShotScript.casterDamage = casterDamage;
+				newMeteorShotScript.casterCritChance = casterCritChance;
+				newMeteorShotScript.casterCritDMG = casterCritDMG;
 
 				shotDelayTimer = shotDelayDefault;
 				isShooting = true;

@@ -42,11 +42,13 @@ public class Bomb : MonoBehaviour {
 	private void OnTriggerEnter(Collider other) {
 		if (other.tag != "Attack" && other.tag != "Apple" && other.tag != "Orb" && other.tag != transform.GetChild(0).tag) {
 			GameObject newBombRadius = Instantiate(bombRadius, transform.position, transform.rotation);
+			BombRadius newBombRadiusScript = newBombRadius.GetComponent<BombRadius>();
+
 			newBombRadius.transform.GetChild(0).gameObject.tag = casterTag;
-			newBombRadius.GetComponent<BombRadius>().casterDamage = casterDamage;
-			newBombRadius.GetComponent<BombRadius>().casterCritChance = casterCritChance;
-			newBombRadius.GetComponent<BombRadius>().casterCritDMG = casterCritDMG;
-			newBombRadius.GetComponent<BombRadius>().damagerID = damagerID;
+			newBombRadiusScript.casterDamage = casterDamage;
+			newBombRadiusScript.casterCritChance = casterCritChance;
+			newBombRadiusScript.casterCritDMG = casterCritDMG;
+			newBombRadiusScript.damagerID = damagerID;
 
 			Instantiate(bombThrowHitSound);
 

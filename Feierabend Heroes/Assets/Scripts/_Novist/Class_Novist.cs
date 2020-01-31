@@ -211,13 +211,15 @@ public class Class_Novist : MonoBehaviour {
 			Instantiate(meteorShotSound);
 			
 			GameObject newAttackOne = Instantiate(attackOneGO, attackSpawner.position, attackSpawner.rotation);
+			MeteorShot newMeteorShotScript = newAttackOne.GetComponent<MeteorShot>();
+
 			newAttackOne.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newAttackOne.GetComponent<MeteorShot>().damagerID = charID;
+			newMeteorShotScript.damagerID = charID;
 			newAttackOne.transform.GetChild(newAttackOne.transform.childCount-1).gameObject.tag = "Attack";
 			newAttackOne.tag = "Attack";
-			newAttackOne.transform.GetComponent<MeteorShot>().casterDamage = characterSheetScript.attackOneDmg;
-			newAttackOne.GetComponent<MeteorShot>().casterCritChance = characterSheetScript.critChance;
-			newAttackOne.GetComponent<MeteorShot>().casterCritDMG = characterSheetScript.critDMG;
+			newMeteorShotScript.casterDamage = characterSheetScript.attackOneDmg;
+			newMeteorShotScript.casterCritChance = characterSheetScript.critChance;
+			newMeteorShotScript.casterCritDMG = characterSheetScript.critDMG;
 		}
 
 		if (attackOneDelayActive) {
@@ -248,12 +250,14 @@ public class Class_Novist : MonoBehaviour {
 
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition + new Vector3(0, 0, 2);
 			GameObject newAttackTwo = Instantiate(attackTwoGO, attackSpawner.position, attackSpawner.rotation);
+			FireBlock newFireBlockScript = newAttackTwo.GetComponent<FireBlock>();
+
 			newAttackTwo.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newAttackTwo.GetComponent<FireBlock>().damagerID = charID;
+			newFireBlockScript.damagerID = charID;
 			newAttackTwo.tag = "Attack";
-			newAttackTwo.transform.GetComponent<FireBlock>().casterDamage = characterSheetScript.attackTwoDmg;
-			newAttackTwo.GetComponent<FireBlock>().casterCritChance = characterSheetScript.critChance;
-			newAttackTwo.GetComponent<FireBlock>().casterCritDMG = characterSheetScript.critDMG;
+			newFireBlockScript.casterDamage = characterSheetScript.attackTwoDmg;
+			newFireBlockScript.casterCritChance = characterSheetScript.critChance;
+			newFireBlockScript.casterCritDMG = characterSheetScript.critDMG;
 			attackSpawner.transform.localPosition = attackSpawner.transform.localPosition - new Vector3(0, 0, 2);
 		} else if (performAttackTwo && attackTwoDelayActive) {
 			Instantiate(skillNotAvailableSound);
@@ -286,19 +290,21 @@ public class Class_Novist : MonoBehaviour {
 
 			// Skill SPAWN COMPANION
 			GameObject newSkill = Instantiate(skillGO, attackSpawner.position, attackSpawner.rotation);
+			CompanionAggro newCompanionAggroScript = newSkill.transform.GetChild(1).GetComponent<CompanionAggro>();
+			
 			newSkill.transform.GetChild(0).gameObject.tag = "Character" + charID;
-			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().damagerID = charID;
+			newCompanionAggroScript.damagerID = charID;
 			newSkill.transform.GetChild(1).gameObject.tag = "Attack";
 			newSkill.tag = "Attack";
 			
 			// Set size and lifetime of aggro radius from skillboard
 			newSkill.transform.GetChild(1).transform.localScale = new Vector3(characterSheetScript.charSkillStats[0], characterSheetScript.charSkillStats[0], characterSheetScript.charSkillStats[0]);
-			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().SetLifeTime(characterSheetScript.charSkillStats[1]);
+			newCompanionAggroScript.SetLifeTime(characterSheetScript.charSkillStats[1]);
 
-			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().followCaster = this.gameObject;
-			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().casterDamage = characterSheetScript.skillDmg;
-			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritChance = characterSheetScript.critChance;
-			newSkill.transform.GetChild(1).GetComponent<CompanionAggro>().casterCritDMG = characterSheetScript.critDMG;
+			newCompanionAggroScript.followCaster = this.gameObject;
+			newCompanionAggroScript.casterDamage = characterSheetScript.skillDmg;
+			newCompanionAggroScript.casterCritChance = characterSheetScript.critChance;
+			newCompanionAggroScript.casterCritDMG = characterSheetScript.critDMG;
 		} else if (castSkill && skillDelayActive) {
 			Instantiate(skillNotAvailableSound);
 		}
